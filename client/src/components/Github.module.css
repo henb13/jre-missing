@@ -1,0 +1,32 @@
+.Github {
+  position: fixed;
+  top: 4rem;
+  left: 5rem;
+}
+
+.GithubLogo {
+  transition: transform 0.2s;
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.GithubLogo:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.GithubLogo:active {
+  transform: scale(1);
+}
+
+@media (max-width: 900px) {
+  .Github {
+    position: absolute;
+  }
+}
+@media (max-width: 750px) {
+  .Github {
+    top: 2rem;
+    left: 2rem;
+  }
+}

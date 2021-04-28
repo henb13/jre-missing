@@ -1,0 +1,99 @@
+.ScrollButton {
+  background: transparent;
+  outline: none;
+  color: var(--color-white);
+  font-family: var(--font-family-primary);
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 9rem;
+  right: 10%;
+  width: 9.5rem;
+  height: 9.5rem;
+  border: 1px solid var(--color-red);
+  border-radius: 100%;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.7s ease-out 0.2s, right 0.3s ease-out;
+}
+
+.ScrollButton.hidden {
+  right: -10rem;
+}
+
+.ScrollText {
+  z-index: 1;
+}
+
+.arrow {
+  transition: all 0.5s ease-out;
+  margin-bottom: 14px;
+}
+.arrow.up {
+  transform: rotateZ(-180deg);
+}
+
+.ScrollButton:hover .arrow,
+.ScrollButton:hover,
+.ScrollButton:active {
+  transform: translateY(5px);
+}
+
+.ScrollButton:focus-visible {
+  outline: -webkit-focus-ring-color auto 1px;
+}
+
+.ScrollButton.up:hover .arrow {
+  transform: translateY(-5px) rotateZ(-180deg);
+}
+
+.ScrollButton.up:hover,
+.ScrollButton.up:active {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 1500px) {
+  .ScrollButton {
+    right: 4vw;
+  }
+}
+@media (max-width: 1350px) {
+  .ScrollButton {
+    right: 10%;
+  }
+}
+@media (max-width: 750px), (orientation: landscape) AND (max-height: 650px) {
+  .ScrollButton {
+    justify-content: center;
+    width: 6.5rem;
+    height: 6.5rem;
+    bottom: 5%;
+    right: 4%;
+  }
+  .ScrollButton .ScrollText {
+    display: none;
+  }
+
+  .arrow {
+    margin: 0;
+  }
+  .arrow path {
+    stroke-width: 2px;
+  }
+}
+
+@media (max-width: 600px), (orientation: landscape) AND (max-height: 650px) {
+  .ScrollButton {
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    bottom: 3%;
+    right: 5%;
+  }
+  .arrow {
+    width: 3rem;
+    height: 3rem;
+  }
+}

@@ -1,0 +1,112 @@
+.SkeletonList {
+  position: relative;
+  position: unset;
+  font-size: 1.4rem;
+  list-style-type: none;
+  display: grid;
+  grid-gap: 2.5rem;
+}
+.SkeletonElement {
+  position: relative;
+  overflow: hidden;
+  background-color: #212121;
+  border-radius: 2px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.listElement {
+  height: 20px;
+}
+
+.SkeletonElement.small {
+  width: 110px;
+}
+.SkeletonElement.medium {
+  width: 160px;
+}
+.SkeletonElement.large {
+  width: 240px;
+}
+.SkeletonElement.extraLarge {
+  width: 300px;
+}
+
+.SkeletonShimmerWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.SkeletonShimmer {
+  width: 50%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  transform: skewX(-50deg);
+  box-shadow: 0 0 60px 60px rgba(0, 0, 0, 0.1);
+  animation: loading 2s infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-20vw);
+  }
+  50% {
+    transform: translateX(3vw);
+  }
+  100% {
+    transform: translateX(20vw);
+  }
+}
+
+.first {
+  position: relative;
+  height: 22px;
+  width: 219px;
+}
+
+.second {
+  position: relative;
+  margin-top: 7px;
+  height: 19px;
+  width: 305px;
+  margin-bottom: 4.5rem;
+}
+
+.third {
+  display: none;
+}
+
+@media (max-width: 1350px) {
+  .SkeletonList {
+    justify-items: center;
+  }
+  .SkeletonElement.small,
+  .SkeletonElement.medium,
+  .SkeletonElement.large,
+  .SkeletonElement.extraLarge {
+    width: 170px;
+  }
+}
+
+@media (max-width: 500px) {
+  .first {
+    width: 205px;
+  }
+  .second {
+    width: 165px;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  .third {
+    display: flex;
+    width: 155px;
+    height: 19px;
+    margin-bottom: 3.65rem;
+    margin-top: 8px;
+  }
+}

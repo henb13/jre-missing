@@ -1,0 +1,1 @@
+INSERT INTO all_eps_log VALUES(now(), NULL);

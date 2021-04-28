@@ -1,0 +1,53 @@
+.AmountMissing {
+  font-size: 2rem;
+}
+
+.AmountMissing span {
+  color: var(--color-red);
+  font-weight: 700;
+  position: relative;
+}
+.AmountMissing span:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0;
+  right: 0;
+  bottom: 2px;
+  border-bottom: 2px solid var(--color-red);
+}
+
+.LastChecked {
+  font-size: 1.4rem;
+  display: flex;
+  text-align: center;
+  margin-top: 1px;
+  color: var(--color-grey);
+  margin-bottom: 3rem;
+}
+
+.Checkmark {
+  margin: -1px 0 0 6px;
+  color: var(--color-green);
+}
+
+@media (max-width: 1350px) {
+  .AmountMissing {
+    font-size: var(--font-size-medium);
+  }
+  .LastChecked {
+    position: relative;
+    margin-top: 3px;
+  }
+  .Checkmark {
+    position: absolute;
+    right: -2.5rem;
+    top: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .LastChecked p span {
+    display: block;
+  }
+}
