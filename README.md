@@ -9,9 +9,9 @@
   <img alt="Repository license" src="https://img.shields.io/static/v1?label=sauna+temp&message=200F&color=#ee7d2c">
   
 </p>
-&#xa0;
-  :point_right: www.jremissing.com :point_left:
-  &#xa0;
+  
+  :point_right: www.jremissing.com 👈
+  
 A web app that automatically detects episodes of [The Joe Rogan Experience](https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk) podcast that are currently not available on the Spotify platform by comparing the official Spotify API with a database of all episodes ever released.
 </div>
 &#xa0;
