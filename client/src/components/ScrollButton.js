@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { useEffect } from "react";
 import { ReactComponent as ArrowDown } from "../icons/ScrollButtonIcon.svg";
 import useScroll from "../useScroll";
@@ -12,14 +13,15 @@ const ScrollButton = ({ isPending, minLoadingTime, missingEpisodes }) => {
 
   const hidden = !scrollable || isPending || !minLoadingTime;
 
-  const classNames = `${styles.ScrollButton} ${
-    scrollDirection === "up" ? styles.up : ""
-  } 
-  ${hidden ? styles.hidden : ""}`;
+  const scrollClass = scrollDirection === "up" ? styles.up : null;
+  const classesBtn = classnames(styles.ScrollButton, scrollClass, {
+    [styles.hidden]: hidden,
+  });
+  const classesArrow = classnames(styles.arrow, scrollClass);
 
   return (
     <button
-      className={classNames}
+      className={classesBtn}
       disabled={hidden}
       aria-label={`scroll to ${scrollDirection === "up" ? "top" : "bottom"}`}
       onClick={() => {
@@ -33,11 +35,7 @@ const ScrollButton = ({ isPending, minLoadingTime, missingEpisodes }) => {
       <div className={styles.ScrollText}>
         To {scrollDirection === "up" ? "top" : "bottom"}
       </div>
-      <ArrowDown
-        className={`${styles.arrow} ${
-          scrollDirection === "up" ? styles.up : ""
-        }`}
-      />
+      <ArrowDown className={classesArrow} />
     </button>
   );
 };

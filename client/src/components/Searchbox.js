@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import { useState } from "react";
 import styles from "./Searchbox.module.css";
 import { ReactComponent as SearchIcon } from "../icons/SearchboxIcon.svg";
@@ -9,6 +10,10 @@ const Searchbox = ({
   shakeEpisodes,
 }) => {
   const [placeholder, setPlaceholder] = useState("Search for episode or guest");
+
+  const classesSearchIcon = classnames(styles.SearchIcon, {
+    [styles.hoverCursor]: searchText != "",
+  });
 
   return (
     <>
@@ -30,9 +35,7 @@ const Searchbox = ({
         />
 
         <SearchIcon
-          className={`${styles.SearchIcon} ${
-            searchText != "" ? styles.hoverCursor : ""
-          }`}
+          className={classesSearchIcon}
           title="search-icon"
           onClick={() => searchText !== "" && shakeEpisodes()}
         />
