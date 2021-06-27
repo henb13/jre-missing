@@ -37,8 +37,8 @@
     font-size: var(--font-size-medium);
   }
   .LastChecked {
+    margin-top: 2px;
     position: relative;
-    margin-top: 3px;
   }
   .Checkmark {
     position: absolute;
@@ -47,8 +47,10 @@
   }
 }
 
-@media (max-width: 500px) {
-  .LastChecked p span {
+@media (max-width: 600px) {
+  .LastChecked p time {
     display: block;
+    font-style: italic;
+    font-size: 1.2rem;
   }
 }

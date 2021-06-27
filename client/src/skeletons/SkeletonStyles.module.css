@@ -65,16 +65,16 @@
 
 .first {
   position: relative;
-  height: 22px;
-  width: 219px;
+  height: 20px;
+  width: 270px;
 }
 
 .second {
   position: relative;
-  margin-top: 7px;
-  height: 19px;
-  width: 305px;
-  margin-bottom: 4.5rem;
+  margin-top: 8px;
+  height: 18px;
+  width: 285px;
+  margin-bottom: 3.6rem;
 }
 
 .third {
@@ -91,22 +91,32 @@
   .SkeletonElement.extraLarge {
     width: 170px;
   }
-}
-
-@media (max-width: 500px) {
   .first {
-    width: 205px;
+    margin-top: 3px;
+    width: 210px;
   }
   .second {
-    width: 165px;
+    width: 260px;
     margin-top: 10px;
-    margin-bottom: 0;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .first {
+    margin-top: 2px;
+  }
+
+  .second {
+    height: 16px;
+    width: 140px;
+    margin-top: 8px;
+    margin-bottom: 6px;
   }
   .third {
     display: flex;
-    width: 155px;
-    height: 19px;
-    margin-bottom: 3.65rem;
-    margin-top: 8px;
+    width: 100px;
+    height: 15px;
+    margin-bottom: 2.7rem;
   }
 }

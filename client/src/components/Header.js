@@ -14,7 +14,7 @@ const Header = () => {
           rel="noopener noreferrer"
         >
           <span>The Joe Rogan Experience</span>
-          <br /> podcast
+          <br /> podcast{" "}
         </a>{" "}
         that are currently not available on the Spotify platform by comparing
         the official Spotify API with a database of all episodes ever released.

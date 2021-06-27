@@ -41,13 +41,16 @@ h1 span {
   min-height: 1px;
   z-index: -1;
   background-color: var(--color-orange);
-  /* transform-origin: right; */
   transform: scale(0, 1);
   transition: transform 0.5s ease;
 }
 
 .intro span:hover:after {
   transform: scale(1, 1);
+}
+
+.brMobile {
+  display: none;
 }
 
 @media (max-width: 1350px) {
@@ -59,13 +62,23 @@ h1 span {
     margin-bottom: 5rem;
   }
   h1 {
-    font-size: clamp(3rem, 3rem, 5vw);
+    font-size: clamp(3rem, 5rem, 5vw);
     letter-spacing: unset;
+    margin-bottom: 2rem;
   }
   .intro {
     text-align: center;
-    font-size: clamp(1.2rem, 1.4rem, 2.5vw);
+    font-size: clamp(1.4rem, 1.6rem, 2.5vw);
     max-width: 40rem;
+  }
+
+  .intro a {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+  }
+  br {
+    display: none;
   }
 }
 
@@ -73,15 +86,6 @@ h1 span {
   .Header {
     margin-top: 8rem;
     margin-bottom: 4.5rem;
-  }
-
-  .intro br {
-    display: none;
-  }
-  .intro span {
-    display: block;
-    width: max-content;
-    margin: 0 auto;
   }
 }
 
