@@ -6,7 +6,7 @@ const Searchbox = ({
   searchText,
   missingEpisodes,
   handleSearch,
-  handleSearchClick,
+  shakeEpisodes,
 }) => {
   const [placeholder, setPlaceholder] = useState("Search for episode or guest");
 
@@ -22,7 +22,7 @@ const Searchbox = ({
           onFocus={() => setPlaceholder(null)}
           onBlur={() => setPlaceholder("Search for episode or guest")}
           onKeyUp={e => {
-            if (e.key === "Enter") handleSearchClick();
+            if (e.key === "Enter") shakeEpisodes();
           }}
           spellCheck="false"
           autoComplete="off"
@@ -34,7 +34,7 @@ const Searchbox = ({
             searchText != "" ? styles.hoverCursor : ""
           }`}
           title="search-icon"
-          onClick={handleSearchClick}
+          onClick={() => searchText !== "" && shakeEpisodes()}
         />
       </div>
       {searchText && (

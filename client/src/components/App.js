@@ -31,9 +31,8 @@ function App() {
       isFirstUpdate.current = false;
     } else {
       setMissingEpisodes(() =>
-        data?.episodes.filter(
-          ep =>
-            ep.full_name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
+        data?.episodes.filter(ep =>
+          ep.full_name.toLowerCase().includes(searchText.toLowerCase())
         )
       );
     }
@@ -43,13 +42,11 @@ function App() {
     setSearchText(e.target.value);
   };
 
-  const handleSearchClick = () => {
-    if (searchText !== "") {
-      setShouldAnimate(true);
-      setTimeout(() => {
-        setShouldAnimate(false);
-      }, 1000);
-    }
+  const shakeEpisodes = () => {
+    setShouldAnimate(true);
+    setTimeout(() => {
+      setShouldAnimate(false);
+    }, 1000);
   };
 
   return (
@@ -67,13 +64,20 @@ function App() {
             {isPending || !minLoadingTime ? (
               <SkeletonText />
             ) : (
-              data && <AmountMissing data={data} />
+              data && (
+                <AmountMissing
+                  setSearchText={setSearchText}
+                  data={data}
+                  shakeEpisodes={shakeEpisodes}
+                  missingEpisodes={missingEpisodes}
+                />
+              )
             )}
             <Searchbox
               searchText={searchText}
               missingEpisodes={missingEpisodes}
               handleSearch={handleSearch}
-              handleSearchClick={handleSearchClick}
+              shakeEpisodes={shakeEpisodes}
             />
           </>
         )}

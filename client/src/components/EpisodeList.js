@@ -3,9 +3,7 @@ import RemovedDate from "./RemovedDate";
 
 const EpisodeList = ({ episodes, shouldAnimate }) => {
   return (
-    <ul
-      className={`${styles.EpisodeList} ${shouldAnimate ? styles.shake : ""}`}
-    >
+    <ul className={`${styles.EpisodeList} ${shouldAnimate ? "shake" : ""}`}>
       {episodes.map(ep => {
         let [epNr, ...guest] = ep.full_name.split("-");
         guest = guest.join("-");
