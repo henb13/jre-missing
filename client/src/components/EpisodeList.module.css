@@ -33,5 +33,6 @@
 @media (max-width: 600px) {
   .EpisodeList {
     font-size: 1.2rem;
+    margin-right: 0.6rem;
   }
 }

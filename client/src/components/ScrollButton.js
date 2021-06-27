@@ -1,3 +1,4 @@
+import TextTransition, { presets } from "react-text-transition";
 import classnames from "classnames";
 import { useEffect } from "react";
 import { ReactComponent as ArrowDown } from "../icons/ScrollButtonIcon.svg";
@@ -33,7 +34,13 @@ const ScrollButton = ({ isPending, minLoadingTime, missingEpisodes }) => {
       }}
     >
       <div className={styles.ScrollText}>
-        To {scrollDirection === "up" ? "top" : "bottom"}
+        To{" "}
+        <TextTransition
+          text={scrollDirection === "up" ? "top" : "bottom"}
+          springConfig={presets.gentle}
+          inline={true}
+          direction={scrollDirection}
+        />
       </div>
       <ArrowDown className={classesArrow} />
     </button>
