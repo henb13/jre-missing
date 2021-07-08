@@ -7,7 +7,6 @@ router.use(express.json());
 require("dotenv").config();
 
 let missingEpisodesCache;
-let allEpisodesCache;
 let lastCheckedCache;
 
 // eslint-disable-next-line no-undef
@@ -35,7 +34,6 @@ router.get("/api/episodes", async (_, res) => {
       try {
         missingEpisodesCache = await db.getMissingEpisodes();
         lastCheckedCache = await db.getLastChecked();
-        allEpisodesCache = await db.getAllEpisodes();
         console.log("db queried and cache updated");
       } finally {
         client.release();
@@ -46,8 +44,7 @@ router.get("/api/episodes", async (_, res) => {
   console.log("request fired");
   console.log(lastCheckedCache);
   res.json({
-    episodes: missingEpisodesCache,
-    allEpisodes: allEpisodesCache,
+    missingEpisodes: missingEpisodesCache,
     lastChecked: lastCheckedCache,
   });
 });

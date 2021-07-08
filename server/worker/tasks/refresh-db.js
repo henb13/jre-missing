@@ -29,7 +29,7 @@ const refreshDb = async () => {
             someEpisodeNameGotUpdated = true;
 
             console.log(
-              ` \n spotify updated the name of en episode! \n
+              ` \n spotify updated the name of an episode! \n
                 from: ${dbEpisode.full_name} \n 
                 to: ${spotifyEpisode} \n\n`
             );

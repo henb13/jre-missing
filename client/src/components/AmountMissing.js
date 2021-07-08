@@ -5,7 +5,7 @@ import { ReactComponent as Checkmark } from "../icons/AmountMissingIcon.svg";
 const AmountMissing = ({
   data,
   shakeEpisodes,
-  missingEpisodes,
+  episodesShown,
   setSearchText,
 }) => {
   const now = Date.now();
@@ -21,12 +21,12 @@ const AmountMissing = ({
       <p className={styles.AmountMissing}>
         <span
           onClick={() =>
-            missingEpisodes.length === data.episodes.length
+            episodesShown.length === data.missingEpisodes.length
               ? shakeEpisodes()
               : setSearchText("")
           }
         >
-          {data.episodes.length}
+          {data.missingEpisodes.length}
         </span>{" "}
         episodes are missing from Spotify.
       </p>

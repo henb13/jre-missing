@@ -2,14 +2,14 @@ import classnames from "classnames";
 import styles from "./EpisodeList.module.css";
 import RemovedDate from "./RemovedDate";
 
-const EpisodeList = ({ episodes, shouldAnimate }) => {
+const EpisodeList = ({ episodesShown, shouldShake }) => {
   const classesEpList = classnames(styles.EpisodeList, {
-    shake: shouldAnimate,
+    shake: shouldShake,
   });
 
   return (
     <ul className={classesEpList}>
-      {episodes.map(ep => {
+      {episodesShown.map(ep => {
         let [epNr, ...guest] = ep.full_name.split("-");
         guest = guest.join("-");
 

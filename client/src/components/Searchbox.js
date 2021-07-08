@@ -5,7 +5,7 @@ import { ReactComponent as SearchIcon } from "../icons/SearchboxIcon.svg";
 
 const Searchbox = ({
   searchText,
-  missingEpisodes,
+  episodesShown,
   handleSearch,
   shakeEpisodes,
 }) => {
@@ -31,19 +31,21 @@ const Searchbox = ({
           }}
           spellCheck="false"
           autoComplete="off"
-          disabled={!missingEpisodes}
+          disabled={!episodesShown}
         />
 
         <SearchIcon
           className={classesSearchIcon}
           title="search-icon"
-          onClick={() => searchText !== "" && shakeEpisodes()}
+          onClick={() => {
+            if (searchText !== "") shakeEpisodes();
+          }}
         />
       </div>
       {searchText && (
         <p className={styles.searchResult}>
-          {missingEpisodes.length} result
-          {missingEpisodes.length != 1 && "s"} found
+          {episodesShown.length} result
+          {episodesShown.length != 1 && "s"} found
         </p>
       )}
     </>

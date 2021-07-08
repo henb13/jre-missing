@@ -18,20 +18,20 @@ function App() {
   const { data, error, isPending } = useFetch("/api/episodes");
   const minLoadingTime = useMinLoadingTime(400);
   const [searchText, setSearchText] = useState("");
-  const [missingEpisodes, setMissingEpisodes] = useState(null);
-  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [episodesShown, setEpisodesShown] = useState(null);
+  const [shouldShakeEps, setShouldShakeEps] = useState(false);
   const isFirstUpdate = useRef(true);
 
   useEffect(() => {
-    setMissingEpisodes(data?.episodes);
+    setEpisodesShown(data?.missingEpisodes);
   }, [data]);
 
   useEffect(() => {
     if (isFirstUpdate.current) {
       isFirstUpdate.current = false;
     } else {
-      setMissingEpisodes(() =>
-        data?.episodes.filter(ep =>
+      setEpisodesShown(() =>
+        data?.missingEpisodes.filter(ep =>
           ep.full_name.toLowerCase().includes(searchText.toLowerCase())
         )
       );
@@ -43,9 +43,9 @@ function App() {
   };
 
   const shakeEpisodes = () => {
-    setShouldAnimate(true);
+    setShouldShakeEps(true);
     setTimeout(() => {
-      setShouldAnimate(false);
+      setShouldShakeEps(false);
     }, 1000);
   };
 
@@ -69,13 +69,13 @@ function App() {
                   setSearchText={setSearchText}
                   data={data}
                   shakeEpisodes={shakeEpisodes}
-                  missingEpisodes={missingEpisodes}
+                  episodesShown={episodesShown}
                 />
               )
             )}
             <Searchbox
               searchText={searchText}
-              missingEpisodes={missingEpisodes}
+              episodesShown={episodesShown}
               handleSearch={handleSearch}
               shakeEpisodes={shakeEpisodes}
             />
@@ -88,18 +88,18 @@ function App() {
           {isPending || !minLoadingTime ? (
             <SkeletonList />
           ) : (
-            missingEpisodes && (
+            episodesShown && (
               <EpisodeList
-                episodes={missingEpisodes}
-                shouldAnimate={shouldAnimate}
+                episodesShown={episodesShown}
+                shouldShake={shouldShakeEps}
               />
             )
           )}
 
           <ScrollButton
-            isPending={isPending}
+            dataPending={isPending}
             minLoadingTime={minLoadingTime}
-            missingEpisodes={missingEpisodes}
+            episodesShown={episodesShown}
           />
         </section>
       )}
