@@ -12,9 +12,9 @@
   },
   "author": "",
   "dependencies": {
-    "dotenv": "^9.0.2",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-rate-limit": "^5.2.6",
+    "express-rate-limit": "^5.3.0",
     "express-slow-down": "^1.4.0",
     "helmet": "^4.6.0",
     "node-schedule": "^2.0.0",
@@ -24,6 +24,6 @@
   },
   "devDependencies": {
     "cors": "^2.8.5",
-    "eslint": "^7.28.0"
+    "eslint": "^7.30.0"
   }
 }
