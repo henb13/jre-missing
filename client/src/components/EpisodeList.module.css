@@ -7,9 +7,8 @@
 }
 
 .EpisodeItem {
-  display: flex;
-  align-items: center;
   hyphens: auto;
+  position: relative;
 }
 
 .epNr {
@@ -24,6 +23,7 @@
   .EpisodeItem {
     text-align-last: center;
     align-items: unset;
+    width: 100%;
   }
   .epNr {
     margin-right: 11px;

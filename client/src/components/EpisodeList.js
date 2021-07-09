@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import styles from "./EpisodeList.module.css";
-import RemovedDate from "./RemovedDate";
+import EpisodeDetails from "./EpisodeDetails";
 
 const EpisodeList = ({ episodesShown, shouldShake }) => {
   const classesEpList = classnames(styles.EpisodeList, {
@@ -23,7 +23,7 @@ const EpisodeList = ({ episodesShown, shouldShake }) => {
             ) : (
               ep.full_name.trim()
             )}
-            {ep.removed && <RemovedDate removedDate={ep.removed} />}
+            {ep.removed && <EpisodeDetails removedDate={ep.removed} />}
           </li>
         );
       })}
