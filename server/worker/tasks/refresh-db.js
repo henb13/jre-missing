@@ -5,7 +5,7 @@ const DB = require("../../db/db");
 const getEpisodeNumber = require("../../lib/getEpisodeNumber");
 const getSpotifyEpisodes = require("../../lib/getSpotifyEpisodes");
 
-const refreshDb = async () => {
+async function refreshDb() {
   await (async () => {
     const client = await pool.connect();
     const db = DB(client);
@@ -68,7 +68,7 @@ const refreshDb = async () => {
       console.log("worker ran successfully");
     }
   })().catch(err => console.log(err.message));
-};
+}
 
 function spotifyEpisodeChangedName(spotifyEpisode, dbEpisode) {
   const epNr = getEpisodeNumber(spotifyEpisode);
@@ -80,5 +80,7 @@ function spotifyEpisodeChangedName(spotifyEpisode, dbEpisode) {
     !spotifyEpisode.toLowerCase().includes("(part")
   );
 }
+
+refreshDb();
 
 module.exports = refreshDb;
