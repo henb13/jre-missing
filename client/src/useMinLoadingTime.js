@@ -5,9 +5,11 @@ const useMinLoadingTime = minTime => {
 
   useEffect(() => {
     setMinTimeElapsed(false);
+
     const timer = setTimeout(() => {
       setMinTimeElapsed(true);
     }, minTime);
+
     return () => {
       clearTimeout(timer);
     };

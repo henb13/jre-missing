@@ -14,7 +14,7 @@
   width: 100%;
   height: 0;
   right: 0;
-  bottom: 2px;
+  bottom: 1px;
   border-bottom: 2px solid var(--color-red);
 }
 
@@ -36,6 +36,12 @@
   .AmountMissing {
     font-size: var(--font-size-medium);
   }
+
+  .AmountMissing span:after {
+    bottom: 0;
+    width: 95%;
+  }
+
   .LastChecked {
     margin-top: 2px;
     position: relative;

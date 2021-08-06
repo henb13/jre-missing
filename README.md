@@ -12,9 +12,10 @@
   
   :point_right: www.jremissing.com 👈
   
-A web app that automatically detects episodes of [The Joe Rogan Experience](https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk) podcast that are currently not available on the Spotify platform by comparing the official Spotify API with a database of all episodes ever released.
+Automatically detects and lists episodes of [The Joe Rogan Experience](https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk) podcast that are currently not available on the Spotify platform. Will also catch episodes removed in the future.
 </div>
 &#xa0;
+
 
 # Setup
 

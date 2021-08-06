@@ -1,5 +1,6 @@
 import "./App.css";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+// import { useState, useEffect, useRef } from "react";
 import useFetch from "../useFetch";
 import useMinLoadingTime from "../useMinLoadingTime";
 
@@ -18,25 +19,11 @@ function App() {
   const { data, error, isPending } = useFetch("/api/episodes");
   const minLoadingTime = useMinLoadingTime(400);
   const [searchText, setSearchText] = useState("");
-  const [episodesShown, setEpisodesShown] = useState(null);
   const [shouldShakeEps, setShouldShakeEps] = useState(false);
-  const isFirstUpdate = useRef(true);
 
-  useEffect(() => {
-    setEpisodesShown(data?.missingEpisodes);
-  }, [data]);
-
-  useEffect(() => {
-    if (isFirstUpdate.current) {
-      isFirstUpdate.current = false;
-    } else {
-      setEpisodesShown(() =>
-        data?.missingEpisodes.filter(ep =>
-          ep.full_name.toLowerCase().includes(searchText.toLowerCase())
-        )
-      );
-    }
-  }, [searchText, data]);
+  const episodesShown = data?.missingEpisodes?.filter(ep =>
+    ep.full_name.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   const handleSearch = e => {
     setSearchText(e.target.value);

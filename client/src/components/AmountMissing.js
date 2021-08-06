@@ -14,7 +14,7 @@ const AmountMissing = ({
     (new Date(now) - new Date(lastChecked)) / 60000
   );
 
-  const lastCheckedDate = getClientLocalTime(lastChecked, "PP HH:mm:ss");
+  const lastCheckedDate = getClientLocalTime(lastChecked, "PP HH:mm");
   const dateTime = getClientLocalTime(lastChecked, "yyyy-MM-dd HH:mm:ss.sss");
   return (
     <>
