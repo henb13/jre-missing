@@ -36,7 +36,7 @@ const ScrollButton = ({ dataPending, minLoadingTime, episodesShown }) => {
                     text={scrollTarget}
                     springConfig={presets.gentle}
                     inline={true}
-                    direction={scrollTarget}
+                    direction={scrollTarget === "top" ? "up" : "down"}
                 />
             </div>
             <ArrowDown
