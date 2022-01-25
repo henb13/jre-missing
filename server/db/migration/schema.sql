@@ -1,6 +1,7 @@
+CREATE DATABASE jre_missing;
+
 DROP TABLE IF EXISTS all_eps, test_table, date_removed, date_re_added, all_eps_log;
 
-CREATE DATABASE jre_missing;
 
 CREATE TABLE all_eps(
   id SERIAL NOT NULL UNIQUE PRIMARY KEY,
@@ -18,8 +19,8 @@ CREATE TABLE test_table(
 
 CREATE TABLE date_removed(
   id INTEGER NOT NULL,
-  removed timestamptz(0) NOT NULL,
-  PRIMARY KEY (id, removed),
+  date_removed timestamptz(0) NOT NULL,
+  PRIMARY KEY (id, date_removed),
   CONSTRAINT fk_id
     FOREIGN KEY(id) 
 	  REFERENCES all_eps(id)

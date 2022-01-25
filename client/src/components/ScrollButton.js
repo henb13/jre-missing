@@ -6,45 +6,46 @@ import useScroll from "../useScroll";
 import styles from "./ScrollButton.module.css";
 
 const ScrollButton = ({ dataPending, minLoadingTime, episodesShown }) => {
-  const { scrollDirection, scrollable, setScrollable } = useScroll();
+    const { scrollTarget, scrollable, setScrollable } = useScroll();
 
-  useEffect(() => {
-    setScrollable(document.body.clientHeight > window.innerHeight);
-  }, [episodesShown, setScrollable]);
+    useEffect(() => {
+        setScrollable(document.body.clientHeight > window.innerHeight);
+    }, [episodesShown, setScrollable]);
 
-  const hidden = !scrollable || dataPending || !minLoadingTime;
+    const hidden = !scrollable || dataPending || !minLoadingTime;
 
-  const scrollClass = scrollDirection === "up" ? styles.up : null;
-  const classesBtn = classnames(styles.ScrollButton, scrollClass, {
-    [styles.hidden]: hidden,
-  });
-  const classesArrow = classnames(styles.arrow, scrollClass);
-
-  return (
-    <button
-      className={classesBtn}
-      disabled={hidden}
-      aria-label={`scroll to ${scrollDirection === "up" ? "top" : "bottom"}`}
-      onClick={() => {
-        window.scroll({
-          top: scrollDirection === "up" ? 0 : document.body.clientHeight,
-          left: 0,
-          behavior: "smooth",
-        });
-      }}
-    >
-      <div className={styles.ScrollText}>
-        To{" "}
-        <TextTransition
-          text={scrollDirection === "up" ? "top" : "bottom"}
-          springConfig={presets.gentle}
-          inline={true}
-          direction={scrollDirection}
-        />
-      </div>
-      <ArrowDown className={classesArrow} />
-    </button>
-  );
+    return (
+        <button
+            className={classnames(styles.ScrollButton, {
+                [styles.up]: scrollTarget === "top",
+                [styles.hidden]: hidden,
+            })}
+            disabled={hidden}
+            aria-label={`scroll to ${scrollTarget}`}
+            onClick={() => {
+                window.scroll({
+                    top: scrollTarget === "top" ? 0 : document.body.clientHeight,
+                    left: 0,
+                    behavior: "smooth",
+                });
+            }}
+        >
+            <div className={styles.ScrollText}>
+                To{" "}
+                <TextTransition
+                    text={scrollTarget}
+                    springConfig={presets.gentle}
+                    inline={true}
+                    direction={scrollTarget}
+                />
+            </div>
+            <ArrowDown
+                className={classnames(styles.arrow, {
+                    [styles.up]: scrollTarget === "top",
+                })}
+            />
+        </button>
+    );
 };
 
 export default ScrollButton;

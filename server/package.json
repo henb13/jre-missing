@@ -8,7 +8,7 @@
     "dev": "run-p dev-server worker",
     "dev-server": "nodemon app.js",
     "worker": "node worker/worker.js",
-    "refresh-db": "node worker/tasks/refresh-db.js",
+    "refresh-db": "node worker/tasks/refreshDb.js",
     "setup": "node db/migration/setup.js"
   },
   "author": "",

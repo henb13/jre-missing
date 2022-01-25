@@ -16,82 +16,84 @@ import SkeletonText from "../skeletons/SkeletonText";
 import { ReactComponent as AlertIcon } from "../icons/alertIcon.svg";
 
 function App() {
-  const { data, error, isPending } = useFetch("/api/episodes");
-  const minLoadingTime = useMinLoadingTime(400);
-  const [searchText, setSearchText] = useState("");
-  const [shouldShakeEps, setShouldShakeEps] = useState(false);
+    const { data, error, isPending } = useFetch("/api/episodes");
+    const minLoadingTime = useMinLoadingTime(400);
+    const [searchText, setSearchText] = useState("");
+    const [shouldShakeEps, setShouldShakeEps] = useState(false);
 
-  const episodesShown = data?.missingEpisodes?.filter(ep =>
-    ep.full_name.toLowerCase().includes(searchText.toLowerCase())
-  );
+    const episodesShown = data?.missingEpisodes?.filter(ep =>
+        ep.full_name.toLowerCase().includes(searchText.toLowerCase())
+    );
 
-  const handleSearch = e => {
-    setSearchText(e.target.value);
-  };
+    const handleSearch = e => {
+        setSearchText(e.target.value);
+    };
 
-  const shakeEpisodes = () => {
-    setShouldShakeEps(true);
-    setTimeout(() => {
-      setShouldShakeEps(false);
-    }, 1000);
-  };
+    const shakeEpisodes = () => {
+        setShouldShakeEps(true);
+        setTimeout(() => {
+            setShouldShakeEps(false);
+        }, 1000);
+    };
 
-  return (
-    <div className="App">
-      <section className="left">
-        <Github />
-        <Header />
-        {(error && (
-          <div className="error">
-            <AlertIcon className="error-icon" />
-            {error}
-          </div>
-        )) || (
-          <>
-            {isPending || !minLoadingTime ? (
-              <SkeletonText />
-            ) : (
-              data && (
-                <AmountMissing
-                  setSearchText={setSearchText}
-                  data={data}
-                  shakeEpisodes={shakeEpisodes}
-                  episodesShown={episodesShown}
-                />
-              )
+    const showSkeleton = isPending || !minLoadingTime;
+
+    return (
+        <div className="App">
+            <section className="left">
+                <Github />
+                <Header />
+                {error ? (
+                    <div className="error">
+                        <AlertIcon className="error-icon" />
+                        {error}
+                    </div>
+                ) : (
+                    <>
+                        {showSkeleton ? (
+                            <SkeletonText />
+                        ) : (
+                            data && (
+                                <AmountMissing
+                                    setSearchText={setSearchText}
+                                    data={data}
+                                    shakeEpisodes={shakeEpisodes}
+                                    episodesShown={episodesShown}
+                                />
+                            )
+                        )}
+                        <Searchbox
+                            searchText={searchText}
+                            episodesShown={episodesShown}
+                            handleSearch={handleSearch}
+                            shakeEpisodes={shakeEpisodes}
+                        />
+                    </>
+                )}
+            </section>
+
+            {!error && (
+                <section className="right">
+                    {showSkeleton ? (
+                        <SkeletonList />
+                    ) : (
+                        episodesShown && (
+                            <EpisodeList
+                                episodesShown={episodesShown}
+                                shouldShake={shouldShakeEps}
+                            />
+                        )
+                    )}
+
+                    <ScrollButton
+                        dataPending={isPending}
+                        minLoadingTime={minLoadingTime}
+                        episodesShown={episodesShown}
+                    />
+                </section>
             )}
-            <Searchbox
-              searchText={searchText}
-              episodesShown={episodesShown}
-              handleSearch={handleSearch}
-              shakeEpisodes={shakeEpisodes}
-            />
-          </>
-        )}
-      </section>
-
-      {!error && (
-        <section className="right">
-          {isPending || !minLoadingTime ? (
-            <SkeletonList />
-          ) : (
-            episodesShown && (
-              <EpisodeList
-                episodesShown={episodesShown}
-                shouldShake={shouldShakeEps}
-              />
-            )
-          )}
-
-          <ScrollButton
-            dataPending={isPending}
-            minLoadingTime={minLoadingTime}
-            episodesShown={episodesShown}
-          />
-        </section>
-      )}
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;

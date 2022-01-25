@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
 
 const useMinLoadingTime = minTime => {
-  const [minTimeElapsed, setMinTimeElapsed] = useState(true);
+    const [minTimeElapsed, setMinTimeElapsed] = useState(true);
 
-  useEffect(() => {
-    setMinTimeElapsed(false);
+    useEffect(() => {
+        setMinTimeElapsed(false);
 
-    const timer = setTimeout(() => {
-      setMinTimeElapsed(true);
-    }, minTime);
+        const timer = setTimeout(() => {
+            setMinTimeElapsed(true);
+        }, minTime);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [minTime]);
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [minTime]);
 
-  return minTimeElapsed;
+    return minTimeElapsed;
 };
 
 export default useMinLoadingTime;
