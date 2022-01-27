@@ -3,7 +3,7 @@ const pool = new pg.Pool();
 
 const DB = require("../../db/db");
 const getEpisodeNumber = require("../../lib/getEpisodeNumber");
-const getSpotifyEpisodes = require("../../lib/getSpotifyEpisodes");
+const getSpotifyEpisodeNames = require("../../lib/getSpotifyEpisodeNames");
 
 async function refreshDb() {
     await (async () => {
@@ -12,12 +12,12 @@ async function refreshDb() {
         try {
             console.log("worker running");
 
-            let currentSpotifyEpisodes = await getSpotifyEpisodes();
+            const spotifyEpisodeNames = await getSpotifyEpisodeNames();
             let allEpisodes = await db.getAllEpisodes();
             let someEpisodeNameGotUpdated = false;
 
-            for (const spotifyEpisode of currentSpotifyEpisodes) {
-                let isNewEpisode = true;
+            for (const spotifyEpisode of spotifyEpisodeNames) {
+                let isNewRelease = true;
 
                 for (const dbEpisode of allEpisodes) {
                     if (
@@ -25,7 +25,7 @@ async function refreshDb() {
                         spotifyEpisodeChangedName(spotifyEpisode, dbEpisode)
                     ) {
                         await db.updateEpisodeName(spotifyEpisode, dbEpisode.id);
-                        isNewEpisode = false;
+                        isNewRelease = false;
                         someEpisodeNameGotUpdated = true;
 
                         console.log(
@@ -35,17 +35,17 @@ async function refreshDb() {
                         );
                         break;
                     } else if (dbEpisode.full_name === spotifyEpisode) {
-                        isNewEpisode = false;
+                        isNewRelease = false;
                         break;
                     }
                 }
-                if (isNewEpisode) await db.insertNewEpisode(spotifyEpisode);
+                if (isNewRelease) await db.insertNewEpisode(spotifyEpisode);
             }
 
             allEpisodes = someEpisodeNameGotUpdated ? await db.getAllEpisodes() : allEpisodes;
 
             for (const dbEpisode of allEpisodes) {
-                if (!currentSpotifyEpisodes.includes(dbEpisode.full_name)) {
+                if (!spotifyEpisodeNames.includes(dbEpisode.full_name)) {
                     if (dbEpisode.on_spotify) {
                         await db.setSpotifyStatus(dbEpisode, false);
                         console.log("\nnew episode removed(!): " + dbEpisode.full_name + "\n");

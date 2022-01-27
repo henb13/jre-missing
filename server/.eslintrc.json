@@ -9,5 +9,12 @@
         "ecmaVersion": 12
     },
     "rules": {
+        "prefer-const": [
+            "warn",
+            {
+              "destructuring": "all",
+              "ignoreReadBeforeAssign": false
+            }
+          ]
     }
 }
