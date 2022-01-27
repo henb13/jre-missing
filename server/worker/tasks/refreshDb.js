@@ -14,9 +14,6 @@ async function refreshDb() {
 
             let currentSpotifyEpisodes = await getSpotifyEpisodes();
             let allEpisodes = await db.getAllEpisodes();
-            currentSpotifyEpisodes = currentSpotifyEpisodes.filter(
-                ep => ep !== allEpisodes.find(ep => ep.episode_number === 100).full_name
-            );
             let someEpisodeNameGotUpdated = false;
 
             for (const spotifyEpisode of currentSpotifyEpisodes) {
@@ -33,8 +30,8 @@ async function refreshDb() {
 
                         console.log(
                             ` \n spotify updated the name of an episode! \n
-                from: ${dbEpisode.full_name} \n 
-                to: ${spotifyEpisode} \n\n`
+                                from: ${dbEpisode.full_name} \n 
+                                to: ${spotifyEpisode} \n\n`
                         );
                         break;
                     } else if (dbEpisode.full_name === spotifyEpisode) {

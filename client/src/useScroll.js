@@ -7,13 +7,11 @@ const useScroll = () => {
 
     useEffect(() => {
         const handleScroll = _.throttle(() => {
-            if (window.pageYOffset + window.innerHeight / 2 > document.body.clientHeight / 2) {
-                if (scrollTarget === "bottom") {
-                    setScrollTarget("top");
-                }
-            } else if (scrollTarget === "top") {
-                setScrollTarget("bottom");
-            }
+            setScrollTarget(
+                window.pageYOffset + window.innerHeight / 2 > document.body.clientHeight / 2
+                    ? "top"
+                    : "bottom"
+            );
         }, 200);
 
         const handleResize = _.throttle(() => {
