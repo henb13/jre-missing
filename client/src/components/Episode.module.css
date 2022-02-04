@@ -1,17 +1,19 @@
 .EpisodeItem {
+    font-size: var(--font-size-medium);
     hyphens: auto;
     position: relative;
     display: flex;
     align-items: center;
-    gap: 1.6rem;
 }
 
 .epNr {
     color: var(--color-orange);
+    margin-right: 1rem;
 }
 
 .removed {
     font-size: var(--font-size-xs);
+    margin-left: 1.6rem;
     font-style: italic;
     letter-spacing: 0.1px;
     color: var(--color-grey-secondary);
@@ -19,8 +21,7 @@
 
 .new {
     position: absolute;
-    transform: translateX(-100%);
-    transform: scale(0.85);
+    transform: scale(0.75);
     left: -5rem;
     font-size: var(--font-size-small);
     color: var(--color-black);

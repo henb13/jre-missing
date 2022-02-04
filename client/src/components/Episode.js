@@ -14,7 +14,7 @@ const Episode = ({ number, name, removedDate }) => {
 
     return (
         <li className={styles.EpisodeItem} key={name} lang="en">
-            {isNewlyRemoved && <span className={styles.new}>new!</span>}
+            {isNewlyRemoved && <span className={styles.new}>new</span>}
             {number ? (
                 <>
                     <span className={styles.epNr}>{epNr.trim()}</span>
@@ -34,7 +34,7 @@ const RemovedDetails = ({ removedDate }) => {
     return (
         <>
             <span className={styles.removed}>
-                date removed: <time dateTime={dateTimeValue}>{removedDateString}</time>
+                Removed on <time dateTime={dateTimeValue}>{removedDateString}</time>
             </span>
         </>
     );

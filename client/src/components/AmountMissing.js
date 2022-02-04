@@ -10,6 +10,11 @@ const AmountMissing = ({ data, shakeEpisodes, episodesShown, setSearchText }) =>
         : 0;
 
     const lastCheckedDate = getClientLocalTime(lastChecked, "PP HH:mm");
+    const lastCheckedString =
+        lastCheckedMinutes === 0
+            ? "less than a minute ago"
+            : `${lastCheckedMinutes} minute${lastCheckedMinutes != 1 && "s"} ago`;
+
     const dateTime = getClientLocalTime(lastChecked, "yyyy-MM-dd HH:mm:ss.sss");
     return (
         <>
@@ -29,8 +34,7 @@ const AmountMissing = ({ data, shakeEpisodes, episodesShown, setSearchText }) =>
             </p>
             <div className={styles.LastChecked}>
                 <p>
-                    Last checked: {lastCheckedMinutes} minute
-                    {lastCheckedMinutes != 1 && "s"} ago{" "}
+                    Last checked: {lastCheckedString}{" "}
                     <time dateTime={dateTime}> ({lastCheckedDate})</time>
                 </p>
                 <Checkmark className={styles.Checkmark} />
