@@ -4,8 +4,10 @@ import { ReactComponent as Checkmark } from "../icons/AmountMissingIcon.svg";
 
 const AmountMissing = ({ data, shakeEpisodes, episodesShown, setSearchText }) => {
     const now = Date.now();
-    const lastChecked = data.lastChecked.miliseconds;
-    const lastCheckedMinutes = Math.floor((new Date(now) - new Date(lastChecked)) / 60000);
+    const lastChecked = data?.lastChecked?.miliseconds;
+    const lastCheckedMinutes = lastChecked
+        ? Math.floor((new Date(now) - new Date(lastChecked)) / 60000)
+        : 0;
 
     const lastCheckedDate = getClientLocalTime(lastChecked, "PP HH:mm");
     const dateTime = getClientLocalTime(lastChecked, "yyyy-MM-dd HH:mm:ss.sss");
