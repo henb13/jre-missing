@@ -1,5 +1,5 @@
 const missingEpsPerNow = require("./missingEpsPerNow");
-const getSpotifyEpisodeNames = require("../../lib/getSpotifyEpisodes");
+const getSpotifyEpisodeNames = require("../../lib/getSpotifyEpisodeNames");
 const getEpisodeNumber = require("../../lib/getEpisodeNumber");
 const pool = require("../connect");
 
