@@ -1,38 +1,20 @@
 .EpisodeList {
-  position: unset;
-  font-size: 1.4rem;
-  list-style-type: none;
-  display: grid;
-  grid-gap: 2.5rem;
-}
-
-.EpisodeItem {
-  hyphens: auto;
-  position: relative;
-}
-
-.epNr {
-  color: var(--color-orange);
-  margin-right: 16px;
+    position: unset;
+    font-size: 1.4rem;
+    list-style-type: none;
+    display: grid;
+    grid-gap: 2.5rem;
 }
 
 @media (max-width: 1350px) {
-  .EpisodeList {
-    justify-items: center;
-  }
-  .EpisodeItem {
-    text-align-last: center;
-    align-items: unset;
-    width: 100%;
-  }
-  .epNr {
-    margin-right: 11px;
-  }
+    .EpisodeList {
+        justify-items: center;
+    }
 }
 
 @media (max-width: 600px) {
-  .EpisodeList {
-    font-size: 1.2rem;
-    margin-right: 0.6rem;
-  }
+    .EpisodeList {
+        font-size: 1.2rem;
+        margin-right: 0.6rem;
+    }
 }

@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import styles from "./EpisodeList.module.css";
-import EpisodeDetails from "./EpisodeDetails";
+import Episode from "./Episode";
 
 const EpisodeList = ({ episodesShown, shouldShake }) => {
     const classesEpList = classnames(styles.EpisodeList, {
@@ -9,24 +9,14 @@ const EpisodeList = ({ episodesShown, shouldShake }) => {
 
     return (
         <ul className={classesEpList}>
-            {episodesShown.map(ep => {
-                let [epNr, ...guest] = ep.full_name.split("-");
-                guest = guest.join("-");
-
-                return (
-                    <li className={styles.EpisodeItem} key={ep.full_name} lang="en">
-                        {ep.episode_number ? (
-                            <>
-                                <span className={styles.epNr}>{epNr.trim()}</span>
-                                {guest.trim()}
-                            </>
-                        ) : (
-                            ep.full_name.trim()
-                        )}
-                        {ep.date_removed && <EpisodeDetails removedDate={ep.date_removed} />}
-                    </li>
-                );
-            })}
+            {episodesShown.map(({ episode_number, full_name, date_removed }) => (
+                <Episode
+                    number={episode_number}
+                    name={full_name}
+                    removedDate={date_removed}
+                    key={full_name + episode_number}
+                />
+            ))}
         </ul>
     );
 };

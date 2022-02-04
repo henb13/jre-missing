@@ -1,0 +1,73 @@
+.EpisodeItem {
+    hyphens: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.epNr {
+    color: var(--color-orange);
+}
+
+.removed {
+    font-size: var(--font-size-xs);
+    font-style: italic;
+    letter-spacing: 0.1px;
+    color: var(--color-grey-secondary);
+}
+
+.new {
+    position: absolute;
+    transform: translateX(-100%);
+    transform: scale(0.85);
+    left: -5rem;
+    font-size: var(--font-size-small);
+    color: var(--color-black);
+    font-weight: bold;
+    line-height: 100%;
+    padding: 3px 8px;
+    border-radius: 13%;
+    background-color: var(--color-green);
+}
+
+.new:nth-child(2) {
+    margin-left: 32px;
+}
+.removed:nth-child(2) {
+    margin-left: 24px;
+}
+
+@media (max-width: 1350px) {
+    .EpisodeItem {
+        text-align-last: center;
+        align-items: unset;
+        width: 100%;
+    }
+
+    .epNr {
+        margin-right: 11px;
+    }
+
+    .removed {
+        display: block;
+        margin-top: 5px;
+    }
+
+    .new {
+        /* margin-left: 11px; */
+        padding: 2px 5px;
+    }
+
+    .new:nth-child(2),
+    .removed:nth-child(2) {
+        margin-left: 11px;
+    }
+}
+
+@media (max-width: 600px) {
+    .new {
+        padding: 0px 4px;
+        font-size: 12px;
+    }
+}
