@@ -13,7 +13,7 @@ const AmountMissing = ({ data, shakeEpisodes, episodesShown, setSearchText }) =>
     const lastCheckedString =
         lastCheckedMinutes === 0
             ? "less than a minute ago"
-            : `${lastCheckedMinutes} minute${lastCheckedMinutes != 1 && "s"} ago`;
+            : `${lastCheckedMinutes} minute${lastCheckedMinutes != 1 ? "s" : ""} ago`;
 
     const dateTime = getClientLocalTime(lastChecked, "yyyy-MM-dd HH:mm:ss.sss");
     return (

@@ -53,25 +53,22 @@
 
     .removed {
         display: block;
-        margin-top: 1rem;
+        margin: 1rem 0 0 0;
         font-size: var(--font-size-small);
     }
 
     .new {
-        margin-right: 1.5rem;
         position: unset;
-        padding: 2px 5px;
+        font-size: var(--font-size-medium);
+        display: block;
+        width: min-content;
+        margin: 0 auto;
+        margin-bottom: 0.75rem;
+        padding: 6px 12px;
     }
 
     .new:nth-child(2),
     .removed:nth-child(2) {
         margin-left: 11px;
-    }
-}
-
-@media (max-width: 600px) {
-    .new {
-        padding: 0px 4px;
-        font-size: 12px;
     }
 }
