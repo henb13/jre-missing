@@ -48,12 +48,13 @@
     }
 
     .epNr {
-        margin-right: 11px;
+        margin-right: 0.5rem;
     }
 
     .removed {
         display: block;
-        margin-top: 4px;
+        margin-top: 1rem;
+        font-size: var(--font-size-small);
     }
 
     .new {

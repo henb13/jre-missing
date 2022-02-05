@@ -25,7 +25,13 @@
 .GithubText {
     font-size: var(--font-size-medium);
     font-style: italic;
-    color: var(--color-grey-secondary);
+    color: var(--color-white);
+}
+
+@media (max-width: 900px) {
+    .GithubText {
+        color: var(--color-grey-secondary);
+    }
 }
 
 @media (max-width: 900px) {
