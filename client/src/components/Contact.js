@@ -5,7 +5,7 @@ import { ReactComponent as EmailIcon } from "../icons/email.svg";
 const Contact = () => {
     return (
         <a href="mailto:henbc13@gmail.com" className={styles.contact}>
-            contact
+            contact me
             <EmailIcon className={styles.contactIcon} />
         </a>
     );
