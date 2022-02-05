@@ -9,6 +9,7 @@
 @media (max-width: 1350px) {
     .EpisodeList {
         justify-items: center;
+        grid-gap: 4rem;
     }
 }
 

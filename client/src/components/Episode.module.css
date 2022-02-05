@@ -41,6 +41,7 @@
 
 @media (max-width: 1350px) {
     .EpisodeItem {
+        display: unset;
         text-align-last: center;
         align-items: unset;
         width: 100%;
@@ -52,11 +53,12 @@
 
     .removed {
         display: block;
-        margin-top: 5px;
+        margin-top: 4px;
     }
 
     .new {
-        /* margin-left: 11px; */
+        margin-right: 1.5rem;
+        position: unset;
         padding: 2px 5px;
     }
 
