@@ -3,14 +3,13 @@ import { useState } from "react";
 // import { useState, useEffect, useRef } from "react";
 import useFetch from "../useFetch";
 import useMinLoadingTime from "../useMinLoadingTime";
-
 import Github from "./Github";
 import Header from "./Header";
 import AmountMissing from "./AmountMissing";
 import EpisodeList from "./EpisodeList";
 import Searchbox from "./Searchbox";
 import ScrollButton from "./ScrollButton";
-
+import Contact from "./Contact";
 import SkeletonList from "../skeletons/SkeletonList";
 import SkeletonText from "../skeletons/SkeletonText";
 import { ReactComponent as AlertIcon } from "../icons/alertIcon.svg";
@@ -43,6 +42,7 @@ function App() {
             <section className="left">
                 <Github />
                 <Header />
+                <Contact />
                 {error ? (
                     <div className="error">
                         <AlertIcon className="error-icon" />

@@ -1,0 +1,36 @@
+.contact {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-medium);
+    top: 4rem;
+    right: 5rem;
+}
+
+.contactIcon {
+    height: 2rem;
+    width: 2rem;
+    margin-left: 1rem;
+    transition: transform 0.2s;
+}
+
+.contact:hover .contactIcon {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.contact:active .contactIcon {
+    transform: scale(1);
+}
+
+@media (max-width: 900px) {
+    .contact {
+        position: absolute;
+    }
+}
+@media (max-width: 750px) {
+    .contact {
+        top: 2rem;
+        right: 2rem;
+    }
+}

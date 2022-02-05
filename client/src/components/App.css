@@ -1,66 +1,67 @@
 .App {
-  display: flex;
-  position: relative;
+    display: flex;
+    position: relative;
 }
 
 .left {
-  position: fixed;
-  top: 26rem;
-  bottom: 19rem;
-  left: 35rem;
+    position: fixed;
+    top: 26rem;
+    bottom: 19rem;
+    left: 35rem;
 }
+
 .right {
-  display: flex;
-  margin: 11rem 0rem 9rem 56vw;
+    display: flex;
+    margin: 11rem 0rem 9rem 56vw;
 }
 
 .error {
-  display: flex;
-  align-items: center;
-  font-size: var(--font-size-medium);
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-medium);
 }
 
 .error-icon {
-  margin-right: 1rem;
-  width: 2.4rem;
-  height: 2.4rem;
+    margin-right: 1rem;
+    width: 2.4rem;
+    height: 2.4rem;
 }
 
 @media (max-width: 1700px) {
-  .left {
-    top: 15rem;
-    bottom: 19rem;
-    left: 20rem;
-  }
+    .left {
+        top: 15rem;
+        bottom: 19rem;
+        left: 20rem;
+    }
 
-  .right {
-    margin: 11rem 0rem 9rem 55vw;
-  }
+    .right {
+        margin: 11rem 0rem 9rem 55vw;
+    }
 }
 
 @media (max-width: 1350px) {
-  .App {
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 6rem;
-  }
+    .App {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 6rem;
+    }
 
-  .left,
-  .right {
-    position: unset;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: unset;
-  }
+    .left,
+    .right {
+        position: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: unset;
+    }
 
-  .right {
-    margin-top: 4rem;
-  }
+    .right {
+        margin-top: 4rem;
+    }
 }
 
 @media (max-width: 750px) {
-  .App {
-    padding: 0 5rem;
-  }
+    .App {
+        padding: 0 5rem;
+    }
 }
