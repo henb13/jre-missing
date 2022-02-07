@@ -10,7 +10,7 @@
   
 </p>
   
-  :point_right: www.jremissing.com 👈
+  :point_right: https://www.jremissing.com/ 👈
   
 Automatically detects and lists episodes of [The Joe Rogan Experience](https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk) podcast that are currently not available on the Spotify platform. Will also catch episodes removed in the future.
 </div>
