@@ -26,6 +26,7 @@
 @media (max-width: 900px) {
     .contact {
         position: absolute;
+        color: var(--color-grey-secondary);
     }
 }
 @media (max-width: 750px) {
