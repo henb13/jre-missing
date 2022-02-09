@@ -29,13 +29,17 @@
 
 @media (max-width: 1700px) {
     .left {
-        top: 15rem;
-        bottom: 19rem;
         left: 20rem;
     }
 
     .right {
         margin: 11rem 0rem 9rem 55vw;
+    }
+}
+
+@media (max-width: 1450px) {
+    .left {
+        left: 14rem;
     }
 }
 
