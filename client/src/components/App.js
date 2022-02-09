@@ -20,11 +20,11 @@ function App() {
     const [searchText, setSearchText] = useState("");
     const [shouldShakeEps, setShouldShakeEps] = useState(false);
 
-    const episodesShown = data?.missingEpisodes?.filter(ep =>
+    const episodesShown = data?.missingEpisodes?.filter((ep) =>
         ep.full_name.toLowerCase().includes(searchText.toLowerCase())
     );
 
-    const handleSearch = e => {
+    const handleSearch = (e) => {
         setSearchText(e.target.value);
     };
 

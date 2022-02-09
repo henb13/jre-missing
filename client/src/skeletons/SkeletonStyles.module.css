@@ -1,122 +1,122 @@
 .SkeletonList {
-  position: relative;
-  position: unset;
-  font-size: 1.4rem;
-  list-style-type: none;
-  display: grid;
-  grid-gap: 2.5rem;
+    position: relative;
+    position: unset;
+    font-size: 1.4rem;
+    list-style-type: none;
+    display: grid;
+    grid-gap: 2.5rem;
 }
 .SkeletonElement {
-  position: relative;
-  overflow: hidden;
-  background-color: #212121;
-  border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    background-color: #212121;
+    border-radius: 2px;
 }
 
 .hidden {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .listElement {
-  height: 20px;
+    height: 20px;
 }
 
 .SkeletonElement.small {
-  width: 110px;
+    width: 110px;
 }
 .SkeletonElement.medium {
-  width: 160px;
+    width: 160px;
 }
 .SkeletonElement.large {
-  width: 240px;
+    width: 240px;
 }
 .SkeletonElement.extraLarge {
-  width: 300px;
+    width: 300px;
 }
 
 .SkeletonShimmerWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .SkeletonShimmer {
-  width: 50%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.1);
-  transform: skewX(-50deg);
-  box-shadow: 0 0 60px 60px rgba(0, 0, 0, 0.1);
-  animation: loading 2s infinite;
+    width: 50%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    transform: skewX(-50deg);
+    box-shadow: 0 0 60px 60px rgba(0, 0, 0, 0.1);
+    animation: loading 2s infinite;
 }
 
 @keyframes loading {
-  0% {
-    transform: translateX(-20vw);
-  }
-  50% {
-    transform: translateX(3vw);
-  }
-  100% {
-    transform: translateX(20vw);
-  }
+    0% {
+        transform: translateX(-20vw);
+    }
+    50% {
+        transform: translateX(3vw);
+    }
+    100% {
+        transform: translateX(20vw);
+    }
 }
 
 .first {
-  position: relative;
-  height: 20px;
-  width: 270px;
+    position: relative;
+    height: 20px;
+    width: 270px;
 }
 
 .second {
-  position: relative;
-  margin-top: 8px;
-  height: 18px;
-  width: 285px;
-  margin-bottom: 3.6rem;
+    position: relative;
+    margin-top: 8px;
+    height: 18px;
+    width: 285px;
+    margin-bottom: 3.6rem;
 }
 
 .third {
-  display: none;
+    display: none;
 }
 
 @media (max-width: 1350px) {
-  .SkeletonList {
-    justify-items: center;
-  }
-  .SkeletonElement.small,
-  .SkeletonElement.medium,
-  .SkeletonElement.large,
-  .SkeletonElement.extraLarge {
-    width: 170px;
-  }
-  .first {
-    margin-top: 3px;
-    width: 210px;
-  }
-  .second {
-    width: 260px;
-    margin-top: 10px;
-    margin-bottom: 2.5rem;
-  }
+    .SkeletonList {
+        justify-items: center;
+    }
+    .SkeletonElement.small,
+    .SkeletonElement.medium,
+    .SkeletonElement.large,
+    .SkeletonElement.extraLarge {
+        width: 170px;
+    }
+    .first {
+        margin-top: 3px;
+        width: 210px;
+    }
+    .second {
+        width: 260px;
+        margin-top: 10px;
+        margin-bottom: 2.5rem;
+    }
 }
 
 @media (max-width: 600px) {
-  .first {
-    margin-top: 2px;
-  }
+    .first {
+        margin-top: 2px;
+    }
 
-  .second {
-    height: 16px;
-    width: 140px;
-    margin-top: 8px;
-    margin-bottom: 6px;
-  }
-  .third {
-    display: flex;
-    width: 100px;
-    height: 15px;
-    margin-bottom: 2.7rem;
-  }
+    .second {
+        height: 16px;
+        width: 140px;
+        margin-top: 8px;
+        margin-bottom: 6px;
+    }
+    .third {
+        display: flex;
+        width: 100px;
+        height: 15px;
+        margin-bottom: 2.7rem;
+    }
 }

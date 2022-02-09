@@ -1,7 +1,7 @@
 {
     "env": {
-        "browser": true,
         "commonjs": true,
+        "node": true,
         "es2021": true
     },
     "extends": "eslint:recommended",
@@ -10,7 +10,7 @@
     },
     "rules": {
         "prefer-const": [
-            "warn",
+            "warn", 
             {
               "destructuring": "all",
               "ignoreReadBeforeAssign": false
