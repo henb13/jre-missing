@@ -1,96 +1,96 @@
 .Header {
-  margin-bottom: 10rem;
+    margin-bottom: 10rem;
 }
 
 h1 {
-  font-size: 8rem;
+    font-size: 8rem;
 
-  font-family: "Teko", sans-serif;
-  font-style: italic;
-  letter-spacing: -3px;
-  font-weight: 900;
-  margin-left: -2px;
-  color: var(--color-red);
+    font-family: "Teko", sans-serif;
+    font-style: italic;
+    letter-spacing: -3px;
+    font-weight: 900;
+    margin-left: -2px;
+    color: var(--color-red);
 }
 
 h1 span {
-  color: var(--color-white);
+    color: var(--color-white);
 }
 
 .intro {
-  font-size: var(--font-size-medium);
-  max-width: 47rem;
+    font-size: var(--font-size-medium);
+    max-width: 47rem;
 }
 
 .intro span {
-  color: var(--color-orange);
-  transition: color 0.75s;
+    color: var(--color-orange);
+    transition: color 0.75s;
 }
 
 .intro span {
-  position: relative;
+    position: relative;
 }
 
 .intro span:after {
-  content: "";
-  position: absolute;
-  bottom: 0.05em;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  min-height: 1px;
-  z-index: -1;
-  background-color: var(--color-orange);
-  transform: scale(0, 1);
-  transition: transform 0.5s ease;
+    content: "";
+    position: absolute;
+    bottom: 0.05em;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    min-height: 1px;
+    z-index: -1;
+    background-color: var(--color-orange);
+    transform: scale(0, 1);
+    transition: transform 0.5s ease;
 }
 
 .intro span:hover:after {
-  transform: scale(1, 1);
+    transform: scale(1, 1);
 }
 
 .brMobile {
-  display: none;
+    display: none;
 }
 
 @media (max-width: 1350px) {
-  .Header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 15rem;
-    margin-bottom: 5rem;
-  }
-  h1 {
-    font-size: clamp(3rem, 5rem, 5vw);
-    letter-spacing: unset;
-    margin-bottom: 2rem;
-  }
-  .intro {
-    text-align: center;
-    font-size: clamp(1.4rem, 1.6rem, 2.5vw);
-    max-width: 40rem;
-  }
+    .Header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 15rem;
+        margin-bottom: 0;
+    }
+    h1 {
+        font-size: clamp(3rem, 5rem, 5vw);
+        letter-spacing: unset;
+        margin-bottom: 2rem;
+    }
+    .intro {
+        text-align: center;
+        font-size: clamp(1.4rem, 1.6rem, 2.5vw);
+        max-width: 40rem;
+    }
 
-  .intro a {
-    display: block;
-    width: max-content;
-    margin: 0 auto;
-  }
-  br {
-    display: none;
-  }
+    .intro a {
+        display: block;
+        width: max-content;
+        margin: 0 auto;
+    }
+    br {
+        display: none;
+    }
 }
 
 @media (max-width: 600px), (orientation: landscape) AND (max-height: 650px) {
-  .Header {
-    margin-top: 8rem;
-    margin-bottom: 4.5rem;
-  }
+    .Header {
+        margin-top: 8rem;
+        /* margin-bottom: 4.5rem; */
+    }
 }
 
 @media (orientation: landscape) AND (max-height: 650px) {
-  .Header {
-    margin-top: 7rem;
-  }
+    .Header {
+        margin-top: 7rem;
+    }
 }

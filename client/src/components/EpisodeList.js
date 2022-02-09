@@ -11,6 +11,8 @@ const EpisodeList = ({ episodesShown, shouldShake }) => {
         <ul className={classesEpList}>
             {episodesShown.map(({ episode_number, full_name, date_removed }, i) => (
                 <>
+                    {i === 0 && <Border />}
+
                     <Episode
                         number={episode_number}
                         name={full_name}

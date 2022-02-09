@@ -1,62 +1,50 @@
 .AmountMissing {
-  font-size: 2rem;
+    font-size: 2rem;
 }
 
 .AmountMissing span {
-  color: var(--color-red);
-  font-weight: 700;
-  position: relative;
-  cursor: pointer;
+    color: var(--color-red);
+    font-weight: 700;
+    position: relative;
+    cursor: pointer;
 }
 .AmountMissing span:after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 0;
-  right: 0;
-  bottom: 1px;
-  border-bottom: 2px solid var(--color-red);
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0;
+    right: 0;
+    bottom: 1px;
+    border-bottom: 2px solid var(--color-red);
 }
 
 .LastChecked {
-  font-size: 1.4rem;
-  display: flex;
-  text-align: center;
-  margin-top: 1px;
-  color: var(--color-grey);
-  margin-bottom: 3rem;
+    font-size: 1.4rem;
+    display: flex;
+    text-align: center;
+    margin-top: 1px;
+    color: var(--color-grey);
+    margin-bottom: 3rem;
 }
 
 .Checkmark {
-  margin: -1px 0 0 6px;
-  color: var(--color-green);
+    margin: -1px 0 0 6px;
+    color: var(--color-green);
 }
 
 @media (max-width: 1350px) {
-  .AmountMissing {
-    font-size: var(--font-size-medium);
-  }
+    .AmountMissing {
+        font-size: var(--font-size-large);
+        margin: 4rem 0;
+        text-align: center;
+    }
 
-  .AmountMissing span:after {
-    bottom: 0;
-    width: 95%;
-  }
+    .AmountMissing span:after {
+        bottom: 0;
+        width: 95%;
+    }
 
-  .LastChecked {
-    margin-top: 2px;
-    position: relative;
-  }
-  .Checkmark {
-    position: absolute;
-    right: -2.5rem;
-    top: 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .LastChecked p time {
-    display: block;
-    font-style: italic;
-    font-size: 1.2rem;
-  }
+    .LastChecked {
+        display: none;
+    }
 }
