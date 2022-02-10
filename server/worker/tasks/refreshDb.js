@@ -63,7 +63,7 @@ async function refreshDb() {
             client.release();
             console.log("worker ran successfully");
         }
-    })().catch(err => console.log(err.message));
+    })().catch((err) => console.log(err.message));
 }
 
 function spotifyEpisodeChangedName(spotifyEpisode, dbEpisode) {

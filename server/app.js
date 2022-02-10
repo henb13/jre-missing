@@ -12,14 +12,14 @@ const port = process.env.PORT || 3001;
 app.set("trust proxy", 1);
 
 const rateLimiter = rateLimit({
-  windowMs: 15 * 1000,
-  max: 7,
+    windowMs: 15 * 1000,
+    max: 7,
 });
 
 const speedLimiter = slowDown({
-  windowMs: 15 * 1000,
-  delayAfter: 3,
-  delayMs: 250,
+    windowMs: 15 * 1000,
+    delayAfter: 3,
+    delayMs: 250,
 });
 
 app.use(express.json());
@@ -29,7 +29,7 @@ app.use(speedLimiter);
 app.use(api);
 
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}!`);
+    console.log(`Server listening on port ${port}!`);
 });
 
 module.exports = app;

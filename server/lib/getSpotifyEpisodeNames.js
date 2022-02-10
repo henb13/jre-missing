@@ -21,7 +21,7 @@ async function getSpotifyEpisodeNames() {
             offset: spotifyEpisodeNames.length,
         });
 
-        spotifyEpisodeNames.push(...episodes.body.items.map(ep => ep.name));
+        spotifyEpisodeNames.push(...episodes.body.items.map((ep) => ep.name));
 
         const totalEpisodes = episodes.body.total;
 
@@ -33,7 +33,7 @@ async function getSpotifyEpisodeNames() {
                 limit: 50,
                 offset: spotifyEpisodeNames.length,
             });
-            spotifyEpisodeNames.push(...episodes.body.items.map(ep => ep.name));
+            spotifyEpisodeNames.push(...episodes.body.items.map((ep) => ep.name));
         }
         console.log("episodes gone through: " + spotifyEpisodeNames.length);
 

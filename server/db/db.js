@@ -1,6 +1,6 @@
 const getEpisodeNumber = require("../lib/getEpisodeNumber");
 
-const DB = client => {
+const DB = (client) => {
     return {
         getAllEpisodes: async function () {
             const { rows } = await client.query("SELECT * from all_eps");

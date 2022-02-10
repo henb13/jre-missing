@@ -5,7 +5,7 @@ const pool = require("../connect");
 
 require("dotenv").config();
 
-getSpotifyEpisodeNames().then(async episodes => {
+getSpotifyEpisodeNames().then(async (episodes) => {
     episodes = episodes.concat(missingEpsPerNow);
     episodes.sort((a, b) => getEpisodeNumber(a) - getEpisodeNumber(b));
 
@@ -25,7 +25,7 @@ getSpotifyEpisodeNames().then(async episodes => {
                 client.release();
             }
         }
-    })().catch(err => console.log(err.message));
+    })().catch((err) => console.log(err.message));
 
     console.log("inserts done");
 });

@@ -35,7 +35,7 @@ router.get("/api/episodes", async (_, res) => {
             } finally {
                 client.release();
             }
-        })().catch(err => console.log(err.message));
+        })().catch((err) => console.log(err.message));
     }
 
     console.log("request fired");
