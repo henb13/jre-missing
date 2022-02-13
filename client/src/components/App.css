@@ -30,6 +30,7 @@
 @media (max-width: 1700px) {
     .left {
         left: 20rem;
+        top: 17rem;
     }
 
     .right {

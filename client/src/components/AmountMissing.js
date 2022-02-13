@@ -2,7 +2,7 @@ import styles from "./AmountMissing.module.css";
 import getClientLocalTime from "../lib/getClientLocalTime";
 import { ReactComponent as Checkmark } from "../icons/AmountMissingIcon.svg";
 
-const AmountMissing = ({ data, shakeEpisodes, episodesShown, setSearchText }) => {
+const AmountMissing = ({ data, shakeEpisodes, listLength, setSearchText }) => {
     const now = Date.now();
     const lastChecked = data?.lastChecked?.miliseconds;
     const lastCheckedMinutes = lastChecked
@@ -21,7 +21,7 @@ const AmountMissing = ({ data, shakeEpisodes, episodesShown, setSearchText }) =>
             <p className={styles.AmountMissing}>
                 <span
                     onClick={() => {
-                        if (episodesShown.length === data.missingEpisodes.length) {
+                        if (listLength === data.missingEpisodes.length) {
                             shakeEpisodes();
                         } else {
                             setSearchText("");

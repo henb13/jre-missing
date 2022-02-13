@@ -58,7 +58,7 @@ function App() {
                                     setSearchText={setSearchText}
                                     data={data}
                                     shakeEpisodes={shakeEpisodes}
-                                    episodesShown={episodesShown}
+                                    listLength={episodesShown.length}
                                 />
                             )
                         )}
