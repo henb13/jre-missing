@@ -4,8 +4,9 @@
     font-size: 1.4rem;
     list-style-type: none;
     display: grid;
-    grid-gap: 2.5rem;
+    grid-gap: 4.4rem;
 }
+
 .SkeletonElement {
     position: relative;
     overflow: hidden;
@@ -21,17 +22,20 @@
     height: 20px;
 }
 
-.SkeletonElement.small {
+.SkeletonElement.extraSmall {
     width: 110px;
 }
-.SkeletonElement.medium {
+.SkeletonElement.small {
     width: 160px;
 }
-.SkeletonElement.large {
+.SkeletonElement.medium {
     width: 240px;
 }
+.SkeletonElement.large {
+    width: 290px;
+}
 .SkeletonElement.extraLarge {
-    width: 300px;
+    width: 335px;
 }
 
 .SkeletonShimmerWrapper {
@@ -77,28 +81,28 @@
     margin-bottom: 3.6rem;
 }
 
-.third {
-    display: none;
-}
-
 @media (max-width: 1350px) {
     .SkeletonList {
         justify-items: center;
+        margin-top: 4rem;
+        grid-gap: 6.5rem;
     }
+
+    .SkeletonElement.extraSmall,
     .SkeletonElement.small,
     .SkeletonElement.medium,
     .SkeletonElement.large,
     .SkeletonElement.extraLarge {
-        width: 170px;
+        width: 155px;
+        height: 25px;
     }
     .first {
-        margin-top: 3px;
-        width: 210px;
+        margin: 4rem 0;
+        width: 290px;
+        height: 27.5px;
     }
     .second {
-        width: 260px;
-        margin-top: 10px;
-        margin-bottom: 2.5rem;
+        display: none;
     }
 }
 
@@ -112,11 +116,5 @@
         width: 140px;
         margin-top: 8px;
         margin-bottom: 6px;
-    }
-    .third {
-        display: flex;
-        width: 100px;
-        height: 15px;
-        margin-bottom: 2.7rem;
     }
 }

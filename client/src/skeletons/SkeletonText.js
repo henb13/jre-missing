@@ -15,7 +15,6 @@ const SkeletonText = () => {
         <>
             <SkeletonElement elStyle={styles.first} />
             <SkeletonElement elStyle={styles.second} />
-            <SkeletonElement elStyle={styles.third} />
         </>
     );
 };

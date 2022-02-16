@@ -4,6 +4,10 @@ import { ReactComponent as Checkmark } from "../icons/AmountMissingIcon.svg";
 import SkeletonText from "../skeletons/SkeletonText";
 
 const AmountMissing = ({ data, shakeEpisodes, listLength, setSearchText, showSkeleton }) => {
+    if (showSkeleton) {
+        return <SkeletonText />;
+    }
+
     if (!data) {
         return null;
     }
@@ -21,10 +25,6 @@ const AmountMissing = ({ data, shakeEpisodes, listLength, setSearchText, showSke
             : `${lastCheckedMinutes} minute${lastCheckedMinutes != 1 ? "s" : ""} ago`;
 
     const dateTime = getClientLocalTime(lastChecked, "yyyy-MM-dd HH:mm:ss.sss");
-
-    if (showSkeleton) {
-        return <SkeletonText />;
-    }
 
     return (
         <>

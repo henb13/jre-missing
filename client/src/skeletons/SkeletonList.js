@@ -9,13 +9,15 @@ const SkeletonList = () => {
         const stylesArray = arr.map(() => {
             const random = Math.random();
             const type =
-                random > 95
+                random > 85
                     ? styles.extraLarge
-                    : random > 0.85
+                    : random > 0.6
                     ? styles.large
                     : random > 0.333
                     ? styles.medium
-                    : styles.small;
+                    : random > 0.15
+                    ? styles.small
+                    : styles.extraSmall;
 
             return type;
         });
