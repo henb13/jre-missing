@@ -1,0 +1,11 @@
+.error {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-medium);
+}
+
+.icon {
+    margin-right: 1rem;
+    width: 2.4rem;
+    height: 2.4rem;
+}

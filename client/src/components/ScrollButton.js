@@ -2,17 +2,17 @@ import TextTransition, { presets } from "react-text-transition";
 import classnames from "classnames";
 import { useEffect } from "react";
 import { ReactComponent as ArrowDown } from "../icons/ScrollButtonIcon.svg";
-import useScroll from "../useScroll";
+import useScroll from "../hooks/useScroll";
 import styles from "./ScrollButton.module.css";
 
-const ScrollButton = ({ dataPending, minLoadingTime, episodesShown }) => {
+const ScrollButton = ({ dataPending, minLoadingTimeElapsed, episodesShown }) => {
     const { scrollTarget, scrollable, setScrollable } = useScroll();
 
     useEffect(() => {
         setScrollable(document.body.clientHeight > window.innerHeight);
     }, [episodesShown, setScrollable]);
 
-    const hidden = !scrollable || dataPending || !minLoadingTime;
+    const hidden = !scrollable || dataPending || !minLoadingTimeElapsed;
 
     return (
         <button

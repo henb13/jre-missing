@@ -33,7 +33,10 @@ const Searchbox = ({ searchText, episodesShown, handleSearch, shakeEpisodes }) =
                     className={classesSearchIcon}
                     title="search-icon"
                     onClick={() => {
-                        if (searchText !== "") shakeEpisodes();
+                        if (searchText !== "") {
+                            shakeEpisodes();
+                            navigator.vibrate();
+                        }
                     }}
                 />
             </div>

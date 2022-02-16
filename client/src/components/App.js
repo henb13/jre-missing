@@ -1,8 +1,8 @@
 import "./App.css";
 import { useState } from "react";
-// import { useState, useEffect, useRef } from "react";
-import useFetch from "../useFetch";
-import useMinLoadingTime from "../useMinLoadingTime";
+import useFetch from "../hooks/useFetch";
+import useMinLoadingTime from "../hooks/useMinLoadingTime";
+import Error from "./Error";
 import Github from "./Github";
 import Header from "./Header";
 import AmountMissing from "./AmountMissing";
@@ -10,13 +10,10 @@ import EpisodeList from "./EpisodeList";
 import Searchbox from "./Searchbox";
 import ScrollButton from "./ScrollButton";
 import Contact from "./Contact";
-import SkeletonList from "../skeletons/SkeletonList";
-import SkeletonText from "../skeletons/SkeletonText";
-import { ReactComponent as AlertIcon } from "../icons/alertIcon.svg";
 
 function App() {
     const { data, error, isPending } = useFetch("/api/episodes");
-    const minLoadingTime = useMinLoadingTime(400);
+    const minLoadingTimeElapsed = useMinLoadingTime(400);
     const [searchText, setSearchText] = useState("");
     const [shouldShakeEps, setShouldShakeEps] = useState(false);
 
@@ -35,7 +32,7 @@ function App() {
         }, 1000);
     };
 
-    const showSkeleton = isPending || !minLoadingTime;
+    const showSkeleton = isPending || !minLoadingTimeElapsed;
 
     return (
         <div className="App">
@@ -44,24 +41,17 @@ function App() {
                 <Header />
                 <Contact />
                 {error ? (
-                    <div className="error">
-                        <AlertIcon className="error-icon" />
-                        {error}
-                    </div>
+                    <Error error={error} />
                 ) : (
                     <>
-                        {showSkeleton ? (
-                            <SkeletonText />
-                        ) : (
-                            data && (
-                                <AmountMissing
-                                    setSearchText={setSearchText}
-                                    data={data}
-                                    shakeEpisodes={shakeEpisodes}
-                                    listLength={episodesShown.length}
-                                />
-                            )
-                        )}
+                        <AmountMissing
+                            setSearchText={setSearchText}
+                            data={data}
+                            shakeEpisodes={shakeEpisodes}
+                            listLength={episodesShown?.length}
+                            showSkeleton={showSkeleton}
+                        />
+
                         <Searchbox
                             searchText={searchText}
                             episodesShown={episodesShown}
@@ -74,20 +64,14 @@ function App() {
 
             {!error && (
                 <section className="right">
-                    {showSkeleton ? (
-                        <SkeletonList />
-                    ) : (
-                        episodesShown && (
-                            <EpisodeList
-                                episodesShown={episodesShown}
-                                shouldShake={shouldShakeEps}
-                            />
-                        )
-                    )}
-
+                    <EpisodeList
+                        episodesShown={episodesShown}
+                        shouldShake={shouldShakeEps}
+                        showSkeleton={showSkeleton}
+                    />
                     <ScrollButton
                         dataPending={isPending}
-                        minLoadingTime={minLoadingTime}
+                        minLoadingTimeElapsed={minLoadingTimeElapsed}
                         episodesShown={episodesShown}
                     />
                 </section>

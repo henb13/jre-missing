@@ -7,7 +7,7 @@ const useFetch = (url) => {
 
     useEffect(() => {
         const abortCont = new AbortController();
-
+        console.log("use effect hook fetch ran");
         fetch(url, { signal: abortCont.signal })
             .then((res) => {
                 if (!res.ok) {

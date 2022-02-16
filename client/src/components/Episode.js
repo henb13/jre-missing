@@ -2,7 +2,6 @@ import styles from "./Episode.module.css";
 import { differenceInDays, parseISO } from "date-fns";
 import getClientLocalTime from "../lib/getClientLocalTime";
 
-// Days since removed to get labeled as "new"
 const NEWLY_REMOVED_THRESHOLD = 14;
 
 const Episode = ({ number, name, removedDate }) => {
@@ -31,6 +30,7 @@ const Episode = ({ number, name, removedDate }) => {
 const RemovedDetails = ({ removedDate }) => {
     const dateTimeValue = getClientLocalTime(removedDate, "yyyy-MM-dd");
     const removedDateString = getClientLocalTime(removedDate, "PPP");
+
     return (
         <>
             <span className={styles.removed}>
