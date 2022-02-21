@@ -50,8 +50,6 @@ async function refreshDb() {
                         await db.setSpotifyStatus(dbEpisode, false);
                         console.log("\nnew episode removed(!): " + dbEpisode.full_name + "\n");
                     }
-
-                    //If previously removed is re-added
                 } else if (!dbEpisode.on_spotify) {
                     await db.setSpotifyStatus(dbEpisode, true);
                     console.log("\nnew episode re-added: " + dbEpisode.full_name + "\n");

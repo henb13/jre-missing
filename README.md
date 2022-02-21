@@ -18,11 +18,11 @@ Automatically detects and lists episodes of [The Joe Rogan Experience](https://o
 
 ## As Mentioned In 🗞️
 
-<a href="https://www.nytimes.com/2022/02/05/arts/music/joe-rogan-spotify-apology-slur.html">The New York Times</a> 
- &#8226;  <a href="https://www.rollingstone.com/culture/culture-news/spotify-removes-joe-rogan-experience-podcast-episodes-1295727/">Rolling Stone</a> 
+<a href="https://www.rollingstone.com/culture/culture-news/spotify-removes-joe-rogan-experience-podcast-episodes-1295727/">Rolling Stone</a> 
  &#8226;  <a href="https://www.theverge.com/22918697/joe-rogan-experience-podcast-episodes-disappear-controversy">The Verge</a> 
  &#8226;  <a href="https://www.bloomberg.com/opinion/articles/2022-02-08/peloton-s-ceo-has-had-enough">Bloomberg</a> 
  &#8226;  <a href="https://variety.com/2022/digital/news/spotify-removes-joe-rogan-episodes-n-word-1235172972/">Variety</a> 
+ &#8226;  <a href="https://www.nytimes.com/2022/02/05/arts/music/joe-rogan-spotify-apology-slur.html">The New York Times</a> 
  &#8226;  <a href="https://edition.cnn.com/2022/02/05/media/joe-rogan-racial-slur-apology-india-arie/index.html">CNN</a> 
  &#8226;  <a href="https://www.latimes.com/entertainment-arts/story/2022-02-05/joe-rogan-apologizes-for-using-n-word?utm_source=pocket_mylist">LA Times</a> 
  &#8226;  <a href="https://www.businessinsider.com/spotify-deletes-70-joe-rogan-podcast-episodes-including-alex-jones-2022-2?r=US&IR=T">Business Insider</a> 

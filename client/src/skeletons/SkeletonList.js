@@ -3,8 +3,8 @@ import styles from "./SkeletonStyles.module.css";
 
 const SkeletonList = () => {
     const [stylesArr, setStylesArr] = useState(0);
-
     const arr = Array.apply(null, Array(42));
+
     useEffect(() => {
         const stylesArray = arr.map(() => {
             const random = Math.random();

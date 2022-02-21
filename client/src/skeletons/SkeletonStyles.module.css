@@ -25,15 +25,19 @@
 .SkeletonElement.extraSmall {
     width: 110px;
 }
+
 .SkeletonElement.small {
     width: 160px;
 }
+
 .SkeletonElement.medium {
     width: 240px;
 }
+
 .SkeletonElement.large {
     width: 290px;
 }
+
 .SkeletonElement.extraLarge {
     width: 335px;
 }
@@ -69,16 +73,16 @@
 
 .first {
     position: relative;
-    height: 20px;
-    width: 270px;
+    height: 24px;
+    width: 275px;
 }
 
 .second {
     position: relative;
     margin-top: 8px;
-    height: 18px;
-    width: 285px;
-    margin-bottom: 3.6rem;
+    height: 20px;
+    width: 255px;
+    margin-bottom: 3rem;
 }
 
 @media (max-width: 1350px) {
@@ -96,25 +100,14 @@
         width: 155px;
         height: 25px;
     }
+
     .first {
         margin: 4rem 0;
         width: 290px;
-        height: 27.5px;
+        height: 32px;
     }
+
     .second {
         display: none;
-    }
-}
-
-@media (max-width: 600px) {
-    .first {
-        margin-top: 2px;
-    }
-
-    .second {
-        height: 16px;
-        width: 140px;
-        margin-top: 8px;
-        margin-bottom: 6px;
     }
 }
