@@ -8,6 +8,7 @@
     position: relative;
     cursor: pointer;
 }
+
 .AmountMissing span:after {
     content: "";
     position: absolute;

@@ -7,7 +7,7 @@ const Searchbox = ({ searchText, episodesShown, handleSearch, shakeEpisodes }) =
     const [placeholder, setPlaceholder] = useState("Search for episode or guest");
 
     const classesSearchIcon = classnames(styles.SearchIcon, {
-        [styles.hoverCursor]: searchText != "",
+        [styles.hoverCursor]: searchText,
     });
 
     return (
@@ -33,7 +33,7 @@ const Searchbox = ({ searchText, episodesShown, handleSearch, shakeEpisodes }) =
                     className={classesSearchIcon}
                     title="search-icon"
                     onClick={() => {
-                        if (searchText !== "") {
+                        if (searchText) {
                             shakeEpisodes();
                             navigator.vibrate();
                         }

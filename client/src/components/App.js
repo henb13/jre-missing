@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import useMinLoadingTime from "../hooks/useMinLoadingTime";
 import Error from "./Error";
@@ -7,6 +7,7 @@ import Github from "./Github";
 import Header from "./Header";
 import AmountMissing from "./AmountMissing";
 import EpisodeList from "./EpisodeList";
+import Sort from "./Sort";
 import Searchbox from "./Searchbox";
 import ScrollButton from "./ScrollButton";
 import Contact from "./Contact";
@@ -16,10 +17,19 @@ function App() {
     const minLoadingTimeElapsed = useMinLoadingTime(400);
     const [searchText, setSearchText] = useState("");
     const [shouldShakeEps, setShouldShakeEps] = useState(false);
+    const [episodesShown, setEpisodesShown] = useState([]);
 
-    const episodesShown = data?.missingEpisodes?.filter((ep) =>
-        ep.full_name.toLowerCase().includes(searchText.toLowerCase())
-    );
+    useEffect(() => {
+        setEpisodesShown(data?.missingEpisodes || []);
+    }, [data]);
+
+    useEffect(() => {
+        setEpisodesShown((episodesShown) => {
+            return episodesShown.filter((ep) =>
+                ep.full_name?.toLowerCase().includes(searchText.toLowerCase())
+            );
+        });
+    }, [searchText]);
 
     const handleSearch = (e) => {
         setSearchText(e.target.value);
@@ -69,6 +79,7 @@ function App() {
                         shouldShake={shouldShakeEps}
                         showSkeleton={showSkeleton}
                     />
+                    <Sort setEpisodesShown={setEpisodesShown} />
                     <ScrollButton
                         dataPending={isPending}
                         minLoadingTimeElapsed={minLoadingTimeElapsed}

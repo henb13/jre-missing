@@ -1,0 +1,17 @@
+.option .selected {
+    border: 1px solid var(--color-white);
+}
+
+.icon {
+    transform: rotate(-90deg);
+    transition: all 0.2;
+}
+
+.iconReverse {
+    transform: rotate(90deg);
+}
+
+.option label {
+    padding: 0.25em 0.5em;
+    border: 1px solid var(--color-grey);
+}
