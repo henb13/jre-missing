@@ -15,25 +15,12 @@ import Contact from "./Contact";
 function App() {
     const { data, error, isPending } = useFetch("/api/episodes");
     const minLoadingTimeElapsed = useMinLoadingTime(400);
-    const [searchText, setSearchText] = useState("");
     const [shouldShakeEps, setShouldShakeEps] = useState(false);
     const [episodesShown, setEpisodesShown] = useState([]);
 
     useEffect(() => {
         setEpisodesShown(data?.missingEpisodes || []);
     }, [data]);
-
-    useEffect(() => {
-        setEpisodesShown((episodesShown) => {
-            return episodesShown.filter((ep) =>
-                ep.full_name?.toLowerCase().includes(searchText.toLowerCase())
-            );
-        });
-    }, [searchText]);
-
-    const handleSearch = (e) => {
-        setSearchText(e.target.value);
-    };
 
     const shakeEpisodes = () => {
         setShouldShakeEps(true);
@@ -54,18 +41,10 @@ function App() {
                     <Error error={error} />
                 ) : (
                     <>
-                        <AmountMissing
-                            setSearchText={setSearchText}
-                            data={data}
-                            shakeEpisodes={shakeEpisodes}
-                            listLength={episodesShown?.length}
-                            showSkeleton={showSkeleton}
-                        />
-
+                        <AmountMissing data={data} showSkeleton={showSkeleton} />
                         <Searchbox
-                            searchText={searchText}
                             episodesShown={episodesShown}
-                            handleSearch={handleSearch}
+                            setEpisodesShown={setEpisodesShown}
                             shakeEpisodes={shakeEpisodes}
                         />
                     </>

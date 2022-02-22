@@ -3,7 +3,7 @@ import getClientLocalTime from "../lib/getClientLocalTime";
 import { ReactComponent as Checkmark } from "../icons/AmountMissingIcon.svg";
 import SkeletonText from "../skeletons/SkeletonText";
 
-const AmountMissing = ({ data, shakeEpisodes, listLength, setSearchText, showSkeleton }) => {
+const AmountMissing = ({ data, showSkeleton }) => {
     if (showSkeleton) {
         return <SkeletonText />;
     }
@@ -29,18 +29,7 @@ const AmountMissing = ({ data, shakeEpisodes, listLength, setSearchText, showSke
     return (
         <>
             <p className={styles.AmountMissing}>
-                <span
-                    onClick={() => {
-                        if (listLength && listLength === data.missingEpisodes?.length) {
-                            shakeEpisodes();
-                        } else {
-                            setSearchText("");
-                        }
-                    }}
-                >
-                    {data.missingEpisodes?.length}
-                </span>{" "}
-                episodes are missing from Spotify.
+                <span>{data.missingEpisodes?.length}</span> episodes are missing from Spotify.
             </p>
             <div className={styles.LastChecked}>
                 <p>

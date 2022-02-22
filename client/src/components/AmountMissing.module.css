@@ -6,7 +6,6 @@
     color: var(--color-red);
     font-weight: 700;
     position: relative;
-    cursor: pointer;
 }
 
 .AmountMissing span:after {

@@ -3,8 +3,18 @@ import { useState } from "react";
 import styles from "./Searchbox.module.css";
 import { ReactComponent as SearchIcon } from "../icons/SearchboxIcon.svg";
 
-const Searchbox = ({ searchText, episodesShown, handleSearch, shakeEpisodes }) => {
+const Searchbox = ({ episodesShown, setEpisodesShown, shakeEpisodes }) => {
+    const [searchText, setSearchText] = useState("");
     const [placeholder, setPlaceholder] = useState("Search for episode or guest");
+
+    const handleSearch = (e) => {
+        setEpisodesShown((episodesShown) => {
+            return episodesShown.filter((ep) =>
+                ep.full_name?.toLowerCase().includes(e.target.value.toLowerCase())
+            );
+        });
+        setSearchText(e.target.value);
+    };
 
     const classesSearchIcon = classnames(styles.SearchIcon, {
         [styles.hoverCursor]: searchText,
