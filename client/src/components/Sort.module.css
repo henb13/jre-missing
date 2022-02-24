@@ -1,3 +1,13 @@
+.sort {
+    position: fixed;
+    display: flex;
+    height: min-content;
+}
+
+.option {
+    cursor: pointer;
+}
+
 .option .selected {
     border: 1px solid var(--color-white);
 }

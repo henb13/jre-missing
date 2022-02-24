@@ -3,6 +3,7 @@ const SpotifyWebApi = require("spotify-web-api-node");
 require("dotenv").config();
 
 const JRE_SHOW_ID = "4rOoJ6Egrf8K2IrywzwOMk";
+
 async function getSpotifyEpisodeNames() {
     try {
         const spotifyApi = new SpotifyWebApi({
