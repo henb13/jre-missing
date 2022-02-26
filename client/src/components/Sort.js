@@ -5,14 +5,13 @@ import styles from "./Sort.module.css";
 
 const Sort = ({ setEpisodesShown }) => {
     const options = ["episode number", "date removed"];
-    const [sortOption, setSortOption] = useState(options[0]);
-    const [reverse, setReverse] = useState(false);
+    const [selected, setSelected] = useState({ name: options[0], reverse: false });
 
     useEffect(() => {
         setEpisodesShown((episodesShown) => {
             return [...episodesShown].sort((a, b) => {
-                [a, b] = reverse ? [a, b] : [b, a];
-                switch (sortOption) {
+                [a, b] = selected.reverse ? [a, b] : [b, a];
+                switch (selected.name) {
                     case "episode number":
                         return a.episode_number - b.episode_number;
                     case "date removed":
@@ -22,51 +21,66 @@ const Sort = ({ setEpisodesShown }) => {
                 }
             });
         });
-    }, [sortOption, setEpisodesShown, reverse]);
+    }, [selected, setEpisodesShown]);
 
     return (
         <div className={styles.sort}>
-            {options.map((o, i) => {
-                return <Option option={o} key={o} index={i} />;
+            <p>sort by</p>
+            <div className={styles.options}>
+                {options.map((o, i) => {
+                    return (
+                        <Option
+                            optionName={o}
+                            key={o}
+                            index={i}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                    );
+                })}
+            </div>
+        </div>
+    );
+};
+
+function Option({ optionName, index, selected, setSelected }) {
+    const [reverse, setReverse] = useState(false);
+    const isSelected = selected.name === optionName;
+
+    return (
+        <div
+            className={classnames(styles.option, {
+                [styles.selected]: isSelected,
             })}
+            onClick={() => {
+                if (isSelected) {
+                    setReverse((reverse) => !reverse);
+                    setSelected({ name: optionName, reverse: !reverse });
+                } else {
+                    setSelected({ name: optionName, reverse: reverse });
+                }
+            }}
+        >
+            <input
+                type="radio"
+                id={optionName + index}
+                name={optionName + " option"}
+                value={optionName}
+                className="sr-only"
+            />
+            <label className={styles.label} htmlFor={optionName + index}>
+                {optionName
+                    .split(" ")
+                    .map((word) => word[0].toUpperCase() + word.slice(1))
+                    .join(" ")}
+            </label>
             <Arrow
-                onClick={() => setReverse((reverse) => !reverse)}
                 className={classnames(styles.icon, {
                     [styles.iconReverse]: reverse,
                 })}
             />
         </div>
     );
-
-    function Option({ option, index }) {
-        return (
-            <div
-                className={styles.option}
-                onClick={() => {
-                    setSortOption(option);
-                }}
-            >
-                <input
-                    type="radio"
-                    id={option + index}
-                    name={option + " option"}
-                    value={option}
-                    className="sr-only"
-                />
-                <label
-                    className={classnames(styles.label, {
-                        [styles.selected]: sortOption === option,
-                    })}
-                    htmlFor={option + index}
-                >
-                    {option
-                        .split(" ")
-                        .map((word) => word[0].toUpperCase() + word.slice(1))
-                        .join(" ")}
-                </label>
-            </div>
-        );
-    }
-};
+}
 
 export default Sort;
