@@ -1,5 +1,6 @@
 .sort {
     position: fixed;
+    width: 10px;
     right: var(--number-right-placement);
     /* display: flex; */
 }
@@ -22,6 +23,8 @@
 
 .icon {
     transform: rotate(-90deg);
+    max-height: 100%;
+    max-width: 100%;
     transition: all 0.2;
 }
 

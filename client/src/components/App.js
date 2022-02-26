@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useFetch from "../hooks/useFetch";
 import useMinLoadingTime from "../hooks/useMinLoadingTime";
 import Error from "./Error";
@@ -17,6 +17,7 @@ function App() {
     const minLoadingTimeElapsed = useMinLoadingTime(400);
     const [shouldShakeEps, setShouldShakeEps] = useState(false);
     const [episodesShown, setEpisodesShown] = useState([]);
+    const searchRef = useRef();
 
     useEffect(() => {
         setEpisodesShown(data?.missingEpisodes || []);
@@ -43,6 +44,7 @@ function App() {
                     <>
                         <AmountMissing data={data} showSkeleton={showSkeleton} />
                         <Searchbox
+                            ref={searchRef}
                             episodesShown={episodesShown}
                             setEpisodesShown={setEpisodesShown}
                             shakeEpisodes={shakeEpisodes}
@@ -58,7 +60,11 @@ function App() {
                         shouldShake={shouldShakeEps}
                         showSkeleton={showSkeleton}
                     />
-                    <Sort setEpisodesShown={setEpisodesShown} />
+                    <Sort
+                        setEpisodesShown={setEpisodesShown}
+                        searchRef={searchRef}
+                        allEpisodes={data?.missingEpisodes}
+                    />
                     <ScrollButton
                         dataPending={isPending}
                         minLoadingTimeElapsed={minLoadingTimeElapsed}

@@ -3,13 +3,21 @@ import { useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Sort.module.css";
 
-const Sort = ({ setEpisodesShown }) => {
+const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
     const options = ["episode number", "date removed"];
     const [selected, setSelected] = useState({ name: options[0], reverse: false });
+    console.log(searchRef?.current?.value || "");
 
     useEffect(() => {
-        setEpisodesShown((episodesShown) => {
-            return [...episodesShown].sort((a, b) => {
+        setEpisodesShown(() => {
+            return [
+                // Make sure the array we're sorting from is always the same, and not affected by a previous search option, which would happen if we used the state from the callback.
+                ...(allEpisodes?.filter((ep) =>
+                    ep.full_name
+                        ?.toLowerCase()
+                        .includes(searchRef.current.value?.toLowerCase())
+                ) || []),
+            ].sort((a, b) => {
                 [a, b] = selected.reverse ? [a, b] : [b, a];
                 switch (selected.name) {
                     case "episode number":
@@ -21,18 +29,17 @@ const Sort = ({ setEpisodesShown }) => {
                 }
             });
         });
-    }, [selected, setEpisodesShown]);
+    }, [selected, setEpisodesShown, allEpisodes, searchRef]);
 
     return (
         <div className={styles.sort}>
             <p>sort by</p>
             <div className={styles.options}>
-                {options.map((o, i) => {
+                {options.map((o) => {
                     return (
                         <Option
                             optionName={o}
                             key={o}
-                            index={i}
                             selected={selected}
                             setSelected={setSelected}
                         />
@@ -43,37 +50,31 @@ const Sort = ({ setEpisodesShown }) => {
     );
 };
 
-function Option({ optionName, index, selected, setSelected }) {
+function Option({ optionName, selected, setSelected }) {
     const [reverse, setReverse] = useState(false);
     const isSelected = selected.name === optionName;
 
     return (
         <div
+            role="radiogroup"
             className={classnames(styles.option, {
                 [styles.selected]: isSelected,
             })}
             onClick={() => {
+                console.log("onclick");
                 if (isSelected) {
                     setReverse((reverse) => !reverse);
-                    setSelected({ name: optionName, reverse: !reverse });
-                } else {
-                    setSelected({ name: optionName, reverse: reverse });
                 }
+                setSelected({ name: optionName, reverse: isSelected ? !reverse : reverse });
             }}
         >
-            <input
-                type="radio"
-                id={optionName + index}
-                name={optionName + " option"}
-                value={optionName}
-                className="sr-only"
-            />
-            <label className={styles.label} htmlFor={optionName + index}>
+            <div role="radio" className={styles.label} aria-checked={isSelected}>
                 {optionName
                     .split(" ")
                     .map((word) => word[0].toUpperCase() + word.slice(1))
                     .join(" ")}
-            </label>
+            </div>
+
             <Arrow
                 className={classnames(styles.icon, {
                     [styles.iconReverse]: reverse,
