@@ -6,28 +6,28 @@ import styles from "./Sort.module.css";
 const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
     const options = ["episode number", "date removed"];
     const [selected, setSelected] = useState({ name: options[0], reverse: false });
-    console.log(searchRef?.current?.value || "");
 
     useEffect(() => {
+        if (!allEpisodes) return;
+
         setEpisodesShown(() => {
-            return [
-                // Make sure the array we're sorting from is always the same, and not affected by a previous search option, which would happen if we used the state from the callback.
-                ...(allEpisodes?.filter((ep) =>
+            return allEpisodes
+                .filter((ep) =>
                     ep.full_name
                         ?.toLowerCase()
                         .includes(searchRef.current.value?.toLowerCase())
-                ) || []),
-            ].sort((a, b) => {
-                [a, b] = selected.reverse ? [a, b] : [b, a];
-                switch (selected.name) {
-                    case "episode number":
-                        return a.episode_number - b.episode_number;
-                    case "date removed":
-                        return new Date(a.date_removed) - new Date(b.date_removed);
-                    default:
-                        return 0;
-                }
-            });
+                )
+                .sort((a, b) => {
+                    [a, b] = selected.reverse ? [a, b] : [b, a];
+                    switch (selected.name) {
+                        case "episode number":
+                            return a.episode_number - b.episode_number;
+                        case "date removed":
+                            return new Date(a.date_removed) - new Date(b.date_removed);
+                        default:
+                            return 0;
+                    }
+                });
         });
     }, [selected, setEpisodesShown, allEpisodes, searchRef]);
 
@@ -35,7 +35,7 @@ const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
         <div className={styles.sort}>
             <p>sort by</p>
             <div className={styles.options}>
-                {options.map((o) => {
+                {options?.map((o) => {
                     return (
                         <Option
                             optionName={o}
@@ -61,7 +61,6 @@ function Option({ optionName, selected, setSelected }) {
                 [styles.selected]: isSelected,
             })}
             onClick={() => {
-                console.log("onclick");
                 if (isSelected) {
                     setReverse((reverse) => !reverse);
                 }

@@ -1,33 +1,50 @@
 .sort {
     position: fixed;
-    width: 10px;
     right: var(--number-right-placement);
-    /* display: flex; */
 }
 
 .options {
     display: flex;
 }
 
-.option .label {
+.option {
+    display: flex;
+    align-items: center;
     color: var(--color-grey-secondary);
-    padding: 0.25em 0.5em;
+    padding: 0.75em 1em;
     border: 1px solid var(--color-grey-secondary);
     cursor: pointer;
+    transition: all 0.5s;
 }
 
-.option.selected .label {
-    color: var(--color-white);
-    border: 1px solid var(--color-white);
+.option .label {
+    transition: all 0.5s;
+}
+
+.option.selected {
+    border-color: var(--color-white);
 }
 
 .icon {
-    transform: rotate(-90deg);
-    max-height: 100%;
-    max-width: 100%;
-    transition: all 0.2;
+    transition: all 0.25s ease-out;
+}
+
+.icon path {
+    color: var(--color-grey);
+    transition: all 0.5s;
+    transition-delay: 0.2;
+}
+
+.option:hover .label,
+.option.selected .label,
+.option.selected:hover .icon path {
+    color: var(--color-white);
+}
+
+.option.selected:hover .label {
+    color: var(--color-grey-secondary);
 }
 
 .iconReverse {
-    transform: rotate(90deg);
+    transform: rotate(180deg);
 }
