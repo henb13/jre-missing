@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap");
 
 :root {
+    --color-black-secondary: #0f0f0f;
     --color-black: #151515;
     --color-grey: #424242;
     --color-grey-secondary: #6b6b6b;

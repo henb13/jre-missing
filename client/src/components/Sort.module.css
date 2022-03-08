@@ -1,41 +1,63 @@
 .sort {
     position: fixed;
+    cursor: pointer;
     right: var(--number-right-placement);
+}
+
+.sort p {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: var(--font-size-medium);
+    margin-bottom: 1.5rem;
+}
+
+.chavron {
+    transform: scale(0.65);
+    margin-top: 3.5px;
+    transition: all 0.25s ease-out;
+}
+
+.chavron.open {
+    transform: rotate(180deg) scale(0.65);
+    margin-top: 3px;
 }
 
 .options {
     display: flex;
+    flex-direction: column;
 }
 
 .option {
     display: flex;
     align-items: center;
     color: var(--color-grey-secondary);
-    padding: 0.75em 1em;
+    padding: 0.5em 0.7em;
     border: 1px solid var(--color-grey-secondary);
-    cursor: pointer;
     transition: all 0.5s;
 }
 
 .option .label {
+    margin-right: 2px;
+    margin-left: 2px;
     transition: all 0.5s;
 }
-
+.option:hover,
 .option.selected {
     border-color: var(--color-white);
 }
 
 .icon {
+    transform: scale(0.6);
     transition: all 0.25s ease-out;
 }
 
 .icon path {
     color: var(--color-grey);
     transition: all 0.5s;
-    transition-delay: 0.2;
+    transition-delay: 0.25;
 }
 
-.option:hover .label,
 .option.selected .label,
 .option.selected:hover .icon path {
     color: var(--color-white);
@@ -46,5 +68,5 @@
 }
 
 .iconReverse {
-    transform: rotate(180deg);
+    transform: rotate(180deg) scale(0.6);
 }

@@ -1,10 +1,12 @@
 import { ReactComponent as Arrow } from "../icons/arrow.svg";
+import { ReactComponent as Chavron } from "../icons/chavron.svg";
 import { useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Sort.module.css";
 
 const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
     const options = ["episode number", "date removed"];
+    const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState({ name: options[0], reverse: false });
 
     useEffect(() => {
@@ -33,18 +35,26 @@ const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
 
     return (
         <div className={styles.sort}>
-            <p>sort by</p>
+            <p onClick={() => setOpen((open) => !open)}>
+                Sort by{" "}
+                <Chavron
+                    className={classnames(styles.chavron, {
+                        [styles.open]: open,
+                    })}
+                />
+            </p>
             <div className={styles.options}>
-                {options?.map((o) => {
-                    return (
-                        <Option
-                            optionName={o}
-                            key={o}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                    );
-                })}
+                {open &&
+                    options?.map((o) => {
+                        return (
+                            <Option
+                                optionName={o}
+                                key={o}
+                                selected={selected}
+                                setSelected={setSelected}
+                            />
+                        );
+                    })}
             </div>
         </div>
     );
