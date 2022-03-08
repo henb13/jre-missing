@@ -43,7 +43,7 @@ const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
                     })}
                 />
             </p>
-            <div className={styles.options}>
+            <div role="listbox" className={styles.options}>
                 {open &&
                     options?.map((o) => {
                         return (
@@ -66,7 +66,9 @@ function Option({ optionName, selected, setSelected }) {
 
     return (
         <div
-            role="radiogroup"
+            role="option"
+            aria-selected={isSelected}
+            aria-labelledby="option-label"
             className={classnames(styles.option, {
                 [styles.selected]: isSelected,
             })}
@@ -77,7 +79,7 @@ function Option({ optionName, selected, setSelected }) {
                 setSelected({ name: optionName, reverse: isSelected ? !reverse : reverse });
             }}
         >
-            <div role="radio" className={styles.label} aria-checked={isSelected}>
+            <div className={styles.label} id="option-label">
                 {optionName
                     .split(" ")
                     .map((word) => word[0].toUpperCase() + word.slice(1))
