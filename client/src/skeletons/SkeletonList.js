@@ -1,12 +1,9 @@
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 import styles from "./SkeletonStyles.module.css";
 
 const SkeletonList = () => {
-    const [stylesArr, setStylesArr] = useState(0);
-    const arr = Array.apply(null, Array(42));
-
-    useEffect(() => {
-        const stylesArray = arr.map(() => {
+    const stylesArr = useRef(
+        Array.apply(null, Array(42)).map(() => {
             const random = Math.random();
             const type =
                 random > 85
@@ -20,18 +17,16 @@ const SkeletonList = () => {
                     : styles.extraSmall;
 
             return type;
-        });
-
-        setStylesArr(stylesArray);
-    }, []);
+        })
+    );
 
     return (
         <div className={`${styles.SkeletonList}`}>
-            {arr.map((_, i) => {
+            {stylesArr.current?.map((st, i) => {
                 return (
                     <div
                         key={i}
-                        className={`${styles.SkeletonElement} ${styles.listElement} ${stylesArr[i]}`}
+                        className={`${styles.SkeletonElement} ${styles.listElement} ${st}`}
                     >
                         <div className={styles.SkeletonShimmerWrapper}>
                             <div className={styles.SkeletonShimmer}></div>

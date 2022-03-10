@@ -49,7 +49,7 @@
 
 .icon {
     transform: scale(0.6);
-    transition: all 0.25s ease-out;
+    transition: all 0.3s ease-out;
 }
 
 .icon path {
