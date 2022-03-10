@@ -1,4 +1,4 @@
-const missingEpsPerNow = require("./missingEpsPerNow");
+const missingEpisodesPerNow = require("./missingEpisodesPerNow");
 const getSpotifyEpisodeNames = require("../../lib/getSpotifyEpisodeNames");
 const getEpisodeNumber = require("../../lib/getEpisodeNumber");
 const pool = require("../connect");
@@ -6,7 +6,7 @@ const pool = require("../connect");
 require("dotenv").config();
 
 getSpotifyEpisodeNames().then(async (episodes) => {
-    episodes = episodes.concat(missingEpsPerNow);
+    episodes = episodes.concat(missingEpisodesPerNow);
     episodes.sort((a, b) => getEpisodeNumber(a) - getEpisodeNumber(b));
 
     await (async () => {
@@ -15,7 +15,7 @@ getSpotifyEpisodeNames().then(async (episodes) => {
             const epNr = getEpisodeNumber(name);
 
             try {
-                const onSpotify = !missingEpsPerNow.includes(name);
+                const onSpotify = !missingEpisodesPerNow.includes(name);
                 await client.query(`INSERT INTO all_eps VALUES(DEFAULT, $1, $2, $3)`, [
                     epNr,
                     name,
