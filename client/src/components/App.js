@@ -15,7 +15,7 @@ import Contact from "./Contact";
 function App() {
     const { data, error, isPending } = useFetch("/api/episodes");
     const minLoadingTimeElapsed = useMinLoadingTime(400);
-    const [shouldShakeEps, setShouldShakeEps] = useState(false);
+    const [shouldShakeEpisodes, setShouldShakeEpisodes] = useState(false);
     const [episodesShown, setEpisodesShown] = useState([]);
     const searchRef = useRef();
 
@@ -24,9 +24,9 @@ function App() {
     }, [data]);
 
     const shakeEpisodes = () => {
-        setShouldShakeEps(true);
+        setShouldShakeEpisodes(true);
         setTimeout(() => {
-            setShouldShakeEps(false);
+            setShouldShakeEpisodes(false);
         }, 1000);
     };
 
@@ -57,7 +57,7 @@ function App() {
                 <section className="right">
                     <EpisodeList
                         episodesShown={episodesShown}
-                        shouldShake={shouldShakeEps}
+                        shouldShake={shouldShakeEpisodes}
                         showSkeleton={showSkeleton}
                     />
                     <Sort
