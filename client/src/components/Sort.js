@@ -8,7 +8,6 @@ const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
     const options = ["episode number", "date removed"];
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState({ name: options[0], reverse: false });
-
     useEffect(() => {
         if (!allEpisodes) return;
 
@@ -44,23 +43,25 @@ const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
                 />
             </p>
             <div role="listbox" className={styles.options}>
-                {open &&
-                    options?.map((o) => {
-                        return (
-                            <Option
-                                optionName={o}
-                                key={o}
-                                selected={selected}
-                                setSelected={setSelected}
-                            />
-                        );
-                    })}
+                {options?.map((o) => {
+                    return (
+                        <Option
+                            className={classnames({
+                                [styles.open]: open,
+                            })}
+                            optionName={o}
+                            key={o}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                    );
+                })}
             </div>
         </div>
     );
 };
 
-function Option({ optionName, selected, setSelected }) {
+function Option({ optionName, selected, setSelected, className }) {
     const [reverse, setReverse] = useState(false);
     const isSelected = selected.name === optionName;
 
@@ -69,7 +70,7 @@ function Option({ optionName, selected, setSelected }) {
             role="option"
             aria-selected={isSelected}
             aria-labelledby="option-label"
-            className={classnames(styles.option, {
+            className={classnames(className, styles.option, {
                 [styles.selected]: isSelected,
             })}
             onClick={() => {

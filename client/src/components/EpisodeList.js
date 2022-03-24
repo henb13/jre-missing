@@ -15,15 +15,14 @@ const EpisodeList = ({ episodesShown, shouldShake, showSkeleton }) => {
 
     return (
         <ul className={classesEpList}>
-            {episodesShown?.map((ep, i) => (
+            {episodesShown?.map((ep) => (
                 <React.Fragment key={ep.full_name + ep.episode_number}>
-                    {i === 0 && <Border />}
+                    <Border />
                     <Episode
                         number={ep.episode_number}
                         name={ep.full_name}
                         removedDate={ep.date_removed}
                     />
-                    {i !== episodesShown.length - 1 && <Border />}
                 </React.Fragment>
             ))}
         </ul>
