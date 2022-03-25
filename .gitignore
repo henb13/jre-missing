@@ -31,3 +31,4 @@ client/yarn-error.log*
 server/.env
 server/node_modules
 server/tests
+server/coverage
