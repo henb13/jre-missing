@@ -1,6 +1,6 @@
 import styles from "./AmountMissing.module.css";
 import getClientLocalTime from "../lib/getClientLocalTime";
-import formatTimeString from "../lib/formatTimeString";
+import formatMinutesToTimeString from "../lib/formatMinutesToTimeString";
 import { ReactComponent as Checkmark } from "../icons/AmountMissingIcon.svg";
 import SkeletonText from "../skeletons/SkeletonText";
 
@@ -19,7 +19,7 @@ const AmountMissing = ({ data, showSkeleton }) => {
         ? Math.floor((new Date(now) - new Date(lastChecked)) / 60000)
         : 0;
 
-    const lastCheckedString = formatTimeString(lastCheckedMinutes);
+    const lastCheckedString = formatMinutesToTimeString(lastCheckedMinutes);
     const lastCheckedDate = getClientLocalTime(lastChecked, "PP HH:mm");
 
     const dateTime = getClientLocalTime(lastChecked, "yyyy-MM-dd HH:mm:ss.sss");

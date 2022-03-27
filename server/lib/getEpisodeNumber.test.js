@@ -2,11 +2,11 @@ const getEpisodeNumber = require("./getEpisodeNumber");
 
 describe("Return number from regular episode title where the episode name starts with the number", () => {
     test("Return number when hashtag precedes number (i.e. #42)", () => {
-        expect(getEpisodeNumber("#1789 - Tom Papa")).toEqual(1789);
+        expect(getEpisodeNumber("#1789 - Tom Papa")).toBe(1789);
     });
 
     test("Return number when no hashtag precedes number", () => {
-        expect(getEpisodeNumber("32 - Duncan Trussell")).toEqual(32);
+        expect(getEpisodeNumber("32 - Duncan Trussell")).toBe(32);
     });
 });
 

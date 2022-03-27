@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "run-p dev-server worker",
+    "dev": "cross-env NODE_ENV=development run-p dev-server worker",
     "dev-server": "nodemon app.js",
     "worker": "node worker/worker.js",
     "refresh-db": "node worker/tasks/refreshDb.js",
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "eslint": "^7.30.0",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15"
