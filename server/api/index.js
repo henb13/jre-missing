@@ -8,6 +8,12 @@ require("dotenv").config();
 
 let missingEpisodesCache;
 let lastCheckedCache;
+const ratioMissing = {
+    missing: 0,
+    total: 0,
+    percent: 0
+}
+let leaderBoard = [];
 
 // eslint-disable-next-line no-undef
 const { CRON_INTERVAL } = process.env;
@@ -30,6 +36,34 @@ router.get("/api/episodes", async (_, res) => {
             const db = DB(client);
             try {
                 missingEpisodesCache = await db.getMissingEpisodes();
+                const allEpisodes = await db.getAllEpisodes();
+                ratioMissing.total = allEpisodes.length;
+                ratioMissing.missing = missingEpisodesCache.length;
+                ratioMissing.percent =
+                  (
+                    ((ratioMissing.missing || 0) * 100) /
+                    (ratioMissing.total || 1)
+                  ).toFixed() + '%';
+                const guestList = {};
+                missingEpisodesCache
+                  .map((ep) => ep.full_name)
+                  .map((ep) => ep.replace(/#\d+\s-\s/, '')) // remove episode numbers
+                  .map((ep) => ep.replace(/\s\(part\s\w+\)/i, '')) // remove (part 1)
+                  .map((ep) =>
+                    ep.startsWith('Fight Companion') ? 'Fight Companion' : ep
+                  ) // remove fight companion dates
+                  .map((ep) => ep.split(/,\s|\s&\s/g)) // split guests
+                  .forEach((ep) => {
+                    ep.forEach((g) => {
+                      if (guestList[g]) guestList[g]++;
+                      else guestList[g] = 1;
+                    });
+                  });
+                leaderBoard = Object.keys(guestList)
+                  .map((g) => {
+                    return { guest: g, episodes: guestList[g] };
+                  })
+                  .sort((a, b) => b.episodes - a.episodes);
                 lastCheckedCache = await db.getLastChecked();
                 console.log("db queried and cache updated");
             } finally {
@@ -42,6 +76,8 @@ router.get("/api/episodes", async (_, res) => {
     res.json({
         missingEpisodes: missingEpisodesCache,
         lastChecked: lastCheckedCache,
+        ratioMissing,
+        leaderBoard,
     });
 });
 
