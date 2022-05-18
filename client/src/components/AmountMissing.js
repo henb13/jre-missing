@@ -13,10 +13,9 @@ const AmountMissing = ({ data, showSkeleton }) => {
         return null;
     }
 
-    const now = Date.now();
     const lastChecked = data.lastChecked?.miliseconds;
     const lastCheckedMinutes = lastChecked
-        ? Math.floor((new Date(now) - new Date(lastChecked)) / 60000)
+        ? Math.floor((new Date() - new Date(lastChecked)) / 60000)
         : 0;
 
     const lastCheckedString = formatMinutesToTimeString(lastCheckedMinutes);

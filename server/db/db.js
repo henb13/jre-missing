@@ -19,7 +19,7 @@ const DB = (client) => {
                  WHERE on_spotify = false 
                  ORDER BY episode_number desc, all_eps.id`
             );
-            return rows.sort((a, b) => b?.episode_number - a?.episode_number);
+            return rows.sort((a, b) => b.episode_number - a.episode_number);
         },
 
         insertNewEpisode: async function (episodeName) {

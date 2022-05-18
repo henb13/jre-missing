@@ -10,7 +10,7 @@
   
 </p>
 
-&#xa0;
+
   
 Automatically detects and lists episodes of [The Joe Rogan Experience](https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk) podcast that are currently not available on the Spotify platform. Will also catch episodes removed or re-added in the future.
 
