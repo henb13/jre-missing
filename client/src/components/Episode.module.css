@@ -1,75 +1,75 @@
 .EpisodeItem {
-    font-size: var(--font-size-medium);
-    hyphens: auto;
-    position: relative;
-    display: flex;
-    align-items: center;
+  font-size: var(--font-size-medium);
+  hyphens: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .epNr {
-    color: var(--color-orange);
-    margin-right: 1rem;
+  color: var(--color-orange);
+  margin-right: 1rem;
 }
 
 .removed {
-    font-size: var(--font-size-xs);
-    margin-left: 1.6rem;
-    font-style: italic;
-    letter-spacing: 0.1px;
-    color: var(--color-grey);
+  font-size: var(--font-size-xs);
+  margin-left: 1.6rem;
+  font-style: italic;
+  letter-spacing: 0.1px;
+  color: var(--color-grey);
 }
 
 .new {
-    position: absolute;
-    transform: scale(0.75);
-    left: -5rem;
-    font-size: var(--font-size-small);
-    color: var(--color-black);
-    font-weight: bold;
-    line-height: 100%;
-    padding: 3px 8px;
-    border-radius: 13%;
-    background-color: var(--color-green);
+  position: absolute;
+  transform: scale(0.75);
+  left: -5rem;
+  font-size: var(--font-size-small);
+  color: var(--color-black);
+  font-weight: bold;
+  line-height: 100%;
+  padding: 3px 8px;
+  border-radius: 13%;
+  background-color: var(--color-green);
 }
 
 .new:nth-child(2) {
-    margin-left: 32px;
+  margin-left: 32px;
 }
 
 .removed:nth-child(2) {
-    margin-left: 24px;
+  margin-left: 24px;
 }
 
 @media (max-width: 1350px) {
-    .EpisodeItem {
-        display: unset;
-        text-align-last: center;
-        align-items: unset;
-        width: 100%;
-    }
+  .EpisodeItem {
+    display: unset;
+    text-align-last: center;
+    align-items: unset;
+    width: 100%;
+  }
 
-    .epNr {
-        margin-right: 0.5rem;
-    }
+  .epNr {
+    margin-right: 0.5rem;
+  }
 
-    .removed {
-        display: block;
-        margin: 1rem 0 0 0;
-        font-size: var(--font-size-small);
-    }
+  .removed {
+    display: block;
+    margin: 1rem 0 0 0;
+    font-size: var(--font-size-small);
+  }
 
-    .new {
-        position: unset;
-        font-size: var(--font-size-medium);
-        display: block;
-        width: min-content;
-        margin: 0 auto;
-        margin-bottom: 0.75rem;
-        padding: 6px 12px;
-    }
+  .new {
+    position: unset;
+    font-size: var(--font-size-medium);
+    display: block;
+    width: min-content;
+    margin: 0 auto;
+    margin-bottom: 0.75rem;
+    padding: 6px 12px;
+  }
 
-    .new:nth-child(2),
-    .removed:nth-child(2) {
-        margin-left: 11px;
-    }
+  .new:nth-child(2),
+  .removed:nth-child(2) {
+    margin-left: 11px;
+  }
 }

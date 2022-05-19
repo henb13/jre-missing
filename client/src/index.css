@@ -2,54 +2,54 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap");
 
 :root {
-    --color-black-secondary: #0f0f0f;
-    --color-black: #151515;
-    --color-grey: #424242;
-    --color-grey-secondary: #6b6b6b;
-    --color-white: #fafafa;
-    --color-orange: #ee7d2c;
-    --color-red: #a51f21;
-    --color-green: #1ed760;
+  --color-black-secondary: #0f0f0f;
+  --color-black: #151515;
+  --color-grey: #424242;
+  --color-grey-secondary: #6b6b6b;
+  --color-white: #fafafa;
+  --color-orange: #ee7d2c;
+  --color-red: #a51f21;
+  --color-green: #1ed760;
 
-    --font-size-large: 2.2rem;
-    --font-size-medium: 1.6rem;
-    --font-size-small: 1.2rem;
-    --font-size-xs: 1rem;
+  --font-size-large: 2.2rem;
+  --font-size-medium: 1.6rem;
+  --font-size-small: 1.2rem;
+  --font-size-xs: 1rem;
 
-    --font-family-primary: Oswald, sans-serif;
-    --font-family-secondary: Roboto, sans-serif;
+  --font-family-primary: Oswald, sans-serif;
+  --font-family-secondary: Roboto, sans-serif;
 
-    --number-right-placement: 6%;
+  --number-right-placement: 6%;
 }
 
 *,
 :after,
 :before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 html {
-    font-size: 62.5%;
-    font-family: var(--font-family-primary);
-    overflow-y: scroll;
+  font-size: 62.5%;
+  font-family: var(--font-family-primary);
+  overflow-y: scroll;
 }
 
 body {
-    background-color: var(--color-black);
-    color: var(--color-white);
-    min-height: 100vh;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  min-height: 100vh;
 }
 
 a,
 a:link,
 a:visited {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 input,
@@ -57,32 +57,32 @@ textarea,
 button,
 select,
 a {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .shake {
-    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 @keyframes shake {
-    10%,
-    90% {
-        transform: translate3d(-1px, 0, 0);
-    }
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
 
-    20%,
-    80% {
-        transform: translate3d(2px, 0, 0);
-    }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
 
-    30%,
-    50%,
-    70% {
-        transform: translate3d(-4px, 0, 0);
-    }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
 
-    40%,
-    60% {
-        transform: translate3d(4px, 0, 0);
-    }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }

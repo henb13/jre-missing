@@ -5,38 +5,38 @@ import { ReactComponent as Checkmark } from "../icons/AmountMissingIcon.svg";
 import SkeletonText from "../skeletons/SkeletonText";
 
 const AmountMissing = ({ data, showSkeleton }) => {
-    if (showSkeleton) {
-        return <SkeletonText />;
-    }
+  if (showSkeleton) {
+    return <SkeletonText />;
+  }
 
-    if (!data) {
-        return null;
-    }
+  if (!data) {
+    return null;
+  }
 
-    const lastChecked = data.lastChecked?.miliseconds;
-    const lastCheckedMinutes = lastChecked
-        ? Math.floor((new Date() - new Date(lastChecked)) / 60000)
-        : 0;
+  const lastChecked = data.lastChecked?.miliseconds;
+  const lastCheckedMinutes = lastChecked
+    ? Math.floor((new Date() - new Date(lastChecked)) / 60000)
+    : 0;
 
-    const lastCheckedString = formatMinutesToTimeString(lastCheckedMinutes);
-    const lastCheckedDate = getClientLocalTime(lastChecked, "PP HH:mm");
+  const lastCheckedString = formatMinutesToTimeString(lastCheckedMinutes);
+  const lastCheckedDate = getClientLocalTime(lastChecked, "PP HH:mm");
 
-    const dateTime = getClientLocalTime(lastChecked, "yyyy-MM-dd HH:mm:ss.sss");
+  const dateTime = getClientLocalTime(lastChecked, "yyyy-MM-dd HH:mm:ss.sss");
 
-    return (
-        <>
-            <p className={styles.AmountMissing}>
-                <span>{data.missingEpisodes?.length}</span> episodes are missing from Spotify.
-            </p>
-            <div className={styles.LastChecked}>
-                <p>
-                    Last checked: {lastCheckedString}{" "}
-                    <time dateTime={dateTime}> ({lastCheckedDate})</time>
-                </p>
-                <Checkmark className={styles.Checkmark} />
-            </div>
-        </>
-    );
+  return (
+    <>
+      <p className={styles.AmountMissing}>
+        <span>{data.missingEpisodes?.length}</span> episodes are missing from Spotify.
+      </p>
+      <div className={styles.LastChecked}>
+        <p>
+          Last checked: {lastCheckedString}{" "}
+          <time dateTime={dateTime}> ({lastCheckedDate})</time>
+        </p>
+        <Checkmark className={styles.Checkmark} />
+      </div>
+    </>
+  );
 };
 
 export default AmountMissing;

@@ -1,73 +1,73 @@
 .App {
-    display: flex;
-    position: relative;
+  display: flex;
+  position: relative;
 }
 
 .left {
-    position: fixed;
-    top: 26rem;
-    bottom: 19rem;
-    left: 35rem;
+  position: fixed;
+  top: 26rem;
+  bottom: 19rem;
+  left: 35rem;
 }
 
 .right {
-    display: flex;
-    align-items: flex-start;
-    margin: 11rem 0rem 9rem 54vw;
+  display: flex;
+  align-items: flex-start;
+  margin: 11rem 0rem 9rem 54vw;
 }
 
 @media (max-width: 1700px) {
-    .left {
-        left: 20rem;
-        top: 17rem;
-    }
+  .left {
+    left: 20rem;
+    top: 17rem;
+  }
 
-    .right {
-        margin: 11rem 0rem 9rem 55vw;
-    }
+  .right {
+    margin: 11rem 0rem 9rem 55vw;
+  }
 }
 
 @media (max-width: 1450px) {
-    .left {
-        left: 14rem;
-    }
+  .left {
+    left: 14rem;
+  }
 }
 
 @media (max-width: 1350px) {
-    .App {
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 6rem;
-    }
+  .App {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 6rem;
+  }
 
-    .left,
-    .right {
-        position: unset;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: unset;
-    }
+  .left,
+  .right {
+    position: unset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: unset;
+  }
 
-    .right {
-        margin-top: 4rem;
-    }
+  .right {
+    margin-top: 4rem;
+  }
 }
 
 @media (max-width: 750px) {
-    .App {
-        padding: 0 5rem;
-    }
+  .App {
+    padding: 0 5rem;
+  }
 }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap; /* added line */
-    border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border: 0;
 }

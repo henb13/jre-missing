@@ -13,67 +13,67 @@ import ScrollButton from "./ScrollButton";
 import Contact from "./Contact";
 
 function App() {
-    const { data, error, isPending } = useFetch("/api/episodes");
-    const minLoadingTimeElapsed = useMinLoadingTime(400);
-    const [shouldShakeEpisodes, setShouldShakeEpisodes] = useState(false);
-    const [episodesShown, setEpisodesShown] = useState([]);
-    const searchRef = useRef();
+  const { data, error, isPending } = useFetch("/api/episodes");
+  const minLoadingTimeElapsed = useMinLoadingTime(400);
+  const [shouldShakeEpisodes, setShouldShakeEpisodes] = useState(false);
+  const [episodesShown, setEpisodesShown] = useState([]);
+  const searchRef = useRef();
 
-    useEffect(() => {
-        setEpisodesShown(data?.missingEpisodes || []);
-    }, [data]);
+  useEffect(() => {
+    setEpisodesShown(data?.missingEpisodes || []);
+  }, [data]);
 
-    const shakeEpisodes = () => {
-        setShouldShakeEpisodes(true);
-        setTimeout(() => {
-            setShouldShakeEpisodes(false);
-        }, 1000);
-    };
+  const shakeEpisodes = () => {
+    setShouldShakeEpisodes(true);
+    setTimeout(() => {
+      setShouldShakeEpisodes(false);
+    }, 1000);
+  };
 
-    const showSkeleton = isPending || !minLoadingTimeElapsed;
+  const showSkeleton = isPending || !minLoadingTimeElapsed;
 
-    return (
-        <div className="App">
-            <section className="left">
-                <Github />
-                <Header />
-                <Contact />
-                {error ? (
-                    <Error error={error} />
-                ) : (
-                    <>
-                        <AmountMissing data={data} showSkeleton={showSkeleton} />
-                        <Searchbox
-                            ref={searchRef}
-                            episodesShown={episodesShown}
-                            setEpisodesShown={setEpisodesShown}
-                            shakeEpisodes={shakeEpisodes}
-                        />
-                    </>
-                )}
-            </section>
+  return (
+    <div className="App">
+      <section className="left">
+        <Github />
+        <Header />
+        <Contact />
+        {error ? (
+          <Error error={error} />
+        ) : (
+          <>
+            <AmountMissing data={data} showSkeleton={showSkeleton} />
+            <Searchbox
+              ref={searchRef}
+              episodesShown={episodesShown}
+              setEpisodesShown={setEpisodesShown}
+              shakeEpisodes={shakeEpisodes}
+            />
+          </>
+        )}
+      </section>
 
-            {!error && (
-                <section className="right">
-                    <EpisodeList
-                        episodesShown={episodesShown}
-                        shouldShake={shouldShakeEpisodes}
-                        showSkeleton={showSkeleton}
-                    />
-                    <Sort
-                        setEpisodesShown={setEpisodesShown}
-                        searchRef={searchRef}
-                        allEpisodes={data?.missingEpisodes}
-                    />
-                    <ScrollButton
-                        dataPending={isPending}
-                        minLoadingTimeElapsed={minLoadingTimeElapsed}
-                        episodesShown={episodesShown}
-                    />
-                </section>
-            )}
-        </div>
-    );
+      {!error && (
+        <section className="right">
+          <EpisodeList
+            episodesShown={episodesShown}
+            shouldShake={shouldShakeEpisodes}
+            showSkeleton={showSkeleton}
+          />
+          <Sort
+            setEpisodesShown={setEpisodesShown}
+            searchRef={searchRef}
+            allEpisodes={data?.missingEpisodes}
+          />
+          <ScrollButton
+            dataPending={isPending}
+            minLoadingTimeElapsed={minLoadingTimeElapsed}
+            episodesShown={episodesShown}
+          />
+        </section>
+      )}
+    </div>
+  );
 }
 
 export default App;

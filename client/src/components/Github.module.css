@@ -1,47 +1,47 @@
 .Github {
-    position: fixed;
-    top: 4rem;
-    left: 5rem;
-    display: flex;
-    align-items: center;
+  position: fixed;
+  top: 4rem;
+  left: 5rem;
+  display: flex;
+  align-items: center;
 }
 
 .GithubLogo {
-    transition: transform 0.2s;
-    height: 2.4rem;
-    width: 2.4rem;
-    margin-right: 1rem;
+  transition: transform 0.2s;
+  height: 2.4rem;
+  width: 2.4rem;
+  margin-right: 1rem;
 }
 
 .Github:hover .GithubLogo {
-    transform: scale(1.2);
-    cursor: pointer;
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 .Github:active .GithubLogo {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 .GithubText {
-    font-size: var(--font-size-medium);
-    font-style: italic;
-    color: var(--color-white);
+  font-size: var(--font-size-medium);
+  font-style: italic;
+  color: var(--color-white);
 }
 
 @media (max-width: 900px) {
-    .GithubText {
-        color: var(--color-grey-secondary);
-    }
+  .GithubText {
+    color: var(--color-grey-secondary);
+  }
 }
 
 @media (max-width: 900px) {
-    .Github {
-        position: absolute;
-    }
+  .Github {
+    position: absolute;
+  }
 }
 @media (max-width: 750px) {
-    .Github {
-        top: 2rem;
-        left: 2rem;
-    }
+  .Github {
+    top: 2rem;
+    left: 2rem;
+  }
 }
