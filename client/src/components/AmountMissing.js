@@ -5,13 +5,8 @@ import { ReactComponent as Checkmark } from "../icons/AmountMissingIcon.svg";
 import SkeletonText from "../skeletons/SkeletonText";
 
 const AmountMissing = ({ data, showSkeleton }) => {
-  if (showSkeleton) {
-    return <SkeletonText />;
-  }
-
-  if (!data) {
-    return null;
-  }
+  if (showSkeleton) return <SkeletonText />;
+  if (!data) return null;
 
   const lastChecked = data.lastChecked?.miliseconds;
   const lastCheckedMinutes = lastChecked

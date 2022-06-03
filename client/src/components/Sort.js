@@ -8,6 +8,7 @@ const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
   const options = ["episode number", "date removed"];
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({ name: options[0], reverse: false });
+
   useEffect(() => {
     if (!allEpisodes) return;
 
@@ -63,6 +64,13 @@ function Option({ optionName, selected, setSelected, className }) {
   const [reverse, setReverse] = useState(false);
   const isSelected = selected.name === optionName;
 
+  function handleClick() {
+    if (isSelected) {
+      setReverse((reverse) => !reverse);
+    }
+    setSelected({ name: optionName, reverse: isSelected ? !reverse : reverse });
+  }
+
   return (
     <div
       role="option"
@@ -71,12 +79,7 @@ function Option({ optionName, selected, setSelected, className }) {
       className={classnames(className, styles.option, {
         [styles.selected]: isSelected,
       })}
-      onClick={() => {
-        if (isSelected) {
-          setReverse((reverse) => !reverse);
-        }
-        setSelected({ name: optionName, reverse: isSelected ? !reverse : reverse });
-      }}
+      onClick={handleClick}
     >
       <div className={styles.label} id="option-label">
         {optionName

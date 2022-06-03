@@ -23,9 +23,9 @@ const DB = (client) => {
     },
 
     insertNewEpisode: async function (episodeName) {
-      const epNr = getEpisodeNumber(episodeName);
+      const epNumber = getEpisodeNumber(episodeName);
       await client.query("INSERT INTO all_eps VALUES(DEFAULT, $1, $2, $3)", [
-        epNr,
+        epNumber,
         episodeName,
         true,
       ]);

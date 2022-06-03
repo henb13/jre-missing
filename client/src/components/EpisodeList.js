@@ -5,13 +5,11 @@ import Episode from "./Episode";
 import SkeletonList from "../skeletons/SkeletonList";
 
 const EpisodeList = ({ episodesShown, shouldShake, showSkeleton }) => {
+  if (showSkeleton) return <SkeletonList />;
+
   const classesEpList = classnames(styles.EpisodeList, {
     shake: shouldShake,
   });
-
-  if (showSkeleton) {
-    return <SkeletonList />;
-  }
 
   return (
     <ul className={classesEpList}>

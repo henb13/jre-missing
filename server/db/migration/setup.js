@@ -12,12 +12,12 @@ getSpotifyEpisodeNames().then(async (episodes) => {
   await (async () => {
     for (const name of episodes) {
       const client = await pool.connect();
-      const epNr = getEpisodeNumber(name);
+      const epNumber = getEpisodeNumber(name);
 
       try {
         const onSpotify = !missingEpisodesPerNow.includes(name);
         await client.query(`INSERT INTO all_eps VALUES(DEFAULT, $1, $2, $3)`, [
-          epNr,
+          epNumber,
           name,
           onSpotify,
         ]);

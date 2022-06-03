@@ -5,7 +5,7 @@ import getClientLocalTime from "../lib/getClientLocalTime";
 const NEWLY_REMOVED_THRESHOLD = 14;
 
 const Episode = ({ number, name, removedDate }) => {
-  let [epNr, ...guest] = name.split("-");
+  let [epNumber, ...guest] = name.split("-");
   guest = guest.join("-");
 
   const isNewlyRemoved =
@@ -16,7 +16,7 @@ const Episode = ({ number, name, removedDate }) => {
       {isNewlyRemoved && <span className={styles.new}>new</span>}
       {number ? (
         <>
-          <span className={styles.epNr}>{epNr.trim()}</span>
+          <span className={styles.epNumber}>{epNumber.trim()}</span>
           {guest.trim()}
         </>
       ) : (

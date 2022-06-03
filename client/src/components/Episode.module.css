@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.epNr {
+.epNumber {
   color: var(--color-orange);
   margin-right: 1rem;
 }
@@ -48,7 +48,7 @@
     width: 100%;
   }
 
-  .epNr {
+  .epNumber {
     margin-right: 0.5rem;
   }
 

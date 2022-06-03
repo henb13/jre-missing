@@ -20,10 +20,7 @@ async function refreshDb() {
         let isNewRelease = true;
 
         for (const dbEpisode of allEpisodes) {
-          if (
-            dbEpisode.episode_number &&
-            spotifyEpisodeChangedName(spotifyEpisode, dbEpisode)
-          ) {
+          if (dbEpisode.episode_number && didEpisodeChangeName(spotifyEpisode, dbEpisode)) {
             await db.updateEpisodeName(spotifyEpisode, dbEpisode.id);
             isNewRelease = false;
             someEpisodeNameGotUpdated = true;
@@ -64,12 +61,12 @@ async function refreshDb() {
   })().catch((err) => console.log(err.message));
 }
 
-function spotifyEpisodeChangedName(spotifyEpisode, dbEpisode) {
-  const epNr = getEpisodeNumber(spotifyEpisode);
+function didEpisodeChangeName(spotifyEpisode, dbEpisode) {
+  const epNumber = getEpisodeNumber(spotifyEpisode);
   const { full_name, episode_number } = dbEpisode;
   return (
     full_name !== spotifyEpisode &&
-    epNr == episode_number &&
+    epNumber == episode_number &&
     !full_name.toLowerCase().includes("(part") &&
     !spotifyEpisode.toLowerCase().includes("(part")
   );
