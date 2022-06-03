@@ -39,7 +39,7 @@ async function refreshDb() {
         if (isNewRelease) await db.insertNewEpisode(spotifyEpisode);
       }
 
-      allEpisodes = someEpisodeNameGotUpdated ? await db.getAllEpisodes() : allEpisodes;
+      if (someEpisodeNameGotUpdated) allEpisodes = await db.getAllEpisodes();
 
       for (const dbEpisode of allEpisodes) {
         if (!spotifyEpisodeNames.includes(dbEpisode.full_name)) {
