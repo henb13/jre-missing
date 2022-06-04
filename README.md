@@ -11,8 +11,7 @@
 
 Automatically detects and lists episodes of [The Joe Rogan Experience](https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk) podcast that are currently not available on the Spotify platform. Will also catch episodes removed or re-added in the future.
 
-&#xa0;
-
+&nbsp;
 ## As Mentioned In 🗞️
 
 <a href="https://www.rollingstone.com/culture/culture-news/spotify-removes-joe-rogan-experience-podcast-episodes-1295727/">Rolling Stone</a>
@@ -33,4 +32,8 @@ Automatically detects and lists episodes of [The Joe Rogan Experience](https://o
  &#8226;  <a href="https://www.independent.co.uk/arts-entertainment/music/news/joe-rogan-podcast-episodes-removed-b2009035.html">The Independent</a>
  &#8226;  <a href="https://www.aftenposten.no/kultur/i/RrnjjW/joe-rogan-ber-om-unnskyldning-for-aa-ha-brukt-n-ordet-i-sin-podkast">Aftenposten</a>
 
+&nbsp;
+
+## Sponsors 💜
+<a href="https://github.com/cotterjd">Jordan Cotter</a> &#8226;
 </div>
