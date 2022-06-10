@@ -30,8 +30,7 @@ const ScrollButton = ({ dataPending, minLoadingTimeElapsed, episodesShown }) => 
       })}
       disabled={hidden}
       aria-label={`scroll to ${scrollTarget}`}
-      onClick={handleClick}
-    >
+      onClick={handleClick}>
       <div className={styles.ScrollText}>
         To{" "}
         <TextTransition

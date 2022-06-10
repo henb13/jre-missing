@@ -79,8 +79,7 @@ function Option({ optionName, selected, setSelected, className }) {
       className={classnames(className, styles.option, {
         [styles.selected]: isSelected,
       })}
-      onClick={handleClick}
-    >
+      onClick={handleClick}>
       <div className={styles.label} id="option-label">
         {optionName
           .split(" ")

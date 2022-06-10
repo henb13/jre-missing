@@ -9,8 +9,7 @@ const Github = () => {
         href="https://github.com/HenB13/jre-missing"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="view code on GitHub"
-      >
+        aria-label="view code on GitHub">
         <img src={GitHubLogo} alt="github logo" className={styles.GithubLogo} />{" "}
         <span className={styles.GithubText}> {"<--"} View the code!</span>
       </a>

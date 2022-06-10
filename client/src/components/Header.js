@@ -11,8 +11,7 @@ const Header = () => {
         <a
           href="https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           <span>The Joe Rogan Experience</span>
           <br /> podcast{" "}
         </a>{" "}
