@@ -17,5 +17,9 @@
         "ignoreReadBeforeAssign": false
       }
     ]
-  }
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    "coverage/"
+  ]
 }
