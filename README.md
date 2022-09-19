@@ -1,6 +1,6 @@
 <div align="center" text-align="center">
 
-# <img height="23px" width="23px" padding="5px" src="./client/public/favicon.png" alt="JRE MISSING LOGO" /> JRE MISSING
+# JRE MISSING  <img height="23px" width="23px" padding="5px" src="./client/public/favicon.png" alt="JRE MISSING LOGO" />
 
 <p>
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/HenB13/jre-missing?color=#ee7d2c">
