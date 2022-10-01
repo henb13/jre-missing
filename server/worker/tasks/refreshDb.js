@@ -45,20 +45,20 @@ async function refreshDb() {
         if (!spotifyEpisodeNames.includes(dbEpisode.full_name)) {
           if (dbEpisode.on_spotify) {
             await db.setSpotifyStatus(dbEpisode, false);
-            console.log("\nnew episode removed(!): " + dbEpisode.full_name + "\n");
+            console.log(`\nNew episode removed(!): ${dbEpisode.full_name} \n`);
           }
         } else if (!dbEpisode.on_spotify) {
           await db.setSpotifyStatus(dbEpisode, true);
-          console.log("\nnew episode re-added: " + dbEpisode.full_name + "\n");
+          console.log(`\nNew episode re-added: ${dbEpisode.full_name} \n`);
         }
       }
 
-      await db.setLastChecked();
+      await db.setLastCheckedNow();
     } finally {
       client.release();
-      console.log("worker ran successfully");
+      console.log("Worker ran successfully");
     }
-  })().catch((err) => console.log(err.message));
+  })().catch((err) => console.log(`Worker failed to run: ${err.message}`));
 }
 
 function didEpisodeChangeName(spotifyEpisode, dbEpisode) {

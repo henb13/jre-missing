@@ -28,7 +28,8 @@
         "destructuring": "all",
         "ignoreReadBeforeAssign": false
       }
-    ]
+    ],
+    "prefer-template": "warn"
   },
   "ignorePatterns": [
     "node_modules/",

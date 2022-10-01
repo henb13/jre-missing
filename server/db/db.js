@@ -39,7 +39,7 @@ const DB = (client) => {
       await client.query(`UPDATE all_eps SET on_spotify=($1) WHERE id=($2)`, [bool, id]);
     },
 
-    setLastChecked: async function () {
+    setLastCheckedNow: async function () {
       await client.query("UPDATE all_eps_log SET last_checked=now()");
     },
 
