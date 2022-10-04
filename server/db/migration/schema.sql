@@ -37,6 +37,11 @@ CREATE TABLE date_re_added(
 	  REFERENCES all_eps(id)
 );
 
+CREATE TABLE all_eps_log(
+  last_checked timestamptz(0),
+  last_modified timestamptz(0)
+);
+
 CREATE TABLE length_changes(
   id SERIAL NOT NULL UNIQUE PRIMARY KEY,
   episode_id INTEGER NOT NULL,
@@ -48,10 +53,13 @@ CREATE TABLE length_changes(
 	  REFERENCES all_eps(id)
 );
 
-CREATE TABLE all_eps_log(
-  last_checked timestamptz(0),
-  last_modified timestamptz(0)
-);
+CREATE OR REPLACE FUNCTION change_length() 
+RETURNS TRIGGER AS $cl$ 
+BEGIN 
+  INSERT INTO length_changes VALUES(NEW.id, now(), OLD.length, NEW.length);
+  RETURN NEW;
+END; 
+$cl$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION last_modified() 
 RETURNS TRIGGER AS $lm$ 
@@ -74,6 +82,13 @@ BEGIN
   RETURN NULL; 
 END; 
 $ss$ LANGUAGE plpgsql;
+
+CREATE TRIGGER change_length 
+AFTER UPDATE ON all_eps
+FOR EACH ROW
+WHEN (NEW.length > OLD.length )
+EXECUTE PROCEDURE change_length();
+
 
 CREATE TRIGGER spotify_status 
 AFTER UPDATE ON all_eps

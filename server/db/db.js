@@ -1,7 +1,5 @@
 const getEpisodeNumber = require("../lib/getEpisodeNumber");
 
-const TABLE = process.env.NOdE_ENV === "development" ? "test_table" : "all_eps";
-
 const DB = (client) => {
   return {
     getAllEpisodes: async function () {
@@ -11,40 +9,49 @@ const DB = (client) => {
     getMissingEpisodes: async function () {
       const { rows } = await client.query(
         `SELECT full_name, date_removed, episode_number 
-                 FROM ${TABLE}  
+                 FROM all_eps  
                  LEFT JOIN (
-                 SELECT id, MAX(date_removed) as date_removed
-                 from date_removed 
-                 group by id
+                  SELECT id, MAX(date_removed) as date_removed
+                  from date_removed 
+                  group by id
                  ) as t2
-                 ON ${TABLE}.id = t2.id 
+                 ON all_eps.id = t2.id 
                  WHERE on_spotify = false 
-                 ORDER BY episode_number desc, ${TABLE}.id`
+                 ORDER BY episode_number desc, all_eps.id`
       );
       return rows.sort((a, b) => b.episode_number - a.episode_number);
     },
-
+    getShortenedEpisodes: async function () {
+      const { rows } = await client.query(
+        `SELECT episode_number, full_name, date_changed, length as currentLength, old_length, 
+                 FROM all_eps  
+                 LEFT JOIN (
+                  SELECT id, MAX(date) as date_changed
+                  from length_changes 
+                  group by id
+                 ) as t2
+                 ON all_eps.id = t2.id 
+                 ORDER BY episode_number desc, all_eps.id`
+      );
+      return rows;
+    },
     insertNewEpisode: async function (episodeName) {
       const epNumber = getEpisodeNumber(episodeName);
-      await client.query("INSERT INTO ${TABLE} VALUES(DEFAULT, $1, $2, $3)", [
+      await client.query("INSERT INTO all_eps VALUES(DEFAULT, $1, $2, $3)", [
         epNumber,
         episodeName,
         true,
       ]);
     },
-
     updateEpisodeName: async function (value, id) {
-      await client.query("UPDATE ${TABLE} SET full_name=($1) WHERE id=($2)", [value, id]);
+      await client.query("UPDATE all_eps SET full_name=($1) WHERE id=($2)", [value, id]);
     },
-
     setSpotifyStatus: async function ({ id }, bool) {
-      await client.query(`UPDATE ${TABLE} SET on_spotify=($1) WHERE id=($2)`, [bool, id]);
+      await client.query(`UPDATE all_eps SET on_spotify=($1) WHERE id=($2)`, [bool, id]);
     },
-
     setLastCheckedNow: async function () {
-      await client.query("UPDATE ${TABLE}_log SET last_checked=now()");
+      await client.query("UPDATE all_eps_log SET last_checked=now()");
     },
-
     getLastChecked: async function () {
       const { rows } = await client.query(
         "SELECT last_checked, EXTRACT(EPOCH FROM last_checked at time zone 'UTC') AS miliseconds from all_eps_log"
@@ -54,14 +61,13 @@ const DB = (client) => {
         miliseconds: rows[0]?.miliseconds * 1000,
       };
     },
-
     getEpisodesWithSameEpNumber: async function () {
       const { rows } = await client.query(
         `SELECT *
-                 FROM ${TABLE} A
+                 FROM all_eps A
                  JOIN (
                  SELECT COUNT(*) as Count, B.episode_number
-                 FROM ${TABLE} B
+                 FROM all_eps B
                  GROUP BY B.episode_number
                  ) AS B ON A.episode_number = B.episode_number
                  WHERE B.Count > 1

@@ -7,6 +7,7 @@ router.use(express.json());
 require("dotenv").config();
 
 let missingEpisodesCache;
+let shortenedEpisodesCache;
 let lastCheckedCache;
 
 // eslint-disable-next-line no-undef
@@ -24,12 +25,17 @@ router.get("/api/episodes", async (_, res) => {
     "Access-Control-Allow-Origin": "http://localhost:3000",
   });
 
-  if (!missingEpisodesCache || timeSinceLastCheckedDbInMins > CRON_INTERVAL) {
+  if (
+    !missingEpisodesCache ||
+    !shortenedEpisodesCache ||
+    timeSinceLastCheckedDbInMins > CRON_INTERVAL
+  ) {
     await (async () => {
       const client = await pool.connect();
       const db = DB(client);
       try {
         missingEpisodesCache = await db.getMissingEpisodes();
+        shortenedEpisodesCache = await db.getShortenedEpisodes();
         lastCheckedCache = await db.getLastChecked();
         console.log("db queried and cache updated");
       } finally {
@@ -39,8 +45,11 @@ router.get("/api/episodes", async (_, res) => {
   }
 
   console.log("request fired");
+  console.log("-----------shortened episodes: ---------------");
+  console.dir(shortenedEpisodesCache);
   res.json({
     missingEpisodes: missingEpisodesCache,
+    shortenedEpisodes: shortenedEpisodesCache,
     lastChecked: lastCheckedCache,
   });
 });
