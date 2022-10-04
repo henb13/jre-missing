@@ -12,30 +12,55 @@ async function refreshDb() {
     try {
       console.log("worker running");
 
-      const spotifyEpisodeNames = await getSpotifyEpisodes();
+      const spotifyEpisodes = await getSpotifyEpisodes();
+      const spotifyEpisodeNames = spotifyEpisodes.map((ep) => ep.name);
       let allEpisodes = await db.getAllEpisodes();
       let someEpisodeNameGotUpdated = false;
 
-      for (const spotifyEpisode of spotifyEpisodeNames) {
-        let isNewRelease = true;
+      for (const dbEpisode of allEpisodes) {
+        const correspondingSpotifyEpisode = spotifyEpisodes.find(
+          (ep) => ep.name === dbEpisode.full_name
+        );
 
+        if (correspondingSpotifyEpisode && !dbEpisode.duration) {
+          console.log(
+            `Inserting duration for episode ${dbEpisode.full_name} (duration: ${correspondingSpotifyEpisode.duration}) `
+          );
+          await db.insertEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
+        } else if (correspondingSpotifyEpisode) {
+          if (process.env.NODE_ENV === "test" && dbEpisode.episode_number === 1159) {
+            // Old = 12068223
+            correspondingSpotifyEpisode.duration = correspondingSpotifyEpisode.duration - 2000;
+          }
+          if (correspondingSpotifyEpisode.duration < dbEpisode.duration) {
+            await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
+            console.log(
+              ` \n Spotify has shortened the duration of episode: ${dbEpisode.full_name} \n
+                  from: ${dbEpisode.duration} \n 
+                  to: ${correspondingSpotifyEpisode.duration} \n\n`
+            );
+          }
+        }
+      }
+
+      for (const spotifyEpisode of spotifyEpisodes) {
         for (const dbEpisode of allEpisodes) {
-          if (dbEpisode.episode_number && didEpisodeChangeName(spotifyEpisode, dbEpisode)) {
-            await db.updateEpisodeName(spotifyEpisode, dbEpisode.id);
-            isNewRelease = false;
+          if (
+            dbEpisode.episode_number &&
+            didEpisodeChangeName(spotifyEpisode.name, dbEpisode)
+          ) {
+            await db.updateEpisodeName(spotifyEpisode.name, dbEpisode.id);
             someEpisodeNameGotUpdated = true;
             console.log(
               ` \n spotify updated the name of an episode! \n
-                                from: ${dbEpisode.full_name} \n 
-                                to: ${spotifyEpisode} \n\n`
+                                  from: ${dbEpisode.full_name} \n 
+                                  to: ${spotifyEpisode.name} \n\n`
             );
-            break;
-          } else if (dbEpisode.full_name === spotifyEpisode) {
-            isNewRelease = false;
             break;
           }
         }
-        if (isNewRelease) await db.insertNewEpisode(spotifyEpisode);
+        const isNewRelease = !allEpisodes.some((ep) => ep.full_name === spotifyEpisode.name);
+        if (isNewRelease) await db.insertNewEpisode(spotifyEpisode.name);
       }
 
       if (someEpisodeNameGotUpdated) allEpisodes = await db.getAllEpisodes();
@@ -44,7 +69,7 @@ async function refreshDb() {
         if (!spotifyEpisodeNames.includes(dbEpisode.full_name)) {
           if (dbEpisode.on_spotify) {
             await db.setSpotifyStatus(dbEpisode, false);
-            console.log(`\nNew episode removed(!): ${dbEpisode.full_name} \n`);
+            console.log(`\nNew episode removed!: ${dbEpisode.full_name} \n`);
           }
         } else if (!dbEpisode.on_spotify) {
           await db.setSpotifyStatus(dbEpisode, true);
@@ -53,21 +78,24 @@ async function refreshDb() {
       }
 
       await db.setLastCheckedNow();
+      console.log("Worker ran successfully");
+    } catch (e) {
+      console.log("Something went wrong with refreshDb.js");
+      throw e;
     } finally {
       client.release();
-      console.log("Worker ran successfully");
     }
   })().catch((err) => console.log(`Worker failed to run: ${err.message}`));
 }
 
-function didEpisodeChangeName(spotifyEpisode, dbEpisode) {
-  const epNumber = getEpisodeNumber(spotifyEpisode);
+function didEpisodeChangeName(spotifyEpisodeName, dbEpisode) {
+  const epNumber = getEpisodeNumber(spotifyEpisodeName);
   const { full_name, episode_number } = dbEpisode;
   return (
-    full_name !== spotifyEpisode &&
+    full_name !== spotifyEpisodeName &&
     epNumber == episode_number &&
     !full_name.toLowerCase().includes("(part") &&
-    !spotifyEpisode.toLowerCase().includes("(part")
+    !spotifyEpisodeName.toLowerCase().includes("(part")
   );
 }
 

@@ -43,8 +43,14 @@ const DB = (client) => {
         true,
       ]);
     },
-    updateEpisodeName: async function (value, id) {
-      await client.query("UPDATE all_eps SET full_name=($1) WHERE id=($2)", [value, id]);
+    updateEpisodeName: async function (name, id) {
+      await client.query("UPDATE all_eps SET full_name=($1) WHERE id=($2)", [name, id]);
+    },
+    updateEpisodeDuration: async function (newDuration, id) {
+      await client.query("UPDATE all_eps SET duration=($1) WHERE id=($2)", [newDuration, id]);
+    },
+    insertEpisodeDuration: async function (duration, id) {
+      await client.query("UPDATE all_eps SET duration=($1) WHERE id=($2)", [duration, id]);
     },
     setSpotifyStatus: async function ({ id }, bool) {
       await client.query(`UPDATE all_eps SET on_spotify=($1) WHERE id=($2)`, [bool, id]);

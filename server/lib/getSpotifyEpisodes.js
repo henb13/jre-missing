@@ -44,7 +44,7 @@ async function getSpotifyEpisodes() {
         })
       );
     }
-    console.log("episodes gone through: " + spotifyEpisodes.length);
+    console.log("Amount of episodes fetched from Spotify: " + spotifyEpisodes.length);
 
     return spotifyEpisodes;
   } catch (err) {
