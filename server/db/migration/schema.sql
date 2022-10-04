@@ -8,6 +8,7 @@ CREATE TABLE all_eps(
   episode_number INTEGER,
   full_name VARCHAR(255) NOT NULL, 
   on_spotify BOOLEAN NOT NULL
+  length INTEGER NOT NULL;
 );
 
 CREATE TABLE test_table(
@@ -15,6 +16,7 @@ CREATE TABLE test_table(
   episode_number INTEGER,
   full_name VARCHAR(255) NOT NULL, 
   on_spotify BOOLEAN NOT NULL
+  length INTEGER NOT NULL;
 );
 
 CREATE TABLE date_removed(
@@ -32,6 +34,17 @@ CREATE TABLE date_re_added(
   PRIMARY KEY (id, re_added),
   CONSTRAINT fk_id
     FOREIGN KEY(id)
+	  REFERENCES all_eps(id)
+);
+
+CREATE TABLE length_changes(
+  id SERIAL NOT NULL UNIQUE PRIMARY KEY,
+  episode_id INTEGER NOT NULL,
+  date timestamptz(0) NOT NULL,
+  old_length INTEGER,
+  new_length INTEGER,
+  CONSTRAINT fk_id
+    FOREIGN KEY(episode_id) 
 	  REFERENCES all_eps(id)
 );
 
