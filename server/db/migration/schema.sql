@@ -8,7 +8,7 @@ CREATE TABLE all_eps(
   episode_number INTEGER,
   full_name VARCHAR(255) NOT NULL, 
   on_spotify BOOLEAN NOT NULL
-  length INTEGER NOT NULL;
+  duration INTEGER NOT NULL;
 );
 
 CREATE TABLE test_table(
@@ -16,7 +16,7 @@ CREATE TABLE test_table(
   episode_number INTEGER,
   full_name VARCHAR(255) NOT NULL, 
   on_spotify BOOLEAN NOT NULL
-  length INTEGER NOT NULL;
+  duration INTEGER NOT NULL;
 );
 
 CREATE TABLE date_removed(
@@ -42,21 +42,21 @@ CREATE TABLE all_eps_log(
   last_modified timestamptz(0)
 );
 
-CREATE TABLE length_changes(
+CREATE TABLE duration_changes(
   id SERIAL NOT NULL UNIQUE PRIMARY KEY,
   episode_id INTEGER NOT NULL,
   date timestamptz(0) NOT NULL,
-  old_length INTEGER,
-  new_length INTEGER,
+  old_duration INTEGER,
+  new_duration INTEGER,
   CONSTRAINT fk_id
     FOREIGN KEY(episode_id) 
 	  REFERENCES all_eps(id)
 );
 
-CREATE OR REPLACE FUNCTION change_length() 
+CREATE OR REPLACE FUNCTION change_duration() 
 RETURNS TRIGGER AS $cl$ 
 BEGIN 
-  INSERT INTO length_changes VALUES(NEW.id, now(), OLD.length, NEW.length);
+  INSERT INTO duration_changes VALUES(NEW.id, now(), OLD.duration, NEW.duration);
   RETURN NEW;
 END; 
 $cl$ LANGUAGE plpgsql;
@@ -83,11 +83,11 @@ BEGIN
 END; 
 $ss$ LANGUAGE plpgsql;
 
-CREATE TRIGGER change_length 
+CREATE TRIGGER changes_duration 
 AFTER UPDATE ON all_eps
 FOR EACH ROW
-WHEN (NEW.length > OLD.length )
-EXECUTE PROCEDURE change_length();
+WHEN (NEW.duration > OLD.duration )
+EXECUTE PROCEDURE changes_duration();
 
 
 CREATE TRIGGER spotify_status 

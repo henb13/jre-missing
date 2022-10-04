@@ -3,7 +3,7 @@ const pool = new pg.Pool();
 
 const DB = require("../../db/db");
 const getEpisodeNumber = require("../../lib/getEpisodeNumber");
-const getSpotifyEpisodeNames = require("../../lib/getSpotifyEpisodeNames");
+const getSpotifyEpisodes = require("../../lib/getSpotifyEpisodes");
 
 async function refreshDb() {
   await (async () => {
@@ -12,7 +12,7 @@ async function refreshDb() {
     try {
       console.log("worker running");
 
-      const spotifyEpisodeNames = await getSpotifyEpisodeNames();
+      const spotifyEpisodeNames = await getSpotifyEpisodes();
       let allEpisodes = await db.getAllEpisodes();
       let someEpisodeNameGotUpdated = false;
 
@@ -24,7 +24,6 @@ async function refreshDb() {
             await db.updateEpisodeName(spotifyEpisode, dbEpisode.id);
             isNewRelease = false;
             someEpisodeNameGotUpdated = true;
-
             console.log(
               ` \n spotify updated the name of an episode! \n
                                 from: ${dbEpisode.full_name} \n 

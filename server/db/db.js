@@ -23,11 +23,11 @@ const DB = (client) => {
     },
     getShortenedEpisodes: async function () {
       const { rows } = await client.query(
-        `SELECT episode_number, full_name, date_changed, length as currentLength, old_length, 
+        `SELECT episode_number, full_name, date_changed, duration as currentDuration, old_duration 
                  FROM all_eps  
                  LEFT JOIN (
                   SELECT id, MAX(date) as date_changed
-                  from length_changes 
+                  from duration_changes 
                   group by id
                  ) as t2
                  ON all_eps.id = t2.id 
