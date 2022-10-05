@@ -24,14 +24,13 @@ async function refreshDb() {
 
         if (correspondingSpotifyEpisode && !dbEpisode.duration) {
           console.log(
-            `Inserting duration for episode ${dbEpisode.full_name} (duration: ${correspondingSpotifyEpisode.duration}) `
+            `Inserting missing duration for episode ${dbEpisode.full_name} (duration: ${correspondingSpotifyEpisode.duration}) `
           );
-          await db.insertEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
+          await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
         } else if (correspondingSpotifyEpisode) {
-          if (process.env.NODE_ENV === "test" && dbEpisode.episode_number === 1159) {
-            // Old = 12068223
-            correspondingSpotifyEpisode.duration = correspondingSpotifyEpisode.duration - 2000;
-          }
+          // if (process.env.NODE_ENV === "test" && dbEpisode.episode_number === 1159) {
+          //   correspondingSpotifyEpisode.duration = correspondingSpotifyEpisode.duration - 2000;
+          // }
           if (correspondingSpotifyEpisode.duration < dbEpisode.duration) {
             await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
             console.log(
@@ -60,7 +59,10 @@ async function refreshDb() {
           }
         }
         const isNewRelease = !allEpisodes.some((ep) => ep.full_name === spotifyEpisode.name);
-        if (isNewRelease) await db.insertNewEpisode(spotifyEpisode.name);
+        if (isNewRelease) {
+          console.log(`New episode released: ${spotifyEpisode.name}`);
+          await db.insertNewEpisode(spotifyEpisode);
+        }
       }
 
       if (someEpisodeNameGotUpdated) allEpisodes = await db.getAllEpisodes();

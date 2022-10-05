@@ -35,12 +35,13 @@ const DB = (client) => {
       );
       return rows;
     },
-    insertNewEpisode: async function (episodeName) {
-      const epNumber = getEpisodeNumber(episodeName);
-      await client.query("INSERT INTO all_eps VALUES(DEFAULT, $1, $2, $3)", [
+    insertNewEpisode: async function (episode) {
+      const epNumber = getEpisodeNumber(episode.name);
+      await client.query("INSERT INTO all_eps VALUES(DEFAULT, $1, $2, $3, $4)", [
         epNumber,
-        episodeName,
+        episode.name,
         true,
+        episode.duration,
       ]);
     },
     updateEpisodeName: async function (name, id) {
@@ -48,9 +49,6 @@ const DB = (client) => {
     },
     updateEpisodeDuration: async function (newDuration, id) {
       await client.query("UPDATE all_eps SET duration=($1) WHERE id=($2)", [newDuration, id]);
-    },
-    insertEpisodeDuration: async function (duration, id) {
-      await client.query("UPDATE all_eps SET duration=($1) WHERE id=($2)", [duration, id]);
     },
     setSpotifyStatus: async function ({ id }, bool) {
       await client.query(`UPDATE all_eps SET on_spotify=($1) WHERE id=($2)`, [bool, id]);
@@ -70,14 +68,14 @@ const DB = (client) => {
     getEpisodesWithSameEpNumber: async function () {
       const { rows } = await client.query(
         `SELECT *
-                 FROM all_eps A
-                 JOIN (
-                 SELECT COUNT(*) as Count, B.episode_number
-                 FROM all_eps B
-                 GROUP BY B.episode_number
-                 ) AS B ON A.episode_number = B.episode_number
-                 WHERE B.Count > 1
-                 ORDER by A.episode_number;`
+        FROM all_eps A
+        JOIN (
+          SELECT COUNT(*) as Count, B.episode_number
+          FROM all_eps B
+          GROUP BY B.episode_number
+        ) AS B ON A.episode_number = B.episode_number
+        WHERE B.Count > 1
+        ORDER by A.episode_number;`
       );
       return rows;
     },
