@@ -28,8 +28,8 @@ async function refreshDb() {
           );
           await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
         } else if (correspondingSpotifyEpisode) {
-          // if (process.env.NODE_ENV === "test" && dbEpisode.episode_number === 1159) {
-          //   correspondingSpotifyEpisode.duration = correspondingSpotifyEpisode.duration - 2000;
+          // if (process.env.NODE_ENV === "development" && dbEpisode.episode_number === 1159) {
+          //   correspondingSpotifyEpisode.duration = correspondingSpotifyEpisode.duration - 7000;
           // }
           if (correspondingSpotifyEpisode.duration < dbEpisode.duration) {
             await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);

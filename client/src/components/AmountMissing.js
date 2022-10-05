@@ -16,7 +16,7 @@ const AmountMissing = ({ data, showSkeleton }) => {
   const lastCheckedString = formatMinutesToTimeString(lastCheckedMinutes);
   const lastCheckedDate = getClientLocalTime(lastChecked, "PP HH:mm");
 
-  const dateTime = getClientLocalTime(lastChecked, "yyyy-MM-dd HH:mm:ss.sss");
+  const dateTimeAccessibility = getClientLocalTime(lastChecked, "yyyy-MM-dd HH:mm:ss.sss");
 
   return (
     <>
@@ -26,7 +26,7 @@ const AmountMissing = ({ data, showSkeleton }) => {
       <div className={styles.LastChecked}>
         <p>
           Last checked: {lastCheckedString}{" "}
-          <time dateTime={dateTime}> ({lastCheckedDate})</time>
+          <time dateTime={dateTimeAccessibility}> ({lastCheckedDate})</time>
         </p>
         <Checkmark className={styles.Checkmark} />
       </div>

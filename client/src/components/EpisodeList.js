@@ -4,7 +4,7 @@ import styles from "./EpisodeList.module.css";
 import Episode from "./Episode";
 import SkeletonList from "../skeletons/SkeletonList";
 
-const EpisodeList = ({ episodesShown, shouldShake, showSkeleton }) => {
+const EpisodeList = ({ missingEpisodesShown, shouldShake, showSkeleton }) => {
   if (showSkeleton) return <SkeletonList />;
 
   const classesEpList = classnames(styles.EpisodeList, {
@@ -13,7 +13,7 @@ const EpisodeList = ({ episodesShown, shouldShake, showSkeleton }) => {
 
   return (
     <ul className={classesEpList}>
-      {episodesShown?.map((ep) => (
+      {missingEpisodesShown?.map((ep) => (
         <React.Fragment key={ep.full_name + ep.episode_number}>
           <Border />
           <Episode

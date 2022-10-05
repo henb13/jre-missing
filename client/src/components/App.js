@@ -16,11 +16,11 @@ function App() {
   const { data, error, isPending } = useFetch("/api/episodes");
   const minLoadingTimeElapsed = useMinLoadingTime(400);
   const [shouldShakeEpisodes, setShouldShakeEpisodes] = useState(false);
-  const [episodesShown, setEpisodesShown] = useState([]);
+  const [missingEpisodesShown, setMissingEpisodesShown] = useState([]);
   const searchRef = useRef();
 
   useEffect(() => {
-    setEpisodesShown(data?.missingEpisodes || []);
+    setMissingEpisodesShown(data?.missingEpisodes || []);
   }, [data]);
 
   const shakeEpisodes = () => {
@@ -45,8 +45,8 @@ function App() {
             <AmountMissing data={data} showSkeleton={showSkeleton} />
             <Searchbox
               ref={searchRef}
-              episodesShown={episodesShown}
-              setEpisodesShown={setEpisodesShown}
+              missingEpisodesShown={missingEpisodesShown}
+              setMissingEpisodesShown={setMissingEpisodesShown}
               shakeEpisodes={shakeEpisodes}
             />
           </>
@@ -56,19 +56,19 @@ function App() {
       {!error && (
         <section className="right">
           <EpisodeList
-            episodesShown={episodesShown}
+            missingEpisodesShown={missingEpisodesShown}
             shouldShake={shouldShakeEpisodes}
             showSkeleton={showSkeleton}
           />
           <Sort
-            setEpisodesShown={setEpisodesShown}
+            setMissingEpisodesShown={setMissingEpisodesShown}
             searchRef={searchRef}
             allEpisodes={data?.missingEpisodes}
           />
           <ScrollButton
             dataPending={isPending}
             minLoadingTimeElapsed={minLoadingTimeElapsed}
-            episodesShown={episodesShown}
+            missingEpisodesShown={missingEpisodesShown}
           />
         </section>
       )}

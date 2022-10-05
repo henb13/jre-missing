@@ -9,29 +9,29 @@ const DB = (client) => {
     getMissingEpisodes: async function () {
       const { rows } = await client.query(
         `SELECT full_name, date_removed, episode_number 
-                 FROM all_eps  
-                 LEFT JOIN (
-                  SELECT id, MAX(date_removed) as date_removed
-                  from date_removed 
-                  group by id
-                 ) as t2
-                 ON all_eps.id = t2.id 
-                 WHERE on_spotify = false 
-                 ORDER BY episode_number desc, all_eps.id`
+        FROM all_eps  
+        LEFT JOIN (
+          SELECT id, MAX(date_removed) as date_removed
+          from date_removed 
+          group by id
+        ) as t2
+        ON all_eps.id = t2.id 
+        WHERE on_spotify = false 
+        ORDER BY episode_number desc, all_eps.id`
       );
       return rows.sort((a, b) => b.episode_number - a.episode_number);
     },
     getShortenedEpisodes: async function () {
       const { rows } = await client.query(
-        `SELECT episode_number, full_name, date_changed, duration as currentDuration, old_duration 
-                 FROM all_eps  
-                 LEFT JOIN (
-                  SELECT id, MAX(date) as date_changed
-                  from duration_changes 
-                  group by id
-                 ) as t2
-                 ON all_eps.id = t2.id 
-                 ORDER BY episode_number desc, all_eps.id`
+        `SELECT episode_number, full_name, date_changed, duration as currentDuration, old_duration
+         FROM all_eps
+         JOIN (
+           SELECT id, episode_id, old_duration, MAX(date) as date_changed
+           FROM duration_changes
+           GROUP BY episode_id, id
+         ) as t2
+         ON all_eps.id = t2.episode_id
+         ORDER BY episode_number desc, all_eps.id`
       );
       return rows;
     },

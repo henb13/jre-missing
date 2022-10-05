@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Sort.module.css";
 
-const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
+const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
   const options = ["episode number", "date removed"];
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({ name: options[0], reverse: false });
@@ -12,7 +12,7 @@ const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
   useEffect(() => {
     if (!allEpisodes) return;
 
-    setEpisodesShown(() => {
+    setMissingEpisodesShown(() => {
       return allEpisodes
         .filter((ep) =>
           ep.full_name?.toLowerCase().includes(searchRef.current.value?.toLowerCase())
@@ -29,7 +29,7 @@ const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
           }
         });
     });
-  }, [selected, setEpisodesShown, allEpisodes, searchRef]);
+  }, [selected, setMissingEpisodesShown, allEpisodes, searchRef]);
 
   return (
     <div className={styles.sort}>

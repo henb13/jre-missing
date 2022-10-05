@@ -5,12 +5,12 @@ import { ReactComponent as ArrowDown } from "../icons/ScrollButtonIcon.svg";
 import useScroll from "../hooks/useScroll";
 import styles from "./ScrollButton.module.css";
 
-const ScrollButton = ({ dataPending, minLoadingTimeElapsed, episodesShown }) => {
+const ScrollButton = ({ dataPending, minLoadingTimeElapsed, missingEpisodesShown }) => {
   const { scrollTarget, scrollable, setScrollable } = useScroll();
 
   useEffect(() => {
     setScrollable(document.body.clientHeight > window.innerHeight);
-  }, [episodesShown, setScrollable]);
+  }, [missingEpisodesShown, setScrollable]);
 
   const hidden = !scrollable || dataPending || !minLoadingTimeElapsed;
 

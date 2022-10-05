@@ -39,6 +39,11 @@ router.get("/api/episodes", async (_, res) => {
         lastCheckedCache = await db.getLastChecked();
         console.log("db queried and cache updated");
       } finally {
+        // console.dir({
+        //   missingLength: missingEpisodesCache.length,
+        //   shortenedLength: shortenedEpisodesCache,
+        //   lastCheckedCache,
+        // });
         client.release();
       }
     })().catch((err) => console.log(err.message));

@@ -4,13 +4,13 @@ import styles from "./Searchbox.module.css";
 import { ReactComponent as SearchIcon } from "../icons/SearchboxIcon.svg";
 
 const Searchbox = React.forwardRef(
-  ({ episodesShown, setEpisodesShown, shakeEpisodes }, ref) => {
+  ({ missingEpisodesShown, setMissingEpisodesShown, shakeEpisodes }, ref) => {
     const [searchText, setSearchText] = useState("");
     const [placeholder, setPlaceholder] = useState("Search for episode or guest");
 
     const handleSearch = (e) => {
-      setEpisodesShown((episodesShown) => {
-        return episodesShown.filter((ep) =>
+      setMissingEpisodesShown((episodes) => {
+        return episodes.filter((ep) =>
           ep.full_name?.toLowerCase().includes(e.target.value.toLowerCase())
         );
       });
@@ -38,7 +38,7 @@ const Searchbox = React.forwardRef(
             }}
             spellCheck="false"
             autoComplete="off"
-            disabled={!episodesShown}
+            disabled={!missingEpisodesShown}
           />
 
           <SearchIcon
@@ -54,8 +54,8 @@ const Searchbox = React.forwardRef(
         </div>
         {searchText && (
           <p className={styles.searchResult}>
-            {episodesShown.length} result
-            {episodesShown.length != 1 && "s"} found
+            {missingEpisodesShown.length} result
+            {missingEpisodesShown.length != 1 && "s"} found
           </p>
         )}
       </>
