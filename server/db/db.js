@@ -23,17 +23,20 @@ const DB = (client) => {
     },
     getShortenedEpisodes: async function () {
       const { rows } = await client.query(
-        `SELECT episode_number, full_name, date_changed, duration as currentDuration, old_duration
+        `SELECT all_eps.id as id, episode_number, full_name, date_changed, new_duration, old_duration
          FROM all_eps
          JOIN (
-           SELECT id, episode_id, old_duration, MAX(date) as date_changed
+           SELECT id, episode_id, new_duration, old_duration, date as date_changed
            FROM duration_changes
-           GROUP BY episode_id, id
+           GROUP BY episode_id, id, old_duration
          ) as t2
          ON all_eps.id = t2.episode_id
          ORDER BY episode_number desc, all_eps.id`
       );
-      return rows;
+      return rows.reduce((acc, curr) => {
+        acc[curr.id] = [...(acc[curr.id] || []), curr];
+        return acc;
+      }, {});
     },
     insertNewEpisode: async function (episode) {
       const epNumber = getEpisodeNumber(episode.name);

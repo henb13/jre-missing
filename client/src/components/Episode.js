@@ -5,7 +5,8 @@ import getClientLocalTime from "../lib/getClientLocalTime";
 const NEWLY_REMOVED_THRESHOLD = 14;
 
 const Episode = ({ number, name, removedDate }) => {
-  let [epNumber, ...guest] = name.split("-");
+  // eslint-disable-next-line no-unused-vars
+  let [_, ...guest] = name.split("-");
   guest = guest.join("-");
 
   const isNewlyRemoved =
@@ -16,11 +17,11 @@ const Episode = ({ number, name, removedDate }) => {
       {isNewlyRemoved && <span className={styles.new}>new</span>}
       {number ? (
         <>
-          <span className={styles.epNumber}>{epNumber.trim()}</span>
-          {guest.trim()}
+          <span className={styles.epNumber}>#{number}</span>
+          {guest}
         </>
       ) : (
-        name.trim()
+        name
       )}
       {removedDate && <RemovedDetails removedDate={removedDate} />}
     </li>
