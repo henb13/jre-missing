@@ -2,19 +2,18 @@ import styles from "./Episode.module.css";
 import { differenceInDays, parseISO } from "date-fns";
 import getClientLocalTime from "../lib/getClientLocalTime";
 
-const NEWLY_REMOVED_THRESHOLD = 14;
+const NEWL_THRESHOLD = 14;
 
-const Episode = ({ number, name, removedDate }) => {
+const Episode = ({ number, name, variant, date }) => {
   // eslint-disable-next-line no-unused-vars
   let [_, ...guest] = name.split("-");
   guest = guest.join("-");
 
-  const isNewlyRemoved =
-    differenceInDays(new Date(), parseISO(removedDate)) < NEWLY_REMOVED_THRESHOLD;
+  const isNew = date && differenceInDays(new Date(), parseISO(date)) < NEWL_THRESHOLD;
 
   return (
     <li className={styles.EpisodeItem} key={name} lang="en">
-      {isNewlyRemoved && <span className={styles.new}>new</span>}
+      {isNew && <span className={styles.new}>new</span>}
       {number ? (
         <>
           <span className={styles.epNumber}>#{number}</span>
@@ -23,22 +22,26 @@ const Episode = ({ number, name, removedDate }) => {
       ) : (
         name
       )}
-      {removedDate && <RemovedDetails removedDate={removedDate} />}
+      {date && (
+        <span className={styles.timeDetail}>
+          {variant === "removed" ? "Removed" : "Shortened"} on <Time date={date} />
+        </span>
+      )}
     </li>
   );
 };
 
-const RemovedDetails = ({ removedDate }) => {
-  const dateTimeValue = getClientLocalTime(removedDate, "yyyy-MM-dd");
-  const removedDateString = getClientLocalTime(removedDate, "PPP");
+const Time = (date) => {
+  const dateTimeValue = getAccessibilityTime(date);
+  const dateString = getDateString(date);
+  return <time dateTime={dateTimeValue}>{dateString}</time>;
+};
 
-  return (
-    <>
-      <span className={styles.removed}>
-        Removed on <time dateTime={dateTimeValue}>{removedDateString}</time>
-      </span>
-    </>
-  );
+const getDateString = (time) => {
+  return getClientLocalTime(time, "PPP");
+};
+const getAccessibilityTime = (time) => {
+  return getClientLocalTime(time, "yyyy-MM-dd");
 };
 
 export default Episode;

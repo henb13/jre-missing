@@ -34,25 +34,22 @@ router.get("/api/episodes", async (_, res) => {
       const client = await pool.connect();
       const db = DB(client);
       try {
-        Promise.all([
-          db.getMissingEpisodes(),
-          db.getShortenedEpisodes(),
-          db.getLastChecked(),
-        ]).then((values) => {
-          missingEpisodesCache = values[0];
-          shortenedEpisodesCache = values[1];
-          lastCheckedCache = values[2];
-          console.log("db queried and cache updated");
-        });
+        missingEpisodesCache = await db.getMissingEpisodes();
+        shortenedEpisodesCache = await db.getShortenedEpisodes();
+        lastCheckedCache = await db.getLastChecked();
+        console.log("db queried and cache updated");
       } finally {
         client.release();
       }
-    })().catch((err) =>
-      console.log(`Something went wrong updating the cache: ${err.message}`)
-    );
+    })().catch((err) => console.log(err.message));
   }
 
   console.log("request fired");
+  console.dir({
+    missingEpisodes: missingEpisodesCache.length,
+    shortenedEpisodes: shortenedEpisodesCache.length,
+    lastChecked: lastCheckedCache,
+  });
   res.json({
     missingEpisodes: missingEpisodesCache,
     shortenedEpisodes: shortenedEpisodesCache,

@@ -19,7 +19,7 @@ const DB = (client) => {
         WHERE on_spotify = false 
         ORDER BY episode_number desc, all_eps.id`
       );
-      return rows.sort((a, b) => b.episode_number - a.episode_number);
+      return rows;
     },
     getShortenedEpisodes: async function () {
       const { rows } = await client.query(
@@ -31,12 +31,24 @@ const DB = (client) => {
            GROUP BY episode_id, id, old_duration
          ) as t2
          ON all_eps.id = t2.episode_id
-         ORDER BY episode_number desc, all_eps.id`
+         ORDER BY date_changed desc`
       );
       return rows.reduce((acc, curr) => {
-        acc[curr.id] = [...(acc[curr.id] || []), curr];
+        const { id, episode_number, full_name, date_changed, new_duration, old_duration } =
+          curr;
+        const changeItem = {
+          date_changed,
+          new_duration,
+          old_duration,
+        };
+        const index = acc.findIndex((item) => item.id === curr.id);
+        if (index > 0) {
+          acc[index].changes.push(changeItem);
+        } else {
+          acc.push({ id, episode_number, full_name, changes: [changeItem] });
+        }
         return acc;
-      }, {});
+      }, []);
     },
     insertNewEpisode: async function (episode) {
       const epNumber = getEpisodeNumber(episode.name);

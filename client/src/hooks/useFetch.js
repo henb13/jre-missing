@@ -28,7 +28,7 @@ const useFetch = (url) => {
           console.log("fetch aborted");
         } else {
           setIsPending(false);
-          console.log(`"err: ${err}`);
+          console.log(`Something went wrong with fetching episodes${err}`);
           setError(err.message);
         }
       });

@@ -17,10 +17,12 @@ function App() {
   const minLoadingTimeElapsed = useMinLoadingTime(400);
   const [shouldShakeEpisodes, setShouldShakeEpisodes] = useState(false);
   const [missingEpisodesShown, setMissingEpisodesShown] = useState([]);
+  const [shortenedEpisodesShown, setShortenedEpisodesShown] = useState([]);
   const searchRef = useRef();
 
   useEffect(() => {
     setMissingEpisodesShown(data?.missingEpisodes || []);
+    setShortenedEpisodesShown(data?.shortenedEpisodes || []);
   }, [data]);
 
   const shakeEpisodes = () => {
@@ -57,6 +59,7 @@ function App() {
         <section className="right">
           <EpisodeList
             missingEpisodesShown={missingEpisodesShown}
+            shortenedEpisodesShown={shortenedEpisodesShown}
             shouldShake={shouldShakeEpisodes}
             showSkeleton={showSkeleton}
           />
