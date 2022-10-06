@@ -12,7 +12,7 @@ async function getSpotifyEpisodes() {
     });
 
     const tokenData = await spotifyApi.clientCredentialsGrant();
-    console.log("The access token expires in " + tokenData.body["expires_in"]);
+    console.log(`The access token expires in ${tokenData.body["expires_in"]}`);
     spotifyApi.setAccessToken(tokenData.body["access_token"]);
 
     const spotifyEpisodes = [];
@@ -21,6 +21,7 @@ async function getSpotifyEpisodes() {
       limit: 50,
       offset: spotifyEpisodes.length,
     });
+    console.log("Started fetching episodes from Spotify");
 
     spotifyEpisodes.push(
       ...episodes.body.items.map((ep) => {
@@ -29,8 +30,6 @@ async function getSpotifyEpisodes() {
     );
 
     const totalEpisodes = episodes.body.total;
-
-    console.log("Total JRE episodes on Spotify: " + totalEpisodes);
 
     while (spotifyEpisodes.length < totalEpisodes) {
       const episodes = await spotifyApi.getShowEpisodes(JRE_SHOW_ID, {
@@ -44,7 +43,9 @@ async function getSpotifyEpisodes() {
         })
       );
     }
-    console.log("Amount of episodes fetched from Spotify: " + spotifyEpisodes.length);
+    console.log(
+      `${spotifyEpisodes.length} out of ${totalEpisodes} JRE episodes on Spotify successfully fetched`
+    );
 
     return spotifyEpisodes;
   } catch (err) {

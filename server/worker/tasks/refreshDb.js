@@ -13,6 +13,9 @@ async function refreshDb() {
       console.log("worker running");
 
       const spotifyEpisodes = await getSpotifyEpisodes();
+      if (!spotifyEpisodes) {
+        throw new Error("No spotify episodes got fetched!");
+      }
       const spotifyEpisodeNames = spotifyEpisodes.map((ep) => ep.name);
       let allEpisodes = await db.getAllEpisodes();
       let someEpisodeNameGotUpdated = false;
@@ -28,9 +31,6 @@ async function refreshDb() {
           );
           await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
         } else if (correspondingSpotifyEpisode) {
-          // if (process.env.NODE_ENV === "development" && dbEpisode.episode_number === 1159) {
-          //   correspondingSpotifyEpisode.duration = correspondingSpotifyEpisode.duration - 7000;
-          // }
           if (correspondingSpotifyEpisode.duration < dbEpisode.duration) {
             await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
             console.log(
@@ -81,9 +81,6 @@ async function refreshDb() {
 
       await db.setLastCheckedNow();
       console.log("Worker ran successfully");
-    } catch (e) {
-      console.log("Something went wrong with refreshDb.js");
-      throw e;
     } finally {
       client.release();
     }
