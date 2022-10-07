@@ -32,7 +32,7 @@ const Episode = ({ number, name, variant, date }) => {
 };
 
 const Time = (date) => {
-  const dateTimeValue = getAccessibilityTime(date);
+  const dateTimeValue = dateTimeHTMLAttribute(date);
   const dateString = getDateString(date);
   return <time dateTime={dateTimeValue}>{dateString}</time>;
 };
@@ -40,7 +40,7 @@ const Time = (date) => {
 const getDateString = (time) => {
   return getClientLocalTime(time, "PPP");
 };
-const getAccessibilityTime = (time) => {
+const dateTimeHTMLAttribute = (time) => {
   return getClientLocalTime(time, "yyyy-MM-dd");
 };
 
