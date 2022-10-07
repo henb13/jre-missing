@@ -10,14 +10,13 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
   const [selected, setSelected] = useState({ name: options[0], reverse: false });
 
   const handleSort = () => {
-    if (!allEpisodes) return;
     setMissingEpisodesShown(() => {
       return allEpisodes
         .filter((ep) =>
           ep.full_name?.toLowerCase().includes(searchRef.current.value?.toLowerCase())
         )
         .sort((a, b) => {
-          [a, b] = selected.reverse ? [a, b] : [b, a];
+          [a, b] = selected.reverse ? [b, a] : [a, b];
           switch (selected.name) {
             case "episode number":
               return a.episode_number - b.episode_number;
@@ -41,14 +40,14 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
         />
       </p>
       <div role="listbox" className={styles.options}>
-        {options?.map((o) => {
+        {options?.map((option) => {
           return (
             <Option
               className={classnames({
                 [styles.open]: open,
               })}
-              optionName={o}
-              key={o}
+              optionName={option}
+              key={option}
               handleSort={handleSort}
               selected={selected}
               setSelected={setSelected}
