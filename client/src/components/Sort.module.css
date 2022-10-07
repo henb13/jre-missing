@@ -1,9 +1,10 @@
 .sort {
-  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   cursor: pointer;
   color: var(--color-grey-secondary);
-  right: var(--number-right-placement);
-  border-top: 1px solid var(--color-white);
+  margin-right: 2.5rem;
 }
 
 .sort p {
@@ -14,13 +15,13 @@
 }
 
 .chavron {
-  transform: scale(0.65);
+  transform: rotate(180deg) scale(0.65);
   margin-top: 3px;
   transition: transform 0.25s ease-out;
 }
 
 .chavron.open {
-  transform: rotate(180deg) scale(0.65);
+  transform: rotate(0deg) scale(0.65);
   margin-top: 3px;
 }
 

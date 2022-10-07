@@ -11,27 +11,33 @@ const DB = (client) => {
         `SELECT full_name, EXTRACT(EPOCH FROM date_removed at time zone 'UTC') * 1000 AS date_removed, episode_number 
         FROM all_eps  
         LEFT JOIN (
-          SELECT id, MAX(date_removed) as date_removed
+          SELECT id, MAX(date_removed) AS date_removed
           from date_removed 
           group by id
-        ) as t2
+        ) AS t2
         ON all_eps.id = t2.id 
-        WHERE on_spotify = false 
-        ORDER BY episode_number desc, all_eps.id`
+        WHERE on_spotify = false
+        ORDER BY episode_number DESC, all_eps.id`
       );
-      return rows.map((ep) => ({ ...ep, date_removed: parseInt(ep.date_removed) }));
+      return rows
+        .map((ep) => ({ ...ep, date_removed: parseInt(ep.date_removed) }))
+        .sort((a, b) => {
+          if (a === null) return 1;
+          if (b === null) return -1;
+          return 0;
+        });
     },
     getShortenedEpisodes: async function () {
       const { rows } = await client.query(
-        `SELECT all_eps.id as id, episode_number, full_name, EXTRACT(EPOCH FROM date_changed at time zone 'UTC') * 1000 AS date_changed, new_duration, old_duration
-         FROM all_eps
-         JOIN (
-           SELECT id, episode_id, new_duration, old_duration, date as date_changed
-           FROM duration_changes
-           GROUP BY episode_id, id, old_duration
-         ) as t2
+        `SELECT all_eps.id AS id, episode_number, full_name, EXTRACT(EPOCH FROM date_changed at time zone 'UTC') * 1000 AS date_changed, new_duration, old_duration
+        FROM all_eps
+        JOIN (
+          SELECT id, episode_id, new_duration, old_duration, date AS date_changed
+          FROM duration_changes
+          GROUP BY episode_id, id, old_duration
+         ) AS t2
          ON all_eps.id = t2.episode_id
-         ORDER BY date_changed desc`
+         ORDER BY date_changed DESC`
       );
       return rows.reduce((acc, curr) => {
         const { id, episode_number, full_name, date_changed, new_duration, old_duration } =
@@ -73,25 +79,12 @@ const DB = (client) => {
     },
     getLastChecked: async function () {
       const { rows } = await client.query(
-        "SELECT last_checked, EXTRACT(EPOCH FROM last_checked at time zone 'UTC') * 1000 AS miliseconds from all_eps_log"
+        `SELECT last_checked, EXTRACT(EPOCH FROM last_checked at time zone 'UTC') * 1000 AS miliseconds 
+        FROM all_eps_log`
       );
       return {
         miliseconds: parseInt(rows[0]?.miliseconds),
       };
-    },
-    getEpisodesWithSameEpNumber: async function () {
-      const { rows } = await client.query(
-        `SELECT *
-        FROM all_eps A
-        JOIN (
-          SELECT COUNT(*) as Count, B.episode_number
-          FROM all_eps B
-          GROUP BY B.episode_number
-        ) AS B ON A.episode_number = B.episode_number
-        WHERE B.Count > 1
-        ORDER by A.episode_number;`
-      );
-      return rows;
     },
   };
 };

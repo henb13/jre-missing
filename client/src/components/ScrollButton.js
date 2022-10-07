@@ -12,7 +12,7 @@ const ScrollButton = ({ dataPending, minLoadingTimeElapsed, missingEpisodesShown
     setScrollable(document.body.clientHeight > window.innerHeight);
   }, [missingEpisodesShown, setScrollable]);
 
-  const hidden = !scrollable || dataPending || !minLoadingTimeElapsed;
+  const shouldHide = !scrollable || dataPending || !minLoadingTimeElapsed;
 
   function handleClick() {
     window.scroll({
@@ -26,9 +26,9 @@ const ScrollButton = ({ dataPending, minLoadingTimeElapsed, missingEpisodesShown
     <button
       className={classnames(styles.ScrollButton, {
         [styles.up]: scrollTarget === "top",
-        [styles.hidden]: hidden,
+        [styles.hidden]: shouldHide,
       })}
-      disabled={hidden}
+      disabled={shouldHide}
       aria-label={`scroll to ${scrollTarget}`}
       onClick={handleClick}>
       <div className={styles.ScrollText}>

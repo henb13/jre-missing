@@ -13,7 +13,18 @@
 .right {
   display: flex;
   align-items: flex-start;
-  margin: 11rem 0rem 9rem 54vw;
+  margin: 11rem 0rem 9rem 50vw;
+}
+
+button {
+  background: transparent;
+  outline: none;
+  border: none;
+  color: inherit;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 @media (max-width: 1700px) {
@@ -23,7 +34,7 @@
   }
 
   .right {
-    margin: 11rem 0rem 9rem 55vw;
+    margin: 11rem 0rem 9rem 49vw;
   }
 }
 

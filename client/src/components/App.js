@@ -57,16 +57,16 @@ function App() {
 
       {!error && (
         <section className="right">
+          <Sort
+            setMissingEpisodesShown={setMissingEpisodesShown}
+            searchRef={searchRef}
+            allEpisodes={data?.missingEpisodes}
+          />
           <EpisodeList
             missingEpisodesShown={missingEpisodesShown}
             shortenedEpisodesShown={shortenedEpisodesShown}
             shouldShake={shouldShakeEpisodes}
             showSkeleton={showSkeleton}
-          />
-          <Sort
-            setMissingEpisodesShown={setMissingEpisodesShown}
-            searchRef={searchRef}
-            allEpisodes={data?.missingEpisodes}
           />
           <ScrollButton
             dataPending={isPending}

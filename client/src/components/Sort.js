@@ -1,6 +1,6 @@
 import { ReactComponent as Arrow } from "../icons/arrow.svg";
 import { ReactComponent as Chavron } from "../icons/chavron.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import classnames from "classnames";
 import styles from "./Sort.module.css";
 
@@ -9,9 +9,8 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({ name: options[0], reverse: false });
 
-  useEffect(() => {
+  const handleSort = () => {
     if (!allEpisodes) return;
-
     setMissingEpisodesShown(() => {
       return allEpisodes
         .filter((ep) =>
@@ -29,7 +28,7 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
           }
         });
     });
-  }, [selected, setMissingEpisodesShown, allEpisodes, searchRef]);
+  };
 
   return (
     <div className={styles.sort}>
@@ -50,6 +49,7 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
               })}
               optionName={o}
               key={o}
+              handleSort={handleSort}
               selected={selected}
               setSelected={setSelected}
             />
@@ -60,7 +60,7 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
   );
 };
 
-function Option({ optionName, selected, setSelected, className }) {
+function Option({ optionName, selected, setSelected, className, handleSort }) {
   const [reverse, setReverse] = useState(false);
   const isSelected = selected.name === optionName;
 
@@ -69,6 +69,7 @@ function Option({ optionName, selected, setSelected, className }) {
       setReverse((reverse) => !reverse);
     }
     setSelected({ name: optionName, reverse: isSelected ? !reverse : reverse });
+    handleSort();
   }
 
   return (
