@@ -23,7 +23,7 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
             case "episode number":
               return a.episode_number - b.episode_number;
             case "date removed":
-              return new Date(a.date_removed) - new Date(b.date_removed);
+              return a.date_removed - b.date_removed;
             default:
               return 0;
           }

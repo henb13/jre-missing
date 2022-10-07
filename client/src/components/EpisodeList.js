@@ -42,7 +42,7 @@ const EpisodeList = ({
                   variant="removed"
                   number={ep.episode_number}
                   name={ep.full_name}
-                  date={ep.date_removed}
+                  dateInMs={ep.date_removed}
                 />
               </React.Fragment>
             ))
@@ -54,7 +54,7 @@ const EpisodeList = ({
                     variant="shortened"
                     number={ep.episode_number}
                     name={ep.full_name}
-                    date={ep.changes[0].date_changed}
+                    dateInMs={ep.changes[0].date_changed}
                   />
                 </React.Fragment>
               );

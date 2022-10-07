@@ -8,7 +8,7 @@ const DB = (client) => {
     },
     getMissingEpisodes: async function () {
       const { rows } = await client.query(
-        `SELECT full_name, date_removed, episode_number 
+        `SELECT full_name, EXTRACT(EPOCH FROM date_removed at time zone 'UTC') * 1000 AS date_removed, episode_number 
         FROM all_eps  
         LEFT JOIN (
           SELECT id, MAX(date_removed) as date_removed
@@ -19,11 +19,11 @@ const DB = (client) => {
         WHERE on_spotify = false 
         ORDER BY episode_number desc, all_eps.id`
       );
-      return rows;
+      return rows.map((ep) => ({ ...ep, date_removed: parseInt(ep.date_removed) }));
     },
     getShortenedEpisodes: async function () {
       const { rows } = await client.query(
-        `SELECT all_eps.id as id, episode_number, full_name, date_changed, new_duration, old_duration
+        `SELECT all_eps.id as id, episode_number, full_name, EXTRACT(EPOCH FROM date_changed at time zone 'UTC') * 1000 AS date_changed, new_duration, old_duration
          FROM all_eps
          JOIN (
            SELECT id, episode_id, new_duration, old_duration, date as date_changed
@@ -37,7 +37,7 @@ const DB = (client) => {
         const { id, episode_number, full_name, date_changed, new_duration, old_duration } =
           curr;
         const changeItem = {
-          date_changed,
+          date_changed: parseInt(date_changed),
           new_duration,
           old_duration,
         };
@@ -73,11 +73,10 @@ const DB = (client) => {
     },
     getLastChecked: async function () {
       const { rows } = await client.query(
-        "SELECT last_checked, EXTRACT(EPOCH FROM last_checked at time zone 'UTC') AS miliseconds from all_eps_log"
+        "SELECT last_checked, EXTRACT(EPOCH FROM last_checked at time zone 'UTC') * 1000 AS miliseconds from all_eps_log"
       );
       return {
-        last_checked: rows[0]?.last_checked,
-        miliseconds: rows[0]?.miliseconds * 1000,
+        miliseconds: parseInt(rows[0]?.miliseconds),
       };
     },
     getEpisodesWithSameEpNumber: async function () {

@@ -4,12 +4,12 @@ import getClientLocalTime from "../lib/getClientLocalTime";
 
 const NEWL_THRESHOLD = 14;
 
-const Episode = ({ number, name, variant, date }) => {
+const Episode = ({ number, name, variant, dateInMs }) => {
   // eslint-disable-next-line no-unused-vars
   let [_, ...guest] = name.split("-");
   guest = guest.join("-");
-
-  const isNew = date && differenceInDays(new Date(), parseISO(date)) < NEWL_THRESHOLD;
+  const isNew =
+    dateInMs && differenceInDays(new Date(), parseISO(new Date(dateInMs))) < NEWL_THRESHOLD;
 
   return (
     <li className={styles.EpisodeItem} key={name} lang="en">
@@ -22,16 +22,16 @@ const Episode = ({ number, name, variant, date }) => {
       ) : (
         name
       )}
-      {date && (
+      {dateInMs && (
         <span className={styles.timeDetail}>
-          {variant === "removed" ? "Removed" : "Shortened"} on <Time date={date} />
+          {variant === "removed" ? "Removed" : "Shortened"} on <Time date={dateInMs} />
         </span>
       )}
     </li>
   );
 };
 
-const Time = (date) => {
+const Time = ({ date }) => {
   const dateTimeValue = dateTimeHTMLAttribute(date);
   const dateString = getDateString(date);
   return <time dateTime={dateTimeValue}>{dateString}</time>;
