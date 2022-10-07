@@ -26,7 +26,7 @@ getSpotifyEpisodes().then(async (episodes) => {
         client.release();
       }
     }
-  })().catch((err) => console.log(err.message));
+  })().catch((err) => console.error(err.message));
 
-  console.log("inserts done");
+  console.info("inserts done");
 });

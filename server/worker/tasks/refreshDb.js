@@ -10,7 +10,7 @@ async function refreshDb() {
     const client = await pool.connect();
     const db = DB(client);
     try {
-      console.log("worker running");
+      console.info("worker running");
 
       const spotifyEpisodes = await getSpotifyEpisodes();
       if (!spotifyEpisodes) {
@@ -26,14 +26,14 @@ async function refreshDb() {
         );
 
         if (correspondingSpotifyEpisode && !dbEpisode.duration) {
-          console.log(
+          console.info(
             `Inserting missing duration for episode ${dbEpisode.full_name} (duration: ${correspondingSpotifyEpisode.duration}) `
           );
           await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
         } else if (correspondingSpotifyEpisode) {
           if (correspondingSpotifyEpisode.duration < dbEpisode.duration) {
             await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
-            console.log(
+            console.info(
               ` \n Spotify has shortened the duration of episode: ${dbEpisode.full_name} \n
                   from: ${dbEpisode.duration} \n 
                   to: ${correspondingSpotifyEpisode.duration} \n\n`
@@ -50,7 +50,7 @@ async function refreshDb() {
           ) {
             await db.updateEpisodeName(spotifyEpisode.name, dbEpisode.id);
             someEpisodeNameGotUpdated = true;
-            console.log(
+            console.info(
               ` \n spotify updated the name of an episode! \n
                                   from: ${dbEpisode.full_name} \n 
                                   to: ${spotifyEpisode.name} \n\n`
@@ -60,7 +60,7 @@ async function refreshDb() {
         }
         const isNewRelease = !allEpisodes.some((ep) => ep.full_name === spotifyEpisode.name);
         if (isNewRelease) {
-          console.log(`New episode released: ${spotifyEpisode.name}`);
+          console.info(`New episode released: ${spotifyEpisode.name}`);
           await db.insertNewEpisode(spotifyEpisode);
         }
       }
@@ -71,20 +71,20 @@ async function refreshDb() {
         if (!spotifyEpisodeNames.includes(dbEpisode.full_name)) {
           if (dbEpisode.on_spotify) {
             await db.setSpotifyStatus(dbEpisode, false);
-            console.log(`\nNew episode removed!: ${dbEpisode.full_name} \n`);
+            console.info(`\nNew episode removed!: ${dbEpisode.full_name} \n`);
           }
         } else if (!dbEpisode.on_spotify) {
           await db.setSpotifyStatus(dbEpisode, true);
-          console.log(`\nNew episode re-added: ${dbEpisode.full_name} \n`);
+          console.info(`\nNew episode re-added: ${dbEpisode.full_name} \n`);
         }
       }
 
       await db.setLastCheckedNow();
-      console.log("Worker ran successfully");
+      console.info("Worker ran successfully");
     } finally {
       client.release();
     }
-  })().catch((err) => console.log(`Worker failed to run: ${err.message}`));
+  })().catch((err) => console.warn(`Worker failed to run: ${err.message}`));
 }
 
 function didEpisodeChangeName(spotifyEpisodeName, dbEpisode) {

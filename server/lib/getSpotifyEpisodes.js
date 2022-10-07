@@ -12,7 +12,7 @@ async function getSpotifyEpisodes() {
     });
 
     const tokenData = await spotifyApi.clientCredentialsGrant();
-    console.log(`The access token expires in ${tokenData.body["expires_in"]}`);
+    console.info(`The access token expires in ${tokenData.body["expires_in"]}`);
     spotifyApi.setAccessToken(tokenData.body["access_token"]);
 
     const spotifyEpisodes = [];
@@ -21,7 +21,7 @@ async function getSpotifyEpisodes() {
       limit: 50,
       offset: spotifyEpisodes.length,
     });
-    console.log(`Started fetching episodes from Spotify at ${new Date().toString()}`);
+    console.info(`Started fetching episodes from Spotify at ${new Date().toString()}`);
 
     spotifyEpisodes.push(
       ...episodes.body.items.map((ep) => {

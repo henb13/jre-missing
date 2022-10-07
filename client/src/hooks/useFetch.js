@@ -25,10 +25,10 @@ const useFetch = (url) => {
       })
       .catch((err) => {
         if (err.name === "AbortError") {
-          console.log("fetch aborted");
+          console.warn("fetch aborted");
         } else {
           setIsPending(false);
-          console.log(`Something went wrong with fetching episodes: ${err}`);
+          console.error(`Something went wrong with fetching episodes: ${err}`);
           setError(err.message);
         }
       });

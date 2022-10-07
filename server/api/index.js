@@ -37,14 +37,14 @@ router.get("/api/episodes", async (_, res) => {
         missingEpisodesCache = await db.getMissingEpisodes();
         shortenedEpisodesCache = await db.getShortenedEpisodes();
         lastCheckedCache = await db.getLastChecked();
-        console.log("db queried and cache updated");
+        console.info("db queried and cache updated");
       } finally {
         client.release();
       }
-    })().catch((err) => console.log(err.message));
+    })().catch((err) => console.error(err.message));
   }
 
-  console.log("request fired");
+  console.info("request fired");
 
   res.json({
     missingEpisodes: missingEpisodesCache,

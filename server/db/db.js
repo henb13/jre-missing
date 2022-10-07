@@ -17,15 +17,9 @@ const DB = (client) => {
         ) AS t2
         ON all_eps.id = t2.id 
         WHERE on_spotify = false
-        ORDER BY episode_number DESC, all_eps.id`
+        ORDER BY episode_number DESC NULLS LAST, all_eps.id`
       );
-      return rows
-        .map((ep) => ({ ...ep, date_removed: parseInt(ep.date_removed) }))
-        .sort((a, b) => {
-          if (a === null) return 1;
-          if (b === null) return -1;
-          return 0;
-        });
+      return rows.map((ep) => ({ ...ep, date_removed: parseInt(ep.date_removed) }));
     },
     getShortenedEpisodes: async function () {
       const { rows } = await client.query(
