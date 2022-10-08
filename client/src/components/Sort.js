@@ -41,7 +41,7 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
           })}
         />
       </p>
-      <div role="listbox" className={styles.options}>
+      <div role="listbox" className={styles.optionsWrapper}>
         {options?.map((option) => {
           return (
             <Option

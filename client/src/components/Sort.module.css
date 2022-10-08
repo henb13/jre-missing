@@ -25,7 +25,7 @@
   margin-top: 3px;
 }
 
-.options {
+.optionsWrapper {
   display: flex;
   flex-direction: column;
   margin-top: 1.5rem;
@@ -34,10 +34,12 @@
 .option {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  /* width: 115px; */
   color: var(--color-grey-secondary);
   padding: 0.5em 0.7em;
   border: 1px solid var(--color-grey-secondary);
-  transition: color, border-color 0.5s;
+  transition: color, border-color 0.25s;
 }
 
 .option:not(.open) {
@@ -53,14 +55,21 @@
   margin-left: 2px;
   transition: color 0.5s;
 }
-.option:hover,
+
 .option.selected {
   border-color: var(--color-white);
+}
+.option:not(.selected) {
+  transition: background-color 0.5s;
+}
+
+.option:hover:not(.selected) {
+  background-color: var(--color-black-secondary);
 }
 
 .icon {
   transform: scale(0.6);
-  transition: color, transform 0.3s ease-out;
+  transition: color, transform 0.25s ease-out;
 }
 
 .icon path {
