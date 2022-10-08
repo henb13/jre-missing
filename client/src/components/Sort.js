@@ -4,29 +4,31 @@ import { useState } from "react";
 import classnames from "classnames";
 import styles from "./Sort.module.css";
 
+const OptionToPropertyMap = {
+  "episode number": "episode_number",
+  "date removed": "date_removed",
+};
+
 const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
   const options = ["episode number", "date removed"];
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({ name: options[0], reverse: false });
 
-  const handleSort = () => {
-    setMissingEpisodesShown(() => {
-      return allEpisodes
-        .filter((ep) =>
-          ep.full_name?.toLowerCase().includes(searchRef.current.value?.toLowerCase())
-        )
-        .sort((a, b) => {
-          [a, b] = selected.reverse ? [b, a] : [a, b];
-          switch (selected.name) {
-            case "episode number":
-              return a.episode_number - b.episode_number;
-            case "date removed":
-              return a.date_removed - b.date_removed;
-            default:
-              return 0;
-          }
-        });
-    });
+  const handleSort = (option, isReversed) => {
+    const property = OptionToPropertyMap[option];
+    const nulls = allEpisodes.filter((ep) => !ep[property]);
+    const nonNulls = allEpisodes
+      .filter((ep) => ep[property])
+      .sort((a, b) => {
+        [a, b] = isReversed ? [a, b] : [b, a];
+        return a[property] - b[property];
+      });
+
+    setMissingEpisodesShown(
+      [...nonNulls, ...nulls].filter((ep) =>
+        ep.full_name?.toLowerCase().includes(searchRef.current.value?.toLowerCase())
+      )
+    );
   };
 
   return (
@@ -60,15 +62,12 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
 };
 
 function Option({ optionName, selected, setSelected, className, handleSort }) {
-  const [reverse, setReverse] = useState(false);
   const isSelected = selected.name === optionName;
-
+  const isReversed = selected.name === optionName && selected.reverse;
   function handleClick() {
-    if (isSelected) {
-      setReverse((reverse) => !reverse);
-    }
-    setSelected({ name: optionName, reverse: isSelected ? !reverse : reverse });
-    handleSort();
+    const newReverse = isSelected ? !isReversed : isReversed;
+    setSelected({ name: optionName, reverse: newReverse });
+    handleSort(optionName, newReverse);
   }
 
   return (
@@ -89,7 +88,7 @@ function Option({ optionName, selected, setSelected, className, handleSort }) {
 
       <Arrow
         className={classnames(styles.icon, {
-          [styles.iconReverse]: reverse,
+          [styles.iconReverse]: isReversed,
         })}
       />
     </div>
