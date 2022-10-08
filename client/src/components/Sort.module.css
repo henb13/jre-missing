@@ -99,3 +99,15 @@
 .iconReverse {
   transform: rotate(180deg) scale(0.6);
 }
+
+@media (max-width: 1350px) {
+  .sort {
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sort.open {
+    margin-bottom: 4rem;
+  }
+}

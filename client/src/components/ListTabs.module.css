@@ -29,3 +29,10 @@
   background-color: var(--color-grey);
   opacity: 0.3;
 }
+
+@media (max-width: 1350px) {
+  .ListTab {
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+}
