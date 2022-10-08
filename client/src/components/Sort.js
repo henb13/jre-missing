@@ -36,9 +36,9 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
       className={classnames(styles.sort, {
         [styles.open]: open,
       })}>
-      <p className={styles.heading} onClick={() => setOpen((open) => !open)}>
+      <button className={styles.heading} onClick={() => setOpen((open) => !open)}>
         Sort by <Chavron className={styles.chavron} />
-      </p>
+      </button>
       <div role="listbox" className={styles.optionsWrapper}>
         {options?.map((option) => {
           return (
@@ -66,7 +66,7 @@ function Option({ optionName, selected, setSelected, handleSort }) {
   }
 
   return (
-    <div
+    <button
       role="option"
       aria-selected={isSelected}
       aria-labelledby="option-label"
@@ -86,7 +86,7 @@ function Option({ optionName, selected, setSelected, handleSort }) {
           [styles.iconReverse]: isReversed,
         })}
       />
-    </div>
+    </button>
   );
 }
 

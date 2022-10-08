@@ -4,16 +4,14 @@
   align-items: flex-end;
   color: var(--color-grey-secondary);
   margin-right: 2.5rem;
-}
-
-.sort p {
-  display: flex;
-  align-items: center;
-  gap: 3px;
+  margin-top: 6rem;
   font-size: var(--font-size-small);
 }
 
 .heading {
+  display: flex;
+  align-items: center;
+  gap: 3px;
   transition: all 0.25s;
   cursor: pointer;
 }
@@ -44,11 +42,12 @@
 }
 
 .option {
+  font-size: 11px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: var(--color-grey-secondary);
-  padding: 0.5em 0.7em;
+  padding: 0.3em 0.6em 0.3em 1em;
   border: 1px solid var(--color-grey-secondary);
   transition: color, border-color 0.25s;
 }
@@ -63,7 +62,6 @@
 
 .option .label {
   margin-right: 2px;
-  margin-left: 2px;
   transition: color 0.5s;
 }
 

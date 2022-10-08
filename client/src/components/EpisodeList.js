@@ -3,6 +3,7 @@ import classnames from "classnames";
 import styles from "./EpisodeList.module.css";
 import Episode from "./Episode";
 import SkeletonList from "../skeletons/SkeletonList";
+import ListTabs from "./ListTabs";
 
 const EpisodeList = ({
   missingEpisodesShown,
@@ -10,7 +11,7 @@ const EpisodeList = ({
   shouldShake,
   showSkeleton,
 }) => {
-  const [listShown, setListShown] = useState("missing");
+  const [listShown, setListShown] = useState("removed");
   if (showSkeleton) return <SkeletonList />;
 
   const classesEpList = classnames(styles.EpisodeList, {
@@ -19,22 +20,9 @@ const EpisodeList = ({
 
   return (
     <div className={styles.wrapper}>
-      <div>
-        <button
-          onClick={() => {
-            setListShown("missing");
-          }}>
-          Removed
-        </button>
-        <button
-          onClick={() => {
-            setListShown("shortened");
-          }}>
-          Shortened
-        </button>
-      </div>
+      <ListTabs listShown={listShown} setListShown={setListShown} />
       <ul className={classesEpList}>
-        {listShown === "missing"
+        {listShown === "removed"
           ? missingEpisodesShown?.map((ep) => (
               <React.Fragment key={ep.full_name + ep.episode_number}>
                 <Border />
