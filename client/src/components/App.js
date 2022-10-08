@@ -50,6 +50,7 @@ function App() {
               missingEpisodesShown={missingEpisodesShown}
               setMissingEpisodesShown={setMissingEpisodesShown}
               shakeEpisodes={shakeEpisodes}
+              allEpisodes={data?.missingEpisodes}
             />
           </>
         )}

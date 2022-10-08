@@ -4,13 +4,14 @@ import styles from "./Searchbox.module.css";
 import { ReactComponent as SearchIcon } from "../icons/SearchboxIcon.svg";
 
 const Searchbox = React.forwardRef(
-  ({ missingEpisodesShown, setMissingEpisodesShown, shakeEpisodes }, ref) => {
+  ({ missingEpisodesShown, setMissingEpisodesShown, shakeEpisodes, allEpisodes }, ref) => {
     const [searchText, setSearchText] = useState("");
     const [placeholder, setPlaceholder] = useState("Search for episode or guest");
 
     const handleSearch = (e) => {
-      setMissingEpisodesShown((episodes) => {
-        return episodes.filter((ep) =>
+      if (!allEpisodes) return;
+      setMissingEpisodesShown(() => {
+        return allEpisodes.filter((ep) =>
           ep.full_name?.toLowerCase().includes(e.target.value.toLowerCase())
         );
       });
