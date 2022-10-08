@@ -9,7 +9,7 @@ const OptionToPropertyMap = {
   "date removed": "date_removed",
 };
 
-const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
+const Sort = ({ setMissingEpisodesShown, allEpisodes }) => {
   const options = ["episode number", "date removed"];
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({ name: options[0], reverse: false });
@@ -24,11 +24,7 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
         return a[property] - b[property];
       });
 
-    setMissingEpisodesShown(
-      [...nonNulls, ...nulls].filter((ep) =>
-        ep.full_name?.toLowerCase().includes(searchRef.current.value?.toLowerCase())
-      )
-    );
+    setMissingEpisodesShown([...nonNulls, ...nulls]);
   };
 
   return (

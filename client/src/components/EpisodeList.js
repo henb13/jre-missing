@@ -10,6 +10,7 @@ const EpisodeList = ({
   shortenedEpisodesShown,
   shouldShake,
   showSkeleton,
+  searchRef,
 }) => {
   const [listShown, setListShown] = useState("removed");
   if (showSkeleton) return <SkeletonList />;
@@ -23,30 +24,42 @@ const EpisodeList = ({
       <ListTabs listShown={listShown} setListShown={setListShown} />
       <ul className={classesEpList}>
         {listShown === "removed"
-          ? missingEpisodesShown?.map((ep) => (
-              <React.Fragment key={ep.full_name + ep.episode_number}>
-                <Border />
-                <Episode
-                  variant="removed"
-                  number={ep.episode_number}
-                  name={ep.full_name}
-                  dateInMs={ep.date_removed}
-                />
-              </React.Fragment>
-            ))
-          : shortenedEpisodesShown?.map((ep) => {
-              return (
+          ? missingEpisodesShown
+              ?.filter((ep) =>
+                ep.full_name
+                  ?.toLowerCase()
+                  .includes(searchRef.current?.value?.toLowerCase?.() ?? "")
+              )
+              .map((ep) => (
                 <React.Fragment key={ep.full_name + ep.episode_number}>
                   <Border />
                   <Episode
-                    variant="shortened"
+                    variant="removed"
                     number={ep.episode_number}
                     name={ep.full_name}
-                    dateInMs={ep.changes[0].date_changed}
+                    dateInMs={ep.date_removed}
                   />
                 </React.Fragment>
-              );
-            })}
+              ))
+          : shortenedEpisodesShown
+              ?.filter((ep) =>
+                ep.full_name
+                  ?.toLowerCase()
+                  .includes(searchRef.current?.value?.toLowerCase?.() ?? "")
+              )
+              .map((ep) => {
+                return (
+                  <React.Fragment key={ep.full_name + ep.episode_number}>
+                    <Border />
+                    <Episode
+                      variant="shortened"
+                      number={ep.episode_number}
+                      name={ep.full_name}
+                      dateInMs={ep.changes[0].date_changed}
+                    />
+                  </React.Fragment>
+                );
+              })}
       </ul>
     </div>
   );

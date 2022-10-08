@@ -60,7 +60,6 @@ function App() {
         <section className="right">
           <Sort
             setMissingEpisodesShown={setMissingEpisodesShown}
-            searchRef={searchRef}
             allEpisodes={data?.missingEpisodes}
           />
           <EpisodeList
@@ -68,6 +67,7 @@ function App() {
             shortenedEpisodesShown={shortenedEpisodesShown}
             shouldShake={shouldShakeEpisodes}
             showSkeleton={showSkeleton}
+            searchRef={searchRef}
           />
           <ScrollButton
             dataPending={isPending}
