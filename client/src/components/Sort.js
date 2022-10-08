@@ -32,22 +32,17 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
   };
 
   return (
-    <div className={styles.sort}>
-      <p onClick={() => setOpen((open) => !open)}>
-        Sort by{" "}
-        <Chavron
-          className={classnames(styles.chavron, {
-            [styles.open]: open,
-          })}
-        />
+    <div
+      className={classnames(styles.sort, {
+        [styles.open]: open,
+      })}>
+      <p className={styles.heading} onClick={() => setOpen((open) => !open)}>
+        Sort by <Chavron className={styles.chavron} />
       </p>
       <div role="listbox" className={styles.optionsWrapper}>
         {options?.map((option) => {
           return (
             <Option
-              className={classnames({
-                [styles.open]: open,
-              })}
               optionName={option}
               key={option}
               handleSort={handleSort}
@@ -61,7 +56,7 @@ const Sort = ({ setMissingEpisodesShown, searchRef, allEpisodes }) => {
   );
 };
 
-function Option({ optionName, selected, setSelected, className, handleSort }) {
+function Option({ optionName, selected, setSelected, handleSort }) {
   const isSelected = selected.name === optionName;
   const isReversed = selected.name === optionName && selected.reverse;
   function handleClick() {
@@ -75,7 +70,7 @@ function Option({ optionName, selected, setSelected, className, handleSort }) {
       role="option"
       aria-selected={isSelected}
       aria-labelledby="option-label"
-      className={classnames(className, styles.option, {
+      className={classnames(styles.option, {
         [styles.selected]: isSelected,
       })}
       onClick={handleClick}>
