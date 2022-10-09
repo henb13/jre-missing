@@ -33,6 +33,10 @@
   gap: 1rem;
 }
 
+.historyToggle {
+  color: var(--color-grey);
+}
+
 .historyToggle svg {
   width: 20px;
   height: 20px;
