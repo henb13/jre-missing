@@ -77,6 +77,17 @@
   transform: rotate(180deg) scale(0.6);
 }
 
+.Chavron {
+  transform: rotate(180deg) scale(0.65);
+  margin-top: 3px;
+  transition: transform 0.25s ease-out;
+}
+
+.Chavron.open {
+  transform: rotate(0deg) scale(0.65);
+  margin-top: 3px;
+}
+
 @media (max-width: 1350px) {
   .sort {
     margin: 0;

@@ -11,14 +11,3 @@
 .Disclosure:hover {
   color: var(--color-white-secondary);
 }
-
-.Chavron {
-  transform: rotate(180deg) scale(0.65);
-  margin-top: 3px;
-  transition: transform 0.25s ease-out;
-}
-
-.Disclosure.open .Chavron {
-  transform: rotate(0deg) scale(0.65);
-  margin-top: 3px;
-}

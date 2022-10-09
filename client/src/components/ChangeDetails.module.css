@@ -6,6 +6,12 @@
   margin-top: 0.75rem;
 }
 
+.headingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .heading {
   color: var(--color-white);
   font-size: var(--font-size-small);
@@ -27,22 +33,30 @@
   gap: 1rem;
 }
 
-.historyToggle:hover {
-  color: var(--color-grey);
-}
-
 .ChangeDisplayDate {
   color: var(--color-grey);
   margin-bottom: 0.25rem;
 }
 
 .restOfChanges {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
-.restOfChangesItemsWrapper {
-  margin-top: 1rem;
+.restOfChangesItems {
   display: flex;
   flex-direction: column;
+  background-color: var(--color-black-secondary);
   gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.Chavron {
+  transform: rotate(180deg) scale(0.65);
+  margin-top: 3px;
+  transition: transform 0.25s ease-out;
+}
+
+.Chavron.open {
+  transform: rotate(0deg) scale(0.65);
+  margin-top: 3px;
 }

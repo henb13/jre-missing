@@ -1,13 +1,23 @@
 import { useState } from "react";
+import classnames from "classnames";
 import Disclosure from "./Disclosure";
 import styles from "./ChangeDetails.module.css";
 import { getDateString, formatMsToTimeString } from "../utils";
+import { ReactComponent as Chavron } from "../icons/chavron.svg";
 
 const ChangeDetails = ({ episode }) => {
   const [open, setOpen] = useState(false);
   const id = `${episode.full_name}-change-history`;
 
   const [latestChange, ...restOfChanges] = episode.changes;
+
+  const disclosureProps = {
+    isOpen: open,
+    onClick: () => {
+      setOpen((open) => !open);
+    },
+    ariaControls: id,
+  };
 
   return (
     <div className={styles.ChangeDetails}>
@@ -26,28 +36,32 @@ const ChangeDetails = ({ episode }) => {
       </div>
       {restOfChanges.length > 0 && (
         <div className={styles.restOfChanges}>
-          <Disclosure
-            isOpen={open}
-            onClick={() => {
-              setOpen((open) => !open);
-            }}
-            className={styles.historyToggle}
-            ariaControls={id}>
-            <span className={styles.heading}>
+          <div className={styles.headingWrapper}>
+            <p className={styles.heading}>
               Has been changed {restOfChanges.length} more times.
-            </span>{" "}
-            View change history
-          </Disclosure>
-          <div className={styles.restOfChangesItemsWrapper} id={id}>
-            {open &&
-              restOfChanges.map((change) => {
-                return (
-                  <ChangeDisplay
-                    change={change}
-                    key={`${episode.full_name}-${change.date_changed}`}
-                  />
-                );
-              })}
+            </p>{" "}
+            <Disclosure {...disclosureProps}>
+              <span>View change history</span>
+              <Chavron
+                className={classnames(styles.Chavron, {
+                  [styles.open]: open,
+                })}
+              />
+            </Disclosure>
+          </div>
+          <div id={id}>
+            {open && (
+              <div className={styles.restOfChangesItems}>
+                {restOfChanges.map((change) => {
+                  return (
+                    <ChangeDisplay
+                      change={change}
+                      key={`${episode.full_name}-${change.date_changed}`}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       )}

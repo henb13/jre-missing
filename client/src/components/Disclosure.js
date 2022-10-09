@@ -1,6 +1,5 @@
 import styles from "./Disclosure.module.css";
 import classnames from "classnames";
-import { ReactComponent as Chavron } from "../icons/chavron.svg";
 
 const Disclosure = ({ isOpen, onClick, className, ariaControls, children }) => {
   return (
@@ -11,7 +10,6 @@ const Disclosure = ({ isOpen, onClick, className, ariaControls, children }) => {
       })}
       onClick={onClick}>
       {children}
-      <Chavron className={styles.Chavron} />
     </button>
   );
 };
