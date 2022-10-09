@@ -23,7 +23,7 @@ const DB = (client) => {
     },
     getShortenedEpisodes: async function () {
       const { rows } = await client.query(
-        `SELECT all_eps.id AS id, episode_number, full_name, EXTRACT(EPOCH FROM date_changed at time zone 'UTC') AS date_changed, new_duration, old_duration
+        `SELECT all_eps.id AS id, episode_number, full_name, EXTRACT(EPOCH FROM date_changed at time zone 'UTC') * 1000 AS date_changed, new_duration, old_duration
         FROM all_eps
         JOIN (
           SELECT id, episode_id, new_duration, old_duration, date AS date_changed

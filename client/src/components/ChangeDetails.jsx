@@ -13,10 +13,12 @@ const ChangeDetails = ({ episode }) => {
     <div className={styles.ChangeDetails}>
       <div className={styles.ChangeDisplayLatest}>
         <p>
-          <span className={styles.displayHeading}>From:</span> {latestChange.old_duration}
+          <span className={styles.displayHeading}>From:</span>{" "}
+          {formatMsToTimeString(latestChange.old_duration)}
         </p>
         <p>
-          <span className={styles.displayHeading}>To:</span> {latestChange.new_duration}
+          <span className={styles.displayHeading}>To:</span>{" "}
+          {formatMsToTimeString(latestChange.new_duration)}
         </p>
       </div>
       {restOfChanges.length > 0 && (

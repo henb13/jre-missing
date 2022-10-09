@@ -19,13 +19,10 @@ export const getDateTimeHTMLAttribute = (time) => {
 };
 
 export const formatMsToTimeString = (time) => {
-  console.log(time);
-  const hours = Math.floor(time / 100000 / 60);
-  const minutes = time / 100000;
-
-  console.log("hours", hours);
-  const seconds = (minutes / 60) % 60;
-  return `${Math.floor(hours)} hr ${Math.floor(minutes)} min ${Math.floor(seconds)} sec`;
+  const hours = Math.floor(time / 1000 / 60 / 60);
+  const minutesRest = (time / 1000 / 60) % 60;
+  const seconds = (time / 1000) % 60;
+  return `${Math.floor(hours)} hr ${Math.floor(minutesRest)} min ${Math.floor(seconds)} sec`;
 };
 
 export const formatMinutesToTimeAmountString = (minutes) => {
