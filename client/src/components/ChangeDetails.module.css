@@ -33,6 +33,11 @@
   gap: 1rem;
 }
 
+.historyToggle svg {
+  width: 20px;
+  height: 20px;
+}
+
 .ChangeDisplayDate {
   color: var(--color-grey);
   margin-bottom: 0.25rem;

@@ -40,7 +40,7 @@ const ChangeDetails = ({ episode }) => {
             <p className={styles.heading}>
               Has been changed {restOfChanges.length} more times.
             </p>{" "}
-            <Disclosure {...disclosureProps}>
+            <Disclosure className={styles.historyToggle} {...disclosureProps}>
               <span>View change history</span>
               <Chavron
                 className={classnames(styles.Chavron, {
