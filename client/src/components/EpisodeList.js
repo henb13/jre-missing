@@ -4,6 +4,7 @@ import styles from "./EpisodeList.module.css";
 import Episode from "./Episode";
 import SkeletonList from "../skeletons/SkeletonList";
 import ListTabs from "./ListTabs";
+import ChangesHistory from "./ChangeHistory";
 
 const EpisodeList = ({
   missingEpisodesShown,
@@ -57,6 +58,7 @@ const EpisodeList = ({
                       name={ep.full_name}
                       dateInMs={ep.changes[0].date_changed}
                     />
+                    <ChangesHistory changes={ep.changes} />
                   </React.Fragment>
                 );
               })}

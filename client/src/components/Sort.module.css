@@ -8,29 +8,6 @@
   font-size: var(--font-size-small);
 }
 
-.heading {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  transition: all 0.25s;
-  cursor: pointer;
-}
-
-.heading:hover {
-  color: var(--color-white-secondary);
-}
-
-.chavron {
-  transform: rotate(180deg) scale(0.65);
-  margin-top: 3px;
-  transition: transform 0.25s ease-out;
-}
-
-.sort.open .chavron {
-  transform: rotate(0deg) scale(0.65);
-  margin-top: 3px;
-}
-
 .optionsWrapper {
   display: flex;
   flex-direction: column;

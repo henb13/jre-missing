@@ -1,8 +1,8 @@
 import { ReactComponent as Arrow } from "../icons/arrow.svg";
-import { ReactComponent as Chavron } from "../icons/chavron.svg";
 import { useState } from "react";
 import classnames from "classnames";
 import styles from "./Sort.module.css";
+import Disclosure from "./Disclosure";
 
 const OptionToPropertyMap = {
   "episode number": "episode_number",
@@ -32,9 +32,9 @@ const Sort = ({ setMissingEpisodesShown, allEpisodes }) => {
       className={classnames(styles.sort, {
         [styles.open]: open,
       })}>
-      <button className={styles.heading} onClick={() => setOpen((open) => !open)}>
-        Sort by <Chavron className={styles.chavron} />
-      </button>
+      <Disclosure isOpen={open} onClick={() => setOpen((open) => !open)}>
+        Sort by
+      </Disclosure>
       <div role="listbox" className={styles.optionsWrapper}>
         {options?.map((option) => {
           return (
