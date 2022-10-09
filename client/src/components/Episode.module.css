@@ -10,7 +10,7 @@
 }
 
 .timeDetail {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-small);
   letter-spacing: 0.1px;
   color: var(--color-grey);
 }

@@ -15,6 +15,15 @@
 }
 
 .Border {
+  display: initial;
+  background-color: var(--color-grey);
+  height: 1px;
+  width: 75%;
+  opacity: 0.25;
+  margin-bottom: 4rem;
+}
+
+.Border:not(.visible) {
   display: none;
 }
 
@@ -27,13 +36,8 @@
     flex-direction: column;
   }
 
-  .Border {
+  .Border:not(.visible) {
     display: initial;
-    background-color: var(--color-grey);
-    height: 1px;
-    width: 75%;
-    opacity: 0.25;
-    margin-bottom: 4rem;
   }
 }
 

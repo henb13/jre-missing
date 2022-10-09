@@ -3,26 +3,46 @@
   flex-direction: column;
   font-size: var(--font-size-small);
   color: var(--color-grey-secondary);
-  margin-top: 1.5rem;
+  margin-top: 0.75rem;
 }
 
 .heading {
   color: var(--color-white);
-  font-size: 14px;
   font-size: var(--font-size-small);
+  font-weight: 400;
 }
 
 .ChangeDisplay {
   display: flex;
+}
+
+.ChangeDisplayWrapper {
+  display: flex;
   flex-direction: column;
 }
 
-.ChangeDisplayLatest {
+.ChangeDisplay {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   gap: 1rem;
 }
 
-.displayHeading {
-  color: var(--color-orange);
+.historyToggle:hover {
+  color: var(--color-grey);
+}
+
+.ChangeDisplayDate {
+  color: var(--color-grey);
+  margin-bottom: 0.25rem;
+}
+
+.restOfChanges {
+  margin-top: 1rem;
+}
+
+.restOfChangesItemsWrapper {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }

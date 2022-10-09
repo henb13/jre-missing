@@ -11,19 +11,21 @@ const ChangeDetails = ({ episode }) => {
 
   return (
     <div className={styles.ChangeDetails}>
-      <div className={styles.ChangeDisplayLatest}>
+      <div className={styles.ChangeDisplay}>
         <p>
-          <span className={styles.displayHeading}>From:</span>{" "}
-          {formatMsToTimeString(latestChange.old_duration)}
+          <span className={styles.displayTime}>
+            {formatMsToTimeString(latestChange.old_duration)}
+          </span>
         </p>
+        <span>&gt;</span>
         <p>
-          <span className={styles.displayHeading}>To:</span>{" "}
-          {formatMsToTimeString(latestChange.new_duration)}
+          <span className={styles.displayTime}>
+            {formatMsToTimeString(latestChange.new_duration)}
+          </span>
         </p>
       </div>
       {restOfChanges.length > 0 && (
-        <div>
-          <h2 className={styles.heading}>Changed {restOfChanges.length} more times</h2>
+        <div className={styles.restOfChanges}>
           <Disclosure
             isOpen={open}
             onClick={() => {
@@ -31,9 +33,12 @@ const ChangeDetails = ({ episode }) => {
             }}
             className={styles.historyToggle}
             ariaControls={id}>
+            <span className={styles.heading}>
+              Has been changed {restOfChanges.length} more times.
+            </span>{" "}
             View change history
           </Disclosure>
-          <div id={id}>
+          <div className={styles.restOfChangesItemsWrapper} id={id}>
             {open &&
               restOfChanges.map((change) => {
                 return (
@@ -52,18 +57,12 @@ const ChangeDetails = ({ episode }) => {
 
 const ChangeDisplay = ({ change }) => {
   return (
-    <div className={styles.ChangeDisplay}>
-      <p>
-        <span className={styles.displayHeading}>From:</span>{" "}
-        {formatMsToTimeString(change.old_duration)}
-      </p>
-      <p>
-        <span className={styles.displayHeading}>To:</span>{" "}
-        {formatMsToTimeString(change.new_duration)}
-      </p>
-      <p>
-        <span className={styles.displayHeading}>Date shortened:</span>{" "}
-        {getDateString(change.date_changed)}
+    <div className={styles.ChangeDisplayWrapper}>
+      <p className={styles.ChangeDisplayDate}>{getDateString(change.date_changed)}</p>
+      <p className={styles.ChangeDisplay}>
+        <span className={styles.displayTime}>{formatMsToTimeString(change.old_duration)}</span>
+        <span>&gt;</span>
+        <span className={styles.displayTime}>{formatMsToTimeString(change.new_duration)}</span>
       </p>
     </div>
   );

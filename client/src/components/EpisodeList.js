@@ -51,13 +51,13 @@ const EpisodeList = ({
                   ?.toLowerCase()
                   .includes(searchRef.current?.value?.toLowerCase?.() ?? "")
               )
-              .map((ep) => {
+              .map((ep, i) => {
                 return (
                   <li
                     className={classnames(styles.EpisodeItem, styles.shortenedEpisode)}
                     key={ep.full_name + ep.episode_number}
                     lang="en">
-                    <Border />
+                    {i !== 0 && <Border />}
                     <Episode
                       variant="shortened"
                       number={ep.episode_number}
@@ -73,8 +73,13 @@ const EpisodeList = ({
   );
 };
 
-const Border = () => {
-  return <span className={styles.Border}></span>;
+const Border = ({ visible }) => {
+  return (
+    <span
+      className={classnames(styles.Border, {
+        [styles.visible]: visible,
+      })}></span>
+  );
 };
 
 export default EpisodeList;

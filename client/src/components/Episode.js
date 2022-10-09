@@ -1,4 +1,6 @@
 import styles from "./Episode.module.css";
+import classnames from "classnames";
+
 import { differenceInDays, parseISO } from "date-fns";
 import { getDateString, getDateTimeHTMLAttribute } from "../utils";
 
@@ -25,7 +27,10 @@ const Episode = ({ number, name, variant, dateInMs }) => {
         )}
       </div>
       {dateInMs && (
-        <span className={styles.timeDetail}>
+        <span
+          className={classnames(styles.timeDetail, {
+            [styles.shortenedDetail]: variant === "shortened",
+          })}>
           {variant === "removed" ? "Removed" : "Shortened"} on <Time date={dateInMs} />
         </span>
       )}
@@ -36,6 +41,7 @@ const Episode = ({ number, name, variant, dateInMs }) => {
 const Time = ({ date }) => {
   const dateTimeValue = getDateTimeHTMLAttribute(date);
   const dateString = getDateString(date);
+
   return <time dateTime={dateTimeValue}>{dateString}</time>;
 };
 
