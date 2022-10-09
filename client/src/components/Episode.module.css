@@ -1,9 +1,7 @@
-.EpisodeItem {
-  font-size: var(--font-size-medium);
-  hyphens: auto;
-  position: relative;
+.epContent {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  flex-direction: column;
 }
 
 .epNumber {
@@ -13,8 +11,6 @@
 
 .timeDetail {
   font-size: var(--font-size-xs);
-  margin-left: 1.6rem;
-  font-style: italic;
   letter-spacing: 0.1px;
   color: var(--color-grey);
 }
@@ -30,14 +26,6 @@
   padding: 3px 8px;
   border-radius: 13%;
   background-color: var(--color-green);
-}
-
-.new:nth-child(2) {
-  margin-left: 32px;
-}
-
-.timeDetail:nth-child(2) {
-  margin-left: 24px;
 }
 
 @media (max-width: 1350px) {
@@ -66,10 +54,5 @@
     margin: 0 auto;
     margin-bottom: 0.75rem;
     padding: 6px 12px;
-  }
-
-  .new:nth-child(2),
-  .timeDetail:nth-child(2) {
-    margin-left: 11px;
   }
 }

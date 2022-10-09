@@ -61,6 +61,13 @@ a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
 button {
   background: none;
   color: inherit;

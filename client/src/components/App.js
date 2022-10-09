@@ -33,6 +33,7 @@ function App() {
   };
 
   const showSkeleton = isPending || !minLoadingTimeElapsed;
+  console.log(shortenedEpisodesShown);
 
   return (
     <div className="App">

@@ -1,6 +1,6 @@
 import styles from "./Episode.module.css";
 import { differenceInDays, parseISO } from "date-fns";
-import getClientLocalTime from "../lib/getClientLocalTime";
+import { getDateString, getDateTimeHTMLAttribute } from "../utils";
 
 const NEWL_THRESHOLD = 14;
 
@@ -12,36 +12,31 @@ const Episode = ({ number, name, variant, dateInMs }) => {
     dateInMs && differenceInDays(new Date(), parseISO(new Date(dateInMs))) < NEWL_THRESHOLD;
 
   return (
-    <li className={styles.EpisodeItem} key={name} lang="en">
+    <div className={styles.epContent}>
       {isNew && <span className={styles.new}>new</span>}
-      {number ? (
-        <>
-          <span className={styles.epNumber}>#{number}</span>
-          {guest}
-        </>
-      ) : (
-        name
-      )}
+      <div>
+        {number ? (
+          <>
+            <span className={styles.epNumber}>#{number}</span>
+            <span className={styles.epGuest}>{guest}</span>
+          </>
+        ) : (
+          name
+        )}
+      </div>
       {dateInMs && (
         <span className={styles.timeDetail}>
           {variant === "removed" ? "Removed" : "Shortened"} on <Time date={dateInMs} />
         </span>
       )}
-    </li>
+    </div>
   );
 };
 
 const Time = ({ date }) => {
-  const dateTimeValue = dateTimeHTMLAttribute(date);
+  const dateTimeValue = getDateTimeHTMLAttribute(date);
   const dateString = getDateString(date);
   return <time dateTime={dateTimeValue}>{dateString}</time>;
-};
-
-const getDateString = (time) => {
-  return getClientLocalTime(time, "PPP");
-};
-const dateTimeHTMLAttribute = (time) => {
-  return getClientLocalTime(time, "yyyy-MM-dd");
 };
 
 export default Episode;

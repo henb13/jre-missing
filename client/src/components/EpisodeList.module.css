@@ -6,6 +6,14 @@
   grid-gap: 4rem;
 }
 
+.EpisodeItem {
+  font-size: var(--font-size-medium);
+  hyphens: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .Border {
   display: none;
 }
@@ -15,6 +23,9 @@
     grid-gap: 3.5rem;
     justify-items: center;
   }
+  .EpisodeItem {
+    flex-direction: column;
+  }
 
   .Border {
     display: initial;
@@ -22,6 +33,7 @@
     height: 1px;
     width: 75%;
     opacity: 0.25;
+    margin-bottom: 4rem;
   }
 }
 

@@ -1,0 +1,28 @@
+.ChangeDetails {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-small);
+  color: var(--color-grey-secondary);
+  margin-top: 1.5rem;
+}
+
+.heading {
+  color: var(--color-white);
+  font-size: 14px;
+  font-size: var(--font-size-small);
+}
+
+.ChangeDisplay {
+  display: flex;
+  flex-direction: column;
+}
+
+.ChangeDisplayLatest {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.displayHeading {
+  color: var(--color-orange);
+}

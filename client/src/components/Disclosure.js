@@ -2,11 +2,12 @@ import styles from "./Disclosure.module.css";
 import classnames from "classnames";
 import { ReactComponent as Chavron } from "../icons/chavron.svg";
 
-const Disclosure = ({ isOpen, onClick, className, children }) => {
+const Disclosure = ({ isOpen, onClick, className, ariaControls, children }) => {
   return (
     <button
+      aria-controls={ariaControls}
       className={classnames(className, styles.Disclosure, {
-        open: isOpen,
+        [styles.open]: isOpen,
       })}
       onClick={onClick}>
       {children}

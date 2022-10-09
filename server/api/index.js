@@ -45,7 +45,6 @@ router.get("/api/episodes", async (_, res) => {
   }
 
   console.info("request fired");
-
   res.json({
     missingEpisodes: missingEpisodesCache,
     shortenedEpisodes: shortenedEpisodesCache,

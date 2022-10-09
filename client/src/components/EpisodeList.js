@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import classnames from "classnames";
 import styles from "./EpisodeList.module.css";
 import Episode from "./Episode";
 import SkeletonList from "../skeletons/SkeletonList";
 import ListTabs from "./ListTabs";
-import ChangesHistory from "./ChangeHistory";
+import ChangeDetails from "./ChangeDetails";
 
 const EpisodeList = ({
   missingEpisodesShown,
@@ -32,7 +32,10 @@ const EpisodeList = ({
                   .includes(searchRef.current?.value?.toLowerCase?.() ?? "")
               )
               .map((ep) => (
-                <React.Fragment key={ep.full_name + ep.episode_number}>
+                <li
+                  className={styles.EpisodeItem}
+                  key={ep.full_name + ep.episode_number}
+                  lang="en">
                   <Border />
                   <Episode
                     variant="removed"
@@ -40,7 +43,7 @@ const EpisodeList = ({
                     name={ep.full_name}
                     dateInMs={ep.date_removed}
                   />
-                </React.Fragment>
+                </li>
               ))
           : shortenedEpisodesShown
               ?.filter((ep) =>
@@ -50,7 +53,10 @@ const EpisodeList = ({
               )
               .map((ep) => {
                 return (
-                  <React.Fragment key={ep.full_name + ep.episode_number}>
+                  <li
+                    className={classnames(styles.EpisodeItem, styles.shortenedEpisode)}
+                    key={ep.full_name + ep.episode_number}
+                    lang="en">
                     <Border />
                     <Episode
                       variant="shortened"
@@ -58,8 +64,8 @@ const EpisodeList = ({
                       name={ep.full_name}
                       dateInMs={ep.changes[0].date_changed}
                     />
-                    <ChangesHistory changes={ep.changes} />
-                  </React.Fragment>
+                    <ChangeDetails episode={ep} />
+                  </li>
                 );
               })}
       </ul>
