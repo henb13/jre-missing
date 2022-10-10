@@ -2,13 +2,13 @@
   font-size: 2rem;
 }
 
-.AmountInfoItem span {
+.AmountInfoItem .count {
   color: var(--color-red);
   font-weight: 700;
   position: relative;
 }
 
-.AmountInfoItem span:after {
+.AmountInfoItem .count:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -16,6 +16,9 @@
   right: 0;
   bottom: 1px;
   border-bottom: 2px solid var(--color-red);
+}
+.AmountInfoItem .count.NoAmount:after {
+  border-color: var(--color-green);
 }
 
 .LastChecked {
@@ -25,6 +28,10 @@
   margin-top: 1px;
   color: var(--color-grey);
   margin-bottom: 3rem;
+}
+
+.count.NoAmount {
+  color: var(--color-green);
 }
 
 .Checkmark {
@@ -39,7 +46,7 @@
     text-align: center;
   }
 
-  .AmountInfo span:after {
+  .AmountInfo .count:after {
     bottom: 0;
     width: 95%;
   }

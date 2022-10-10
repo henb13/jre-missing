@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import styles from "./AmountInfo.module.css";
 import { getClientLocalTime, formatMinutesToTimeAmountString } from "../utils";
 import { ReactComponent as Checkmark } from "../icons/AmountInfoIcon.svg";
@@ -5,9 +6,11 @@ import SkeletonText from "../skeletons/SkeletonText";
 
 const AmountInfo = ({ data, showSkeleton }) => {
   if (showSkeleton) return <SkeletonText />;
-  if (!data) return null;
+  if (!data || !data.missingEpisodes || !data.shortenedEpisodes) return null;
 
-  const lastChecked = data.lastChecked?.miliseconds;
+  const { missingEpisodes, shortenedEpisodes } = data;
+
+  const lastChecked = data.lastChecked.miliseconds;
   const lastCheckedMinutes = lastChecked
     ? Math.floor((new Date() - new Date(lastChecked)) / 60000)
     : 0;
@@ -20,12 +23,24 @@ const AmountInfo = ({ data, showSkeleton }) => {
   return (
     <div className={styles.AmountInfo}>
       <p className={styles.AmountInfoItem}>
-        <span>{data.missingEpisodes?.length}</span> episodes are missing from Spotify.
+        <span
+          className={classnames(styles.count, {
+            [styles.NoAmount]: missingEpisodes.length === 0,
+          })}>
+          {missingEpisodes.length}
+        </span>{" "}
+        episodes are missing from Spotify.
       </p>
       <p className={styles.AmountInfoItem}>
-        <span>{data.shortenedEpisodes?.length}</span> live Spotify episode
-        {data.shortenedEpisodes?.length === 1 ? "" : "s"}{" "}
-        {data.shortenedEpisodes?.length == 1 ? "has" : "have"} been shortened.
+        <span
+          className={classnames(styles.count, {
+            [styles.NoAmount]: shortenedEpisodes.length === 0,
+          })}>
+          {shortenedEpisodes.length}
+        </span>{" "}
+        live Spotify episode
+        {shortenedEpisodes.length === 1 ? "" : "s"}{" "}
+        {shortenedEpisodes.length == 1 ? "has" : "have"} been shortened.
       </p>
       <div className={styles.LastChecked}>
         <p>
