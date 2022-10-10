@@ -20,18 +20,3 @@ const Coffee = () => {
 };
 
 export default Coffee;
-
-{
-  /* <Link
-      href={"https://www.buymeacoffee.com/henbc13"}
-      isExternal
-      fontSize={"sm"}
-      fontWeight={500}>
-      <Image
-        src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-        alt="Buy Me a Coffee"
-        maxH="30px"
-        px={2}
-      />
-    </Link> */
-}

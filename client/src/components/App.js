@@ -11,6 +11,8 @@ import Sort from "./Sort";
 import Searchbox from "./Searchbox";
 import ScrollButton from "./ScrollButton";
 import Contact from "./Contact";
+import Sponsor from "./Sponsor";
+import Coffee from "./Coffee";
 
 function App() {
   const { data, error, isPending } = useFetch("/api/episodes");
@@ -39,6 +41,8 @@ function App() {
     <div className="App">
       <section className="left">
         <Github />
+        <Sponsor />
+        <Coffee />
         <Header />
         <Contact />
         {error ? (
