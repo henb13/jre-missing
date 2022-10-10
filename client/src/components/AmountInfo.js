@@ -1,9 +1,9 @@
-import styles from "./AmountMissing.module.css";
+import styles from "./AmountInfo.module.css";
 import { getClientLocalTime, formatMinutesToTimeAmountString } from "../utils";
-import { ReactComponent as Checkmark } from "../icons/AmountMissingIcon.svg";
+import { ReactComponent as Checkmark } from "../icons/AmountInfoIcon.svg";
 import SkeletonText from "../skeletons/SkeletonText";
 
-const AmountMissing = ({ data, showSkeleton }) => {
+const AmountInfo = ({ data, showSkeleton }) => {
   if (showSkeleton) return <SkeletonText />;
   if (!data) return null;
 
@@ -18,9 +18,14 @@ const AmountMissing = ({ data, showSkeleton }) => {
   const dateTimeHTMLAttribute = getClientLocalTime(lastChecked, "yyyy-MM-dd HH:mm:ss.sss");
 
   return (
-    <>
-      <p className={styles.AmountMissing}>
+    <div className={styles.AmountInfo}>
+      <p className={styles.AmountInfoItem}>
         <span>{data.missingEpisodes?.length}</span> episodes are missing from Spotify.
+      </p>
+      <p className={styles.AmountInfoItem}>
+        <span>{data.shortenedEpisodes?.length}</span> live Spotify episode
+        {data.shortenedEpisodes?.length === 1 ? "" : "s"}{" "}
+        {data.shortenedEpisodes?.length == 1 ? "has" : "have"} been shortened.
       </p>
       <div className={styles.LastChecked}>
         <p>
@@ -29,8 +34,8 @@ const AmountMissing = ({ data, showSkeleton }) => {
         </p>
         <Checkmark className={styles.Checkmark} />
       </div>
-    </>
+    </div>
   );
 };
 
-export default AmountMissing;
+export default AmountInfo;

@@ -1,14 +1,14 @@
-.AmountMissing {
+.AmountInfo {
   font-size: 2rem;
 }
 
-.AmountMissing span {
+.AmountInfoItem span {
   color: var(--color-red);
   font-weight: 700;
   position: relative;
 }
 
-.AmountMissing span:after {
+.AmountInfoItem span:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -33,18 +33,24 @@
 }
 
 @media (max-width: 1350px) {
-  .AmountMissing {
-    font-size: var(--font-size-large);
-    margin: 4rem 0;
+  .AmountInfo {
+    font-size: 1.8rem;
+    margin: 4.5rem 0 1.75rem;
     text-align: center;
   }
 
-  .AmountMissing span:after {
+  .AmountInfo span:after {
     bottom: 0;
     width: 95%;
   }
 
   .LastChecked {
+    justify-content: center;
+    margin-left: 1.25rem;
+    margin-top: 0.7rem;
+  }
+
+  .LastChecked time {
     display: none;
   }
 }

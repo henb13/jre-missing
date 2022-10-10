@@ -5,7 +5,7 @@ import useMinLoadingTime from "../hooks/useMinLoadingTime";
 import Error from "./Error";
 import Github from "./Github";
 import Header from "./Header";
-import AmountMissing from "./AmountMissing";
+import AmountInfo from "./AmountInfo";
 import EpisodeList from "./EpisodeList";
 import Sort from "./Sort";
 import Searchbox from "./Searchbox";
@@ -51,7 +51,7 @@ function App() {
           <Error error={error} />
         ) : (
           <>
-            <AmountMissing data={data} showSkeleton={showSkeleton} />
+            <AmountInfo data={data} showSkeleton={showSkeleton} />
             <Searchbox
               ref={searchRef}
               missingEpisodesShown={missingEpisodesShown}
