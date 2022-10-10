@@ -1,7 +1,7 @@
 import styles from "./ListTabs.module.css";
 import classnames from "classnames";
 
-const ListTabs = ({ listShown, setListShown }) => {
+const ListTabs = ({ listShown, setListShown, resetCurrentEpisodes }) => {
   return (
     <div className={styles.ListTab}>
       <Option
@@ -9,6 +9,7 @@ const ListTabs = ({ listShown, setListShown }) => {
         title="Removed"
         onClick={() => {
           setListShown("removed");
+          resetCurrentEpisodes();
         }}></Option>
       <div className={styles.divider}></div>
       <Option
@@ -16,6 +17,7 @@ const ListTabs = ({ listShown, setListShown }) => {
         title="Shortened"
         onClick={() => {
           setListShown("shortened");
+          resetCurrentEpisodes();
         }}></Option>
     </div>
   );

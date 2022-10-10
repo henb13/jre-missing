@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import useMinLoadingTime from "../hooks/useMinLoadingTime";
 import Error from "./Error";
@@ -23,7 +23,20 @@ function App() {
   const [shortenedEpisodesShown, setShortenedEpisodesShown] = useState([]);
   const [listShown, setListShown] = useState("removed");
 
-  const searchRef = useRef();
+  const [searchText, setSearchText] = useState("");
+
+  const episodeMap = {
+    removed: {
+      episodes: missingEpisodesShown,
+      allEpisodes: data?.missingEpisodes || [],
+      setEpisodes: setMissingEpisodesShown,
+    },
+    shortened: {
+      episodes: shortenedEpisodesShown,
+      allEpisodes: data?.shortenedEpisodes || [],
+      setEpisodes: setShortenedEpisodesShown,
+    },
+  };
 
   useEffect(() => {
     setMissingEpisodesShown(data?.missingEpisodes || []);
@@ -38,10 +51,15 @@ function App() {
   };
 
   const { scrollTarget, scrollable } = useScroll({
-    refreshOnChange: [missingEpisodesShown, shortenedEpisodesShown, listShown],
+    refreshOnChange: [missingEpisodesShown, shortenedEpisodesShown, listShown, searchText],
   });
 
   const showSkeleton = isPending || !minLoadingTimeElapsed;
+
+  const resetCurrentEpisodes = () => {
+    episodeMap[listShown].setEpisodes(episodeMap[listShown].allEpisodes);
+    setSearchText("");
+  };
 
   return (
     <div className="App">
@@ -57,11 +75,10 @@ function App() {
           <>
             <AmountInfo data={data} showSkeleton={showSkeleton} />
             <Searchbox
-              ref={searchRef}
-              missingEpisodesShown={missingEpisodesShown}
-              setMissingEpisodesShown={setMissingEpisodesShown}
+              {...episodeMap[listShown]}
               shakeEpisodes={shakeEpisodes}
-              allEpisodes={data?.missingEpisodes}
+              searchText={searchText}
+              setSearchText={setSearchText}
             />
           </>
         )}
@@ -78,9 +95,10 @@ function App() {
             shortenedEpisodesShown={shortenedEpisodesShown}
             shouldShake={shouldShakeEpisodes}
             showSkeleton={showSkeleton}
-            searchRef={searchRef}
+            searchText={searchText}
             listShown={listShown}
             setListShown={setListShown}
+            resetCurrentEpisodes={resetCurrentEpisodes}
           />
           <ScrollButton
             dataPending={isPending}
