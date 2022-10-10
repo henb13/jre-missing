@@ -22,10 +22,9 @@ function App() {
   const [missingEpisodesShown, setMissingEpisodesShown] = useState([]);
   const [shortenedEpisodesShown, setShortenedEpisodesShown] = useState([]);
   const [listShown, setListShown] = useState("removed");
-
   const [searchText, setSearchText] = useState("");
 
-  const episodeMap = {
+  const listMap = {
     removed: {
       episodes: missingEpisodesShown,
       allEpisodes: data?.missingEpisodes || [],
@@ -37,6 +36,8 @@ function App() {
       setEpisodes: setShortenedEpisodesShown,
     },
   };
+
+  const currentList = listMap[listShown];
 
   useEffect(() => {
     setMissingEpisodesShown(data?.missingEpisodes || []);
@@ -57,7 +58,7 @@ function App() {
   const showSkeleton = isPending || !minLoadingTimeElapsed;
 
   const resetCurrentEpisodes = () => {
-    episodeMap[listShown].setEpisodes(episodeMap[listShown].allEpisodes);
+    currentList.setEpisodes(currentList.allEpisodes);
     setSearchText("");
   };
 
@@ -75,7 +76,7 @@ function App() {
           <>
             <AmountInfo data={data} showSkeleton={showSkeleton} />
             <Searchbox
-              {...episodeMap[listShown]}
+              {...currentList}
               shakeEpisodes={shakeEpisodes}
               searchText={searchText}
               setSearchText={setSearchText}
@@ -91,8 +92,7 @@ function App() {
             allEpisodes={data?.missingEpisodes}
           />
           <EpisodeList
-            missingEpisodesShown={missingEpisodesShown}
-            shortenedEpisodesShown={shortenedEpisodesShown}
+            episodes={currentList.episodes}
             shouldShake={shouldShakeEpisodes}
             showSkeleton={showSkeleton}
             searchText={searchText}

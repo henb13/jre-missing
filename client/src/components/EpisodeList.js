@@ -6,8 +6,7 @@ import ListTabs from "./ListTabs";
 import ChangeDetails from "./ChangeDetails";
 
 const EpisodeList = ({
-  missingEpisodesShown,
-  shortenedEpisodesShown,
+  episodes,
   shouldShake,
   showSkeleton,
   searchText,
@@ -20,7 +19,7 @@ const EpisodeList = ({
   const listProps = {
     searchText,
     shouldShake,
-    episodes: listShown === "removed" ? missingEpisodesShown : shortenedEpisodesShown,
+    episodes,
   };
 
   return (
