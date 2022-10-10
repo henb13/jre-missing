@@ -13,6 +13,7 @@ import ScrollButton from "./ScrollButton";
 import Contact from "./Contact";
 import Sponsor from "./Sponsor";
 import Coffee from "./Coffee";
+import useScroll from "../hooks/useScroll";
 
 function App() {
   const { data, error, isPending } = useFetch("/api/episodes");
@@ -36,8 +37,11 @@ function App() {
     }, 1000);
   };
 
+  const { scrollTarget, scrollable } = useScroll({
+    refreshOnChange: [missingEpisodesShown, shortenedEpisodesShown, listShown],
+  });
+
   const showSkeleton = isPending || !minLoadingTimeElapsed;
-  console.log(shortenedEpisodesShown);
 
   return (
     <div className="App">
@@ -81,7 +85,8 @@ function App() {
           <ScrollButton
             dataPending={isPending}
             minLoadingTimeElapsed={minLoadingTimeElapsed}
-            missingEpisodesShown={missingEpisodesShown}
+            scrollTarget={scrollTarget}
+            scrollable={scrollable}
           />
         </section>
       )}

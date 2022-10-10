@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import _ from "lodash";
 
-const useScroll = () => {
+const useScroll = ({
+  refreshOnChange: [missingEpisodesShown, shortenedEpisodesShown, listShown],
+}) => {
   const [scrollTarget, setScrollTarget] = useState("bottom");
   const [scrollable, setScrollable] = useState(null);
+
+  useEffect(() => {
+    setScrollable(document.body.clientHeight > window.innerHeight);
+  }, [missingEpisodesShown, shortenedEpisodesShown, listShown, setScrollable]);
 
   useEffect(() => {
     const handleScroll = _.throttle(() => {

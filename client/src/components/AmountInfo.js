@@ -38,7 +38,7 @@ const AmountInfo = ({ data, showSkeleton }) => {
           })}>
           {shortenedEpisodes.length}
         </span>{" "}
-        live Spotify episode
+        episode
         {shortenedEpisodes.length === 1 ? "" : "s"}{" "}
         {shortenedEpisodes.length == 1 ? "has" : "have"} been shortened.
       </p>

@@ -16,21 +16,19 @@ const EpisodeList = ({
 }) => {
   if (showSkeleton) return <SkeletonList />;
 
+  const listProps = {
+    searchRef,
+    shouldShake,
+    episodes: listShown === "removed" ? missingEpisodesShown : shortenedEpisodesShown,
+  };
+
   return (
     <div className={styles.wrapper}>
       <ListTabs listShown={listShown} setListShown={setListShown} />
       {listShown === "removed" ? (
-        <RemovedList
-          searchRef={searchRef}
-          shouldShake={shouldShake}
-          episodes={missingEpisodesShown}
-        />
+        <RemovedList {...listProps} />
       ) : (
-        <ShortenedList
-          searchRef={searchRef}
-          shouldShake={shouldShake}
-          episodes={shortenedEpisodesShown}
-        />
+        <ShortenedList {...listProps} />
       )}
     </div>
   );
