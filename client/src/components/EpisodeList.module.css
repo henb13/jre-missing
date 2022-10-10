@@ -14,6 +14,10 @@
   flex-direction: column;
 }
 
+.NoEpisodesMessage {
+  color: var(--color-grey);
+}
+
 .Border {
   display: initial;
   background-color: var(--color-grey);

@@ -20,6 +20,8 @@ function App() {
   const [shouldShakeEpisodes, setShouldShakeEpisodes] = useState(false);
   const [missingEpisodesShown, setMissingEpisodesShown] = useState([]);
   const [shortenedEpisodesShown, setShortenedEpisodesShown] = useState([]);
+  const [listShown, setListShown] = useState("removed");
+
   const searchRef = useRef();
 
   useEffect(() => {
@@ -73,6 +75,8 @@ function App() {
             shouldShake={shouldShakeEpisodes}
             showSkeleton={showSkeleton}
             searchRef={searchRef}
+            listShown={listShown}
+            setListShown={setListShown}
           />
           <ScrollButton
             dataPending={isPending}
