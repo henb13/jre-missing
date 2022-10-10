@@ -28,9 +28,9 @@
   color: var(--color-white);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1350px) {
   .GithubText {
-    color: var(--color-grey-secondary);
+    display: none;
   }
 }
 

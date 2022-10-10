@@ -29,7 +29,7 @@
   }
 
   .contact span {
-    color: var(--color-grey-secondary);
+    display: none;
   }
 }
 @media (max-width: 750px) {

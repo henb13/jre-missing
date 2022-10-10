@@ -11,8 +11,21 @@
   max-height: 30px;
 }
 
+@media (max-width: 1350px) {
+  .Coffee {
+    left: 24rem;
+  }
+}
+
 @media (max-width: 900px) {
   .Coffee {
-    display: none;
+    position: absolute;
+  }
+}
+
+@media (max-width: 750px) {
+  .Coffee {
+    top: 2rem;
+    left: 21rem;
   }
 }
