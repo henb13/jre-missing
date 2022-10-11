@@ -93,7 +93,8 @@ function App() {
             episodes={currentList.episodes}
           />
           <EpisodeList
-            episodes={currentList.episodes}
+            missingEpisodesShown={missingEpisodesShown}
+            shortenedEpisodesShown={shortenedEpisodesShown}
             shouldShake={shouldShakeEpisodes}
             showSkeleton={showSkeleton}
             searchText={searchText}

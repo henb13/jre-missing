@@ -1,35 +1,54 @@
 import styles from "./ListTabs.module.css";
 import classnames from "classnames";
 
-const ListTabs = ({ listShown, setListShown, resetCurrentEpisodes }) => {
+const ListTabs = ({
+  listShown,
+  setListShown,
+  resetCurrentEpisodes,
+  listIdRemoved,
+  listIdShortened,
+  tabIdRemoved,
+  tabIdShortened,
+}) => {
   return (
-    <div className={styles.ListTab}>
+    <div className={styles.ListTab} role="tablist" aria-orientation="horizontal">
       <Option
-        listShown={listShown}
         title="Removed"
+        isSelected={listShown === "removed"}
         onClick={() => {
           setListShown("removed");
           resetCurrentEpisodes();
-        }}></Option>
+        }}
+        id={tabIdRemoved}
+        ariaControls={listIdRemoved}
+      />
       <div className={styles.divider}></div>
       <Option
-        listShown={listShown}
         title="Shortened"
+        isSelected={listShown === "shortened"}
         onClick={() => {
           setListShown("shortened");
           resetCurrentEpisodes();
-        }}></Option>
+        }}
+        id={tabIdShortened}
+        ariaControls={listIdShortened}
+      />
     </div>
   );
 };
 
-const Option = ({ title, listShown, onClick }) => {
+const Option = ({ title, onClick, isSelected, ariaControls, id }) => {
   return (
     <button
+      id={id}
       className={classnames(styles.option, {
-        [styles.selected]: listShown === title.toLowerCase(),
+        [styles.selected]: isSelected,
       })}
-      onClick={onClick}>
+      onClick={onClick}
+      role="tab"
+      aria-selected={isSelected}
+      aria-controls={ariaControls}
+      type="button">
       {title}
     </button>
   );

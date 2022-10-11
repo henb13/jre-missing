@@ -6,7 +6,8 @@ import ListTabs from "./ListTabs";
 import ChangeDetails from "./ChangeDetails";
 
 const EpisodeList = ({
-  episodes,
+  missingEpisodesShown,
+  shortenedEpisodesShown,
   shouldShake,
   showSkeleton,
   searchText,
@@ -15,36 +16,53 @@ const EpisodeList = ({
   resetCurrentEpisodes,
 }) => {
   if (showSkeleton) return <SkeletonList />;
+  if (!missingEpisodesShown && !shortenedEpisodesShown) return null;
 
-  const listProps = {
-    searchText,
-    shouldShake,
-    episodes,
-  };
+  const classesEpList = classnames(styles.EpisodeList, {
+    shake: shouldShake,
+  });
 
+  const listIdRemoved = "episode-list-removed";
+  const listIdShortened = "episode-list-shortened";
+  const tabIdRemoved = "tab-removed";
+  const tabIdShortened = "tab-shortened";
   return (
     <div className={styles.wrapper}>
       <ListTabs
         listShown={listShown}
         setListShown={setListShown}
         resetCurrentEpisodes={resetCurrentEpisodes}
+        listIdRemoved={listIdRemoved}
+        listIdShortened={listIdShortened}
+        tabIdRemoved={tabIdRemoved}
+        tabIdShortened={tabIdShortened}
       />
-      {listShown === "removed" ? (
-        <RemovedList {...listProps} />
-      ) : (
-        <ShortenedList {...listProps} />
-      )}
+      <>
+        {listShown === "removed" ? (
+          <RemovedList
+            searchText={searchText}
+            episodes={missingEpisodesShown}
+            className={classesEpList}
+            id={listIdRemoved}
+            ariaLabelledBy={tabIdRemoved}
+          />
+        ) : (
+          <ShortenedList
+            searchText={searchText}
+            episodes={shortenedEpisodesShown}
+            className={classesEpList}
+            id={listIdShortened}
+            ariaLabelledBy={tabIdShortened}
+          />
+        )}
+      </>
     </div>
   );
 };
 
-const ShortenedList = ({ episodes, shouldShake, searchText }) => {
-  const classesEpList = classnames(styles.EpisodeList, {
-    shake: shouldShake,
-  });
-
+const ShortenedList = ({ episodes, searchText, className, id, ariaLabelledBy }) => {
   return (
-    <ul className={classesEpList}>
+    <ul className={className} role="tabpanel" id={id} aria-labelledby={ariaLabelledBy}>
       {episodes.length > 0
         ? episodes.map((ep, i) => {
             return (
@@ -71,13 +89,9 @@ const ShortenedList = ({ episodes, shouldShake, searchText }) => {
     </ul>
   );
 };
-const RemovedList = ({ episodes, shouldShake, searchText }) => {
-  const classesEpList = classnames(styles.EpisodeList, {
-    shake: shouldShake,
-  });
-
+const RemovedList = ({ episodes, searchText, className, id, ariaLabelledBy }) => {
   return (
-    <ul className={classesEpList}>
+    <ul className={className} role="tabpanel" id={id} aria-labelledby={ariaLabelledBy}>
       {episodes.length > 0
         ? episodes.map((ep) => (
             <li
