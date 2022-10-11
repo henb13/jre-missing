@@ -51,12 +51,19 @@ const Sort = ({ setEpisodes, episodes, listShown }) => {
     setEpisodes([...nonNulls, ...nulls]);
   };
 
+  const disclosureId = "sort-by-toggle";
+  const optionsWrapperId = "sort-by-content";
+
   return (
     <div
       className={classnames(styles.sort, {
         [styles.open]: open,
       })}>
-      <Disclosure isOpen={open} onClick={() => setOpen((open) => !open)}>
+      <Disclosure
+        isOpen={open}
+        onClick={() => setOpen((open) => !open)}
+        id={disclosureId}
+        ariaControls={optionsWrapperId}>
         Sort by
         <Chavron
           className={classnames(styles.Chavron, {
@@ -64,7 +71,12 @@ const Sort = ({ setEpisodes, episodes, listShown }) => {
           })}
         />
       </Disclosure>
-      <div role="listbox" className={styles.optionsWrapper}>
+      <div
+        role="listbox"
+        className={styles.optionsWrapper}
+        id={optionsWrapperId}
+        aria-labelledby={disclosureId}
+        aria-expanded={open}>
         {options[listShown]?.map((option) => {
           return (
             <Option

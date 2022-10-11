@@ -7,7 +7,7 @@ import { ReactComponent as Chavron } from "../icons/chavron.svg";
 
 const ChangeDetails = ({ episode }) => {
   const [open, setOpen] = useState(false);
-  const id = `${episode.full_name}-change-history`;
+  const disclosureId = `${episode.full_name}-toggle`;
 
   const [latestChange, ...restOfChanges] = episode.changes;
 
@@ -16,7 +16,8 @@ const ChangeDetails = ({ episode }) => {
     onClick: () => {
       setOpen((open) => !open);
     },
-    ariaControls: id,
+    ariaControls: `${episode.full_name}-change-history-wrapper`,
+    id: disclosureId,
   };
 
   return (
@@ -49,7 +50,10 @@ const ChangeDetails = ({ episode }) => {
               />
             </Disclosure>
           </div>
-          <div id={id}>
+          <div
+            aria-expanded={open}
+            aria-labelledby={disclosureId}
+            id={`${episode.full_name}-change-history-wrapper`}>
             {open && (
               <div className={styles.restOfChangesItems}>
                 {restOfChanges.map((change) => {
