@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ReactComponent as Arrow } from "../icons/arrow.svg";
 import { useState } from "react";
 import classnames from "classnames";
@@ -6,26 +7,48 @@ import Disclosure from "./Disclosure";
 import { ReactComponent as Chavron } from "../icons/chavron.svg";
 
 const OptionToPropertyMap = {
-  "episode number": "episode_number",
-  "date removed": "date_removed",
+  "episode number": ["episode_number"],
+  "date removed": ["date_removed"],
+  "date shortened": ["changes", "date_changed"],
+};
+const options = {
+  removed: ["episode number", "date removed"],
+  shortened: ["episode number", "date shortened"],
 };
 
-const Sort = ({ setMissingEpisodesShown, allEpisodes }) => {
-  const options = ["episode number", "date removed"];
+const initialState = { name: "episode number", reverse: false };
+
+const Sort = ({ setEpisodes, episodes, listShown }) => {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState({ name: options[0], reverse: false });
+  const [selected, setSelected] = useState(initialState);
+
+  useEffect(() => {
+    setSelected(initialState);
+  }, [listShown]);
 
   const handleSort = (option, isReversed) => {
-    const property = OptionToPropertyMap[option];
-    const nulls = allEpisodes.filter((ep) => !ep[property]);
-    const nonNulls = allEpisodes
-      .filter((ep) => ep[property])
-      .sort((a, b) => {
-        [a, b] = isReversed ? [a, b] : [b, a];
-        return a[property] - b[property];
-      });
+    const properties = OptionToPropertyMap[option];
+    const firstProp = properties[0];
 
-    setMissingEpisodesShown([...nonNulls, ...nulls]);
+    let nulls;
+    let nonNulls;
+    if (firstProp === "changes") {
+      nulls = [];
+      nonNulls = nonNulls = episodes.sort((a, b) => {
+        [a, b] = isReversed ? [a, b] : [b, a];
+        return a[firstProp][0].date_changed - b[firstProp][0].date_changed;
+      });
+    } else {
+      nulls = episodes.filter((ep) => !ep[firstProp]);
+      nonNulls = episodes
+        .filter((ep) => ep[firstProp])
+        .sort((a, b) => {
+          [a, b] = isReversed ? [a, b] : [b, a];
+          return a[firstProp] - b[firstProp];
+        });
+    }
+
+    setEpisodes([...nonNulls, ...nulls]);
   };
 
   return (
@@ -42,7 +65,7 @@ const Sort = ({ setMissingEpisodesShown, allEpisodes }) => {
         />
       </Disclosure>
       <div role="listbox" className={styles.optionsWrapper}>
-        {options?.map((option) => {
+        {options[listShown]?.map((option) => {
           return (
             <Option
               optionName={option}
@@ -60,7 +83,7 @@ const Sort = ({ setMissingEpisodesShown, allEpisodes }) => {
 
 function Option({ optionName, selected, setSelected, handleSort }) {
   const isSelected = selected.name === optionName;
-  const isReversed = selected.name === optionName && selected.reverse;
+  const isReversed = isSelected && selected.reverse;
   function handleClick() {
     const newReverse = isSelected ? !isReversed : isReversed;
     setSelected({ name: optionName, reverse: newReverse });

@@ -88,8 +88,9 @@ function App() {
       {!error && (
         <section className="right">
           <Sort
-            setMissingEpisodesShown={setMissingEpisodesShown}
-            allEpisodes={data?.missingEpisodes}
+            listShown={listShown}
+            setEpisodes={currentList.setEpisodes}
+            episodes={currentList.episodes}
           />
           <EpisodeList
             episodes={currentList.episodes}
