@@ -2,7 +2,6 @@ import { useState } from "react";
 import classnames from "classnames";
 import Disclosure from "./Disclosure";
 import styles from "./ChangeDetails.module.css";
-import { getDateString, formatMsToTimeString } from "../utils";
 import { ReactComponent as Chavron } from "../icons/chavron.svg";
 
 const ChangeDetails = ({ episode }) => {
@@ -24,15 +23,11 @@ const ChangeDetails = ({ episode }) => {
     <div className={styles.ChangeDetails}>
       <div className={styles.ChangeDisplay}>
         <p>
-          <span className={styles.displayTime}>
-            {formatMsToTimeString(latestChange.old_duration)}
-          </span>
+          <span className={styles.displayTime}>{latestChange.old_duration_string}</span>
         </p>
         <span>&gt;</span>
         <p>
-          <span className={styles.displayTime}>
-            {formatMsToTimeString(latestChange.new_duration)}
-          </span>
+          <span className={styles.displayTime}>{latestChange.new_duration_string}</span>
         </p>
       </div>
       {restOfChanges.length > 0 && (
@@ -76,11 +71,11 @@ const ChangeDetails = ({ episode }) => {
 const ChangeDisplay = ({ change }) => {
   return (
     <div className={styles.ChangeDisplayWrapper}>
-      <p className={styles.ChangeDisplayDate}>{getDateString(change.date_changed)}</p>
+      <p className={styles.ChangeDisplayDate}>{change.date_changed_string}</p>
       <p className={styles.ChangeDisplay}>
-        <span className={styles.displayTime}>{formatMsToTimeString(change.old_duration)}</span>
+        <span className={styles.displayTime}>{change.old_duration_string}</span>
         <span>&gt;</span>
-        <span className={styles.displayTime}>{formatMsToTimeString(change.new_duration)}</span>
+        <span className={styles.displayTime}>{change.new_duration_string}</span>
       </p>
     </div>
   );

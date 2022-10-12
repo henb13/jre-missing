@@ -1,3 +1,5 @@
+const { mapMissingEpisodes, mapShortenedEpisodes } = require("./mapQueries");
+
 const getEpisodeNumber = require("../lib/getEpisodeNumber");
 
 const DB = (client) => {
@@ -19,7 +21,7 @@ const DB = (client) => {
         WHERE on_spotify = false
         ORDER BY episode_number DESC NULLS LAST, all_eps.id`
       );
-      return rows.map((ep) => ({ ...ep, date_removed: parseInt(ep.date_removed) }));
+      return mapMissingEpisodes(rows);
     },
     getShortenedEpisodes: async function () {
       const { rows } = await client.query(
@@ -33,22 +35,7 @@ const DB = (client) => {
          ON all_eps.id = t2.episode_id
          ORDER BY date_changed DESC`
       );
-      return rows.reduce((acc, curr) => {
-        const { id, episode_number, full_name, date_changed, new_duration, old_duration } =
-          curr;
-        const changeItem = {
-          date_changed: parseInt(date_changed),
-          new_duration,
-          old_duration,
-        };
-        const index = acc.findIndex((item) => item.id === curr.id);
-        if (index > 0) {
-          acc[index].changes.push(changeItem);
-        } else {
-          acc.push({ id, episode_number, full_name, changes: [changeItem] });
-        }
-        return acc;
-      }, []);
+      return mapShortenedEpisodes(rows);
     },
     insertNewEpisode: async function (episode) {
       const epNumber = getEpisodeNumber(episode.name);

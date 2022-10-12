@@ -1,17 +1,11 @@
 import styles from "./Episode.module.css";
-import classnames from "classnames";
 
-import { differenceInDays, parseISO } from "date-fns";
 import { getDateString, getDateTimeHTMLAttribute } from "../utils";
 
-const NEWL_THRESHOLD = 14;
-
-const Episode = ({ number, name, variant, dateInMs }) => {
+const Episode = ({ number, name, variant, dateInMs, isNew }) => {
   // eslint-disable-next-line no-unused-vars
   let [_, ...guest] = name.split("-");
   guest = guest.join("-");
-  const isNew =
-    dateInMs && differenceInDays(new Date(), parseISO(new Date(dateInMs))) < NEWL_THRESHOLD;
 
   return (
     <div className={styles.epContent}>
@@ -27,10 +21,7 @@ const Episode = ({ number, name, variant, dateInMs }) => {
         )}
       </div>
       {dateInMs && (
-        <span
-          className={classnames(styles.timeDetail, {
-            [styles.shortenedDetail]: variant === "shortened",
-          })}>
+        <span className={styles.timeDetail}>
           {variant === "removed" ? "Removed" : "Shortened"} on <Time date={dateInMs} />
         </span>
       )}

@@ -76,6 +76,7 @@ const ShortenedList = ({ episodes, searchText, className, id, ariaLabelledBy }) 
                   number={ep.episode_number}
                   name={ep.full_name}
                   dateInMs={ep.changes[0].date_changed}
+                  isNew={ep.isNew}
                 />
                 <ChangeDetails episode={ep} />
               </li>
@@ -104,6 +105,7 @@ const RemovedList = ({ episodes, searchText, className, id, ariaLabelledBy }) =>
                 number={ep.episode_number}
                 name={ep.full_name}
                 dateInMs={ep.date_removed}
+                isNew={ep.isNew}
               />
             </li>
           ))

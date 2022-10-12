@@ -34,7 +34,7 @@ async function refreshDb() {
           if (correspondingSpotifyEpisode.duration < dbEpisode.duration) {
             await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
             console.info(
-              ` \n Spotify has shortened the duration of episode: ${dbEpisode.full_name} \n
+              ` \n\n Spotify has shortened the duration of episode: ${dbEpisode.full_name} \n
                   from: ${dbEpisode.duration} \n 
                   to: ${correspondingSpotifyEpisode.duration} \n\n`
             );
@@ -51,7 +51,7 @@ async function refreshDb() {
             await db.updateEpisodeName(spotifyEpisode.name, dbEpisode.id);
             someEpisodeNameGotUpdated = true;
             console.info(
-              ` \n spotify updated the name of an episode! \n
+              ` \n\n spotify updated the name of an episode! \n
                                   from: ${dbEpisode.full_name} \n 
                                   to: ${spotifyEpisode.name} \n\n`
             );
@@ -71,11 +71,11 @@ async function refreshDb() {
         if (!spotifyEpisodeNames.includes(dbEpisode.full_name)) {
           if (dbEpisode.on_spotify) {
             await db.setSpotifyStatus(dbEpisode, false);
-            console.info(`\nNew episode removed!: ${dbEpisode.full_name} \n`);
+            console.info(`\n\nNew episode removed!: ${dbEpisode.full_name} \n\n`);
           }
         } else if (!dbEpisode.on_spotify) {
           await db.setSpotifyStatus(dbEpisode, true);
-          console.info(`\nNew episode re-added: ${dbEpisode.full_name} \n`);
+          console.info(`\n\nNew episode re-added: ${dbEpisode.full_name} \n\n`);
         }
       }
 
