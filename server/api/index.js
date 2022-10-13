@@ -48,7 +48,7 @@ router.get("/api/episodes", async (_, res) => {
   res.json({
     missingEpisodes: missingEpisodesCache,
     shortenedEpisodes: shortenedEpisodesCache,
-    lastChecked: lastCheckedCache,
+    lastCheckedInMs: lastCheckedCache,
   });
 });
 

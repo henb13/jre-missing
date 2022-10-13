@@ -1,4 +1,4 @@
-const { mapMissingEpisodes, mapShortenedEpisodes } = require("./mapQueries");
+const { mapMissingEpisodes, mapShortenedEpisodes, mapLastChecked } = require("./mapQueries");
 
 const getEpisodeNumber = require("../lib/getEpisodeNumber");
 
@@ -60,12 +60,10 @@ const DB = (client) => {
     },
     getLastChecked: async function () {
       const { rows } = await client.query(
-        `SELECT last_checked, EXTRACT(EPOCH FROM last_checked at time zone 'UTC') * 1000 AS miliseconds 
+        `SELECT EXTRACT(EPOCH FROM last_checked at time zone 'UTC') * 1000 AS miliseconds 
         FROM all_eps_log`
       );
-      return {
-        miliseconds: parseInt(rows[0]?.miliseconds),
-      };
+      return mapLastChecked(rows);
     },
   };
 };

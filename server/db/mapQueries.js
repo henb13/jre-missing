@@ -55,7 +55,12 @@ const mapShortenedEpisodes = (shortenedEpisodes) => {
   }, []);
 };
 
+const mapLastChecked = (rows) => {
+  return parseInt(rows[0]?.miliseconds);
+};
+
 module.exports = {
   mapMissingEpisodes,
   mapShortenedEpisodes,
+  mapLastChecked,
 };

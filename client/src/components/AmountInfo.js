@@ -10,7 +10,7 @@ const AmountInfo = ({ data, showSkeleton }) => {
 
   const { missingEpisodes, shortenedEpisodes } = data;
 
-  const lastChecked = data.lastChecked.miliseconds;
+  const lastChecked = data.lastCheckedInMs;
   const lastCheckedMinutes = lastChecked
     ? Math.floor((new Date() - new Date(lastChecked)) / 60000)
     : 0;
