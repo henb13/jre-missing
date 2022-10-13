@@ -91,6 +91,6 @@ h1 span {
 
 @media (orientation: landscape) AND (max-height: 650px) {
   .Header {
-    margin-top: 7rem;
+    margin-top: 11rem;
   }
 }
