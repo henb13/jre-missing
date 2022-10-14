@@ -4,6 +4,11 @@
   flex-direction: column;
 }
 
+.epName {
+  display: flex;
+  align-items: center;
+}
+
 .epNumber {
   color: var(--color-orange);
   margin-right: 1rem;
@@ -16,16 +21,18 @@
 }
 
 .new {
-  position: absolute;
-  transform: scale(0.75);
-  left: -5rem;
-  font-size: var(--font-size-small);
+  font-size: 11px;
   color: var(--color-black);
-  font-weight: bold;
+  font-weight: 700;
   line-height: 100%;
-  padding: 3px 8px;
+  padding: 2px 8px 4px;
   border-radius: 13%;
   background-color: var(--color-green);
+  margin-bottom: 5px;
+  width: min-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 1350px) {
@@ -44,15 +51,5 @@
     display: block;
     margin: 1rem 0 0 0;
     font-size: var(--font-size-small);
-  }
-
-  .new {
-    position: unset;
-    font-size: var(--font-size-medium);
-    display: block;
-    width: min-content;
-    margin: 0 auto;
-    margin-bottom: 0.75rem;
-    padding: 6px 12px;
   }
 }

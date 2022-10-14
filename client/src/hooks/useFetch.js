@@ -1,4 +1,4 @@
-import { mockResponse } from "../mock/mockResponse";
+import { mockResponse } from "../__mocks__/mockResponse";
 import { useState, useEffect } from "react";
 
 const useFetch = (url) => {

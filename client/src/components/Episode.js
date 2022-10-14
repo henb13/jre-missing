@@ -10,7 +10,7 @@ const Episode = ({ number, name, variant, dateInMs, isNew }) => {
   return (
     <div className={styles.epContent}>
       {isNew && <span className={styles.new}>new</span>}
-      <div>
+      <div className={styles.epName}>
         {number ? (
           <>
             <span className={styles.epNumber}>#{number}</span>
