@@ -1,39 +1,48 @@
-const { formatMsToTimeString, getDateString } = require("../utils/utils");
-
 const { differenceInDays, parseISO } = require("date-fns");
+const {
+  formatMsToTimeString,
+  getDateString,
+  getDateTimeHTMLAttribute,
+} = require("../utils/utils");
 
 const DAYS_THRESHOLD_NEW = 14;
 
 const getIsEpisodeNewlyReleased = (time) =>
-  time && differenceInDays(new Date(), parseISO(new Date(time))) < DAYS_THRESHOLD_NEW;
+  time &&
+  differenceInDays(new Date(), parseISO(new Date(time).toISOString())) < DAYS_THRESHOLD_NEW;
 
 const mapMissingEpisodes = (missingEpisodes) => {
   return missingEpisodes.map((ep) => {
-    const date_removed = parseInt(ep.date_removed);
+    const { full_name, episode_number, date_removed } = ep;
+    const ms = parseInt(date_removed);
+
     return {
-      ...ep,
-      isNew: getIsEpisodeNewlyReleased(date_removed),
-      date_removed,
+      full_name,
+      episode_number,
+      isNew: getIsEpisodeNewlyReleased(ms),
+      date: ms
+        ? {
+            ms,
+            formatted: getDateString(ms),
+            htmlAttribute: getDateTimeHTMLAttribute(ms),
+          }
+        : null,
     };
   });
 };
 
 const mapShortenedEpisodes = (shortenedEpisodes) => {
   return shortenedEpisodes.reduce((acc, curr) => {
-    const {
-      id,
-      episode_number,
-      full_name,
-      date_changed: date_change_raw,
-      new_duration,
-      old_duration,
-    } = curr;
+    const { id, episode_number, full_name, date_changed, new_duration, old_duration } = curr;
 
-    const date_changed = parseInt(date_change_raw);
+    const ms = parseInt(date_changed);
 
     const changeItem = {
-      date_changed,
-      date_changed_string: getDateString(date_changed),
+      date: {
+        ms,
+        formatted: getDateString(ms),
+        htmlAttribute: getDateTimeHTMLAttribute(ms),
+      },
       new_duration_string: formatMsToTimeString(new_duration),
       old_duration_string: formatMsToTimeString(old_duration),
     };
@@ -47,7 +56,7 @@ const mapShortenedEpisodes = (shortenedEpisodes) => {
         id,
         episode_number,
         full_name,
-        isNew: getIsEpisodeNewlyReleased(changeItem.date_changed),
+        isNew: getIsEpisodeNewlyReleased(ms),
         changes: [changeItem],
       });
     }

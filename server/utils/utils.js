@@ -14,6 +14,10 @@ const getDateString = (time) => {
   return getClientLocalTime(time, "PPP");
 };
 
+const getDateTimeHTMLAttribute = (time) => {
+  return getClientLocalTime(time, "yyyy-MM-dd");
+};
+
 const formatMsToTimeString = (time) => {
   const hours = Math.floor(time / 1000 / 60 / 60);
   const minutesRest = (time / 1000 / 60) % 60;
@@ -25,4 +29,5 @@ module.exports = {
   getClientLocalTime,
   formatMsToTimeString,
   getDateString,
+  getDateTimeHTMLAttribute,
 };

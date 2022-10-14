@@ -14,10 +14,6 @@ export const getDateString = (time) => {
   return getClientLocalTime(time, "PPP");
 };
 
-export const getDateTimeHTMLAttribute = (time) => {
-  return getClientLocalTime(time, "yyyy-MM-dd");
-};
-
 export const formatMinutesToTimeAmountString = (minutes) => {
   if (minutes < 1) {
     return "less than a minute ";

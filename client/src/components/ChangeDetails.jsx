@@ -69,13 +69,20 @@ const ChangeDetails = ({ episode }) => {
 };
 
 const ChangeDisplay = ({ change }) => {
+  const {
+    date: { formatted, htmlAttribute },
+    old_duration_string,
+    new_duration_string,
+  } = change;
   return (
     <div className={styles.ChangeDisplayWrapper}>
-      <p className={styles.ChangeDisplayDate}>{change.date_changed_string}</p>
+      <time dateTime={htmlAttribute} className={styles.ChangeDisplayDate}>
+        {formatted}
+      </time>
       <p className={styles.ChangeDisplay}>
-        <span className={styles.displayTime}>{change.old_duration_string}</span>
+        <span className={styles.displayTime}>{old_duration_string}</span>
         <span>&gt;</span>
-        <span className={styles.displayTime}>{change.new_duration_string}</span>
+        <span className={styles.displayTime}>{new_duration_string}</span>
       </p>
     </div>
   );

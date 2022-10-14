@@ -60,6 +60,34 @@ const EpisodeList = ({
   );
 };
 
+const RemovedList = ({ episodes, searchText, className, id, ariaLabelledBy }) => {
+  return (
+    <ul className={className} role="tabpanel" id={id} aria-labelledby={ariaLabelledBy}>
+      {episodes.length > 0
+        ? episodes.map((ep) => (
+            <li
+              className={styles.EpisodeItem}
+              key={ep.full_name + ep.episode_number}
+              lang="en">
+              <Border />
+              <Episode
+                variant="removed"
+                name={ep.full_name}
+                number={ep.episode_number}
+                date={ep.date}
+                isNew={ep.isNew}
+              />
+            </li>
+          ))
+        : !searchText && (
+            <div className={styles.NoEpisodesMessage}>
+              No episodes have been removed yet. Check back later!
+            </div>
+          )}
+    </ul>
+  );
+};
+
 const ShortenedList = ({ episodes, searchText, className, id, ariaLabelledBy }) => {
   return (
     <ul className={className} role="tabpanel" id={id} aria-labelledby={ariaLabelledBy}>
@@ -73,9 +101,9 @@ const ShortenedList = ({ episodes, searchText, className, id, ariaLabelledBy }) 
                 {i !== 0 && <Border />}
                 <Episode
                   variant="shortened"
-                  number={ep.episode_number}
                   name={ep.full_name}
-                  dateInMs={ep.changes[0].date_changed}
+                  number={ep.episode_number}
+                  date={ep.changes[0].date}
                   isNew={ep.isNew}
                 />
                 <ChangeDetails episode={ep} />
@@ -85,33 +113,6 @@ const ShortenedList = ({ episodes, searchText, className, id, ariaLabelledBy }) 
         : !searchText && (
             <div className={styles.NoEpisodesMessage}>
               No episodes have been shortened yet. Check back later!
-            </div>
-          )}
-    </ul>
-  );
-};
-const RemovedList = ({ episodes, searchText, className, id, ariaLabelledBy }) => {
-  return (
-    <ul className={className} role="tabpanel" id={id} aria-labelledby={ariaLabelledBy}>
-      {episodes.length > 0
-        ? episodes.map((ep) => (
-            <li
-              className={styles.EpisodeItem}
-              key={ep.full_name + ep.episode_number}
-              lang="en">
-              <Border />
-              <Episode
-                variant="removed"
-                number={ep.episode_number}
-                name={ep.full_name}
-                dateInMs={ep.date_removed}
-                isNew={ep.isNew}
-              />
-            </li>
-          ))
-        : !searchText && (
-            <div className={styles.NoEpisodesMessage}>
-              No episodes have been removed yet. Check back later!
             </div>
           )}
     </ul>

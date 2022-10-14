@@ -1,8 +1,6 @@
 import styles from "./Episode.module.css";
 
-import { getDateString, getDateTimeHTMLAttribute } from "../utils";
-
-const Episode = ({ number, name, variant, dateInMs, isNew }) => {
+const Episode = ({ variant, name, number, date, isNew }) => {
   // eslint-disable-next-line no-unused-vars
   let [_, ...guest] = name.split("-");
   guest = guest.join("-");
@@ -20,20 +18,14 @@ const Episode = ({ number, name, variant, dateInMs, isNew }) => {
           name
         )}
       </div>
-      {dateInMs && (
+      {date && (
         <span className={styles.timeDetail}>
-          {variant === "removed" ? "Removed" : "Shortened"} on <Time date={dateInMs} />
+          {variant === "removed" ? "Removed" : "Shortened"} on{" "}
+          <time dateTime={date.htmlAttribute}>{date.formatted}</time>
         </span>
       )}
     </div>
   );
-};
-
-const Time = ({ date }) => {
-  const dateTimeValue = getDateTimeHTMLAttribute(date);
-  const dateString = getDateString(date);
-
-  return <time dateTime={dateTimeValue}>{dateString}</time>;
 };
 
 export default Episode;
