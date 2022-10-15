@@ -2,12 +2,12 @@ CREATE DATABASE jre_missing;
 
 DROP TABLE IF EXISTS all_eps, test_table, date_removed, date_re_added, all_eps_log;
 
-
 CREATE TABLE all_eps(
   id SERIAL NOT NULL UNIQUE PRIMARY KEY,
   episode_number INTEGER,
   full_name VARCHAR(255) NOT NULL, 
   on_spotify BOOLEAN NOT NULL
+  duration INTEGER;
 );
 
 CREATE TABLE test_table(
@@ -15,6 +15,7 @@ CREATE TABLE test_table(
   episode_number INTEGER,
   full_name VARCHAR(255) NOT NULL, 
   on_spotify BOOLEAN NOT NULL
+  duration INTEGER;
 );
 
 CREATE TABLE date_removed(
@@ -40,6 +41,25 @@ CREATE TABLE all_eps_log(
   last_modified timestamptz(0)
 );
 
+CREATE TABLE duration_changes(
+  id SERIAL NOT NULL UNIQUE PRIMARY KEY,
+  episode_id INTEGER NOT NULL,
+  date timestamptz(0) NOT NULL,
+  old_duration INTEGER,
+  new_duration INTEGER,
+  CONSTRAINT fk_id
+    FOREIGN KEY(episode_id) 
+	  REFERENCES all_eps(id)
+);
+
+CREATE OR REPLACE FUNCTION change_duration() 
+RETURNS TRIGGER AS $cl$ 
+BEGIN 
+  INSERT INTO duration_changes VALUES(DEFAULT, NEW.id, now(), OLD.duration, NEW.duration);
+  RETURN NEW;
+END; 
+$cl$ LANGUAGE plpgsql;
+
 CREATE OR REPLACE FUNCTION last_modified() 
 RETURNS TRIGGER AS $lm$ 
 BEGIN 
@@ -62,13 +82,19 @@ BEGIN
 END; 
 $ss$ LANGUAGE plpgsql;
 
-CREATE TRIGGER spotify_status 
+CREATE OR REPLACE TRIGGER change_duration 
+AFTER UPDATE ON all_eps
+FOR EACH ROW
+WHEN (NEW.duration < OLD.duration)
+EXECUTE PROCEDURE change_duration();
+
+CREATE OR REPLACE TRIGGER spotify_status 
 AFTER UPDATE ON all_eps
 FOR EACH ROW
 WHEN (OLD.on_spotify IS DISTINCT FROM NEW.on_spotify)
 EXECUTE PROCEDURE spotify_status();
 
-CREATE TRIGGER last_modified
+CREATE OR REPLACE TRIGGER last_modified
 AFTER UPDATE OR INSERT OR DELETE ON all_eps
 FOR EACH ROW
 EXECUTE PROCEDURE last_modified();

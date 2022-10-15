@@ -1,55 +1,89 @@
+import { useEffect } from "react";
 import { ReactComponent as Arrow } from "../icons/arrow.svg";
-import { ReactComponent as Chavron } from "../icons/chavron.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import classnames from "classnames";
 import styles from "./Sort.module.css";
+import Disclosure from "./Disclosure";
+import { ReactComponent as Chavron } from "../icons/chavron.svg";
 
-const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
-  const options = ["episode number", "date removed"];
+const options = {
+  removed: ["episode number", "date removed"],
+  shortened: ["episode number", "date shortened"],
+};
+
+const initialState = { name: "episode number", reverse: false };
+
+const Sort = ({ setEpisodes, episodes, listShown }) => {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState({ name: options[0], reverse: false });
+  const [selected, setSelected] = useState(initialState);
 
   useEffect(() => {
-    if (!allEpisodes) return;
+    setSelected(initialState);
+  }, [listShown]);
 
-    setEpisodesShown(() => {
-      return allEpisodes
-        .filter((ep) =>
-          ep.full_name?.toLowerCase().includes(searchRef.current.value?.toLowerCase())
-        )
+  const handleSort = (option, isReversed) => {
+    let nulls;
+    let nonNulls;
+    if (option === "date shortened") {
+      nulls = [];
+      nonNulls = nonNulls = episodes.sort((a, b) => {
+        [a, b] = isReversed ? [a, b] : [b, a];
+        return a.changes[0].date.ms - b.changes[0].date.ms;
+      });
+    } else if (option === "date removed") {
+      nulls = episodes.filter((ep) => !ep.date);
+      nonNulls = episodes
+        .filter((ep) => ep.date)
         .sort((a, b) => {
-          [a, b] = selected.reverse ? [a, b] : [b, a];
-          switch (selected.name) {
-            case "episode number":
-              return a.episode_number - b.episode_number;
-            case "date removed":
-              return new Date(a.date_removed) - new Date(b.date_removed);
-            default:
-              return 0;
-          }
+          [a, b] = isReversed ? [a, b] : [b, a];
+          return a.date.ms - b.date.ms;
         });
-    });
-  }, [selected, setEpisodesShown, allEpisodes, searchRef]);
+      // episode number
+    } else {
+      nulls = episodes.filter((ep) => !ep.episode_number);
+      nonNulls = episodes
+        .filter((ep) => ep.episode_number)
+        .sort((a, b) => {
+          [a, b] = isReversed ? [a, b] : [b, a];
+          return a.episode_number - b.episode_number;
+        });
+    }
+
+    setEpisodes([...nonNulls, ...nulls]);
+  };
+
+  const disclosureId = "sort-by-toggle";
+  const optionsWrapperId = "sort-by-content";
 
   return (
-    <div className={styles.sort}>
-      <p onClick={() => setOpen((open) => !open)}>
-        Sort by{" "}
+    <div
+      className={classnames(styles.sort, {
+        [styles.open]: open,
+      })}>
+      <Disclosure
+        isOpen={open}
+        onClick={() => setOpen((open) => !open)}
+        id={disclosureId}
+        ariaControls={optionsWrapperId}>
+        Sort by
         <Chavron
-          className={classnames(styles.chavron, {
+          className={classnames(styles.Chavron, {
             [styles.open]: open,
           })}
         />
-      </p>
-      <div role="listbox" className={styles.options}>
-        {options?.map((o) => {
+      </Disclosure>
+      <div
+        role="listbox"
+        className={styles.optionsWrapper}
+        id={optionsWrapperId}
+        aria-labelledby={disclosureId}
+        aria-expanded={open}>
+        {options[listShown]?.map((option) => {
           return (
             <Option
-              className={classnames({
-                [styles.open]: open,
-              })}
-              optionName={o}
-              key={o}
+              optionName={option}
+              key={option}
+              handleSort={handleSort}
               selected={selected}
               setSelected={setSelected}
             />
@@ -60,23 +94,21 @@ const Sort = ({ setEpisodesShown, searchRef, allEpisodes }) => {
   );
 };
 
-function Option({ optionName, selected, setSelected, className }) {
-  const [reverse, setReverse] = useState(false);
+function Option({ optionName, selected, setSelected, handleSort }) {
   const isSelected = selected.name === optionName;
-
+  const isReversed = isSelected && selected.reverse;
   function handleClick() {
-    if (isSelected) {
-      setReverse((reverse) => !reverse);
-    }
-    setSelected({ name: optionName, reverse: isSelected ? !reverse : reverse });
+    const newReverse = isSelected ? !isReversed : isReversed;
+    setSelected({ name: optionName, reverse: newReverse });
+    handleSort(optionName, newReverse);
   }
 
   return (
-    <div
+    <button
       role="option"
       aria-selected={isSelected}
       aria-labelledby="option-label"
-      className={classnames(className, styles.option, {
+      className={classnames(styles.option, {
         [styles.selected]: isSelected,
       })}
       onClick={handleClick}>
@@ -89,10 +121,10 @@ function Option({ optionName, selected, setSelected, className }) {
 
       <Arrow
         className={classnames(styles.icon, {
-          [styles.iconReverse]: reverse,
+          [styles.iconReverse]: isReversed,
         })}
       />
-    </div>
+    </button>
   );
 }
 

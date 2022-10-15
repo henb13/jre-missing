@@ -1,0 +1,31 @@
+.githubSponsorButton {
+  position: fixed;
+  top: 3.55rem;
+  left: 20rem;
+  height: 35px;
+  width: 116px;
+  border: 0;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 1350px) {
+  .githubSponsorButton {
+    left: 8rem;
+    position: absolute;
+  }
+}
+
+@media (max-width: 750px) {
+  .githubSponsorButton {
+    top: 1.6rem;
+    left: 5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .githubSponsorButton {
+    top: 1.5rem;
+    left: 0;
+  }
+}

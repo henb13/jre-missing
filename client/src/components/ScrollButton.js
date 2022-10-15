@@ -1,18 +1,10 @@
 import TextTransition, { presets } from "react-text-transition";
 import classnames from "classnames";
-import { useEffect } from "react";
 import { ReactComponent as ArrowDown } from "../icons/ScrollButtonIcon.svg";
-import useScroll from "../hooks/useScroll";
 import styles from "./ScrollButton.module.css";
 
-const ScrollButton = ({ dataPending, minLoadingTimeElapsed, episodesShown }) => {
-  const { scrollTarget, scrollable, setScrollable } = useScroll();
-
-  useEffect(() => {
-    setScrollable(document.body.clientHeight > window.innerHeight);
-  }, [episodesShown, setScrollable]);
-
-  const hidden = !scrollable || dataPending || !minLoadingTimeElapsed;
+const ScrollButton = ({ dataPending, minLoadingTimeElapsed, scrollTarget, scrollable }) => {
+  const shouldHide = !scrollable || dataPending || !minLoadingTimeElapsed;
 
   function handleClick() {
     window.scroll({
@@ -26,9 +18,9 @@ const ScrollButton = ({ dataPending, minLoadingTimeElapsed, episodesShown }) => 
     <button
       className={classnames(styles.ScrollButton, {
         [styles.up]: scrollTarget === "top",
-        [styles.hidden]: hidden,
+        [styles.hidden]: shouldHide,
       })}
-      disabled={hidden}
+      disabled={shouldHide}
       aria-label={`scroll to ${scrollTarget}`}
       onClick={handleClick}>
       <div className={styles.ScrollText}>

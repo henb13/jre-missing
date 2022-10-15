@@ -1,65 +1,61 @@
 .sort {
-  position: fixed;
-  cursor: pointer;
-  color: var(--color-grey-secondary);
-  right: var(--number-right-placement);
-  border-top: 1px solid var(--color-white);
-}
-
-.sort p {
   display: flex;
-  align-items: center;
-  gap: 3px;
+  flex-direction: column;
+  align-items: flex-end;
+  color: var(--color-grey-secondary);
+  margin-right: 2.5rem;
+  margin-top: 6rem;
   font-size: var(--font-size-small);
 }
 
-.chavron {
-  transform: scale(0.65);
-  margin-top: 3.5px;
-  transition: transform 0.25s ease-out;
-}
-
-.chavron.open {
-  transform: rotate(180deg) scale(0.65);
-  margin-top: 3px;
-}
-
-.options {
+.optionsWrapper {
   display: flex;
   flex-direction: column;
   margin-top: 1.5rem;
 }
 
-.option {
-  display: flex;
-  align-items: center;
-  color: var(--color-grey-secondary);
-  padding: 0.5em 0.7em;
-  border: 1px solid var(--color-grey-secondary);
-  transition: color, border-color 0.5s;
+.sort.open .optionsWrapper {
+  cursor: pointer;
 }
 
-.option:not(.open) {
+.option {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-grey-secondary);
+  padding: 0.3em 0.6em 0.3em 1em;
+  border: 1px solid var(--color-grey-secondary);
+  transition: color, border-color 0.25s;
+}
+
+.option {
   visibility: hidden;
 }
 
-.option.open {
+.sort.open .option {
   visibility: visible;
 }
 
 .option .label {
   margin-right: 2px;
-  margin-left: 2px;
   transition: color 0.5s;
 }
-.option:hover,
+
 .option.selected {
   border-color: var(--color-white);
+}
+.option:not(.selected) {
+  transition: background-color 0.5s;
+}
+
+.option:hover:not(.selected) {
+  background-color: var(--color-black-secondary);
 }
 
 .icon {
   transform: scale(0.6);
-  transition: color, transform 0.3s ease-out;
+  transition: color, transform 0.25s ease-out;
 }
 
 .icon path {
@@ -79,4 +75,27 @@
 
 .iconReverse {
   transform: rotate(180deg) scale(0.6);
+}
+
+.Chavron {
+  transform: rotate(180deg) scale(0.65);
+  margin-top: 3px;
+  transition: transform 0.25s ease-out;
+}
+
+.Chavron.open {
+  transform: rotate(0deg) scale(0.65);
+  margin-top: 3px;
+}
+
+@media (max-width: 1350px) {
+  .sort {
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sort.open {
+    margin-bottom: 4rem;
+  }
 }

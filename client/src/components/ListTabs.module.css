@@ -1,0 +1,38 @@
+.ListTab {
+  font-size: var(--font-size-small);
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.option {
+  transition: color, border-color 0.25s;
+  padding-bottom: 0.5rem;
+  color: var(--color-grey);
+  transition: all 0.25s ease-out;
+  border-bottom: 1px solid;
+  border-color: var(--color-black);
+}
+
+.option.selected {
+  border-color: var(--color-white);
+}
+
+.option.selected,
+.option:hover {
+  color: var(--color-white);
+}
+
+.divider {
+  max-height: 50%;
+  width: 1px;
+  background-color: var(--color-grey);
+  opacity: 0.3;
+}
+
+@media (max-width: 1350px) {
+  .ListTab {
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+}

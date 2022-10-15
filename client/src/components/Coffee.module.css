@@ -1,0 +1,33 @@
+.Coffee {
+  position: fixed;
+  top: 3.65rem;
+  left: 36rem;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.CoffeeLogo {
+  max-height: 30px;
+}
+
+@media (max-width: 1350px) {
+  .Coffee {
+    left: 24rem;
+    position: absolute;
+  }
+}
+
+@media (max-width: 750px) {
+  .Coffee {
+    top: 1.65rem;
+    left: 21rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .Coffee {
+    top: 1.5rem;
+    left: 15rem;
+  }
+}

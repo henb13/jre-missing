@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import styles from "./SkeletonStyles.module.css";
 
 const SkeletonElement = ({ elStyle }) => {
@@ -12,10 +13,11 @@ const SkeletonElement = ({ elStyle }) => {
 
 const SkeletonText = () => {
   return (
-    <>
-      <SkeletonElement elStyle={styles.first} />
-      <SkeletonElement elStyle={styles.second} />
-    </>
+    <div className={styles.skeletonText}>
+      <SkeletonElement elStyle={styles.amount} />
+      <SkeletonElement elStyle={classnames(styles.amount, styles.shortened)} />
+      <SkeletonElement elStyle={styles.lastChecked} />
+    </div>
   );
 };
 

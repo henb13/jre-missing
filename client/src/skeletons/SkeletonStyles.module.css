@@ -1,10 +1,11 @@
 .SkeletonList {
-  position: relative;
   position: unset;
   font-size: 1.4rem;
   list-style-type: none;
-  display: grid;
-  grid-gap: 4.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+  margin-top: 6.5rem;
 }
 
 .SkeletonElement {
@@ -23,23 +24,23 @@
 }
 
 .SkeletonElement.extraSmall {
-  width: 110px;
+  width: 105px;
 }
 
 .SkeletonElement.small {
-  width: 160px;
+  width: 150px;
 }
 
 .SkeletonElement.medium {
-  width: 240px;
+  width: 220px;
 }
 
 .SkeletonElement.large {
-  width: 290px;
+  width: 260px;
 }
 
 .SkeletonElement.extraLarge {
-  width: 335px;
+  width: 325px;
 }
 
 .SkeletonShimmerWrapper {
@@ -71,25 +72,38 @@
   }
 }
 
-.first {
-  position: relative;
-  height: 24px;
-  width: 275px;
+.skeletonText {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10.5rem;
+  margin-bottom: 2.5rem;
 }
 
-.second {
+.amount {
   position: relative;
-  margin-top: 8px;
-  height: 20px;
-  width: 255px;
-  margin-bottom: 3rem;
+  height: 24px;
+  width: 280px;
+}
+
+.shortened {
+  margin-top: 10px;
+  height: 22px;
+  width: 240px;
+}
+
+.lastChecked {
+  position: relative;
+  margin-top: 7px;
+  height: 19px;
+  width: 250px;
 }
 
 @media (max-width: 1350px) {
   .SkeletonList {
-    justify-items: center;
-    margin-top: 4rem;
-    grid-gap: 6.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    gap: 9.15rem;
   }
 
   .SkeletonElement.extraSmall,
@@ -97,17 +111,31 @@
   .SkeletonElement.medium,
   .SkeletonElement.large,
   .SkeletonElement.extraLarge {
-    width: 155px;
+    width: 130px;
     height: 25px;
   }
 
-  .first {
-    margin: 4rem 0;
-    width: 290px;
-    height: 32px;
+  .skeletonText {
+    margin-top: 4.7rem;
+    align-items: center;
+    margin-bottom: 48px;
   }
 
-  .second {
-    display: none;
+  .amount {
+    width: 250px;
+    height: 22px;
+    margin-left: 2px;
+  }
+
+  .shortened {
+    width: 220px;
+    margin-top: 7px;
+    height: 21px;
+  }
+
+  .lastChecked {
+    height: 18px;
+    width: 150px;
+    margin-top: 10px;
   }
 }

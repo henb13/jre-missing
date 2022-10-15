@@ -28,20 +28,25 @@
   color: var(--color-white);
 }
 
-@media (max-width: 900px) {
-  .GithubText {
-    color: var(--color-grey-secondary);
-  }
-}
-
-@media (max-width: 900px) {
+@media (max-width: 1350px) {
   .Github {
     position: absolute;
   }
+
+  .GithubText {
+    display: none;
+  }
 }
+
 @media (max-width: 750px) {
   .Github {
     top: 2rem;
     left: 2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .Github {
+    display: none;
   }
 }

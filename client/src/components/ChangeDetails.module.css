@@ -1,0 +1,97 @@
+.ChangeDetails {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-small);
+  color: var(--color-grey-secondary);
+  margin-top: 0.75rem;
+}
+
+.headingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  background: var(--color-black-secondary);
+  padding: 2px 8px 4px;
+  border-radius: 5px;
+}
+
+.heading {
+  color: var(--color-white);
+  font-size: var(--font-size-small);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.ChangeDisplay {
+  display: flex;
+}
+
+.ChangeDisplayWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.ChangeDisplay {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.historyToggle {
+  color: var(--color-grey);
+  white-space: nowrap;
+}
+
+.historyToggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ChangeDisplayDate {
+  color: var(--color-grey);
+  margin-bottom: 2px;
+}
+
+.restOfChanges {
+  margin-top: 1rem;
+}
+
+.restOfChangesItems {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-black-secondary);
+  gap: 1.75rem;
+  padding: 1.5rem;
+  margin-top: -4px;
+}
+
+.Chavron {
+  transform: rotate(180deg) scale(0.65);
+  margin-top: 3px;
+  transition: transform 0.25s ease-out;
+}
+
+.Chavron.open {
+  transform: rotate(0deg) scale(0.65);
+  margin-top: 3px;
+}
+
+@media (max-width: 1350px) {
+  .ChangeDetails {
+    align-items: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .restOfChanges {
+    margin-top: 1.75rem;
+  }
+
+  .headingWrapper {
+    flex-direction: column;
+    gap: 0;
+    padding: 6px 32px;
+  }
+}

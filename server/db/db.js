@@ -1,3 +1,5 @@
+const { mapMissingEpisodes, mapShortenedEpisodes, mapLastChecked } = require("./mapQueries");
+
 const getEpisodeNumber = require("../lib/getEpisodeNumber");
 
 const DB = (client) => {
@@ -8,64 +10,60 @@ const DB = (client) => {
     },
     getMissingEpisodes: async function () {
       const { rows } = await client.query(
-        `SELECT full_name, date_removed, episode_number 
-                 FROM all_eps  
-                 LEFT JOIN (
-                 SELECT id, MAX(date_removed) as date_removed
-                 from date_removed 
-                 group by id
-                 ) as t2
-                 ON all_eps.id = t2.id 
-                 WHERE on_spotify = false 
-                 ORDER BY episode_number desc, all_eps.id`
+        `SELECT full_name, EXTRACT(EPOCH FROM date_removed at time zone 'UTC') * 1000 AS date_removed, episode_number 
+        FROM all_eps  
+        LEFT JOIN (
+          SELECT id, MAX(date_removed) AS date_removed
+          from date_removed 
+          group by id
+        ) AS t2
+        ON all_eps.id = t2.id 
+        WHERE on_spotify = false
+        ORDER BY episode_number DESC NULLS LAST, all_eps.id`
       );
-      return rows.sort((a, b) => b.episode_number - a.episode_number);
+      return mapMissingEpisodes(rows);
     },
-
-    insertNewEpisode: async function (episodeName) {
-      const epNumber = getEpisodeNumber(episodeName);
-      await client.query("INSERT INTO all_eps VALUES(DEFAULT, $1, $2, $3)", [
+    getShortenedEpisodes: async function () {
+      const { rows } = await client.query(
+        `SELECT all_eps.id AS id, episode_number, full_name, EXTRACT(EPOCH FROM date_changed at time zone 'UTC') * 1000 AS date_changed, new_duration, old_duration
+        FROM all_eps
+        JOIN (
+          SELECT id, episode_id, new_duration, old_duration, date AS date_changed
+          FROM duration_changes
+          GROUP BY episode_id, id, old_duration
+         ) AS t2
+         ON all_eps.id = t2.episode_id
+         ORDER BY date_changed DESC`
+      );
+      return mapShortenedEpisodes(rows);
+    },
+    insertNewEpisode: async function (episode) {
+      const epNumber = getEpisodeNumber(episode.name);
+      await client.query("INSERT INTO all_eps VALUES(DEFAULT, $1, $2, $3, $4)", [
         epNumber,
-        episodeName,
+        episode.name,
         true,
+        episode.duration,
       ]);
     },
-
-    updateEpisodeName: async function (value, id) {
-      await client.query("UPDATE all_eps SET full_name=($1) WHERE id=($2)", [value, id]);
+    updateEpisodeName: async function (name, id) {
+      await client.query("UPDATE all_eps SET full_name=($1) WHERE id=($2)", [name, id]);
     },
-
+    updateEpisodeDuration: async function (newDuration, id) {
+      await client.query("UPDATE all_eps SET duration=($1) WHERE id=($2)", [newDuration, id]);
+    },
     setSpotifyStatus: async function ({ id }, bool) {
       await client.query(`UPDATE all_eps SET on_spotify=($1) WHERE id=($2)`, [bool, id]);
     },
-
-    setLastChecked: async function () {
+    setLastCheckedNow: async function () {
       await client.query("UPDATE all_eps_log SET last_checked=now()");
     },
-
     getLastChecked: async function () {
       const { rows } = await client.query(
-        "SELECT last_checked, EXTRACT(EPOCH FROM last_checked at time zone 'UTC') AS miliseconds from all_eps_log"
+        `SELECT EXTRACT(EPOCH FROM last_checked at time zone 'UTC') * 1000 AS miliseconds 
+        FROM all_eps_log`
       );
-      return {
-        last_checked: rows[0]?.last_checked,
-        miliseconds: rows[0]?.miliseconds * 1000,
-      };
-    },
-
-    getEpisodesWithSameEpNumber: async function () {
-      const { rows } = await client.query(
-        `SELECT *
-                 FROM all_eps A
-                 JOIN (
-                 SELECT COUNT(*) as Count, B.episode_number
-                 FROM all_eps B
-                 GROUP BY B.episode_number
-                 ) AS B ON A.episode_number = B.episode_number
-                 WHERE B.Count > 1
-                 ORDER by A.episode_number;`
-      );
-      return rows;
+      return mapLastChecked(rows);
     },
   };
 };

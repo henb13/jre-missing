@@ -13,17 +13,13 @@
 .right {
   display: flex;
   align-items: flex-start;
-  margin: 11rem 0rem 9rem 54vw;
+  margin: 9rem 0rem 9rem 49vw;
 }
 
 @media (max-width: 1700px) {
   .left {
     left: 20rem;
     top: 17rem;
-  }
-
-  .right {
-    margin: 11rem 0rem 9rem 55vw;
   }
 }
 
@@ -50,7 +46,7 @@
   }
 
   .right {
-    margin-top: 4rem;
+    margin-top: 2rem;
   }
 }
 
@@ -68,6 +64,6 @@
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  white-space: nowrap; /* added line */
+  white-space: nowrap;
   border: 0;
 }

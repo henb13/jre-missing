@@ -1,42 +1,30 @@
 import styles from "./Episode.module.css";
-import { differenceInDays, parseISO } from "date-fns";
-import getClientLocalTime from "../lib/getClientLocalTime";
 
-const NEWLY_REMOVED_THRESHOLD = 14;
-
-const Episode = ({ number, name, removedDate }) => {
-  let [epNumber, ...guest] = name.split("-");
+const Episode = ({ variant, name, number, date, isNew }) => {
+  // eslint-disable-next-line no-unused-vars
+  let [_, ...guest] = name.split("-");
   guest = guest.join("-");
 
-  const isNewlyRemoved =
-    differenceInDays(new Date(), parseISO(removedDate)) < NEWLY_REMOVED_THRESHOLD;
-
   return (
-    <li className={styles.EpisodeItem} key={name} lang="en">
-      {isNewlyRemoved && <span className={styles.new}>new</span>}
-      {number ? (
-        <>
-          <span className={styles.epNumber}>{epNumber.trim()}</span>
-          {guest.trim()}
-        </>
-      ) : (
-        name.trim()
+    <div className={styles.epContent}>
+      {isNew && <span className={styles.new}>new</span>}
+      <div className={styles.epName}>
+        {number ? (
+          <>
+            <span className={styles.epNumber}>#{number}</span>
+            <span className={styles.epGuest}>{guest}</span>
+          </>
+        ) : (
+          name
+        )}
+      </div>
+      {date && (
+        <span className={styles.timeDetail}>
+          {variant === "removed" ? "Removed" : "Shortened"} on{" "}
+          <time dateTime={date.htmlAttribute}>{date.formatted}</time>
+        </span>
       )}
-      {removedDate && <RemovedDetails removedDate={removedDate} />}
-    </li>
-  );
-};
-
-const RemovedDetails = ({ removedDate }) => {
-  const dateTimeValue = getClientLocalTime(removedDate, "yyyy-MM-dd");
-  const removedDateString = getClientLocalTime(removedDate, "PPP");
-
-  return (
-    <>
-      <span className={styles.removed}>
-        Removed on <time dateTime={dateTimeValue}>{removedDateString}</time>
-      </span>
-    </>
+    </div>
   );
 };
 

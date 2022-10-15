@@ -1,0 +1,13 @@
+.Disclosure {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.25s;
+  cursor: pointer;
+  color: var(--color-grey-secondary);
+  font-size: var(--font-size-small);
+}
+
+.Disclosure:hover {
+  color: var(--color-white-secondary);
+}

@@ -23,18 +23,20 @@
   transform: scale(1);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1350px) {
   .contact {
     position: absolute;
   }
-
-  .contact span {
-    color: var(--color-grey-secondary);
-  }
 }
+
 @media (max-width: 750px) {
   .contact {
     top: 2rem;
     right: 2rem;
+  }
+}
+@media (max-width: 450px) {
+  .contact span {
+    display: none;
   }
 }

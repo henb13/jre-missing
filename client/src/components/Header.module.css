@@ -24,6 +24,7 @@ h1 span {
 
 .intro span {
   color: var(--color-orange);
+  font-weight: 600;
   transition: color 0.75s;
 }
 
@@ -42,7 +43,7 @@ h1 span {
   z-index: -1;
   background-color: var(--color-orange);
   transform: scale(0, 1);
-  transition: transform 0.5s ease;
+  transition: transform 0.25s ease;
 }
 
 .intro span:hover:after {
@@ -90,6 +91,6 @@ h1 span {
 
 @media (orientation: landscape) AND (max-height: 650px) {
   .Header {
-    margin-top: 7rem;
+    margin-top: 11rem;
   }
 }

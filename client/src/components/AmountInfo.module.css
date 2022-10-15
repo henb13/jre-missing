@@ -1,14 +1,18 @@
-.AmountMissing {
+.AmountInfo {
   font-size: 2rem;
 }
 
-.AmountMissing span {
+.AmountInfoItem {
+  white-space: nowrap;
+}
+
+.AmountInfoItem .count {
   color: var(--color-red);
   font-weight: 700;
   position: relative;
 }
 
-.AmountMissing span:after {
+.AmountInfoItem .count:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -17,14 +21,21 @@
   bottom: 1px;
   border-bottom: 2px solid var(--color-red);
 }
+.AmountInfoItem .count.NoAmount:after {
+  border-color: var(--color-green);
+}
 
 .LastChecked {
   font-size: 1.4rem;
   display: flex;
   text-align: center;
-  margin-top: 3px;
+  margin-top: 1px;
   color: var(--color-grey);
   margin-bottom: 3rem;
+}
+
+.count.NoAmount {
+  color: var(--color-green);
 }
 
 .Checkmark {
@@ -33,18 +44,24 @@
 }
 
 @media (max-width: 1350px) {
-  .AmountMissing {
-    font-size: var(--font-size-large);
-    margin: 4rem 0;
+  .AmountInfo {
+    font-size: 1.8rem;
+    margin: 4.5rem 0 1.75rem;
     text-align: center;
   }
 
-  .AmountMissing span:after {
+  .AmountInfo .count:after {
     bottom: 0;
     width: 95%;
   }
 
   .LastChecked {
+    justify-content: center;
+    margin-left: 1.25rem;
+    margin-top: 0.7rem;
+  }
+
+  .LastChecked time {
     display: none;
   }
 }

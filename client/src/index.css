@@ -7,6 +7,7 @@
   --color-grey: #424242;
   --color-grey-secondary: #6b6b6b;
   --color-white: #fafafa;
+  --color-white-secondary: #e8e6e6;
   --color-orange: #ee7d2c;
   --color-red: #a51f21;
   --color-green: #1ed760;
@@ -58,6 +59,31 @@ button,
 select,
 a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: -webkit-focus-ring-color auto 2px;
 }
 
 .shake {
