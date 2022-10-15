@@ -49,9 +49,7 @@ const mapShortenedEpisodes = (shortenedEpisodes) => {
 
     const index = acc.findIndex((item) => item.id === curr.id);
 
-    if (index > 0) {
-      acc[index].changes.push(changeItem);
-    } else {
+    if (index === -1) {
       acc.push({
         id,
         episode_number,
@@ -59,6 +57,8 @@ const mapShortenedEpisodes = (shortenedEpisodes) => {
         isNew: getIsEpisodeNewlyReleased(ms),
         changes: [changeItem],
       });
+    } else {
+      acc[index].changes.push(changeItem);
     }
     return acc;
   }, []);

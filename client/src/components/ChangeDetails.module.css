@@ -51,6 +51,7 @@
 
 .ChangeDisplayDate {
   color: var(--color-grey);
+  margin-bottom: 2px;
 }
 
 .restOfChanges {

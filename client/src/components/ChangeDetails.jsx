@@ -34,8 +34,9 @@ const ChangeDetails = ({ episode }) => {
         <div className={styles.restOfChanges}>
           <div className={styles.headingWrapper}>
             <p className={styles.heading}>
-              Has been changed {restOfChanges.length} more times.
-            </p>{" "}
+              Has been changed {restOfChanges.length} more time
+              {restOfChanges.length === 1 ? "" : "s"} previously.
+            </p>
             <Disclosure className={styles.historyToggle} {...disclosureProps}>
               <span>View change history</span>
               <Chavron
@@ -51,7 +52,7 @@ const ChangeDetails = ({ episode }) => {
             id={`${episode.full_name}-change-history-wrapper`}>
             {open && (
               <div className={styles.restOfChangesItems}>
-                {restOfChanges.map((change) => {
+                {[latestChange, ...restOfChanges].map((change) => {
                   return (
                     <ChangeDisplay
                       change={change}
