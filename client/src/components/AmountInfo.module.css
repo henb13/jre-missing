@@ -2,6 +2,10 @@
   font-size: 2rem;
 }
 
+.AmountInfoItem {
+  white-space: nowrap;
+}
+
 .AmountInfoItem .count {
   color: var(--color-red);
   font-weight: 700;

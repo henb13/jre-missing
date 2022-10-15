@@ -14,18 +14,20 @@
 @media (max-width: 1350px) {
   .Coffee {
     left: 24rem;
-  }
-}
-
-@media (max-width: 900px) {
-  .Coffee {
     position: absolute;
   }
 }
 
 @media (max-width: 750px) {
   .Coffee {
-    top: 2rem;
+    top: 1.65rem;
     left: 21rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .Coffee {
+    top: 1.5rem;
+    left: 15rem;
   }
 }

@@ -1,10 +1,10 @@
 .SkeletonList {
-  position: relative;
   position: unset;
   font-size: 1.4rem;
   list-style-type: none;
-  display: grid;
-  grid-gap: 4.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4.4rem;
 }
 
 .SkeletonElement {
@@ -87,9 +87,9 @@
 
 @media (max-width: 1350px) {
   .SkeletonList {
-    justify-items: center;
+    justify-content: center;
     margin-top: 4rem;
-    grid-gap: 6.5rem;
+    gap: 6.5rem;
   }
 
   .SkeletonElement.extraSmall,

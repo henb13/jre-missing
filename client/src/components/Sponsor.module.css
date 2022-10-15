@@ -12,18 +12,20 @@
 @media (max-width: 1350px) {
   .githubSponsorButton {
     left: 8rem;
-  }
-}
-
-@media (max-width: 900px) {
-  .githubSponsorButton {
     position: absolute;
   }
 }
 
 @media (max-width: 750px) {
   .githubSponsorButton {
-    top: 2rem;
+    top: 1.6rem;
     left: 5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .githubSponsorButton {
+    top: 1.5rem;
+    left: 0;
   }
 }

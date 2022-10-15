@@ -55,7 +55,7 @@ const ChangeDetails = ({ episode }) => {
                   return (
                     <ChangeDisplay
                       change={change}
-                      key={`${episode.full_name}-${change.date_changed}`}
+                      key={`${episode.id}-${change.date.ms}-${change.new_duration}`}
                     />
                   );
                 })}

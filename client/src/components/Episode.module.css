@@ -1,17 +1,20 @@
 .epContent {
   display: flex;
-  /* align-items: center; */
   flex-direction: column;
 }
 
 .epName {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .epNumber {
   color: var(--color-orange);
-  margin-right: 1rem;
+}
+.epGuest {
+  text-align: center;
 }
 
 .timeDetail {
@@ -43,13 +46,18 @@
     width: 100%;
   }
 
-  .epNumber {
-    margin-right: 0.5rem;
+  .epContent {
+    align-items: center;
+  }
+
+  .epName {
+    justify-content: center;
+    gap: 0.5rem;
   }
 
   .timeDetail {
     display: block;
-    margin: 1rem 0 0 0;
+    margin: 4px 0 0 0;
     font-size: var(--font-size-small);
   }
 }
