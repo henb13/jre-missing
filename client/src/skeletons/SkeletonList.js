@@ -6,11 +6,11 @@ const SkeletonList = () => {
     Array.apply(null, Array(42)).map(() => {
       const random = Math.random();
       const type =
-        random > 85
+        random > 90
           ? styles.extraLarge
-          : random > 0.6
+          : random > 0.85
           ? styles.large
-          : random > 0.333
+          : random > 0.75
           ? styles.medium
           : random > 0.15
           ? styles.small
