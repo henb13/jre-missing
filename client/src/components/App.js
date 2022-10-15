@@ -24,8 +24,6 @@ function App() {
   const [listShown, setListShown] = useState("removed");
   const [searchText, setSearchText] = useState("");
 
-  console.log(data);
-
   const listMap = {
     removed: {
       episodes: missingEpisodesShown,

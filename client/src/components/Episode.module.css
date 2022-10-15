@@ -32,6 +32,7 @@
   border-radius: 13%;
   background-color: var(--color-green);
   margin-bottom: 8px;
+  margin-top: 4px;
   width: min-content;
   display: flex;
   justify-content: center;
