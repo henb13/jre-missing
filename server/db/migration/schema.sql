@@ -82,19 +82,19 @@ BEGIN
 END; 
 $ss$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE TRIGGER change_duration 
+CREATE TRIGGER change_duration
 AFTER UPDATE ON all_eps
 FOR EACH ROW
 WHEN (NEW.duration < OLD.duration)
 EXECUTE PROCEDURE change_duration();
 
-CREATE OR REPLACE TRIGGER spotify_status 
+CREATE TRIGGER spotify_status
 AFTER UPDATE ON all_eps
 FOR EACH ROW
 WHEN (OLD.on_spotify IS DISTINCT FROM NEW.on_spotify)
 EXECUTE PROCEDURE spotify_status();
 
-CREATE OR REPLACE TRIGGER last_modified
+CREATE TRIGGER last_modified
 AFTER UPDATE OR INSERT OR DELETE ON all_eps
 FOR EACH ROW
 EXECUTE PROCEDURE last_modified();
