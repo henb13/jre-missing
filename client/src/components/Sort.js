@@ -6,11 +6,6 @@ import styles from "./Sort.module.css";
 import Disclosure from "./Disclosure";
 import { ReactComponent as Chavron } from "../icons/chavron.svg";
 
-const OptionToPropertyMap = {
-  "episode number": ["episode_number"],
-  "date removed": ["date_removed"],
-  "date shortened": ["changes", "date_changed"],
-};
 const options = {
   removed: ["episode number", "date removed"],
   shortened: ["episode number", "date shortened"],
@@ -27,24 +22,30 @@ const Sort = ({ setEpisodes, episodes, listShown }) => {
   }, [listShown]);
 
   const handleSort = (option, isReversed) => {
-    const properties = OptionToPropertyMap[option];
-    const firstProp = properties[0];
-
     let nulls;
     let nonNulls;
-    if (firstProp === "changes") {
+    if (option === "date shortened") {
       nulls = [];
       nonNulls = nonNulls = episodes.sort((a, b) => {
         [a, b] = isReversed ? [a, b] : [b, a];
-        return a[firstProp][0].date_changed - b[firstProp][0].date_changed;
+        return a.changes[0].date.ms - b.changes[0].date.ms;
       });
-    } else {
-      nulls = episodes.filter((ep) => !ep[firstProp]);
+    } else if (option === "date removed") {
+      nulls = episodes.filter((ep) => !ep.date);
       nonNulls = episodes
-        .filter((ep) => ep[firstProp])
+        .filter((ep) => ep.date)
         .sort((a, b) => {
           [a, b] = isReversed ? [a, b] : [b, a];
-          return a[firstProp] - b[firstProp];
+          return a.date.ms - b.date.ms;
+        });
+      // episode number
+    } else {
+      nulls = episodes.filter((ep) => !ep.episode_number);
+      nonNulls = episodes
+        .filter((ep) => ep.episode_number)
+        .sort((a, b) => {
+          [a, b] = isReversed ? [a, b] : [b, a];
+          return a.episode_number - b.episode_number;
         });
     }
 
