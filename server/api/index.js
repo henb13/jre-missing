@@ -15,7 +15,7 @@ const { CRON_INTERVAL } = process.env;
 
 router.get("/api/episodes", async (_, res) => {
   const timeSinceLastCheckedDbInMins =
-    lastCheckedCache && (Date.now() - lastCheckedCache.miliseconds) / 1000 / 60;
+    lastCheckedCache && (Date.now() - lastCheckedCache) / 1000 / 60;
 
   const cacheTimeLeftSecs = Math.floor((CRON_INTERVAL - timeSinceLastCheckedDbInMins) * 60);
   const buffer = 120;
