@@ -105,6 +105,7 @@ const ShortenedList = ({ episodes, searchText, className, id, ariaLabelledBy }) 
                   number={ep.episode_number}
                   date={ep.changes[0].date}
                   isNew={ep.isNew}
+                  isOriginalLength={ep.isOriginalLength}
                 />
                 <ChangeDetails episode={ep} />
               </li>

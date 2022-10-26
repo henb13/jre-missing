@@ -1,4 +1,3 @@
-import { mockResponse } from "../__mocks__/mockResponse";
 import { useState, useEffect } from "react";
 
 const useFetch = (url) => {
@@ -29,17 +28,9 @@ const useFetch = (url) => {
         if (err.name === "AbortError") {
           console.warn("fetch aborted");
         } else {
-          // eslint-disable-next-line no-undef
-          if (process.env.NODE_ENV === "development") {
-            setIsPending(false);
-            setError(null);
-            setData(mockResponse);
-            console.info("Using mock data");
-          } else {
-            setIsPending(false);
-            console.error(`Something went wrong with fetching episodes: ${err}`);
-            setError(err.message);
-          }
+          setIsPending(false);
+          console.error(`Something went wrong with fetching episodes: ${err}`);
+          setError(err.message);
         }
       });
 
