@@ -9,7 +9,6 @@
 .headingWrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
   background: var(--color-black-secondary);
@@ -55,6 +54,7 @@
 }
 
 .restOfChanges {
+  width: fit-content;
   margin-top: 1rem;
 }
 

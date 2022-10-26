@@ -14,7 +14,7 @@ let lastCheckedCache;
 const { CRON_INTERVAL, USE_MOCK_DATA, NODE_ENV } = process.env;
 
 router.get("/api/episodes", async (_, res) => {
-  if (NODE_ENV === "development" && USE_MOCK_DATA) {
+  if (NODE_ENV === "development" && USE_MOCK_DATA === "true") {
     return res.json(mockResponse);
   }
 

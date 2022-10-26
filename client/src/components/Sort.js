@@ -61,6 +61,7 @@ const Sort = ({ setEpisodes, episodes, listShown }) => {
         [styles.open]: open,
       })}>
       <Disclosure
+        className={styles.sortDisclosure}
         isOpen={open}
         onClick={() => setOpen((open) => !open)}
         id={disclosureId}
