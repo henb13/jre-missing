@@ -32,36 +32,48 @@ const mapMissingEpisodes = (missingEpisodes) => {
 };
 
 const mapShortenedEpisodes = (shortenedEpisodes) => {
-  return shortenedEpisodes.reduce((acc, curr) => {
-    const { id, episode_number, full_name, date_changed, new_duration, old_duration } = curr;
+  return shortenedEpisodes
+    .reduce((acc, curr) => {
+      const { id, episode_number, full_name, date_changed, new_duration, old_duration } = curr;
 
-    const ms = parseInt(date_changed);
+      const ms = parseInt(date_changed);
 
-    const changeItem = {
-      date: {
-        ms,
-        formatted: getDateString(ms),
-        htmlAttribute: getDateTimeHTMLAttribute(ms),
-      },
-      new_duration_string: formatMsToTimeString(new_duration),
-      old_duration_string: formatMsToTimeString(old_duration),
-    };
+      const changeItem = {
+        date: {
+          ms,
+          formatted: getDateString(ms),
+          htmlAttribute: getDateTimeHTMLAttribute(ms),
+        },
+        new_duration_string: formatMsToTimeString(new_duration),
+        old_duration_string: formatMsToTimeString(old_duration),
+      };
 
-    const index = acc.findIndex((item) => item.id === curr.id);
+      const index = acc.findIndex((item) => item.id === curr.id);
 
-    if (index === -1) {
-      acc.push({
-        id,
-        episode_number,
-        full_name,
-        isNew: getIsEpisodeNewlyReleased(ms),
-        changes: [changeItem],
-      });
-    } else {
-      acc[index].changes.push(changeItem);
-    }
-    return acc;
-  }, []);
+      if (index === -1) {
+        acc.push({
+          id,
+          episode_number,
+          full_name,
+          isNew: getIsEpisodeNewlyReleased(ms),
+          changes: [changeItem],
+        });
+      } else {
+        acc[index].changes.push(changeItem);
+      }
+      return acc;
+    }, [])
+    .map((episode) => {
+      const { changes } = episode;
+      const oldestChange = changes[changes.length - 1];
+      const newestChange = changes[0];
+      const isOriginalLength =
+        oldestChange.old_duration_string === newestChange.new_duration_string;
+      return {
+        ...episode,
+        isOriginalLength,
+      };
+    });
 };
 
 const mapLastChecked = (rows) => {
