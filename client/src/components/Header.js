@@ -15,9 +15,9 @@ const Header = () => {
           <span>The Joe Rogan Experience</span>
           <br /> podcast{" "}
         </a>{" "}
-        that are currently not available on the Spotify platform by regurarly comparing the
-        official Spotify API with a constantly updated database of all episodes ever released.
-        It also detects if episodes have been shortened.
+        that are currently not available on the Spotify platform by comparing the official
+        Spotify API with a database of all episodes ever released. It also detects if episodes
+        have been shortened in duration.
       </p>
     </header>
   );
