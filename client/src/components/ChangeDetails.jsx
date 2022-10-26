@@ -34,7 +34,8 @@ const ChangeDetails = ({ episode }) => {
         <div className={styles.restOfChanges}>
           <div className={styles.headingWrapper}>
             <p className={styles.heading}>
-              Has been changed {restOfChanges.length} more time
+              Has been changed {restOfChanges.length} {!episode.isOriginalLength && "more"}{" "}
+              time
               {restOfChanges.length === 1 ? "" : "s"} previously.
             </p>
             <Disclosure className={styles.historyToggle} {...disclosureProps}>

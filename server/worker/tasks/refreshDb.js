@@ -31,12 +31,12 @@ async function refreshDb() {
           );
           await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
         } else if (correspondingSpotifyEpisode) {
-          if (correspondingSpotifyEpisode.duration < dbEpisode.duration) {
+          if (correspondingSpotifyEpisode.duration !== dbEpisode.duration) {
             await db.updateEpisodeDuration(correspondingSpotifyEpisode.duration, dbEpisode.id);
             console.info(
-              ` \n\n Spotify has shortened the duration of episode: ${dbEpisode.full_name} \n
-                  from: ${dbEpisode.duration} \n 
-                  to: ${correspondingSpotifyEpisode.duration} \n\n`
+              ` \n\n Spotify has changed the duration of episode: ${dbEpisode.full_name} \n
+                      from: ${dbEpisode.duration} \n 
+                      to: ${correspondingSpotifyEpisode.duration} \n\n`
             );
           }
         }

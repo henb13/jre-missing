@@ -3,6 +3,12 @@
   flex-direction: column;
 }
 
+.tagsWrapper {
+  display: flex;
+  gap: 9px;
+  margin-bottom: 8px;
+}
+
 .epName {
   display: flex;
   align-items: center;
@@ -13,6 +19,7 @@
 .epNumber {
   color: var(--color-orange);
 }
+
 .epGuest {
   text-align: center;
 }
@@ -21,22 +28,6 @@
   font-size: var(--font-size-small);
   letter-spacing: 0.1px;
   color: var(--color-grey);
-}
-
-.new {
-  font-size: 11px;
-  color: var(--color-black);
-  font-weight: 700;
-  line-height: 100%;
-  padding: 2px 8px 4px;
-  border-radius: 13%;
-  background-color: var(--color-green);
-  margin-bottom: 8px;
-  margin-top: 4px;
-  width: min-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 @media (max-width: 1350px) {

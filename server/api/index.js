@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const DB = require("../db/db");
 const pool = require("../db/connect");
+const { mockResponse } = require("./__mocks__/mockResponse");
 
 router.use(express.json());
 require("dotenv").config();
@@ -10,10 +11,13 @@ let missingEpisodesCache;
 let shortenedEpisodesCache;
 let lastCheckedCache;
 
-// eslint-disable-next-line no-undef
-const { CRON_INTERVAL } = process.env;
+const { CRON_INTERVAL, USE_MOCK_DATA, NODE_ENV } = process.env;
 
 router.get("/api/episodes", async (_, res) => {
+  if (NODE_ENV === "development" && USE_MOCK_DATA === "true") {
+    return res.json(mockResponse);
+  }
+
   const timeSinceLastCheckedDbInMins =
     lastCheckedCache && (Date.now() - lastCheckedCache) / 1000 / 60;
 

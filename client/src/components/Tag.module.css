@@ -1,0 +1,50 @@
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  color: var(--color-black);
+  font-weight: 700;
+  line-height: 100%;
+  width: min-content;
+}
+
+.tagName {
+  white-space: nowrap;
+  border-radius: 10px;
+  padding: 2px 8px 4px;
+}
+
+.new .tagName {
+  background-color: var(--color-green);
+}
+
+.originalLength .tagName {
+  background-color: var(--color-orange);
+}
+
+.toolTip {
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background-color: transparent;
+  border: 1px solid;
+  width: 2px;
+  height: 2px;
+  padding: 7px;
+  cursor: pointer;
+  margin-left: 6px;
+  margin-bottom: 1px;
+  color: var(--color-grey);
+  border-color: var(--color-grey);
+}
+
+.toolTipElement {
+  max-width: 250px;
+  font-family: var(--font-family-secondary);
+  line-height: 16px;
+  font-weight: normal;
+  opacity: 0.95 !important;
+}

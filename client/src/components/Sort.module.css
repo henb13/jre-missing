@@ -8,6 +8,10 @@
   font-size: var(--font-size-small);
 }
 
+.sortDisclosure {
+  gap: 3px;
+}
+
 .optionsWrapper {
   display: flex;
   flex-direction: column;
