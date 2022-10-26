@@ -85,7 +85,7 @@ $ss$ LANGUAGE plpgsql;
 CREATE TRIGGER change_duration
 AFTER UPDATE ON all_eps
 FOR EACH ROW
-WHEN (NEW.duration < OLD.duration)
+WHEN (NEW.duration IS DISTINCT FROM OLD.duration)
 EXECUTE PROCEDURE change_duration();
 
 CREATE TRIGGER spotify_status

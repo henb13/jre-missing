@@ -42,7 +42,7 @@
 }
 
 .toolTipElement {
-  max-width: 200px;
+  max-width: 250px;
   font-family: var(--font-family-secondary);
   line-height: 16px;
   font-weight: normal;

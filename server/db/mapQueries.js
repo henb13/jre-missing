@@ -46,6 +46,8 @@ const mapShortenedEpisodes = (shortenedEpisodes) => {
         },
         new_duration_string: formatMsToTimeString(new_duration),
         old_duration_string: formatMsToTimeString(old_duration),
+        old_duration: parseInt(old_duration),
+        new_duration: parseInt(new_duration),
       };
 
       const index = acc.findIndex((item) => item.id === curr.id);
@@ -63,14 +65,27 @@ const mapShortenedEpisodes = (shortenedEpisodes) => {
       }
       return acc;
     }, [])
+    .filter((episode) =>
+      episode.changes.some((change) => change.new_duration < change.old_duration)
+    )
     .map((episode) => {
       const { changes } = episode;
       const oldestChange = changes[changes.length - 1];
       const newestChange = changes[0];
       const isOriginalLength =
         oldestChange.old_duration_string === newestChange.new_duration_string;
-      return {
+
+      const episodeWithoutUnusedProperties = {
         ...episode,
+        changes: episode.changes.map(({ date, new_duration_string, old_duration_string }) => ({
+          date,
+          new_duration_string,
+          old_duration_string,
+        })),
+      };
+
+      return {
+        ...episodeWithoutUnusedProperties,
         isOriginalLength,
       };
     });
