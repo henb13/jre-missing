@@ -74,7 +74,7 @@ function App() {
           <Error error={error} />
         ) : (
           <>
-            <AmountInfo data={data} showSkeleton={showSkeleton} />
+            <AmountInfo data={data} showSkeleton={showSkeleton} setListShown={setListShown} />
             <Searchbox
               {...currentList}
               shakeEpisodes={shakeEpisodes}

@@ -4,7 +4,7 @@ import { getClientLocalTime, formatMinutesToTimeAmountString } from "../utils";
 import { ReactComponent as Checkmark } from "../icons/AmountInfoIcon.svg";
 import SkeletonText from "../skeletons/SkeletonText";
 
-const AmountInfo = ({ data, showSkeleton }) => {
+const AmountInfo = ({ data, showSkeleton, setListShown }) => {
   if (showSkeleton) return <SkeletonText />;
   if (!data || !data.missingEpisodes || !data.shortenedEpisodes) return null;
 
@@ -22,7 +22,7 @@ const AmountInfo = ({ data, showSkeleton }) => {
 
   return (
     <div className={styles.AmountInfo}>
-      <p className={styles.AmountInfoItem}>
+      <button onClick={() => setListShown("removed")} className={styles.AmountInfoItem}>
         <span
           className={classnames(styles.count, {
             [styles.NoAmount]: missingEpisodes.length === 0,
@@ -30,8 +30,8 @@ const AmountInfo = ({ data, showSkeleton }) => {
           {missingEpisodes.length}
         </span>{" "}
         episodes are missing from Spotify.
-      </p>
-      <p className={styles.AmountInfoItem}>
+      </button>
+      <button onClick={() => setListShown("shortened")} className={styles.AmountInfoItem}>
         <span
           className={classnames(styles.count, {
             [styles.NoAmount]: shortenedEpisodes.length === 0,
@@ -41,7 +41,7 @@ const AmountInfo = ({ data, showSkeleton }) => {
         episode
         {shortenedEpisodes.length === 1 ? "" : "s"}{" "}
         {shortenedEpisodes.length == 1 ? "has" : "have"} been shortened.
-      </p>
+      </button>
       <div className={styles.LastChecked}>
         <p>
           Last checked: {lastCheckedString} ago
