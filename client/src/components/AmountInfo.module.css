@@ -3,6 +3,7 @@
 }
 
 .AmountInfoItem {
+  display: block;
   white-space: nowrap;
 }
 
@@ -48,6 +49,10 @@
     font-size: 1.8rem;
     margin: 4.5rem 0 1.75rem;
     text-align: center;
+  }
+
+  .AmountInfoItem {
+    margin: 0 auto;
   }
 
   .AmountInfo .count:after {
