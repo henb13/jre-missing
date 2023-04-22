@@ -31,6 +31,7 @@
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.8.0",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15"
   }

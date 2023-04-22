@@ -21,6 +21,7 @@ async function getSpotifyEpisodes() {
       limit: 50,
       offset: spotifyEpisodes.length,
     });
+
     console.info(`Started fetching episodes from Spotify at ${new Date().toString()}`);
 
     spotifyEpisodes.push(
