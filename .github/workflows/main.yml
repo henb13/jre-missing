@@ -39,12 +39,14 @@ jobs:
           cd ${{ matrix.directory }}
           npm ci
 
+      - name: Build project
+        run: |
+          cd ${{ matrix.directory }}
+          npm run build --if-present
+
       - name: Run tests
         run: |
           cd ${{ matrix.directory }}
           npm run test
 
-      - name: Build project
-        run: |
-          cd ${{ matrix.directory }}
-          npm run build
+
