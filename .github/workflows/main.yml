@@ -1,6 +1,9 @@
 name: Run Tests
 
 on:
+  push:
+    branches:
+      - '*'
   pull_request:
     branches:
       - '*'
@@ -11,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16.x, 18.x]
         directory: ['./server', './client']
 
     steps:
