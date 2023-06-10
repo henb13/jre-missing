@@ -16,7 +16,7 @@ export const getDateString = (time) => {
 
 export const formatMinutesToTimeAmountString = (minutes) => {
   if (minutes < 1) {
-    return "less than a minute ";
+    return "less than a minute ago";
   }
 
   if (minutes < 60) {
@@ -29,8 +29,8 @@ export const formatMinutesToTimeAmountString = (minutes) => {
     const minutesRest = minutes % 60;
     const minutesString = setPlurality("minute", minutesRest);
 
-    return `${hours} ${hoursString} ${
-      minutesRest === 0 ? "" : `and ${minutesRest} ${minutesString}`
+    return `${hours} ${hoursString}${
+      minutesRest === 0 ? "" : ` and ${minutesRest} ${minutesString}`
     }`;
   }
 

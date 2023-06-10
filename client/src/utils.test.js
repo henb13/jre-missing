@@ -2,8 +2,8 @@ import { formatMinutesToTimeAmountString } from "./utils";
 
 describe("get correct timestring given a minute amount as input", () => {
   test("return 'less than a minute ago'", () => {
-    expect(formatMinutesToTimeAmountString(0)).toBe("less than a minute");
-    expect(formatMinutesToTimeAmountString(0.5)).toBe("less than a minute");
+    expect(formatMinutesToTimeAmountString(0)).toBe("less than a minute ago");
+    expect(formatMinutesToTimeAmountString(0.5)).toBe("less than a minute ago");
   });
 
   test("return minutes", () => {
