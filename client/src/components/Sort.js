@@ -26,18 +26,16 @@ const Sort = ({ setEpisodes, episodes, listShown }) => {
     let nonNulls;
     if (option === "date shortened") {
       nulls = [];
-      nonNulls = nonNulls = episodes.sort((a, b) => {
+      nonNulls = nonNulls = [...episodes].sort((a, b) => {
         [a, b] = isReversed ? [a, b] : [b, a];
         return a.changes[0].date.ms - b.changes[0].date.ms;
       });
     } else if (option === "date removed") {
       nulls = episodes.filter((ep) => !ep.date);
-      nonNulls = episodes
-        .filter((ep) => ep.date)
-        .sort((a, b) => {
-          [a, b] = isReversed ? [a, b] : [b, a];
-          return a.date.ms - b.date.ms;
-        });
+      nonNulls = [...episodes.filter((ep) => ep.date)].sort((a, b) => {
+        [a, b] = isReversed ? [a, b] : [b, a];
+        return a.date.ms - b.date.ms;
+      });
       // episode number
     } else {
       nulls = episodes.filter((ep) => !ep.episode_number);
