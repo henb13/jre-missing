@@ -13,7 +13,7 @@ const Episode = ({ variant, name, number, date, isNew, isOriginalLength }) => {
         {variant === "shortened" && isOriginalLength && (
           <Tag
             variant="originalLength"
-            toolTip="This episode is now as long as it originally was before it was shortened the first time. This does not mean nothing has been edited out since its release, simply that the current duration is as long as it was when first released. The editing history is kept here.">
+            toolTip="This episode is now as long as it originally was before it was shortened the first time. This does not mean nothing has been edited out since its release. It simply means that the current duration matches its original duration. The editing history is documented here.">
             original length
           </Tag>
         )}
