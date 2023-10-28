@@ -19,7 +19,7 @@ const rateLimiter = rateLimit({
 const speedLimiter = slowDown({
   windowMs: 15 * 1000,
   delayAfter: 3,
-  delayMs: 250,
+  delayMs: (hits) => hits * 100,
 });
 
 app.use(express.json());

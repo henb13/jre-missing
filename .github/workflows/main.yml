@@ -3,10 +3,10 @@ name: Run Tests
 on:
   push:
     branches:
-      - '*'
+      - "*"
   pull_request:
     branches:
-      - '*'
+      - "*"
 
 jobs:
   test:
@@ -14,8 +14,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
-        directory: ['./server', './client']
+        node-version: [18.x]
+        directory: ["./server", "./client"]
 
     steps:
       - name: Checkout
@@ -48,5 +48,3 @@ jobs:
         run: |
           cd ${{ matrix.directory }}
           npm run test
-
-
