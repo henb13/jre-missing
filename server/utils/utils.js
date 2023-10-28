@@ -1,4 +1,4 @@
-import { zonedTimeToUtc, utcToZonedTime, format as formatTz } from "date-fns-tz";
+const { zonedTimeToUtc, utcToZonedTime, format: formatTz } = require("date-fns-tz");
 
 const getClientLocalTime = (date, pattern) => {
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
