@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
     "@types/node": "^20.8.9",
     "@types/react": "^18.2.33",
     "@vitejs/plugin-react-swc": "^3.4.0",
