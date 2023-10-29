@@ -11,6 +11,9 @@ export default defineConfig({
     tsconfigPaths(),
     svgrPlugin({ svgrOptions: { icon: true }, include: "**/*.svg" }),
   ],
+  server: {
+    port: 3000,
+  },
   test: {
     globals: true,
     environment: "jsdom",

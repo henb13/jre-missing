@@ -16,7 +16,9 @@ import Coffee from "./Coffee";
 import useScroll from "../hooks/useScroll";
 
 function App() {
-  const { data, error, isPending } = useFetch("/api/episodes");
+  const { data, error, isPending } = useFetch(
+    `${import.meta.env.VITE_API_BASE_URL}/api/episodes`
+  );
   const minLoadingTimeElapsed = useMinLoadingTime(400);
   const [shouldShakeEpisodes, setShouldShakeEpisodes] = useState(false);
   const [missingEpisodesShown, setMissingEpisodesShown] = useState([]);
