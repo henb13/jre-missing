@@ -27,10 +27,12 @@ describe("get correct timestring given a minute amount as input", () => {
 });
 
 describe("get correct minutes addition to time string when returning hours (i.e. '2 hours and 5 minutes')", () => {
-  expect(formatMinutesToTimeAmountString(60 + 1)).toBe("1 hour and 1 minute");
-  expect(formatMinutesToTimeAmountString(60 + 59)).toBe("1 hour and 59 minutes");
-  expect(formatMinutesToTimeAmountString(60 * 2 + 5)).toBe("2 hours and 5 minutes");
-  expect(formatMinutesToTimeAmountString(60 * 5 + 25)).toBe("5 hours and 25 minutes");
-  expect(formatMinutesToTimeAmountString(60 * 6 + 1)).toBe("6 hours and 1 minute");
-  expect(formatMinutesToTimeAmountString(60 * 6 + 2)).toBe("6 hours and 2 minutes");
+  test("return hours and minutes", () => {
+    expect(formatMinutesToTimeAmountString(60 + 1)).toBe("1 hour and 1 minute");
+    expect(formatMinutesToTimeAmountString(60 + 59)).toBe("1 hour and 59 minutes");
+    expect(formatMinutesToTimeAmountString(60 * 2 + 5)).toBe("2 hours and 5 minutes");
+    expect(formatMinutesToTimeAmountString(60 * 5 + 25)).toBe("5 hours and 25 minutes");
+    expect(formatMinutesToTimeAmountString(60 * 6 + 1)).toBe("6 hours and 1 minute");
+    expect(formatMinutesToTimeAmountString(60 * 6 + 2)).toBe("6 hours and 2 minutes");
+  });
 });
