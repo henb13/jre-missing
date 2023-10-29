@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import styles from "./EpisodeList.module.css";
 import Episode from "./Episode";
-import SkeletonList from "../skeletons/SkeletonList";
+import SkeletonList from "../skeletons/SkeletonList.jsx";
 import ListTabs from "./ListTabs";
 import ChangeDetails from "./ChangeDetails";
 

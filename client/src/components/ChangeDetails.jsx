@@ -2,7 +2,7 @@ import { useState } from "react";
 import classnames from "classnames";
 import Disclosure from "./Disclosure";
 import styles from "./ChangeDetails.module.css";
-import { ReactComponent as Chavron } from "../icons/chavron.svg";
+import Chavron from "../icons/chavron.svg";
 
 const ChangeDetails = ({ episode }) => {
   const [open, setOpen] = useState(false);

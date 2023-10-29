@@ -1,8 +1,8 @@
 import classnames from "classnames";
 import styles from "./AmountInfo.module.css";
 import { getClientLocalTime, formatMinutesToTimeAmountString } from "../utils";
-import { ReactComponent as Checkmark } from "../icons/AmountInfoIcon.svg";
-import SkeletonText from "../skeletons/SkeletonText";
+import Checkmark from "../icons/AmountInfoIcon.svg";
+import SkeletonText from "../skeletons/SkeletonText.jsx";
 
 const AmountInfo = ({ data, showSkeleton, setListShown }) => {
   if (showSkeleton) return <SkeletonText />;

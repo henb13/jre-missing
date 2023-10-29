@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { ReactComponent as Arrow } from "../icons/arrow.svg";
+import Arrow from "../icons/arrow.svg";
 import { useState } from "react";
 import classnames from "classnames";
 import styles from "./Sort.module.css";
 import Disclosure from "./Disclosure";
-import { ReactComponent as Chavron } from "../icons/chavron.svg";
+import Chavron from "../icons/chavron.svg";
 
 const options = {
   removed: ["episode number", "date removed"],

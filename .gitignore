@@ -1,4 +1,6 @@
 .vscode
+.DS_Store
+**/.DS_Store
 
 # client
 
@@ -13,9 +15,11 @@ client/coverage
 
 ## production
 client/build
+client/dist
 
 ## misc
 client/.DS_Store
+client/.env
 client/.env.local
 client/.env.development.local
 client/.env.test.local

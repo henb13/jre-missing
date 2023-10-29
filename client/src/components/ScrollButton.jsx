@@ -1,6 +1,6 @@
 import TextTransition, { presets } from "react-text-transition";
 import classnames from "classnames";
-import { ReactComponent as ArrowDown } from "../icons/ScrollButtonIcon.svg";
+import ArrowDown from "../icons/ScrollButtonIcon.svg";
 import styles from "./ScrollButton.module.css";
 
 const ScrollButton = ({ dataPending, minLoadingTimeElapsed, scrollTarget, scrollable }) => {

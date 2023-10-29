@@ -12,9 +12,13 @@ let shortenedEpisodesCache;
 let lastCheckedCache;
 
 const { CRON_INTERVAL, USE_MOCK_DATA, NODE_ENV } = process.env;
+const isDev = NODE_ENV === "development";
+
+//TODO: Change when client in prod
+const allowOrigin = isDev ? "http://localhost:3000" : "https://not-yet-prod-domain.com";
 
 router.get("/api/episodes", async (_, res) => {
-  if (NODE_ENV === "development" && USE_MOCK_DATA === "true") {
+  if (isDev && USE_MOCK_DATA === "true") {
     return res.json(mockResponse);
   }
 
@@ -26,7 +30,7 @@ router.get("/api/episodes", async (_, res) => {
 
   res.header({
     "cache-control": `no-transform, max-age=${cacheTimeLeftSecs + buffer || 1}`,
-    "Access-Control-Allow-Origin": "http://localhost:3000",
+    "Access-Control-Allow-Origin": allowOrigin,
   });
 
   if (

@@ -1,6 +1,6 @@
 import styles from "./Contact.module.css";
 
-import { ReactComponent as EmailIcon } from "../icons/email.svg";
+import EmailIcon from "../icons/email.svg";
 
 const Contact = () => {
   return (
