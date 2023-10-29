@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "cross-env NODE_ENV=development run-p dev-server worker",
+    "dev": "cross-env NODE_ENV=development npm run dev-server",
+    "dev:all": "cross-env NODE_ENV=development run-p dev-server worker",
     "dev-server": "nodemon app.js",
     "worker": "node worker/worker.js",
     "refresh-db": "node worker/tasks/refreshDb.js",
