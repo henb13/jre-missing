@@ -26,11 +26,11 @@ const ScrollButton = ({ dataPending, minLoadingTimeElapsed, scrollTarget, scroll
       <div className={styles.ScrollText}>
         To{" "}
         <TextTransition
-          text={scrollTarget}
           springConfig={presets.gentle}
           inline={true}
-          direction={scrollTarget === "top" ? "up" : "down"}
-        />
+          direction={scrollTarget === "top" ? "up" : "down"}>
+          {scrollTarget}
+        </TextTransition>
       </div>
       <ArrowDown
         className={classnames(styles.arrow, {

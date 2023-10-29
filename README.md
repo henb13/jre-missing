@@ -1,6 +1,6 @@
 <div align="center" text-align="center">
 
-# JRE MISSING  <img height="23px" width="23px" padding="5px" src="./client/public/favicon.png" alt="JRE MISSING LOGO" />
+# JRE MISSING <img height="23px" width="23px" padding="5px" src="./client/public/favicon.png" alt="JRE MISSING LOGO" />
 
 <p>
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/HenB13/jre-missing?color=#ee7d2c">
@@ -9,8 +9,7 @@
   
 </p>
 
-Automatically detects and lists episodes of [The Joe Rogan Experience](https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk) podcast that are currently not available on the Spotify platform. Will also catch episodes removed or re-added in the future.
-
+Automatically detects and lists episodes of [The Joe Rogan Experience](https://open.spotify.com/show/4rOoJ6Egrf8K2IrywzwOMk) podcast that are currently not available on the Spotify platform. Also detects if episodes have been shortened in duration.
 
 ## As Mentioned In 🗞️
 
@@ -31,7 +30,6 @@ Automatically detects and lists episodes of [The Joe Rogan Experience](https://o
  &#8226;  <a href="https://www.huffpost.com/entry/joe-rogan-experience-episodes-removed-spotify_n_61fef043e4b0f8a1b8453a83">HuffPost</a>
  &#8226;  <a href="https://www.independent.co.uk/arts-entertainment/music/news/joe-rogan-podcast-episodes-removed-b2009035.html">The Independent</a>
  &#8226;  <a href="https://www.aftenposten.no/kultur/i/RrnjjW/joe-rogan-ber-om-unnskyldning-for-aa-ha-brukt-n-ordet-i-sin-podkast">Aftenposten</a>
-
 
 ## Sponsors 💜
 

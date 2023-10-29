@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import ReactTooltip from "react-tooltip";
+import { Tooltip } from "react-tooltip";
 import styles from "./Tag.module.css";
 
 const variantClasses = {
@@ -12,10 +12,13 @@ const Tag = ({ className, variant, children, toolTip }) => (
     <span className={styles.tagName}>{children}</span>
     {toolTip && (
       <>
-        <span data-tip={toolTip} className={styles.toolTip}>
+        <span
+          data-tooltip-id="my-tooltip"
+          data-tooltip-content={toolTip}
+          className={styles.toolTip}>
           &#63;
         </span>
-        <ReactTooltip effect="solid" clickable className={styles.toolTipElement} />
+        <Tooltip id="my-tooltip" clickable className={styles.toolTipElement} />
       </>
     )}
   </span>
