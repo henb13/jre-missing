@@ -7,8 +7,8 @@ const JRE_SHOW_ID = "4rOoJ6Egrf8K2IrywzwOMk";
 async function getSpotifyEpisodes() {
   try {
     const spotifyApi = new SpotifyWebApi({
-      clientId: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
+      clientId: process.env.SPOTIFY_CLIENT_ID,
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     });
 
     const tokenData = await spotifyApi.clientCredentialsGrant();

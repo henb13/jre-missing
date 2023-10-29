@@ -6,16 +6,16 @@ CREATE TABLE all_eps(
   id SERIAL NOT NULL UNIQUE PRIMARY KEY,
   episode_number INTEGER,
   full_name VARCHAR(255) NOT NULL, 
-  on_spotify BOOLEAN NOT NULL
-  duration INTEGER;
+  on_spotify BOOLEAN NOT NULL,
+  duration INTEGER
 );
 
 CREATE TABLE test_table(
   id SERIAL NOT NULL UNIQUE PRIMARY KEY,
   episode_number INTEGER,
   full_name VARCHAR(255) NOT NULL, 
-  on_spotify BOOLEAN NOT NULL
-  duration INTEGER;
+  on_spotify BOOLEAN NOT NULL,
+  duration INTEGER
 );
 
 CREATE TABLE date_removed(
