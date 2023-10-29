@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import { useState } from "react";
 import styles from "./Searchbox.module.css";
-import { ReactComponent as SearchIcon } from "../icons/SearchboxIcon.svg";
+import SearchIcon from "../icons/SearchboxIcon.svg";
 
 //Rewrite the Searchbox component below but without forwardRef
 const Searchbox = ({
