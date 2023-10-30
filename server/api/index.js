@@ -2,61 +2,77 @@ const express = require("express");
 const router = express.Router();
 const DB = require("../db/db");
 const pool = require("../db/connect");
-const { mockResponse } = require("./__mocks__/mockResponse");
+const NodeCache = require("node-cache");
 
 router.use(express.json());
 require("dotenv").config();
 
-let missingEpisodesCache;
-let shortenedEpisodesCache;
-let lastCheckedCache;
+const CRON_INTERVAL = parseInt(process.env.CRON_INTERVAL, 10) ?? 30;
 
-const { CRON_INTERVAL, USE_MOCK_DATA, NODE_ENV } = process.env;
-const isDev = NODE_ENV === "development";
+const cache = new NodeCache({ stdTTL: CRON_INTERVAL * 60 });
+
+const KEYS = {
+  missingEpisodes: "missing-episodes",
+  shortenedEpisodes: "shortened-episodes",
+  lastChecked: "last-checked",
+};
 
 //TODO: Change when client in prod
-const allowOrigin = isDev ? "http://localhost:3000" : "https://not-yet-prod-domain.com";
+const allowOrigin =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://not-yet-prod-domain.com";
 
 router.get("/api/episodes", async (_, res) => {
-  if (isDev && USE_MOCK_DATA === "true") {
-    return res.json(mockResponse);
-  }
+  console.info("request fired");
 
-  const timeSinceLastCheckedDbInMins =
-    lastCheckedCache && (Date.now() - lastCheckedCache) / 1000 / 60;
-
-  const cacheTimeLeftSecs = Math.floor((CRON_INTERVAL - timeSinceLastCheckedDbInMins) * 60);
-  const buffer = 120;
+  const maxAgeMs = Math.min(
+    cache.getTtl(KEYS.missingEpisodes),
+    cache.getTtl(KEYS.shortenedEpisodes)
+  );
+  const maxAge = maxAgeMs ? Math.round((new Date(maxAgeMs).getTime() - Date.now()) / 1000) : 0;
 
   res.header({
-    "cache-control": `no-transform, max-age=${cacheTimeLeftSecs + buffer || 1}`,
+    "cache-control": `no-transform, max-age=${maxAge}`,
     "Access-Control-Allow-Origin": allowOrigin,
   });
 
-  if (
-    !missingEpisodesCache ||
-    !shortenedEpisodesCache ||
-    timeSinceLastCheckedDbInMins > CRON_INTERVAL
-  ) {
-    await (async () => {
-      const client = await pool.connect();
-      const db = DB(client);
-      try {
-        missingEpisodesCache = await db.getMissingEpisodes();
-        shortenedEpisodesCache = await db.getShortenedEpisodes();
-        lastCheckedCache = await db.getLastChecked();
-        console.info("db queried and cache updated");
-      } finally {
-        client.release();
+  const missingCacheExists = cache.has(KEYS.missingEpisodes);
+  const shortenedCacheExists = cache.has(KEYS.shortenedEpisodes);
+  const lastCheckedExists = cache.has(KEYS.lastChecked);
+
+  if (!missingCacheExists || !shortenedCacheExists || !lastCheckedExists) {
+    const client = await pool.connect();
+    const db = DB(client);
+
+    try {
+      if (!missingCacheExists) {
+        const missingEpisodes = await db.getMissingEpisodes();
+        cache.set(KEYS.missingEpisodes, missingEpisodes);
       }
-    })().catch((err) => console.error(err.message));
+
+      if (!shortenedCacheExists) {
+        const shortenedEpisodes = await db.getshortenedEpisodes();
+        cache.set(KEYS.shortenedEpisodes, shortenedEpisodes);
+      }
+
+      if (!lastCheckedExists) {
+        const lastChecked = await db.getlastChecked();
+        cache.set(KEYS.lastChecked, lastChecked);
+      }
+
+      console.info("db queried and cache updated");
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      client.release();
+    }
   }
 
-  console.info("request fired");
   res.json({
-    missingEpisodes: missingEpisodesCache,
-    shortenedEpisodes: shortenedEpisodesCache,
-    lastCheckedInMs: lastCheckedCache,
+    missingEpisodes: cache.get(KEYS.missingEpisodes),
+    shortenedEpisodes: cache.get(KEYS.shortenedEpisodes),
+    lastCheckedInMs: cache.get(KEYS.lastChecked),
   });
 });
 

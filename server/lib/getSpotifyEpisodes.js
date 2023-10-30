@@ -1,22 +1,17 @@
-/* eslint-disable no-undef */
-const SpotifyWebApi = require("spotify-web-api-node");
-require("dotenv").config();
+const initializeSpotifyClient = require("./spotify-client");
 
 const JRE_SHOW_ID = "4rOoJ6Egrf8K2IrywzwOMk";
 
+let spotifyClient;
+
 async function getSpotifyEpisodes() {
+  if (!spotifyClient) {
+    spotifyClient = await initializeSpotifyClient();
+  }
+
   try {
-    const spotifyApi = new SpotifyWebApi({
-      clientId: process.env.SPOTIFY_CLIENT_ID,
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    });
-
-    const tokenData = await spotifyApi.clientCredentialsGrant();
-    console.info(`The access token expires in ${tokenData.body["expires_in"]}`);
-    spotifyApi.setAccessToken(tokenData.body["access_token"]);
-
     const spotifyEpisodes = [];
-    const episodes = await spotifyApi.getShowEpisodes(JRE_SHOW_ID, {
+    const episodes = await spotifyClient.getShowEpisodes(JRE_SHOW_ID, {
       market: "US",
       limit: 50,
       offset: spotifyEpisodes.length,
@@ -33,7 +28,7 @@ async function getSpotifyEpisodes() {
     const totalEpisodes = episodes.body.total;
 
     while (spotifyEpisodes.length < totalEpisodes) {
-      const episodes = await spotifyApi.getShowEpisodes(JRE_SHOW_ID, {
+      const episodes = await spotifyClient.getShowEpisodes(JRE_SHOW_ID, {
         market: "US",
         limit: 50,
         offset: spotifyEpisodes.length,
@@ -50,7 +45,7 @@ async function getSpotifyEpisodes() {
 
     return spotifyEpisodes;
   } catch (err) {
-    console.error(err.message);
+    console.error("something went wrong fetching from Spotify: ", err.message);
   }
 }
 

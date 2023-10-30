@@ -21,7 +21,7 @@
     "web-vitals": "^3.5.0"
   },
   "scripts": {
-    "start": "vite",
+    "start": "vite --open",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "vitest",
