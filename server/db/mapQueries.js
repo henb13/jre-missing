@@ -8,8 +8,10 @@ const {
 const DAYS_THRESHOLD_NEW = 14;
 
 const getIsEpisodeNewlyReleased = (time) =>
-  time &&
-  differenceInDays(new Date(), parseISO(new Date(time).toISOString())) < DAYS_THRESHOLD_NEW;
+  !!(
+    time &&
+    differenceInDays(new Date(), parseISO(new Date(time).toISOString())) < DAYS_THRESHOLD_NEW
+  );
 
 const mapMissingEpisodes = (missingEpisodes) => {
   return missingEpisodes.map((ep) => {

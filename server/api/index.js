@@ -52,12 +52,12 @@ router.get("/api/episodes", async (_, res) => {
       }
 
       if (!shortenedCacheExists) {
-        const shortenedEpisodes = await db.getshortenedEpisodes();
+        const shortenedEpisodes = await db.getShortenedEpisodes();
         cache.set(KEYS.shortenedEpisodes, shortenedEpisodes);
       }
 
       if (!lastCheckedExists) {
-        const lastChecked = await db.getlastChecked();
+        const lastChecked = await db.getLastChecked();
         cache.set(KEYS.lastChecked, lastChecked);
       }
 

@@ -1,0 +1,975 @@
+{
+  "missingEpisodes": [
+    {
+      "full_name": "#1458 - Chris D’Elia",
+      "episode_number": 1458,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#1255 - Alex Jones Returns",
+      "episode_number": 1255,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#1218 - Gad Saad",
+      "episode_number": 1218,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#1206 - Mike Ward & Pantelis",
+      "episode_number": 1206,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#1197 - Michael Malice",
+      "episode_number": 1197,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#1187 - Kyle Kulinski",
+      "episode_number": 1187,
+      "isNew": false,
+      "date": {
+        "ms": 1644007940000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#1141 - Theo Von",
+      "episode_number": 1141,
+      "isNew": false,
+      "date": {
+        "ms": 1644007940000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#1103 - Tom Segura",
+      "episode_number": 1103,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#1093 - Owen Benjamin, Kurt Metzger",
+      "episode_number": 1093,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#1036 - Ari Shaffir, Bert Kreischer & Tom Segura",
+      "episode_number": 1036,
+      "isNew": false,
+      "date": {
+        "ms": 1644007940000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#1033 - Owen Benjamin",
+      "episode_number": 1033,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#998 - Owen Benjamin",
+      "episode_number": 998,
+      "isNew": null,
+      "date": null
+    },
+    { "full_name": "#980 - Chris D’Elia", "episode_number": 980, "isNew": null, "date": null },
+    {
+      "full_name": "#979 - Sargon of Akkad",
+      "episode_number": 979,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#963 - Michael Malice",
+      "episode_number": 963,
+      "isNew": false,
+      "date": {
+        "ms": 1644007940000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#925 - Theo Von",
+      "episode_number": 925,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#920 - Gavin McInnes",
+      "episode_number": 920,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#912 - Pete Holmes",
+      "episode_number": 912,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#911 - Alex Jones, Eddie Bravo",
+      "episode_number": 911,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#820 - Milo Yiannopoulos",
+      "episode_number": 820,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#810 - Big Jay Oakerson",
+      "episode_number": 810,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#750 - Kip Andersen, Keegan Kuhn, producers of Conspiracy",
+      "episode_number": 750,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#746 - TJ Kirk",
+      "episode_number": 746,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#742 - Aubrey Marcus",
+      "episode_number": 742,
+      "isNew": false,
+      "date": {
+        "ms": 1644007940000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#710 - Gavin McInnes",
+      "episode_number": 710,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#702 - Milo Yiannopoulos",
+      "episode_number": 702,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#674 - Brian Redban",
+      "episode_number": 674,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#664 - Tom Segura & Christina Pazsitzky",
+      "episode_number": 664,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#640 - Charles C. Johnson",
+      "episode_number": 640,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#594 - Russell Peters",
+      "episode_number": 594,
+      "isNew": false,
+      "date": {
+        "ms": 1644007940000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    { "full_name": "#582 - David Seaman", "episode_number": 582, "isNew": null, "date": null },
+    {
+      "full_name": "#570 - Ryan Parsons",
+      "episode_number": 570,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#538 - Stefan Molyneux",
+      "episode_number": 538,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#537 - Rich Vos",
+      "episode_number": 537,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    { "full_name": "#533 - Chris D’elia", "episode_number": 533, "isNew": null, "date": null },
+    {
+      "full_name": "#525 - Bert Kreischer",
+      "episode_number": 525,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    { "full_name": "#520 - David Seaman", "episode_number": 520, "isNew": null, "date": null },
+    {
+      "full_name": "#512 - Dan Savage",
+      "episode_number": 512,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#506 - Moshe Kasher",
+      "episode_number": 506,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#488 - Iliza Shlesinger",
+      "episode_number": 488,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    { "full_name": "#487 - David Seaman", "episode_number": 487, "isNew": null, "date": null },
+    {
+      "full_name": "#463 - Louis Theroux",
+      "episode_number": 463,
+      "isNew": null,
+      "date": null
+    },
+    { "full_name": "#461 - David Seaman", "episode_number": 461, "isNew": null, "date": null },
+    { "full_name": "#454 - War Machine", "episode_number": 454, "isNew": null, "date": null },
+    {
+      "full_name": "#443 - Neal Brennan",
+      "episode_number": 443,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#441 - Brian Dunning",
+      "episode_number": 441,
+      "isNew": null,
+      "date": null
+    },
+    { "full_name": "#411 - Dave Asprey", "episode_number": 411, "isNew": null, "date": null },
+    {
+      "full_name": "#375 - Shane Smith",
+      "episode_number": 375,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#374 - Marc Maron",
+      "episode_number": 374,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    { "full_name": "#368 - David Seaman", "episode_number": 368, "isNew": null, "date": null },
+    {
+      "full_name": "#361 - Dave Asprey, Tait Fletcher",
+      "episode_number": 361,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#358 - Bert Kreischer",
+      "episode_number": 358,
+      "isNew": false,
+      "date": {
+        "ms": 1644007940000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#354 - Ari Shaffir, Amy Schumer",
+      "episode_number": 354,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#349 - Greg Fitzsimmons",
+      "episode_number": 349,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#344 - Stanley Krippner, Christopher Ryan",
+      "episode_number": 344,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#340 - JD Kelley",
+      "episode_number": 340,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#331 - Dr. Steven Greer",
+      "episode_number": 331,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#324 - Sam Sheridan",
+      "episode_number": 324,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#320 - Tim Ferriss",
+      "episode_number": 320,
+      "isNew": false,
+      "date": {
+        "ms": 1644006629000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#314 - Ian Edwards",
+      "episode_number": 314,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#303 - Matt Vengrin, Brian Redban",
+      "episode_number": 303,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#294 - Ari Shaffir",
+      "episode_number": 294,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#276 - David Seaman, Abby Martin, Dell Cameron, Brian Redban",
+      "episode_number": 276,
+      "isNew": null,
+      "date": null
+    },
+    { "full_name": "#275 - Dave Asprey", "episode_number": 275, "isNew": null, "date": null },
+    { "full_name": "#256 - David Seaman", "episode_number": 256, "isNew": null, "date": null },
+    {
+      "full_name": "#246 - Maynard J Keenan (Part 1)",
+      "episode_number": 246,
+      "isNew": false,
+      "date": {
+        "ms": 1644006629000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#246 - Maynard J Keenan (Part 2)",
+      "episode_number": 246,
+      "isNew": false,
+      "date": {
+        "ms": 1644006629000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    { "full_name": "#239 - Adam Kokesh", "episode_number": 239, "isNew": null, "date": null },
+    {
+      "full_name": "#232 - Giorgio Tsoukalos",
+      "episode_number": 232,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#227 - Ari Shaffir",
+      "episode_number": 227,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    { "full_name": "#213 - Eddie Bravo", "episode_number": 213, "isNew": null, "date": null },
+    {
+      "full_name": "#198 - Brody Stevens",
+      "episode_number": 198,
+      "isNew": false,
+      "date": {
+        "ms": 1644006629000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#182 - Bryan Callen, Jimmy Burke, Brian Redban",
+      "episode_number": 182,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#176 - Steven Rinella",
+      "episode_number": 176,
+      "isNew": false,
+      "date": {
+        "ms": 1644006629000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#159 - Nick Thune",
+      "episode_number": 159,
+      "isNew": false,
+      "date": {
+        "ms": 1644006629000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#155 - Dave Attell",
+      "episode_number": 155,
+      "isNew": false,
+      "date": {
+        "ms": 1644006629000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#152 - Brian Redban",
+      "episode_number": 152,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#149 - LIVE FROM THE ICEHOUSE (PART ONE)",
+      "episode_number": 149,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#134 - Kevin Smith (Part 4)",
+      "episode_number": 134,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#132 - Bert Kreischer",
+      "episode_number": 132,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#128 - Joey Diaz, Brian Redban",
+      "episode_number": 128,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#122 - Jamie Kilstein",
+      "episode_number": 122,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    { "full_name": "#119 - Jan Irvin", "episode_number": 119, "isNew": null, "date": null },
+    {
+      "full_name": "#118 - Ari Shaffir",
+      "episode_number": 118,
+      "isNew": false,
+      "date": {
+        "ms": 1644006629000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#116 - Russell Peters, Junior Simpson",
+      "episode_number": 116,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#114 - Neal Brennan",
+      "episode_number": 114,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#113 - Brian Posehn",
+      "episode_number": 113,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#112 - Cliffy B, Johnny Cristo",
+      "episode_number": 112,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#110 - Duncan Trussell",
+      "episode_number": 110,
+      "isNew": false,
+      "date": {
+        "ms": 1644006629000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#108 - Joey Diaz, Brian Redban",
+      "episode_number": 108,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#107 - Doug Benson",
+      "episode_number": 107,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#102 - John Heffron",
+      "episode_number": 102,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#98 - Daryl Wright, Brian Whitaker",
+      "episode_number": 98,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#97 - Freddy Lockhart, Brian Redban",
+      "episode_number": 97,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#92 - Jim Norton",
+      "episode_number": 92,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#91 - Bill Burr",
+      "episode_number": 91,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#88 - Andy Dick",
+      "episode_number": 88,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#82 - Dave Foley",
+      "episode_number": 82,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    { "full_name": "#81 - Pete Johansson", "episode_number": 81, "isNew": null, "date": null },
+    {
+      "full_name": "#75 - Sam Tripoli",
+      "episode_number": 75,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#72 - Ari Shaffir",
+      "episode_number": 72,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#66 - Nick Swardson",
+      "episode_number": 66,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#57 - Jayson Thibault, Brian Redban",
+      "episode_number": 57,
+      "isNew": null,
+      "date": null
+    },
+    {
+      "full_name": "#55 - Duncan Trussell",
+      "episode_number": 55,
+      "isNew": false,
+      "date": {
+        "ms": 1644006629000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#50 - Little Esther",
+      "episode_number": 50,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#48 - Brian Redban",
+      "episode_number": 48,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#42 - Duncan Trussell",
+      "episode_number": 42,
+      "isNew": false,
+      "date": {
+        "ms": 1644004830000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#40 - Tyler Knight",
+      "episode_number": 40,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#27 - Sam Tripoli",
+      "episode_number": 27,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#21 - Brian Redban",
+      "episode_number": 21,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#20 - Tom Segura",
+      "episode_number": 20,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "#4 - Brian Redban",
+      "episode_number": 4,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    },
+    {
+      "full_name": "Fight Companion - February 19, 2017",
+      "episode_number": null,
+      "isNew": false,
+      "date": {
+        "ms": 1643984238000,
+        "formatted": "February 4th, 2022",
+        "htmlAttribute": "2022-02-04"
+      }
+    }
+  ],
+  "shortenedEpisodes": [
+    {
+      "id": 2169,
+      "episode_number": 1919,
+      "full_name": "#1919 - Bret Weinstein",
+      "isNew": false,
+      "changes": [
+        {
+          "date": {
+            "ms": 1672904423000,
+            "formatted": "January 5th, 2023",
+            "htmlAttribute": "2023-01-05"
+          },
+          "new_duration_string": "3 hr 18 min 56 sec",
+          "old_duration_string": "3 hr 28 min 2 sec"
+        }
+      ],
+      "isOriginalLength": false
+    },
+    {
+      "id": 1234,
+      "episode_number": 1411,
+      "full_name": "#1411 - Robert Downey Jr.",
+      "isNew": true,
+      "changes": [
+        {
+          "date": {
+            "ms": 1698784039904,
+            "formatted": "October 31st, 2023",
+            "htmlAttribute": "2023-10-31"
+          },
+          "new_duration_string": "3 hr 18 min 56 sec",
+          "old_duration_string": "3 hr 28 min 2 sec"
+        },
+        {
+          "date": {
+            "ms": 1693784523916,
+            "formatted": "September 4th, 2023",
+            "htmlAttribute": "2023-09-04"
+          },
+          "new_duration_string": "3 hr 28 min 2 sec",
+          "old_duration_string": "3 hr 30 min 2 sec"
+        },
+        {
+          "date": {
+            "ms": 1691784655309,
+            "formatted": "August 11th, 2023",
+            "htmlAttribute": "2023-08-11"
+          },
+          "new_duration_string": "3 hr 30 min 2 sec",
+          "old_duration_string": "3 hr 47 min 48 sec"
+        }
+      ],
+      "isOriginalLength": false
+    },
+    {
+      "id": 734,
+      "episode_number": 990,
+      "full_name": "#990 - Jamie Foxx",
+      "isNew": false,
+      "changes": [
+        {
+          "date": {
+            "ms": 1698784039904,
+            "formatted": "October 31st, 2023",
+            "htmlAttribute": "2023-10-31"
+          },
+          "new_duration_string": "3 hr 30 min 2 sec",
+          "old_duration_string": "3 hr 28 min 2 sec"
+        },
+        {
+          "date": {
+            "ms": 1693784523916,
+            "formatted": "September 4th, 2023",
+            "htmlAttribute": "2023-09-04"
+          },
+          "new_duration_string": "3 hr 28 min 2 sec",
+          "old_duration_string": "3 hr 30 min 2 sec"
+        }
+      ],
+      "isOriginalLength": true
+    }
+  ],
+  "lastCheckedInMs": 1698784687712
+}

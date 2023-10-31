@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "cross-env NODE_ENV=production node app.js",
     "dev": "cross-env NODE_ENV=development npm run dev-server",
     "dev:all": "cross-env NODE_ENV=development run-p dev-server worker",
     "dev-server": "nodemon app.js",
