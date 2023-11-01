@@ -1,15 +1,13 @@
-const initializeSpotifyClient = require("./spotify-client");
+const { spotifyClient } = require("./spotify-client");
 
 const JRE_SHOW_ID = "4rOoJ6Egrf8K2IrywzwOMk";
 
-let spotifyClient;
-
 async function getSpotifyEpisodes() {
-  if (!spotifyClient) {
-    spotifyClient = await initializeSpotifyClient();
-  }
-
   try {
+    const data = await spotifyClient.clientCredentialsGrant();
+    const accessToken = data.body["access_token"];
+    spotifyClient.setAccessToken(accessToken);
+
     const spotifyEpisodes = [];
     const episodes = await spotifyClient.getShowEpisodes(JRE_SHOW_ID, {
       market: "US",
@@ -33,12 +31,14 @@ async function getSpotifyEpisodes() {
         limit: 50,
         offset: spotifyEpisodes.length,
       });
+
       spotifyEpisodes.push(
         ...episodes.body.items.map((ep) => {
           return { name: ep.name, duration: ep.duration_ms };
         })
       );
     }
+
     console.log(
       `${spotifyEpisodes.length} out of ${totalEpisodes} JRE episodes on Spotify successfully fetched`
     );

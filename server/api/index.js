@@ -7,9 +7,7 @@ const NodeCache = require("node-cache");
 router.use(express.json());
 require("dotenv").config();
 
-const CRON_INTERVAL = parseInt(process.env.CRON_INTERVAL, 10) ?? 30;
-
-const cache = new NodeCache({ stdTTL: CRON_INTERVAL * 60 });
+const cache = new NodeCache({ stdTTL: 3600 });
 
 const KEYS = {
   missingEpisodes: "missing-episodes",
@@ -26,14 +24,8 @@ const allowOrigin =
 router.get("/api/episodes", async (_, res) => {
   console.info("request fired");
 
-  const maxAgeMs = Math.min(
-    cache.getTtl(KEYS.missingEpisodes),
-    cache.getTtl(KEYS.shortenedEpisodes)
-  );
-  const maxAge = maxAgeMs ? Math.round((new Date(maxAgeMs).getTime() - Date.now()) / 1000) : 0;
-
   res.header({
-    "cache-control": `no-transform, max-age=${maxAge}`,
+    "cache-control": `no-transform, max-age=1800`,
     "Access-Control-Allow-Origin": allowOrigin,
   });
 
@@ -41,7 +33,7 @@ router.get("/api/episodes", async (_, res) => {
   const shortenedCacheExists = cache.has(KEYS.shortenedEpisodes);
   const lastCheckedExists = cache.has(KEYS.lastChecked);
 
-  if (!missingCacheExists || !shortenedCacheExists || !lastCheckedExists) {
+  if ([missingCacheExists, shortenedCacheExists, lastCheckedExists].some((c) => !c)) {
     const client = await pool.connect();
     const db = DB(client);
 

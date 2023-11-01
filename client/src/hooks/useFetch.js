@@ -12,7 +12,7 @@ const useFetch = (url) => {
       .then((res) => {
         if (!res.ok) {
           throw Error(
-            res.status == 429
+            res.status === 429
               ? "You are making too many requests, please try again later."
               : "Something went wrong, please try again later."
           );
