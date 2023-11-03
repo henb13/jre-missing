@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const api = require("./api/index.js");
+const responseHeaders = require("./api/middlewares/response-headers.js");
 const devApi = require("./api/dev-api.js");
 const rateLimit = require("express-rate-limit");
 const slowDown = require("express-slow-down");
@@ -28,6 +29,7 @@ const speedLimiter = slowDown({
 app.use(express.json());
 app.use(helmet());
 app.use(rateLimiter);
+app.use(responseHeaders);
 app.use(speedLimiter);
 app.use(useDevApi ? devApi : api);
 

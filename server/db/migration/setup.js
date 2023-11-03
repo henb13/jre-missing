@@ -3,8 +3,6 @@ const getSpotifyEpisodes = require("../../lib/getSpotifyEpisodes");
 const getEpisodeNumber = require("../../lib/getEpisodeNumber");
 const pool = require("../connect");
 
-require("dotenv").config();
-
 getSpotifyEpisodes().then(async (episodes) => {
   const allEpisodes = episodes.concat(missingEpisodesPerNow);
   allEpisodes.sort((a, b) => getEpisodeNumber(a.name) - getEpisodeNumber(b.name));

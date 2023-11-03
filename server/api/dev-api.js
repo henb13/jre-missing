@@ -5,7 +5,6 @@ const fs = require("fs");
 const mockResponse = JSON.parse(fs.readFileSync("data.json", "utf8"));
 
 router.use(express.json());
-require("dotenv").config();
 
 router.get("/api/episodes", async (_, res) => {
   return res.json(mockResponse);

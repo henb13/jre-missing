@@ -5,7 +5,6 @@ const pool = require("../db/connect");
 const NodeCache = require("node-cache");
 
 router.use(express.json());
-require("dotenv").config();
 
 const cache = new NodeCache({ stdTTL: 3600 });
 
@@ -15,19 +14,8 @@ const KEYS = {
   lastChecked: "last-checked",
 };
 
-//TODO: Change when client in prod
-const allowOrigin =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3000"
-    : "https://not-yet-prod-domain.com";
-
 router.get("/api/episodes", async (_, res) => {
   console.info("request fired");
-
-  res.header({
-    "cache-control": `no-transform, max-age=1800`,
-    "Access-Control-Allow-Origin": allowOrigin,
-  });
 
   const missingCacheExists = cache.has(KEYS.missingEpisodes);
   const shortenedCacheExists = cache.has(KEYS.shortenedEpisodes);
