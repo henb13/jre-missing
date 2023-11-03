@@ -1,6 +1,9 @@
 import styles from "./Episode.module.css";
 import Tag from "./Tag";
 
+const TOOL_TIP_TEXT =
+  "This episode is now as long as it originally was before it was shortened the first time. This does not mean nothing has been edited out since its release. It simply means that the current duration matches its original duration. The editing history is documented here.";
+
 const Episode = ({ variant, name, number, date, isNew, isOriginalLength }) => {
   // eslint-disable-next-line no-unused-vars
   let [_, ...guest] = name.split("-");
@@ -11,9 +14,7 @@ const Episode = ({ variant, name, number, date, isNew, isOriginalLength }) => {
       <div className={styles.tagsWrapper}>
         {isNew && <Tag variant="new">new</Tag>}
         {variant === "shortened" && isOriginalLength && (
-          <Tag
-            variant="originalLength"
-            toolTip="This episode is now as long as it originally was before it was shortened the first time. This does not mean nothing has been edited out since its release. It simply means that the current duration matches its original duration. The editing history is documented here.">
+          <Tag variant="originalLength" toolTip={TOOL_TIP_TEXT}>
             original length
           </Tag>
         )}

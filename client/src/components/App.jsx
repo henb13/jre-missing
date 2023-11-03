@@ -19,7 +19,7 @@ function App() {
   const { data, error, isPending } = useFetch(
     `${import.meta.env.VITE_API_BASE_URL}/api/episodes`
   );
-  const minLoadingTimeElapsed = useMinLoadingTime(400);
+  const minLoadingTimeElapsed = useMinLoadingTime(200);
   const [shouldShakeEpisodes, setShouldShakeEpisodes] = useState(false);
   const [missingEpisodesShown, setMissingEpisodesShown] = useState([]);
   const [shortenedEpisodesShown, setShortenedEpisodesShown] = useState([]);
