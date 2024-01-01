@@ -1,9 +1,8 @@
 const express = require("express");
 const app = express();
-const api = require("./api/index.js");
 const responseHeaders = require("./api/middlewares/response-headers.js");
 const errorHandler = require("./api/middlewares/error-handler.js");
-const devApi = require("./api/dev-api.js");
+const { devApi, api } = require("./api");
 
 const helmet = require("helmet");
 require("dotenv").config();

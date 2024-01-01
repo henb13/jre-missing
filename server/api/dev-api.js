@@ -12,4 +12,4 @@ router.get("/api/episodes", async (_, res) => {
   //TODO: Implement supabase development database if not using mock response
 });
 
-module.exports = router;
+module.exports = { devApi: router };

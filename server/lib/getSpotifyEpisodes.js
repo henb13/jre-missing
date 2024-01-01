@@ -45,7 +45,7 @@ async function getSpotifyEpisodes() {
 
     return spotifyEpisodes;
   } catch (err) {
-    console.error("something went wrong fetching from Spotify: ", err.message);
+    throw new Error(`something went wrong fetching from Spotify: ${err.message}`);
   }
 }
 
