@@ -13,16 +13,16 @@ Automatically detects and lists episodes of [The Joe Rogan Experience](https://o
 
 ## As Mentioned In 🗞️
 
-<a href="https://www.rollingstone.com/culture/culture-news/spotify-removes-joe-rogan-experience-podcast-episodes-1295727/">Rolling Stone</a>
- &#8226;  <a href="https://www.theverge.com/22918697/joe-rogan-experience-podcast-episodes-disappear-controversy">The Verge</a>
- &#8226;  <a href="https://www.bloomberg.com/opinion/articles/2022-02-08/peloton-s-ceo-has-had-enough">Bloomberg</a>
- &#8226;  <a href="https://variety.com/2022/digital/news/spotify-removes-joe-rogan-episodes-n-word-1235172972/">Variety</a>
+<a href="https://www.washingtonpost.com/arts-entertainment/2022/02/06/spotify-joe-rogan-podcast-removed/">The Washington Post</a>
  &#8226;  <a href="https://www.nytimes.com/2022/02/05/arts/music/joe-rogan-spotify-apology-slur.html">The New York Times</a>
+ &#8226;  <a href="https://www.rollingstone.com/culture/culture-news/spotify-removes-joe-rogan-experience-podcast-episodes-1295727/">Rolling Stone</a>
+ &#8226;  <a href="https://www.theverge.com/22918697/joe-rogan-experience-podcast-episodes-disappear-controversy">The Verge</a>
+ &#8226;  <a href="https://www.bloomberg.com/news/articles/2022-02-05/joe-rogan-apologizes-for-using-racial-slur-on-his-podcast">Bloomberg</a>
+ &#8226;  <a href="https://variety.com/2022/digital/news/spotify-removes-joe-rogan-episodes-n-word-1235172972/">Variety</a>
  &#8226;  <a href="https://edition.cnn.com/2022/02/05/media/joe-rogan-racial-slur-apology-india-arie/index.html">CNN</a>
  &#8226;  <a href="https://www.latimes.com/entertainment-arts/story/2022-02-05/joe-rogan-apologizes-for-using-n-word?utm_source=pocket_mylist">LA Times</a>
  &#8226;  <a href="https://www.businessinsider.com/spotify-deletes-70-joe-rogan-podcast-episodes-including-alex-jones-2022-2?r=US&IR=T">Business Insider</a>
  &#8226;  <a href="https://nypost.com/2022/02/05/spotify-has-removed-over-100-episodes-of-joe-rogans-podcast/">New York Post</a>
- &#8226;  <a href="https://www.washingtonpost.com/arts-entertainment/2022/02/06/spotify-joe-rogan-podcast-removed/">The Washington Post</a>
  &#8226;  <a href="https://www.dailymail.co.uk/news/article-10479127/Spotify-purges-70-Joe-Rogan-episodes-defiant-host-returns-airwaves-Says-lockdowns-dont-work.html">Daily Mail</a>
  &#8226;  <a href="https://www.wsj.com/articles/joe-rogan-racial-slur-spotify-11644275660">The Wall Street Journal</a>
  &#8226;  <a href="https://www.forbes.com/sites/lisakim/2022/02/05/spotify-pulls-more-than-110-episodes-of-joe-rogans-podcast/?sh=79b42a5d1539">Forbes</a>
