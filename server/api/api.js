@@ -6,15 +6,12 @@ const NodeCache = require("node-cache");
 const rateLimit = require("express-rate-limit");
 const slowDown = require("express-slow-down");
 
-router.use(express.json());
-
 const cache = new NodeCache({ stdTTL: 3600 });
 
 const rateLimiter = rateLimit({
   windowMs: 15 * 1000,
   max: 7,
 });
-/* TODO: ddos vector? */
 const speedLimiter = slowDown({
   windowMs: 15 * 1000,
   delayAfter: 3,
@@ -31,8 +28,6 @@ router.use(rateLimiter);
 router.use(speedLimiter);
 
 router.get("/api/episodes", async (req, res, next) => {
-  console.info("request fired");
-
   const missingCacheExists = cache.has(CACHE_KEYS.missingEpisodes);
   const shortenedCacheExists = cache.has(CACHE_KEYS.shortenedEpisodes);
   const lastCheckedExists = cache.has(CACHE_KEYS.lastChecked);

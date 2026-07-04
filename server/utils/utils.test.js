@@ -1,11 +1,4 @@
-/**
- * Characterization tests for server-side formatting utils.
- * TZ is pinned to UTC in jest.setup.js, so date strings are deterministic.
- */
-
-const { formatMsToTimeString, getDateString, getDateTimeHTMLAttribute } = require("./utils");
-
-const NOON_JAN_1_1970 = 12 * 60 * 60 * 1000;
+const { formatMsToTimeString } = require("./utils");
 
 describe("formatMsToTimeString", () => {
   test.each([
@@ -17,15 +10,5 @@ describe("formatMsToTimeString", () => {
     [7200000, "2 hr 0 min 0 sec"],
   ])("%i ms → %s", (ms, expected) => {
     expect(formatMsToTimeString(ms)).toBe(expected);
-  });
-});
-
-describe("date formatting", () => {
-  test("getDateTimeHTMLAttribute formats as yyyy-MM-dd", () => {
-    expect(getDateTimeHTMLAttribute(NOON_JAN_1_1970)).toBe("1970-01-01");
-  });
-
-  test("getDateString formats as a long localized date", () => {
-    expect(getDateString(NOON_JAN_1_1970)).toMatch(/^January 1(st)?, 1970$/);
   });
 });

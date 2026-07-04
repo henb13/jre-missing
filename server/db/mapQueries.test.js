@@ -1,6 +1,6 @@
 /**
  * Characterization tests for the row-mapping functions used by the API queries.
- * Date-string formatting is deterministic because jest.setup.js pins TZ=UTC.
+ * Dates are returned as { ms } only; the client formats them in the user's timezone.
  */
 
 const { mapMissingEpisodes, mapShortenedEpisodes, mapLastChecked } = require("./mapQueries");
@@ -22,17 +22,14 @@ describe("mapMissingEpisodes", () => {
     });
   });
 
-  test("episode removed recently is marked isNew with a full date object", () => {
+  test("episode removed recently is marked isNew with the removal time in ms", () => {
     const removedMs = Date.now() - 2 * DAY_MS;
     const [ep] = mapMissingEpisodes([
       { full_name: "#100 - Guest", episode_number: 100, date_removed: String(removedMs) },
     ]);
 
     expect(ep.isNew).toBe(true);
-    expect(ep.date.ms).toBe(removedMs);
-    expect(typeof ep.date.formatted).toBe("string");
-    expect(ep.date.formatted.length).toBeGreaterThan(0);
-    expect(ep.date.htmlAttribute).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(ep.date).toEqual({ ms: removedMs });
   });
 
   test("isNew threshold is 14 days: 13.5 days ago is new, 15 days ago is not", () => {
@@ -71,7 +68,7 @@ describe("mapShortenedEpisodes", () => {
     });
     expect(result[0].changes).toEqual([
       {
-        date: expect.objectContaining({ ms: expect.any(Number) }),
+        date: { ms: expect.any(Number) },
         old_duration_string: "2 hr 0 min 0 sec",
         new_duration_string: "0 hr 50 min 0 sec",
       },

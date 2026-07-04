@@ -1,5 +1,6 @@
 import styles from "./Episode.module.css";
 import Tag from "./Tag";
+import { getDateString, getDateTimeHTMLAttribute } from "../utils";
 
 const TOOL_TIP_TEXT =
   "This episode is now as long as it originally was before it was shortened the first time. This does not mean nothing has been edited out since its release. It simply means that the current duration matches its original duration. The editing history is documented here.";
@@ -32,7 +33,7 @@ const Episode = ({ variant, name, number, date, isNew, isOriginalLength }) => {
       {date && (
         <span className={styles.timeDetail}>
           {variant === "removed" ? "Removed" : "Shortened"} on{" "}
-          <time dateTime={date.htmlAttribute}>{date.formatted}</time>
+          <time dateTime={getDateTimeHTMLAttribute(date.ms)}>{getDateString(date.ms)}</time>
         </span>
       )}
     </div>

@@ -1,9 +1,5 @@
 const { differenceInDays, parseISO } = require("date-fns");
-const {
-  formatMsToTimeString,
-  getDateString,
-  getDateTimeHTMLAttribute,
-} = require("../utils/utils");
+const { formatMsToTimeString } = require("../utils/utils");
 
 const DAYS_THRESHOLD_NEW = 14;
 
@@ -22,13 +18,8 @@ const mapMissingEpisodes = (missingEpisodes) => {
       full_name,
       episode_number,
       isNew: getIsEpisodeNewlyReleased(ms),
-      date: ms
-        ? {
-            ms,
-            formatted: getDateString(ms),
-            htmlAttribute: getDateTimeHTMLAttribute(ms),
-          }
-        : null,
+      // the client formats the date in the user's own timezone
+      date: ms ? { ms } : null,
     };
   });
 };
@@ -41,11 +32,7 @@ const mapShortenedEpisodes = (shortenedEpisodes) => {
       const ms = parseInt(date_changed);
 
       const changeItem = {
-        date: {
-          ms,
-          formatted: getDateString(ms),
-          htmlAttribute: getDateTimeHTMLAttribute(ms),
-        },
+        date: { ms },
         new_duration_string: formatMsToTimeString(new_duration),
         old_duration_string: formatMsToTimeString(old_duration),
         old_duration: parseInt(old_duration),

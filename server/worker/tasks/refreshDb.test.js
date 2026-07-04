@@ -17,9 +17,7 @@ const mockDb = {
   getLastChecked: jest.fn(),
 };
 
-jest.mock("pg", () => ({
-  Pool: jest.fn(() => ({ connect: jest.fn(async () => mockClient) })),
-}));
+jest.mock("../../db/connect", () => ({ connect: jest.fn(async () => mockClient) }));
 jest.mock("../../db/db", () => jest.fn(() => mockDb));
 jest.mock("../../lib/getSpotifyEpisodes");
 
@@ -257,7 +255,10 @@ describe("bookkeeping and error handling", () => {
     expect(mockDb.getAllEpisodes).not.toHaveBeenCalled();
     expect(mockDb.setLastCheckedNow).not.toHaveBeenCalled();
     expect(mockClient.release).toHaveBeenCalledTimes(1);
-    expect(console.warn).toHaveBeenCalledWith("Worker failed to run: spotify down");
+    expect(console.warn).toHaveBeenCalledWith(
+      "Worker failed to run:",
+      expect.objectContaining({ message: "spotify down" })
+    );
   });
 
   test("db failure mid-run is swallowed and the client is still released", async () => {
@@ -267,6 +268,9 @@ describe("bookkeeping and error handling", () => {
 
     expect(mockDb.setLastCheckedNow).not.toHaveBeenCalled();
     expect(mockClient.release).toHaveBeenCalledTimes(1);
-    expect(console.warn).toHaveBeenCalledWith("Worker failed to run: db down");
+    expect(console.warn).toHaveBeenCalledWith(
+      "Worker failed to run:",
+      expect.objectContaining({ message: "db down" })
+    );
   });
 });

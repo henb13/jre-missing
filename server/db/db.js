@@ -25,26 +25,21 @@ const DB = (client) => {
     },
     getShortenedEpisodes: async function () {
       const { rows } = await client.query(
-        `SELECT all_eps.id AS id, episode_number, full_name, EXTRACT(EPOCH FROM date_changed at time zone 'UTC') * 1000 AS date_changed, new_duration, old_duration
+        `SELECT all_eps.id AS id, episode_number, full_name,
+          EXTRACT(EPOCH FROM duration_changes.date at time zone 'UTC') * 1000 AS date_changed,
+          new_duration, old_duration
         FROM all_eps
-        JOIN (
-          SELECT id, episode_id, new_duration, old_duration, date AS date_changed
-          FROM duration_changes
-          GROUP BY episode_id, id, old_duration
-         ) AS t2
-         ON all_eps.id = t2.episode_id
-         ORDER BY date_changed DESC`
+        JOIN duration_changes ON all_eps.id = duration_changes.episode_id
+        ORDER BY date_changed DESC`
       );
       return mapShortenedEpisodes(rows);
     },
     insertNewEpisode: async function (episode) {
       const epNumber = getEpisodeNumber(episode.name);
-      await client.query("INSERT INTO all_eps VALUES(DEFAULT, $1, $2, $3, $4)", [
-        epNumber,
-        episode.name,
-        true,
-        episode.duration,
-      ]);
+      await client.query(
+        "INSERT INTO all_eps(episode_number, full_name, on_spotify, duration) VALUES($1, $2, $3, $4)",
+        [epNumber, episode.name, true, episode.duration]
+      );
     },
     updateEpisodeName: async function (name, id) {
       await client.query("UPDATE all_eps SET full_name=($1) WHERE id=($2)", [name, id]);

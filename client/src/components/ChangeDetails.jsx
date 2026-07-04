@@ -3,6 +3,7 @@ import classnames from "classnames";
 import Disclosure from "./Disclosure";
 import styles from "./ChangeDetails.module.css";
 import Chavron from "../icons/chavron.svg";
+import { getDateString, getDateTimeHTMLAttribute } from "../utils";
 
 const ChangeDetails = ({ episode }) => {
   const [open, setOpen] = useState(false);
@@ -71,15 +72,11 @@ const ChangeDetails = ({ episode }) => {
 };
 
 const ChangeDisplay = ({ change }) => {
-  const {
-    date: { formatted, htmlAttribute },
-    old_duration_string,
-    new_duration_string,
-  } = change;
+  const { date, old_duration_string, new_duration_string } = change;
   return (
     <div className={styles.ChangeDisplayWrapper}>
-      <time dateTime={htmlAttribute} className={styles.ChangeDisplayDate}>
-        {formatted}
+      <time dateTime={getDateTimeHTMLAttribute(date.ms)} className={styles.ChangeDisplayDate}>
+        {getDateString(date.ms)}
       </time>
       <p className={styles.ChangeDisplay}>
         <span className={styles.displayTime}>{old_duration_string}</span>

@@ -30,7 +30,6 @@
     "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
-    "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
@@ -40,6 +39,8 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFiles": ["<rootDir>/jest.setup.js"]
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ]
   }
 }
