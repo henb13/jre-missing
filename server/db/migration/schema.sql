@@ -1,19 +1,11 @@
 CREATE DATABASE jre_missing;
 
-DROP TABLE IF EXISTS all_eps, test_table, date_removed, date_re_added, all_eps_log;
+DROP TABLE IF EXISTS duration_changes, date_removed, date_re_added, all_eps_log, all_eps;
 
 CREATE TABLE all_eps(
   id SERIAL NOT NULL UNIQUE PRIMARY KEY,
   episode_number INTEGER,
-  full_name VARCHAR(255) NOT NULL, 
-  on_spotify BOOLEAN NOT NULL,
-  duration INTEGER
-);
-
-CREATE TABLE test_table(
-  id SERIAL NOT NULL UNIQUE PRIMARY KEY,
-  episode_number INTEGER,
-  full_name VARCHAR(255) NOT NULL, 
+  full_name VARCHAR(255) NOT NULL,
   on_spotify BOOLEAN NOT NULL,
   duration INTEGER
 );

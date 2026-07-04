@@ -3,28 +3,35 @@ const getSpotifyEpisodes = require("../../lib/getSpotifyEpisodes");
 const getEpisodeNumber = require("../../lib/getEpisodeNumber");
 const pool = require("../connect");
 
-getSpotifyEpisodes().then(async (episodes) => {
-  const allEpisodes = episodes.concat(missingEpisodesPerNow);
+async function setup() {
+  const spotifyEpisodes = await getSpotifyEpisodes();
+
+  // the known-missing episodes are plain name strings; give them the same shape
+  const allEpisodes = spotifyEpisodes.concat(
+    missingEpisodesPerNow.map((name) => ({ name, duration: null }))
+  );
   allEpisodes.sort((a, b) => getEpisodeNumber(a.name) - getEpisodeNumber(b.name));
 
-  await (async () => {
+  const client = await pool.connect();
+
+  try {
     for (const ep of allEpisodes) {
-      const client = await pool.connect();
-      const epNumber = getEpisodeNumber(ep.name);
+      const onSpotify = !missingEpisodesPerNow.includes(ep.name);
 
-      try {
-        const onSpotify = !missingEpisodesPerNow.includes(ep.name);
-        await client.query(`INSERT INTO all_eps VALUES(DEFAULT, $1, $2, $3, $4)`, [
-          epNumber,
-          ep.name,
-          onSpotify,
-          ep.duration,
-        ]);
-      } finally {
-        client.release();
-      }
+      await client.query(
+        "INSERT INTO all_eps(episode_number, full_name, on_spotify, duration) VALUES($1, $2, $3, $4)",
+        [getEpisodeNumber(ep.name), ep.name, onSpotify, ep.duration]
+      );
     }
-  })().catch((err) => console.error(err.message));
 
-  console.info("inserts done");
+    console.info("inserts done");
+  } finally {
+    client.release();
+    await pool.end();
+  }
+}
+
+setup().catch((err) => {
+  console.error("setup failed:", err);
+  process.exitCode = 1;
 });
