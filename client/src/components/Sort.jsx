@@ -17,10 +17,6 @@ const Sort = ({ setEpisodes, episodes, listShown }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(initialState);
 
-  useEffect(() => {
-    setSelected(initialState);
-  }, [listShown]);
-
   const handleSort = (option, isReversed) => {
     let nulls;
     let nonNulls;

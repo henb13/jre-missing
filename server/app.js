@@ -11,7 +11,9 @@ const port = process.env.PORT || 3001;
 const useDevApi =
   process.env.NODE_ENV === "development" && process.env.USE_MOCK_DATA === "true";
 
-app.set("trust proxy", 1);
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
 
 app.use(express.json());
 app.use(helmet());

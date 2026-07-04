@@ -7,6 +7,7 @@ async function getSpotifyEpisodes() {
     const data = await spotifyClient.clientCredentialsGrant();
     const accessToken = data.body["access_token"];
     spotifyClient.setAccessToken(accessToken);
+    //TODO: Check if access token expired.
 
     const spotifyEpisodes = [];
     const episodes = await spotifyClient.getShowEpisodes(JRE_SHOW_ID, {

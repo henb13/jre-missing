@@ -1,6 +1,7 @@
 .vscode
 .DS_Store
 **/.DS_Store
+**/.env
 
 # client
 
@@ -35,3 +36,4 @@ client/yarn-error.log*
 server/.env
 server/node_modules
 server/coverage
+server/docker-data

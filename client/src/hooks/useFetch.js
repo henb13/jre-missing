@@ -8,6 +8,7 @@ const useFetch = (url) => {
 
   useEffect(() => {
     const abortCont = new AbortController();
+
     fetch(url, { signal: abortCont.signal })
       .then((res) => {
         if (!res.ok) {
@@ -26,7 +27,7 @@ const useFetch = (url) => {
       })
       .catch((err) => {
         if (err.name === "AbortError") {
-          console.warn("fetch aborted");
+          console.warn("fetch aborted", err);
         } else {
           setIsPending(false);
           console.error(`Something went wrong with fetching episodes: ${err}`);

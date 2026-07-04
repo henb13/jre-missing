@@ -782,6 +782,16 @@
       }
     },
     {
+      "full_name": "#64 - John Heffron",
+      "episode_number": 64,
+      "isNew": true,
+      "date": {
+        "ms": 1704736765000,
+        "formatted": "January 8th, 2024",
+        "htmlAttribute": "2024-01-08"
+      }
+    },
+    {
       "full_name": "#57 - Jayson Thibault, Brian Redban",
       "episode_number": 57,
       "isNew": null,
@@ -906,70 +916,7 @@
         }
       ],
       "isOriginalLength": false
-    },
-    {
-      "id": 1234,
-      "episode_number": 1411,
-      "full_name": "#1411 - Robert Downey Jr.",
-      "isNew": true,
-      "changes": [
-        {
-          "date": {
-            "ms": 1698784039904,
-            "formatted": "October 31st, 2023",
-            "htmlAttribute": "2023-10-31"
-          },
-          "new_duration_string": "3 hr 18 min 56 sec",
-          "old_duration_string": "3 hr 28 min 2 sec"
-        },
-        {
-          "date": {
-            "ms": 1693784523916,
-            "formatted": "September 4th, 2023",
-            "htmlAttribute": "2023-09-04"
-          },
-          "new_duration_string": "3 hr 28 min 2 sec",
-          "old_duration_string": "3 hr 30 min 2 sec"
-        },
-        {
-          "date": {
-            "ms": 1691784655309,
-            "formatted": "August 11th, 2023",
-            "htmlAttribute": "2023-08-11"
-          },
-          "new_duration_string": "3 hr 30 min 2 sec",
-          "old_duration_string": "3 hr 47 min 48 sec"
-        }
-      ],
-      "isOriginalLength": false
-    },
-    {
-      "id": 734,
-      "episode_number": 990,
-      "full_name": "#990 - Jamie Foxx",
-      "isNew": false,
-      "changes": [
-        {
-          "date": {
-            "ms": 1698784039904,
-            "formatted": "October 31st, 2023",
-            "htmlAttribute": "2023-10-31"
-          },
-          "new_duration_string": "3 hr 30 min 2 sec",
-          "old_duration_string": "3 hr 28 min 2 sec"
-        },
-        {
-          "date": {
-            "ms": 1693784523916,
-            "formatted": "September 4th, 2023",
-            "htmlAttribute": "2023-09-04"
-          },
-          "new_duration_string": "3 hr 28 min 2 sec",
-          "old_duration_string": "3 hr 30 min 2 sec"
-        }
-      ],
-      "isOriginalLength": true
     }
   ],
-  "lastCheckedInMs": 1698784687712
+  "lastCheckedInMs": 1704754825000
 }

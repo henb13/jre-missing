@@ -41,17 +41,19 @@ function App() {
 
   const currentList = listMap[listShown];
 
-  useEffect(() => {
-    setMissingEpisodesShown(data?.missingEpisodes || []);
-    setShortenedEpisodesShown(data?.shortenedEpisodes || []);
-  }, [data]);
-
   const shakeEpisodes = () => {
     setShouldShakeEpisodes(true);
     setTimeout(() => {
       setShouldShakeEpisodes(false);
     }, 1000);
   };
+
+  useEffect(() => {
+    setMissingEpisodesShown(data?.missingEpisodes || []);
+    setShortenedEpisodesShown(data?.shortenedEpisodes || []);
+
+    shakeEpisodes();
+  }, [data]);
 
   const { scrollTarget, scrollable } = useScroll({
     refreshOnChange: [missingEpisodesShown, shortenedEpisodesShown, listShown, searchText],

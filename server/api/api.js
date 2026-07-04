@@ -14,7 +14,7 @@ const rateLimiter = rateLimit({
   windowMs: 15 * 1000,
   max: 7,
 });
-
+/* TODO: ddos vector? */
 const speedLimiter = slowDown({
   windowMs: 15 * 1000,
   delayAfter: 3,
