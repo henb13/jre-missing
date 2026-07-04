@@ -43,6 +43,8 @@ async function refreshDb() {
       }
 
       for (const spotifyEpisode of spotifyEpisodes) {
+        let episodeGotRenamed = false;
+
         for (const dbEpisode of allEpisodes) {
           if (
             dbEpisode.episode_number &&
@@ -51,16 +53,22 @@ async function refreshDb() {
             await db.updateEpisodeName(spotifyEpisode.name, dbEpisode.id);
 
             someEpisodeNameGotUpdated = true;
+            episodeGotRenamed = true;
 
             console.info(
               ` \n\n spotify updated the name of an episode! \n
-                                  from: ${dbEpisode.full_name} \n 
+                                  from: ${dbEpisode.full_name} \n
                                   to: ${spotifyEpisode.name} \n\n`
             );
 
             break;
           }
         }
+
+        // a renamed episode already exists in the db under its old name;
+        // the in-memory list is stale, so without this it would be re-inserted
+        if (episodeGotRenamed) continue;
+
         const isNewRelease = !allEpisodes.some((ep) => ep.full_name === spotifyEpisode.name);
 
         if (isNewRelease) {

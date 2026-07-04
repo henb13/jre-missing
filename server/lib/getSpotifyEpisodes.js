@@ -33,6 +33,14 @@ async function getSpotifyEpisodes() {
         offset: spotifyEpisodes.length,
       });
 
+      // abort instead of looping forever; a partial list would falsely mark
+      // the remaining episodes as removed
+      if (!episodes.body.items.length) {
+        throw new Error(
+          `Spotify returned an empty page at offset ${spotifyEpisodes.length} of ${totalEpisodes} total episodes`
+        );
+      }
+
       spotifyEpisodes.push(
         ...episodes.body.items.map((ep) => {
           return { name: ep.name, duration: ep.duration_ms };

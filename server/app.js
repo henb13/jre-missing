@@ -1,3 +1,6 @@
+// dotenv must load before any module that reads process.env at require time
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const responseHeaders = require("./api/middlewares/response-headers.js");
@@ -5,7 +8,6 @@ const errorHandler = require("./api/middlewares/error-handler.js");
 const { devApi, api } = require("./api");
 
 const helmet = require("helmet");
-require("dotenv").config();
 
 const port = process.env.PORT || 3001;
 const useDevApi =

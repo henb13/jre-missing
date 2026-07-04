@@ -73,24 +73,13 @@ test("second request within the cache TTL does not hit the database", async () =
   expect(second.body).toEqual(first.body);
 });
 
-test("KNOWN BUG (pinned): db error responds 200 with an empty body instead of a 500", async () => {
-  // The catch block calls next(error) without returning. Express defers the
-  // hop from router to app-level error handler via setImmediate, so the
-  // fall-through res.json (with every cache.get undefined) responds FIRST:
-  // the client gets 200 {} and renders "nothing missing" as if all is well.
-  // The error handler then runs, and ITS res.status(500).send throws
-  // ERR_HTTP_HEADERS_SENT (swallowed and logged by Express's finalhandler).
-  // Fix planned: `return next(error)` → client should get the 500.
+test("db error responds 500 via the error handler", async () => {
   const app = buildApp();
   mockDb.getMissingEpisodes.mockRejectedValue(new Error("db down"));
 
   const res = await request(app).get("/api/episodes");
 
-  expect(res.status).toBe(200);
-  expect(res.body).toEqual({});
+  expect(res.status).toBe(500);
+  expect(res.text).toMatch(/Something went wrong on the server/);
   expect(mockClient.release).toHaveBeenCalledTimes(1);
-
-  // let the deferred error handler run (and swallow its ERR_HTTP_HEADERS_SENT)
-  // so it cannot leak into the next test
-  await new Promise((resolve) => setImmediate(resolve));
 });

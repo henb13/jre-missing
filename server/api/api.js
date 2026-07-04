@@ -62,7 +62,7 @@ router.get("/api/episodes", async (req, res, next) => {
     } catch (error) {
       console.error(error.message);
       client.release();
-      next(error);
+      return next(error);
     }
   }
 

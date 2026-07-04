@@ -1,7 +1,5 @@
 /**
  * Characterization tests for getSpotifyEpisodes (Spotify fetching + pagination).
- * Known bug, noted but deliberately NOT tested (it would hang the suite): if Spotify
- * ever returns an empty page while total > fetched, the while loop never terminates.
  */
 
 jest.mock("./spotify-client", () => ({
@@ -101,4 +99,20 @@ test("fetch failure is wrapped in a descriptive error", async () => {
   await expect(getSpotifyEpisodes()).rejects.toThrow(
     "something went wrong fetching from Spotify: rate limited"
   );
+});
+
+test("an empty page before reaching total aborts instead of looping forever", async () => {
+  spotifyClient.getShowEpisodes
+    .mockResolvedValueOnce({
+      body: {
+        total: 120,
+        items: Array.from({ length: 50 }, (_, i) => ({ name: `#${i}`, duration_ms: 1 })),
+      },
+    })
+    .mockResolvedValue({ body: { total: 120, items: [] } });
+
+  await expect(getSpotifyEpisodes()).rejects.toThrow(
+    "Spotify returned an empty page at offset 50 of 120 total episodes"
+  );
+  expect(spotifyClient.getShowEpisodes).toHaveBeenCalledTimes(2);
 });

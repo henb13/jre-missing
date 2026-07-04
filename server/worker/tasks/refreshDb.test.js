@@ -189,16 +189,12 @@ describe("renamed episodes", () => {
     expect(mockDb.setSpotifyStatus).not.toHaveBeenCalled();
   });
 
-  test("KNOWN BUG (pinned): a rename also inserts the episode again as a 'new release', creating a duplicate row", async () => {
-    // The in-memory allEpisodes list is stale after updateEpisodeName, so the
-    // isNewRelease check does not find the new name and inserts a duplicate.
-    // Fix planned: skip the new-release check for the episode that was just renamed.
-    const { renamed } = renamedSetup();
+  test("a rename is not also treated as a new release (no duplicate row)", async () => {
+    renamedSetup();
 
     await refreshDb();
 
-    expect(mockDb.insertNewEpisode).toHaveBeenCalledTimes(1);
-    expect(mockDb.insertNewEpisode).toHaveBeenCalledWith(renamed);
+    expect(mockDb.insertNewEpisode).not.toHaveBeenCalled();
   });
 
   test("episodes with '(part' in the name are never treated as renames", async () => {
