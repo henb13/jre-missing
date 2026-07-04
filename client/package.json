@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/node": "^20.8.9",
-    "@types/react": "^18.2.33",
-    "@vitejs/plugin-react-swc": "^3.4.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
@@ -13,28 +10,31 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-text-transition": "^3.1.0",
-    "react-tooltip": "^5.21.6",
-    "typescript": "^5.2.2",
-    "vite": "^4.5.0",
-    "vite-plugin-svgr": "^4.1.0",
-    "vite-tsconfig-paths": "^4.2.1",
-    "web-vitals": "^3.5.0"
+    "react-tooltip": "^5.21.6"
   },
   "scripts": {
     "start": "vite --open",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage --watch=false"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@vitest/coverage-v8": "^0.34.6",
+    "@types/node": "^20.8.9",
+    "@types/react": "^18.2.33",
+    "@vitejs/plugin-react-swc": "^3.11.0",
+    "@vitest/coverage-v8": "^3.2.6",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "jsdom": "^22.1.0",
-    "vitest": "^0.34.6"
+    "jsdom": "^26.1.0",
+    "typescript": "^5.2.2",
+    "vite": "^6.4.3",
+    "vite-plugin-svgr": "^4.5.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.6"
   },
   "eslintConfig": {
     "extends": [
