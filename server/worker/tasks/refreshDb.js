@@ -106,6 +106,8 @@ function didEpisodeChangeName(spotifyEpisodeName, dbEpisode) {
   );
 }
 
-refreshDb();
+if (require.main === module) {
+  refreshDb();
+}
 
 module.exports = refreshDb;
