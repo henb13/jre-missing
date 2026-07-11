@@ -14,6 +14,10 @@ export const getDateString = (time) => {
   return getClientLocalTime(time, "PPP");
 };
 
+export const getDateStringMono = (time) => {
+  return getClientLocalTime(time, "MMM dd yyyy").toUpperCase();
+};
+
 export const getDateTimeHTMLAttribute = (time) => {
   return getClientLocalTime(time, "yyyy-MM-dd");
 };

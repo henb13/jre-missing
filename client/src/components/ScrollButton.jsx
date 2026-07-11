@@ -21,10 +21,15 @@ const ScrollButton = ({ dataPending, minLoadingTimeElapsed, scrollTarget, scroll
         [styles.hidden]: shouldHide,
       })}
       disabled={shouldHide}
-      aria-label={`scroll to ${scrollTarget}`}
+      aria-label={"scroll to " + scrollTarget}
       onClick={handleClick}>
+      <ArrowDown
+        className={classnames(styles.arrow, {
+          [styles.up]: scrollTarget === "top",
+        })}
+      />
       <div className={styles.ScrollText}>
-        To{" "}
+        to{" "}
         <TextTransition
           springConfig={presets.gentle}
           inline={true}
@@ -32,11 +37,6 @@ const ScrollButton = ({ dataPending, minLoadingTimeElapsed, scrollTarget, scroll
           {scrollTarget}
         </TextTransition>
       </div>
-      <ArrowDown
-        className={classnames(styles.arrow, {
-          [styles.up]: scrollTarget === "top",
-        })}
-      />
     </button>
   );
 };

@@ -9,11 +9,14 @@ const ListTabs = ({
   listIdShortened,
   tabIdRemoved,
   tabIdShortened,
+  removedTotal,
+  shortenedTotal,
 }) => {
   return (
     <div className={styles.ListTab} role="tablist" aria-orientation="horizontal">
       <Option
         title="Removed"
+        count={removedTotal}
         isSelected={listShown === "removed"}
         onClick={() => {
           setListShown("removed");
@@ -22,9 +25,9 @@ const ListTabs = ({
         id={tabIdRemoved}
         ariaControls={listIdRemoved}
       />
-      <div className={styles.divider}></div>
       <Option
         title="Shortened"
+        count={shortenedTotal}
         isSelected={listShown === "shortened"}
         onClick={() => {
           setListShown("shortened");
@@ -37,7 +40,7 @@ const ListTabs = ({
   );
 };
 
-const Option = ({ title, onClick, isSelected, ariaControls, id }) => {
+const Option = ({ title, count, onClick, isSelected, ariaControls, id }) => {
   return (
     <button
       id={id}
@@ -49,7 +52,7 @@ const Option = ({ title, onClick, isSelected, ariaControls, id }) => {
       aria-selected={isSelected}
       aria-controls={ariaControls}
       type="button">
-      {title}
+      {title} <span className={styles.count}>{count}</span>
     </button>
   );
 };

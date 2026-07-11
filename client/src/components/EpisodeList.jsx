@@ -14,6 +14,9 @@ const EpisodeList = ({
   listShown,
   setListShown,
   resetCurrentEpisodes,
+  removedTotal,
+  shortenedTotal,
+  controls,
 }) => {
   if (showSkeleton) return <SkeletonList />;
   if (!missingEpisodesShown && !shortenedEpisodesShown) return null;
@@ -36,7 +39,10 @@ const EpisodeList = ({
         listIdShortened={listIdShortened}
         tabIdRemoved={tabIdRemoved}
         tabIdShortened={tabIdShortened}
+        removedTotal={removedTotal}
+        shortenedTotal={shortenedTotal}
       />
+      {controls}
       <>
         {listShown === "removed" ? (
           <RemovedList
@@ -69,7 +75,6 @@ const RemovedList = ({ episodes, searchText, className, id, ariaLabelledBy }) =>
               className={styles.EpisodeItem}
               key={ep.full_name + ep.episode_number}
               lang="en">
-              <Border />
               <Episode
                 variant="removed"
                 name={ep.full_name}
@@ -92,13 +97,12 @@ const ShortenedList = ({ episodes, searchText, className, id, ariaLabelledBy }) 
   return (
     <ul className={className} role="tabpanel" id={id} aria-labelledby={ariaLabelledBy}>
       {episodes.length > 0
-        ? episodes.map((ep, i) => {
+        ? episodes.map((ep) => {
             return (
               <li
                 className={classnames(styles.EpisodeItem, styles.shortenedEpisode)}
                 key={ep.full_name + ep.episode_number}
                 lang="en">
-                {i !== 0 && <Border />}
                 <Episode
                   variant="shortened"
                   name={ep.full_name}
@@ -117,15 +121,6 @@ const ShortenedList = ({ episodes, searchText, className, id, ariaLabelledBy }) 
             </div>
           )}
     </ul>
-  );
-};
-
-const Border = ({ visible }) => {
-  return (
-    <span
-      className={classnames(styles.Border, {
-        [styles.visible]: visible,
-      })}></span>
   );
 };
 

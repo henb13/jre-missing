@@ -3,7 +3,8 @@ import { useState } from "react";
 import styles from "./Searchbox.module.css";
 import SearchIcon from "../icons/SearchboxIcon.svg";
 
-//Rewrite the Searchbox component below but without forwardRef
+const PLACEHOLDER = "search episode or guest…";
+
 const Searchbox = ({
   episodes,
   setEpisodes,
@@ -12,8 +13,8 @@ const Searchbox = ({
   searchText,
   setSearchText,
 }) => {
-  const [placeholder, setPlaceholder] = useState("Search for episode or guest");
-  // TODO: useeffect isteden som setter episode ved tab change
+  const [placeholder, setPlaceholder] = useState(PLACEHOLDER);
+
   const handleSearch = (e) => {
     setEpisodes(() => {
       return allEpisodes.filter((ep) =>
@@ -28,23 +29,8 @@ const Searchbox = ({
   });
 
   return (
-    <>
+    <div className={styles.SearchArea}>
       <div className={styles.Searchbox}>
-        <input
-          value={searchText}
-          onChange={handleSearch}
-          type="text"
-          id="search"
-          placeholder={placeholder}
-          onFocus={() => setPlaceholder(null)}
-          onBlur={() => setPlaceholder("Search for episode or guest")}
-          onKeyUp={(e) => {
-            if (e.key === "Enter") shakeEpisodes();
-          }}
-          spellCheck="false"
-          autoComplete="off"
-        />
-
         <SearchIcon
           className={classesSearchIcon}
           title="search-icon"
@@ -56,6 +42,21 @@ const Searchbox = ({
             }
           }}
         />
+
+        <input
+          value={searchText}
+          onChange={handleSearch}
+          type="text"
+          id="search"
+          placeholder={placeholder}
+          onFocus={() => setPlaceholder(null)}
+          onBlur={() => setPlaceholder(PLACEHOLDER)}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") shakeEpisodes();
+          }}
+          spellCheck="false"
+          autoComplete="off"
+        />
       </div>
       {searchText && (
         <p className={styles.searchResult}>
@@ -63,7 +64,7 @@ const Searchbox = ({
           {episodes.length != 1 && "s"} found
         </p>
       )}
-    </>
+    </div>
   );
 };
 

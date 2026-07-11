@@ -17,7 +17,7 @@ import useScroll from "../hooks/useScroll";
 
 function App() {
   const { data, error, isPending } = useFetch(
-    `${import.meta.env.VITE_API_BASE_URL}/api/episodes`
+    `${import.meta.env.VITE_API_BASE_URL}/api/episodes`,
   );
   const minLoadingTimeElapsed = useMinLoadingTime(200);
   const [shouldShakeEpisodes, setShouldShakeEpisodes] = useState(false);
@@ -51,8 +51,6 @@ function App() {
   useEffect(() => {
     setMissingEpisodesShown(data?.missingEpisodes || []);
     setShortenedEpisodesShown(data?.shortenedEpisodes || []);
-
-    shakeEpisodes();
   }, [data]);
 
   const { scrollTarget, scrollable } = useScroll({
@@ -68,52 +66,63 @@ function App() {
 
   return (
     <div className="App">
-      <section className="left">
+      <header className="topbar">
         <Github />
-        <Sponsor />
-        <Coffee />
-        <Header />
-        <Contact />
-        {error ? (
-          <Error error={error} />
-        ) : (
-          <>
-            <AmountInfo data={data} showSkeleton={showSkeleton} setListShown={setListShown} />
-            <Searchbox
-              {...currentList}
-              shakeEpisodes={shakeEpisodes}
-              searchText={searchText}
-              setSearchText={setSearchText}
-            />
-          </>
-        )}
-      </section>
+        <div className="topbarActions">
+          <Sponsor />
+          <Coffee />
+          <Contact />
+        </div>
+      </header>
 
-      {!error && (
-        <section className="right">
-          <Sort
-            listShown={listShown}
-            setEpisodes={currentList.setEpisodes}
-            episodes={currentList.episodes}
-          />
-          <EpisodeList
-            missingEpisodesShown={missingEpisodesShown}
-            shortenedEpisodesShown={shortenedEpisodesShown}
-            shouldShake={shouldShakeEpisodes}
-            showSkeleton={showSkeleton}
-            searchText={searchText}
-            listShown={listShown}
-            setListShown={setListShown}
-            resetCurrentEpisodes={resetCurrentEpisodes}
-          />
-          <ScrollButton
-            dataPending={isPending}
-            minLoadingTimeElapsed={minLoadingTimeElapsed}
-            scrollTarget={scrollTarget}
-            scrollable={scrollable}
-          />
+      <div className="layout">
+        <section className="left">
+          <Header />
+          {error ? (
+            <Error error={error} />
+          ) : (
+            <AmountInfo data={data} showSkeleton={showSkeleton} setListShown={setListShown} />
+          )}
         </section>
-      )}
+
+        {!error && (
+          <section className="right">
+            <EpisodeList
+              missingEpisodesShown={missingEpisodesShown}
+              shortenedEpisodesShown={shortenedEpisodesShown}
+              shouldShake={shouldShakeEpisodes}
+              showSkeleton={showSkeleton}
+              searchText={searchText}
+              listShown={listShown}
+              setListShown={setListShown}
+              resetCurrentEpisodes={resetCurrentEpisodes}
+              removedTotal={data?.missingEpisodes?.length || 0}
+              shortenedTotal={data?.shortenedEpisodes?.length || 0}
+              controls={
+                <div className="listControls">
+                  <Searchbox
+                    {...currentList}
+                    shakeEpisodes={shakeEpisodes}
+                    searchText={searchText}
+                    setSearchText={setSearchText}
+                  />
+                  <Sort
+                    listShown={listShown}
+                    setEpisodes={currentList.setEpisodes}
+                    episodes={currentList.episodes}
+                  />
+                </div>
+              }
+            />
+            <ScrollButton
+              dataPending={isPending}
+              minLoadingTimeElapsed={minLoadingTimeElapsed}
+              scrollTarget={scrollTarget}
+              scrollable={scrollable}
+            />
+          </section>
+        )}
+      </div>
     </div>
   );
 }

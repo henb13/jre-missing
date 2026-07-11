@@ -1,30 +1,18 @@
 .ChangeDetails {
   display: flex;
   flex-direction: column;
-  font-size: var(--font-size-small);
-  color: var(--color-grey-secondary);
-  margin-top: 0.75rem;
-}
-
-.headingWrapper {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  background: var(--color-black-secondary);
-  padding: 2px 8px 4px;
-  border-radius: 5px;
-}
-
-.heading {
-  color: var(--color-white);
-  font-size: var(--font-size-small);
-  font-weight: 400;
-  white-space: nowrap;
+  font-family: var(--font-family-mono);
+  font-size: 1.15rem;
+  color: var(--color-grey);
+  padding: 0 0.4rem 1.9rem 7.4rem;
+  margin-top: -1rem;
 }
 
 .ChangeDisplay {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 }
 
 .ChangeDisplayWrapper {
@@ -32,39 +20,56 @@
   flex-direction: column;
 }
 
-.ChangeDisplay {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
+.restOfChanges {
+  width: fit-content;
+  margin-top: 1.2rem;
 }
 
-.historyToggle {
-  color: var(--color-grey);
+.headingWrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: var(--color-black-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+}
+
+.heading {
+  color: var(--color-white);
+  font-family: var(--font-family-primary);
+  font-size: 1.2rem;
+  font-weight: 400;
   white-space: nowrap;
 }
 
+.historyToggle {
+  color: var(--color-grey-secondary);
+  white-space: nowrap;
+  font-family: var(--font-family-mono);
+  font-size: 1.1rem;
+}
+
 .historyToggle svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .ChangeDisplayDate {
-  color: var(--color-grey);
+  color: var(--color-grey-secondary);
   margin-bottom: 2px;
-}
-
-.restOfChanges {
-  width: fit-content;
-  margin-top: 1rem;
 }
 
 .restOfChangesItems {
   display: flex;
   flex-direction: column;
-  background-color: var(--color-black-secondary);
   gap: 1.75rem;
+  background-color: var(--color-black-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
   padding: 1.5rem;
-  margin-top: -4px;
+  margin-top: 0.6rem;
 }
 
 .Chavron {
@@ -78,20 +83,8 @@
   margin-top: 3px;
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 750px) {
   .ChangeDetails {
-    align-items: center;
-  }
-}
-
-@media (max-width: 400px) {
-  .restOfChanges {
-    margin-top: 1.75rem;
-  }
-
-  .headingWrapper {
-    flex-direction: column;
-    gap: 0;
-    padding: 6px 32px;
+    padding-left: 0.2rem;
   }
 }

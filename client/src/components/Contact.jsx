@@ -8,7 +8,7 @@ const Contact = () => {
       href="mailto:henbc13@gmail.com"
       className={styles.contact}
       aria-label="send me an email">
-      <span>contact me</span>
+      <span>contact</span>
       <EmailIcon className={styles.contactIcon} />
     </a>
   );

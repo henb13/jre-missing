@@ -1,31 +1,28 @@
-.githubSponsorButton {
-  position: fixed;
-  top: 3.55rem;
-  left: 20rem;
-  height: 35px;
-  width: 116px;
-  border: 0;
-  margin-left: 2rem;
-  cursor: pointer;
+.Sponsor {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-family-mono);
+  font-size: 1.2rem;
+  color: var(--color-grey-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.7rem 1.4rem;
+  transition: border-color 0.2s, color 0.2s;
 }
 
-@media (max-width: 1350px) {
-  .githubSponsorButton {
-    left: 8rem;
-    position: absolute;
-  }
+.Sponsor:hover {
+  border-color: var(--color-grey);
+  color: var(--color-white);
+}
+
+.heart {
+  color: #db61a2;
 }
 
 @media (max-width: 750px) {
-  .githubSponsorButton {
-    top: 1.6rem;
-    left: 5rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .githubSponsorButton {
-    top: 1.5rem;
-    left: 0;
+  .Sponsor {
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
   }
 }

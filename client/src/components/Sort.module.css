@@ -1,80 +1,85 @@
 .sort {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  color: var(--color-grey-secondary);
-  margin-right: 2.5rem;
-  margin-top: 6rem;
+  flex: none;
   font-size: var(--font-size-small);
 }
 
 .sortDisclosure {
-  gap: 3px;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-family-mono);
+  font-size: 1.1rem;
+  color: var(--color-grey-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0 1.4rem;
+  height: 4.2rem;
+  white-space: nowrap;
+  transition: border-color 0.25s, color 0.25s;
+}
+
+.sortDisclosure:hover {
+  border-color: var(--color-grey);
+  color: var(--color-white);
 }
 
 .optionsWrapper {
-  display: flex;
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  z-index: 10;
   flex-direction: column;
-  margin-top: 1.5rem;
+  background-color: var(--color-black-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 17rem;
 }
 
 .sort.open .optionsWrapper {
-  cursor: pointer;
+  display: flex;
 }
 
 .option {
-  font-size: 11px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-family-mono);
+  font-size: 1.1rem;
   color: var(--color-grey-secondary);
-  padding: 0.3em 0.6em 0.3em 1em;
-  border: 1px solid var(--color-grey-secondary);
-  transition: color, border-color 0.25s;
+  padding: 1rem 1.2rem;
+  transition: background-color 0.2s, color 0.2s;
 }
 
-.option {
-  visibility: hidden;
+.option:hover {
+  background-color: var(--color-border-soft);
+  color: var(--color-white);
 }
 
-.sort.open .option {
-  visibility: visible;
+.option.selected {
+  color: var(--color-white);
 }
 
 .option .label {
   margin-right: 2px;
-  transition: color 0.5s;
-}
-
-.option.selected {
-  border-color: var(--color-white);
-}
-.option:not(.selected) {
-  transition: background-color 0.5s;
-}
-
-.option:hover:not(.selected) {
-  background-color: var(--color-black-secondary);
 }
 
 .icon {
   transform: scale(0.6);
-  transition: color, transform 0.25s ease-out;
+  transition: transform 0.25s ease-out;
 }
 
 .icon path {
   color: var(--color-grey);
-  transition: color 0.5s;
-  transition-delay: 0.25;
 }
 
-.option.selected .label,
-.option.selected:hover .icon path {
+.option.selected .icon path {
   color: var(--color-white);
-}
-
-.option.selected:hover .label {
-  color: var(--color-grey-secondary);
 }
 
 .iconReverse {
@@ -83,23 +88,9 @@
 
 .Chavron {
   transform: rotate(180deg) scale(0.65);
-  margin-top: 3px;
   transition: transform 0.25s ease-out;
 }
 
 .Chavron.open {
   transform: rotate(0deg) scale(0.65);
-  margin-top: 3px;
-}
-
-@media (max-width: 1350px) {
-  .sort {
-    margin: 0;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .sort.open {
-    margin-bottom: 4rem;
-  }
 }

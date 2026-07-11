@@ -2,10 +2,17 @@ import styles from "./Sponsor.module.css";
 
 const Sponsor = () => {
   return (
-    <iframe
-      src="https://github.com/sponsors/henb13/button"
-      title="Sponsor henb13"
-      className={styles.githubSponsorButton}></iframe>
+    <a
+      className={styles.Sponsor}
+      href="https://github.com/sponsors/henb13"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Sponsor henb13 on GitHub">
+      <span className={styles.heart} aria-hidden="true">
+        ♥
+      </span>
+      sponsor
+    </a>
   );
 };
 

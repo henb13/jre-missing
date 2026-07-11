@@ -1,33 +1,33 @@
 .Coffee {
-  position: fixed;
-  top: 3.65rem;
-  left: 36rem;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-family-mono);
+  font-size: 1.2rem;
   font-weight: 500;
-  font-size: 16px;
-  cursor: pointer;
+  color: #121110;
+  background-color: #ffdd00;
+  border-radius: 6px;
+  padding: 0.8rem 1.4rem;
+  white-space: nowrap;
+  transition: filter 0.2s;
 }
 
-.CoffeeLogo {
-  max-height: 30px;
+.Coffee:link,
+.Coffee:visited {
+  color: #121110;
 }
 
-@media (max-width: 1350px) {
-  .Coffee {
-    left: 24rem;
-    position: absolute;
-  }
+.Coffee:hover {
+  filter: brightness(1.08);
 }
 
 @media (max-width: 750px) {
   .Coffee {
-    top: 1.65rem;
-    left: 21rem;
+    padding: 0.7rem 1rem;
+    font-size: 1.1rem;
   }
-}
 
-@media (max-width: 380px) {
-  .Coffee {
-    top: 1.5rem;
-    left: 15rem;
+  .full {
+    display: none;
   }
 }

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Arrow from "../icons/arrow.svg";
 import { useState } from "react";
 import classnames from "classnames";
@@ -9,6 +8,12 @@ import Chavron from "../icons/chavron.svg";
 const options = {
   removed: ["episode number", "date removed"],
   shortened: ["episode number", "date shortened"],
+};
+
+const displayNames = {
+  "episode number": "episode №",
+  "date removed": "date removed",
+  "date shortened": "date shortened",
 };
 
 const initialState = { name: "episode number", reverse: false };
@@ -62,7 +67,7 @@ const Sort = ({ setEpisodes, episodes, listShown }) => {
         onClick={() => setOpen((open) => !open)}
         id={disclosureId}
         ariaControls={optionsWrapperId}>
-        Sort by
+        sort: {displayNames[selected.name] || selected.name} {selected.reverse ? "↑" : "↓"}
         <Chavron
           className={classnames(styles.Chavron, {
             [styles.open]: open,
@@ -110,10 +115,7 @@ function Option({ optionName, selected, setSelected, handleSort }) {
       })}
       onClick={handleClick}>
       <div className={styles.label} id="option-label">
-        {optionName
-          .split(" ")
-          .map((word) => word[0].toUpperCase() + word.slice(1))
-          .join(" ")}
+        {displayNames[optionName] || optionName}
       </div>
 
       <Arrow

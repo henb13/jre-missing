@@ -1,96 +1,71 @@
 .Header {
-  margin-bottom: 10rem;
+  margin-bottom: 0;
+}
+
+.eyebrow {
+  font-family: var(--font-family-mono);
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  color: var(--color-orange);
+  margin-bottom: 1.8rem;
 }
 
 h1 {
-  font-size: 8rem;
-
-  font-family: "Teko", sans-serif;
-  font-style: italic;
-  letter-spacing: -3px;
-  font-weight: 900;
-  margin-left: -2px;
-  color: var(--color-red);
-}
-
-h1 span {
+  font-family: var(--font-family-primary);
+  font-weight: 800;
+  font-size: 5.8rem;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
   color: var(--color-white);
 }
 
+h1 span {
+  color: var(--color-red);
+}
+
 .intro {
-  font-size: var(--font-size-medium);
-  max-width: 47rem;
+  font-size: 1.5rem;
+  line-height: 1.65;
+  color: var(--color-grey-secondary);
+  margin: 2.6rem 0 0;
+  max-width: 40rem;
 }
 
-.intro span {
-  color: var(--color-orange);
-  font-weight: 600;
-  transition: color 0.75s;
-}
-
-.intro span {
+.intro a span {
   position: relative;
+  color: var(--color-orange);
+  font-weight: 500;
+  border-bottom: 1px solid var(--color-orange-soft);
 }
 
-.intro span:after {
+.intro a span:after {
   content: "";
   position: absolute;
-  bottom: 0.05em;
+  bottom: -1px;
   left: 0;
   width: 100%;
   height: 1px;
-  min-height: 1px;
-  z-index: -1;
   background-color: var(--color-orange);
   transform: scale(0, 1);
   transition: transform 0.25s ease;
 }
 
-.intro span:hover:after {
+.intro a span:hover:after {
   transform: scale(1, 1);
 }
 
-.brMobile {
-  display: none;
-}
-
-@media (max-width: 1350px) {
-  .Header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 15rem;
-    margin-bottom: 0;
-  }
-  h1 {
-    font-size: clamp(3rem, 5rem, 5vw);
-    letter-spacing: unset;
-    margin-bottom: 2rem;
-  }
-  .intro {
-    text-align: center;
-    font-size: clamp(1.4rem, 1.6rem, 2.5vw);
-    max-width: 40rem;
-  }
-
-  .intro a {
-    display: block;
-    width: max-content;
-    margin: 0 auto;
-  }
-  br {
+@media (max-width: 1250px) {
+  .br {
     display: none;
   }
-}
 
-@media (max-width: 600px), (orientation: landscape) AND (max-height: 650px) {
-  .Header {
-    margin-top: 10rem;
+  h1 {
+    font-size: 4rem;
   }
-}
 
-@media (orientation: landscape) AND (max-height: 650px) {
-  .Header {
-    margin-top: 11rem;
+  .intro {
+    font-size: 1.35rem;
+    max-width: 48rem;
   }
 }

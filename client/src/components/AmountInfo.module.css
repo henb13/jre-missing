@@ -1,69 +1,77 @@
 .AmountInfo {
-  font-size: 2rem;
+  margin-top: 5.2rem;
 }
 
-.AmountInfoItem {
-  display: block;
-  white-space: nowrap;
-}
-
-.AmountInfoItem .count {
-  color: var(--color-red);
-  font-weight: 700;
-  position: relative;
-}
-
-.AmountInfoItem .count:after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 0;
-  right: 0;
-  bottom: 1px;
-  border-bottom: 2px solid var(--color-red);
-}
-.AmountInfoItem .count.NoAmount:after {
-  border-color: var(--color-green);
-}
-
-.LastChecked {
-  font-size: 1.4rem;
+.stats {
   display: flex;
-  text-align: center;
-  margin-top: 1px;
-  color: var(--color-grey);
-  margin-bottom: 3rem;
+  gap: 4.8rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.6rem;
+  min-width: 14rem;
+  text-align: left;
+}
+
+.count {
+  font-weight: 700;
+  font-size: 4.4rem;
+  line-height: 1;
+  color: var(--color-red);
 }
 
 .count.NoAmount {
   color: var(--color-green);
 }
 
-.Checkmark {
-  margin: -1px 0 0 6px;
-  color: var(--color-green);
+.statLabel {
+  font-family: var(--font-family-mono);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-grey-secondary);
 }
 
-@media (max-width: 1350px) {
+.LastChecked {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2.8rem;
+  font-family: var(--font-family-mono);
+  font-size: 1.2rem;
+  color: var(--color-grey);
+}
+
+.dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background-color: var(--color-green);
+  flex: none;
+}
+
+@media (max-width: 1250px) {
   .AmountInfo {
-    font-size: 1.8rem;
-    margin: 4.5rem 0 1.75rem;
-    text-align: center;
+    margin-top: 2.6rem;
   }
 
-  .AmountInfoItem {
-    margin: 0 auto;
+  .stats {
+    gap: 3.2rem;
   }
 
-  .AmountInfo .count:after {
-    bottom: 0;
-    width: 95%;
+  .stat {
+    flex: 1;
+    min-width: 0;
+    padding-top: 1.2rem;
   }
 
-  .LastChecked {
-    justify-content: center;
-    margin-left: 1.25rem;
-    margin-top: 0.7rem;
+  .count {
+    font-size: 3.2rem;
   }
 
   .LastChecked time {

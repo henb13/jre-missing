@@ -1,48 +1,53 @@
+.SearchArea {
+  flex: 1;
+  max-width: 36rem;
+}
+
 .Searchbox {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border: 1px solid var(--color-grey-secondary);
-  border-radius: 1.6rem;
-  padding: 0 1.5rem;
-  width: 23.3rem;
-  height: 4.6rem;
-  transition: background-color 0.35s;
-  position: relative;
+  gap: 1rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-black-secondary);
+  border-radius: 8px;
+  padding: 0 1.4rem;
+  height: 4.2rem;
+  transition: border-color 0.25s;
 }
 
 .Searchbox:focus-within {
-  background-color: var(--color-black-secondary);
+  border-color: var(--color-grey);
 }
 
 input {
   flex: 1;
+  min-width: 0;
   background-color: transparent;
   border: none;
-  font-size: var(--font-size-small);
   outline: none;
-  color: var(--color-grey-secondary);
+  font-family: var(--font-family-mono);
+  font-size: 1.2rem;
+  color: var(--color-white);
   caret-color: var(--color-white);
-  font-family: var(--font-family-primary);
 }
 
-input::-webkit-input-placeholder {
-  position: absolute;
-  color: var(--color-grey-secondary);
-  opacity: 1;
-  font-family: var(--font-family-primary);
+input::placeholder {
+  color: var(--color-grey);
+  font-family: var(--font-family-mono);
   font-size: 1.2rem;
-
-  transform: translateY(-12%);
-  cursor: text;
-  transition: all 0.15s ease-out;
+  opacity: 1;
 }
 
 .searchResult {
+  font-family: var(--font-family-mono);
+  font-size: 1.1rem;
   color: var(--color-grey-secondary);
-  font-size: 1.2rem;
-  margin-top: 1rem;
-  margin-left: 1.5rem;
+  margin-top: 0.8rem;
+  margin-left: 0.2rem;
+}
+
+.SearchIcon {
+  flex: none;
 }
 
 .SearchIcon.hoverCursor {

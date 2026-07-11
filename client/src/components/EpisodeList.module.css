@@ -1,55 +1,24 @@
+.wrapper {
+  width: 100%;
+}
+
 .wrapper .EpisodeList {
   position: unset;
-  font-size: 1.4rem;
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  gap: 4.5rem;
 }
 
 .EpisodeItem {
-  font-size: var(--font-size-medium);
-  hyphens: auto;
   position: relative;
   display: flex;
   flex-direction: column;
+  hyphens: auto;
+  border-bottom: 1px solid var(--color-border-row);
 }
 
 .NoEpisodesMessage {
   color: var(--color-grey);
-}
-
-.Border {
-  display: initial;
-  background-color: var(--color-grey);
-  height: 1px;
-  width: 75%;
-  opacity: 0.25;
-  margin-bottom: 4rem;
-}
-
-.Border:not(.visible) {
-  display: none;
-}
-
-@media (max-width: 1350px) {
-  .EpisodeList {
-    gap: 3.5rem;
-    justify-items: center;
-  }
-  .EpisodeItem {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .Border:not(.visible) {
-    display: initial;
-  }
-}
-
-@media (max-width: 600px) {
-  .EpisodeList {
-    font-size: 1.2rem;
-    margin-right: 0.6rem;
-  }
+  font-size: 1.4rem;
+  padding: 2.4rem 0.4rem;
 }

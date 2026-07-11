@@ -1,24 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap");
 
 :root {
-  --color-black-secondary: #0f0f0f;
-  --color-black: #151515;
-  --color-grey: #424242;
-  --color-grey-secondary: #6b6b6b;
-  --color-white: #fafafa;
-  --color-white-secondary: #e8e6e6;
-  --color-orange: #ee7d2c;
-  --color-red: #a51f21;
-  --color-green: #1ed760;
+  --color-black-secondary: #191817;
+  --color-black: #121110;
+  --color-grey: #575350;
+  --color-grey-secondary: #96918a;
+  --color-white: #f0eee9;
+  --color-white-secondary: #e0ddd8;
+  --color-orange: #e0813e;
+  --color-orange-soft: rgba(224, 129, 62, 0.35);
+  --color-red: #b0322c;
+  --color-red-soft: rgba(176, 50, 44, 0.12);
+  --color-green: #34a862;
+  --color-border: #2b2927;
+  --color-border-soft: #211f1e;
+  --color-border-row: #1d1b1a;
 
   --font-size-large: 2.2rem;
   --font-size-medium: 1.6rem;
   --font-size-small: 1.2rem;
   --font-size-xs: 1rem;
 
-  --font-family-primary: Oswald, sans-serif;
-  --font-family-secondary: Roboto, sans-serif;
+  --font-family-primary: Geist, system-ui, sans-serif;
+  --font-family-secondary: Geist, system-ui, sans-serif;
+  --font-family-mono: "Geist Mono", ui-monospace, monospace;
 
   --number-right-placement: 6%;
 }

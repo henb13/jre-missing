@@ -1,38 +1,33 @@
 .ListTab {
-  font-size: var(--font-size-small);
   display: flex;
-  gap: 2rem;
-  margin-bottom: 4rem;
+  gap: 2.8rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .option {
-  transition: color, border-color 0.25s;
-  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  font-family: var(--font-family-mono);
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-grey);
-  transition: all 0.25s ease-out;
-  border-bottom: 1px solid;
-  border-color: var(--color-black);
+  padding-bottom: 1.4rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.25s, border-color 0.25s;
 }
 
-.option.selected {
-  border-color: var(--color-white);
-}
-
-.option.selected,
 .option:hover {
   color: var(--color-white);
 }
 
-.divider {
-  max-height: 50%;
-  width: 1px;
-  background-color: var(--color-grey);
-  opacity: 0.3;
+.option.selected {
+  color: var(--color-white);
+  border-color: var(--color-red);
 }
 
-@media (max-width: 1350px) {
-  .ListTab {
-    justify-content: center;
-    margin-bottom: 5rem;
-  }
+.option.selected .count {
+  color: var(--color-red);
 }

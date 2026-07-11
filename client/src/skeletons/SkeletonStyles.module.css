@@ -4,15 +4,15 @@
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  gap: 4.5rem;
-  margin-top: 6.5rem;
+  gap: 3.6rem;
+  margin-top: 3rem;
 }
 
 .SkeletonElement {
   position: relative;
   overflow: hidden;
-  background-color: #212121;
-  border-radius: 2px;
+  background-color: #1d1b1a;
+  border-radius: 3px;
 }
 
 .hidden {
@@ -54,9 +54,9 @@
 .SkeletonShimmer {
   width: 50%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.02);
   transform: skewX(-50deg);
-  box-shadow: 0 0 60px 60px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 60px 60px rgba(255, 255, 255, 0.02);
   animation: loading 2s infinite;
 }
 
@@ -75,7 +75,7 @@
 .skeletonText {
   display: flex;
   flex-direction: column;
-  margin-top: 10.5rem;
+  margin-top: 5.2rem;
   margin-bottom: 2.5rem;
 }
 
@@ -98,33 +98,20 @@
   width: 250px;
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1250px) {
   .SkeletonList {
-    justify-content: center;
-    align-items: center;
-    margin-top: 0;
-    gap: 9.15rem;
-  }
-
-  .SkeletonElement.extraSmall,
-  .SkeletonElement.small,
-  .SkeletonElement.medium,
-  .SkeletonElement.large,
-  .SkeletonElement.extraLarge {
-    width: 130px;
-    height: 25px;
+    margin-top: 2rem;
+    gap: 3rem;
   }
 
   .skeletonText {
-    margin-top: 4.7rem;
-    align-items: center;
-    margin-bottom: 48px;
+    margin-top: 2.6rem;
+    margin-bottom: 2rem;
   }
 
   .amount {
     width: 250px;
     height: 22px;
-    margin-left: 2px;
   }
 
   .shortened {

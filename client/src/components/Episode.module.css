@@ -1,55 +1,54 @@
-.epContent {
+.epRow {
   display: flex;
-  flex-direction: column;
-}
-
-.tagsWrapper {
-  display: flex;
-  gap: 9px;
-  margin-bottom: 8px;
-}
-
-.epName {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  align-items: baseline;
+  gap: 1.8rem;
+  padding: 1.9rem 0.4rem;
 }
 
 .epNumber {
+  font-family: var(--font-family-mono);
+  font-size: 1.3rem;
   color: var(--color-orange);
+  width: 5.2rem;
+  flex: none;
 }
 
 .epGuest {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  flex: 1;
+  font-size: 1.65rem;
+  font-weight: 500;
+  color: var(--color-white);
 }
 
-.timeDetail {
-  font-size: var(--font-size-small);
-  letter-spacing: 0.1px;
+.epDate {
+  font-family: var(--font-family-mono);
+  font-size: 1.15rem;
   color: var(--color-grey);
+  flex: none;
 }
 
-@media (max-width: 1350px) {
-  .EpisodeItem {
-    display: unset;
-    text-align-last: center;
-    align-items: unset;
+@media (max-width: 750px) {
+  .epRow {
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    padding: 1.6rem 0.2rem;
+  }
+
+  .epNumber {
+    width: auto;
+  }
+
+  .epGuest {
+    font-size: 1.5rem;
+  }
+
+  .epDate {
     width: 100%;
-  }
-
-  .epContent {
-    align-items: center;
-  }
-
-  .epName {
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .timeDetail {
-    display: block;
-    margin: 4px 0 0 0;
-    font-size: var(--font-size-small);
+    margin-top: -0.4rem;
+    font-size: 1.05rem;
   }
 }
