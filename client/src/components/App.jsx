@@ -1,8 +1,8 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import useFetch from "../hooks/useFetch";
 import useMinLoadingTime from "../hooks/useMinLoadingTime";
-import Error from "./Error";
+import ErrorMessage from "./ErrorMessage";
 import Github from "./Github";
 import Header from "./Header";
 import AmountInfo from "./AmountInfo";
@@ -13,7 +13,9 @@ import ScrollButton from "./ScrollButton";
 import Contact from "./Contact";
 import Sponsor from "./Sponsor";
 import Coffee from "./Coffee";
+import { TagTooltip } from "./Tag";
 import useScroll from "../hooks/useScroll";
+import { DEFAULT_SORT, filterEpisodes, sortEpisodes } from "../utils";
 
 function App() {
   const { data, error, isPending } = useFetch(
@@ -21,25 +23,21 @@ function App() {
   );
   const minLoadingTimeElapsed = useMinLoadingTime(200);
   const [shouldShakeEpisodes, setShouldShakeEpisodes] = useState(false);
-  const [missingEpisodesShown, setMissingEpisodesShown] = useState([]);
-  const [shortenedEpisodesShown, setShortenedEpisodesShown] = useState([]);
   const [listShown, setListShown] = useState("removed");
   const [searchText, setSearchText] = useState("");
+  const [sort, setSort] = useState(DEFAULT_SORT);
 
-  const listMap = {
-    removed: {
-      episodes: missingEpisodesShown,
-      allEpisodes: data?.missingEpisodes || [],
-      setEpisodes: setMissingEpisodesShown,
-    },
-    shortened: {
-      episodes: shortenedEpisodesShown,
-      allEpisodes: data?.shortenedEpisodes || [],
-      setEpisodes: setShortenedEpisodesShown,
-    },
+  const episodesShown = useMemo(() => {
+    const allEpisodes =
+      (listShown === "removed" ? data?.missingEpisodes : data?.shortenedEpisodes) || [];
+    return sortEpisodes(filterEpisodes(allEpisodes, searchText), sort);
+  }, [data, listShown, searchText, sort]);
+
+  const changeList = (list) => {
+    setListShown(list);
+    setSearchText("");
+    setSort(DEFAULT_SORT);
   };
-
-  const currentList = listMap[listShown];
 
   const shakeEpisodes = () => {
     setShouldShakeEpisodes(true);
@@ -48,21 +46,9 @@ function App() {
     }, 1000);
   };
 
-  useEffect(() => {
-    setMissingEpisodesShown(data?.missingEpisodes || []);
-    setShortenedEpisodesShown(data?.shortenedEpisodes || []);
-  }, [data]);
-
-  const { scrollTarget, scrollable } = useScroll({
-    refreshOnChange: [missingEpisodesShown, shortenedEpisodesShown, listShown, searchText],
-  });
+  const { scrollTarget, scrollable } = useScroll();
 
   const showSkeleton = isPending || !minLoadingTimeElapsed;
-
-  const resetCurrentEpisodes = () => {
-    currentList.setEpisodes(currentList.allEpisodes);
-    setSearchText("");
-  };
 
   return (
     <div className="App">
@@ -79,50 +65,44 @@ function App() {
         <section className="left">
           <Header />
           {error ? (
-            <Error error={error} />
+            <ErrorMessage error={error} />
           ) : (
-            <AmountInfo data={data} showSkeleton={showSkeleton} setListShown={setListShown} />
+            <AmountInfo data={data} showSkeleton={showSkeleton} onListChange={changeList} />
           )}
         </section>
 
         {!error && (
           <section className="right">
             <EpisodeList
-              missingEpisodesShown={missingEpisodesShown}
-              shortenedEpisodesShown={shortenedEpisodesShown}
+              episodes={episodesShown}
               shouldShake={shouldShakeEpisodes}
               showSkeleton={showSkeleton}
               searchText={searchText}
               listShown={listShown}
-              setListShown={setListShown}
-              resetCurrentEpisodes={resetCurrentEpisodes}
+              onListChange={changeList}
               removedTotal={data?.missingEpisodes?.length || 0}
               shortenedTotal={data?.shortenedEpisodes?.length || 0}
               controls={
                 <div className="listControls">
                   <Searchbox
-                    {...currentList}
+                    resultsCount={episodesShown.length}
                     shakeEpisodes={shakeEpisodes}
                     searchText={searchText}
                     setSearchText={setSearchText}
                   />
-                  <Sort
-                    listShown={listShown}
-                    setEpisodes={currentList.setEpisodes}
-                    episodes={currentList.episodes}
-                  />
+                  <Sort listShown={listShown} sort={sort} setSort={setSort} />
                 </div>
               }
             />
             <ScrollButton
-              dataPending={isPending}
-              minLoadingTimeElapsed={minLoadingTimeElapsed}
+              showSkeleton={showSkeleton}
               scrollTarget={scrollTarget}
               scrollable={scrollable}
             />
           </section>
         )}
       </div>
+      <TagTooltip />
     </div>
   );
 }

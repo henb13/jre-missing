@@ -1,29 +1,8 @@
 import classnames from "classnames";
-import { useState } from "react";
 import styles from "./Searchbox.module.css";
 import SearchIcon from "../icons/SearchboxIcon.svg";
 
-const PLACEHOLDER = "search episode or guest…";
-
-const Searchbox = ({
-  episodes,
-  setEpisodes,
-  allEpisodes,
-  shakeEpisodes,
-  searchText,
-  setSearchText,
-}) => {
-  const [placeholder, setPlaceholder] = useState(PLACEHOLDER);
-
-  const handleSearch = (e) => {
-    setEpisodes(() => {
-      return allEpisodes.filter((ep) =>
-        ep.full_name?.toLowerCase().includes(e.target.value.toLowerCase())
-      );
-    });
-    setSearchText(e.target.value);
-  };
-
+const Searchbox = ({ resultsCount, shakeEpisodes, searchText, setSearchText }) => {
   const classesSearchIcon = classnames(styles.SearchIcon, {
     [styles.hoverCursor]: searchText,
   });
@@ -37,20 +16,17 @@ const Searchbox = ({
           onClick={() => {
             if (searchText) {
               shakeEpisodes();
-
-              navigator.vibrate();
+              navigator.vibrate?.(100);
             }
           }}
         />
 
         <input
           value={searchText}
-          onChange={handleSearch}
+          onChange={(e) => setSearchText(e.target.value)}
           type="text"
           id="search"
-          placeholder={placeholder}
-          onFocus={() => setPlaceholder(null)}
-          onBlur={() => setPlaceholder(PLACEHOLDER)}
+          placeholder="search episode or guest…"
           onKeyUp={(e) => {
             if (e.key === "Enter") shakeEpisodes();
           }}
@@ -60,8 +36,8 @@ const Searchbox = ({
       </div>
       {searchText && (
         <p className={styles.searchResult}>
-          {episodes.length} result
-          {episodes.length != 1 && "s"} found
+          {resultsCount} result
+          {resultsCount !== 1 && "s"} found
         </p>
       )}
     </div>

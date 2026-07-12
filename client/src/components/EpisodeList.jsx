@@ -2,125 +2,64 @@ import classnames from "classnames";
 import styles from "./EpisodeList.module.css";
 import Episode from "./Episode";
 import SkeletonList from "../skeletons/SkeletonList.jsx";
-import ListTabs from "./ListTabs";
+import ListTabs, { getListId, getTabId } from "./ListTabs";
 import ChangeDetails from "./ChangeDetails";
 
 const EpisodeList = ({
-  missingEpisodesShown,
-  shortenedEpisodesShown,
+  episodes,
   shouldShake,
   showSkeleton,
   searchText,
   listShown,
-  setListShown,
-  resetCurrentEpisodes,
+  onListChange,
   removedTotal,
   shortenedTotal,
   controls,
 }) => {
   if (showSkeleton) return <SkeletonList />;
-  if (!missingEpisodesShown && !shortenedEpisodesShown) return null;
 
-  const classesEpList = classnames(styles.EpisodeList, {
-    shake: shouldShake,
-  });
+  const isShortened = listShown === "shortened";
 
-  const listIdRemoved = "episode-list-removed";
-  const listIdShortened = "episode-list-shortened";
-  const tabIdRemoved = "tab-removed";
-  const tabIdShortened = "tab-shortened";
   return (
     <div className={styles.wrapper}>
       <ListTabs
         listShown={listShown}
-        setListShown={setListShown}
-        resetCurrentEpisodes={resetCurrentEpisodes}
-        listIdRemoved={listIdRemoved}
-        listIdShortened={listIdShortened}
-        tabIdRemoved={tabIdRemoved}
-        tabIdShortened={tabIdShortened}
+        onListChange={onListChange}
         removedTotal={removedTotal}
         shortenedTotal={shortenedTotal}
       />
       {controls}
-      <>
-        {listShown === "removed" ? (
-          <RemovedList
-            searchText={searchText}
-            episodes={missingEpisodesShown}
-            className={classesEpList}
-            id={listIdRemoved}
-            ariaLabelledBy={tabIdRemoved}
-          />
-        ) : (
-          <ShortenedList
-            searchText={searchText}
-            episodes={shortenedEpisodesShown}
-            className={classesEpList}
-            id={listIdShortened}
-            ariaLabelledBy={tabIdShortened}
-          />
-        )}
-      </>
-    </div>
-  );
-};
-
-const RemovedList = ({ episodes, searchText, className, id, ariaLabelledBy }) => {
-  return (
-    <ul className={className} role="tabpanel" id={id} aria-labelledby={ariaLabelledBy}>
-      {episodes.length > 0
-        ? episodes.map((ep) => (
-            <li
-              className={styles.EpisodeItem}
-              key={ep.full_name + ep.episode_number}
-              lang="en">
-              <Episode
-                variant="removed"
-                name={ep.full_name}
-                number={ep.episode_number}
-                date={ep.date}
-                isNew={ep.isNew}
-              />
-            </li>
-          ))
-        : !searchText && (
-            <div className={styles.NoEpisodesMessage}>
-              No episodes have been removed yet. Check back later!
-            </div>
-          )}
-    </ul>
-  );
-};
-
-const ShortenedList = ({ episodes, searchText, className, id, ariaLabelledBy }) => {
-  return (
-    <ul className={className} role="tabpanel" id={id} aria-labelledby={ariaLabelledBy}>
-      {episodes.length > 0
-        ? episodes.map((ep) => {
-            return (
+      <ul
+        className={classnames(styles.EpisodeList, { shake: shouldShake })}
+        role="tabpanel"
+        id={getListId(listShown)}
+        aria-labelledby={getTabId(listShown)}>
+        {episodes.length > 0
+          ? episodes.map((ep) => (
               <li
-                className={classnames(styles.EpisodeItem, styles.shortenedEpisode)}
+                className={classnames(styles.EpisodeItem, {
+                  [styles.shortenedEpisode]: isShortened,
+                })}
                 key={ep.full_name + ep.episode_number}
                 lang="en">
                 <Episode
-                  variant="shortened"
+                  variant={listShown}
                   name={ep.full_name}
                   number={ep.episode_number}
-                  date={ep.changes[0].date}
+                  date={isShortened ? ep.changes[0].date : ep.date}
                   isNew={ep.isNew}
                   isOriginalLength={ep.isOriginalLength}
                 />
-                <ChangeDetails episode={ep} />
+                {isShortened && <ChangeDetails episode={ep} />}
               </li>
-            );
-          })
-        : !searchText && (
-            <div className={styles.NoEpisodesMessage}>
-              No episodes have been shortened yet. Check back later!
-            </div>
-          )}
-    </ul>
+            ))
+          : !searchText && (
+              <div className={styles.NoEpisodesMessage}>
+                No episodes have been {listShown} yet. Check back later!
+              </div>
+            )}
+      </ul>
+    </div>
   );
 };
 

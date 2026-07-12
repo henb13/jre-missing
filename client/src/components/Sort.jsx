@@ -16,42 +16,8 @@ const displayNames = {
   "date shortened": "date shortened",
 };
 
-const initialState = { name: "episode number", reverse: false };
-
-const Sort = ({ setEpisodes, episodes, listShown }) => {
+const Sort = ({ listShown, sort, setSort }) => {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(initialState);
-
-  const handleSort = (option, isReversed) => {
-    let nulls;
-    let nonNulls;
-    if (option === "date shortened") {
-      nulls = [];
-      nonNulls = nonNulls = episodes.sort((a, b) => {
-        [a, b] = isReversed ? [a, b] : [b, a];
-        return a.changes[0].date.ms - b.changes[0].date.ms;
-      });
-    } else if (option === "date removed") {
-      nulls = episodes.filter((ep) => !ep.date);
-      nonNulls = episodes
-        .filter((ep) => ep.date)
-        .sort((a, b) => {
-          [a, b] = isReversed ? [a, b] : [b, a];
-          return a.date.ms - b.date.ms;
-        });
-      // episode number
-    } else {
-      nulls = episodes.filter((ep) => !ep.episode_number);
-      nonNulls = episodes
-        .filter((ep) => ep.episode_number)
-        .sort((a, b) => {
-          [a, b] = isReversed ? [a, b] : [b, a];
-          return a.episode_number - b.episode_number;
-        });
-    }
-
-    setEpisodes([...nonNulls, ...nulls]);
-  };
 
   const disclosureId = "sort-by-toggle";
   const optionsWrapperId = "sort-by-content";
@@ -67,7 +33,7 @@ const Sort = ({ setEpisodes, episodes, listShown }) => {
         onClick={() => setOpen((open) => !open)}
         id={disclosureId}
         ariaControls={optionsWrapperId}>
-        sort: {displayNames[selected.name] || selected.name} {selected.reverse ? "↑" : "↓"}
+        sort: {displayNames[sort.name] || sort.name} {sort.reverse ? "↑" : "↓"}
         <Chavron
           className={classnames(styles.Chavron, {
             [styles.open]: open,
@@ -78,45 +44,32 @@ const Sort = ({ setEpisodes, episodes, listShown }) => {
         role="listbox"
         className={styles.optionsWrapper}
         id={optionsWrapperId}
-        aria-labelledby={disclosureId}
-        aria-expanded={open}>
-        {options[listShown]?.map((option) => {
-          return (
-            <Option
-              optionName={option}
-              key={option}
-              handleSort={handleSort}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          );
-        })}
+        aria-labelledby={disclosureId}>
+        {options[listShown]?.map((option) => (
+          <Option optionName={option} key={option} sort={sort} setSort={setSort} />
+        ))}
       </div>
     </div>
   );
 };
 
-function Option({ optionName, selected, setSelected, handleSort }) {
-  const isSelected = selected.name === optionName;
-  const isReversed = isSelected && selected.reverse;
+function Option({ optionName, sort, setSort }) {
+  const isSelected = sort.name === optionName;
+  const isReversed = isSelected && sort.reverse;
+
   function handleClick() {
-    const newReverse = isSelected ? !isReversed : isReversed;
-    setSelected({ name: optionName, reverse: newReverse });
-    handleSort(optionName, newReverse);
+    setSort({ name: optionName, reverse: isSelected ? !isReversed : false });
   }
 
   return (
     <button
       role="option"
       aria-selected={isSelected}
-      aria-labelledby="option-label"
       className={classnames(styles.option, {
         [styles.selected]: isSelected,
       })}
       onClick={handleClick}>
-      <div className={styles.label} id="option-label">
-        {displayNames[optionName] || optionName}
-      </div>
+      <div className={styles.label}>{displayNames[optionName] || optionName}</div>
 
       <Arrow
         className={classnames(styles.icon, {

@@ -1,7 +1,7 @@
 import AlertIcon from "../icons/alertIcon.svg";
-import styles from "./Error.module.css";
+import styles from "./ErrorMessage.module.css";
 
-const Error = ({ error }) => {
+const ErrorMessage = ({ error }) => {
   return (
     <div className={styles.error}>
       <AlertIcon className={styles.icon} />
@@ -10,4 +10,4 @@ const Error = ({ error }) => {
   );
 };
 
-export default Error;
+export default ErrorMessage;

@@ -6,9 +6,7 @@ const TOOL_TIP_TEXT =
   "This episode is now as long as it originally was before it was shortened the first time. This does not mean nothing has been edited out since its release. It simply means that the current duration matches its original duration. The editing history is documented here.";
 
 const Episode = ({ variant, name, number, date, isNew, isOriginalLength }) => {
-  // eslint-disable-next-line no-unused-vars
-  let [_, ...guest] = name.split("-");
-  guest = guest.join("-");
+  const guest = name.split("-").slice(1).join("-");
 
   const tags = (
     <>

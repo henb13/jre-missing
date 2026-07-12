@@ -38,6 +38,10 @@ input::placeholder {
   opacity: 1;
 }
 
+input:focus::placeholder {
+  color: transparent;
+}
+
 .searchResult {
   font-family: var(--font-family-mono);
   font-size: 1.1rem;

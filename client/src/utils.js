@@ -1,13 +1,32 @@
-import { zonedTimeToUtc, utcToZonedTime, format as formatTz } from "date-fns-tz";
+import { format } from "date-fns";
 
 export const getClientLocalTime = (date, pattern) => {
-  const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const utcDate = zonedTimeToUtc(date, userTimezone);
-  const zonedDate = utcToZonedTime(utcDate, userTimezone);
-  const lastCheckedDate = formatTz(zonedDate, pattern, {
-    timeZone: userTimezone,
-  });
-  return lastCheckedDate;
+  return format(new Date(date), pattern);
+};
+
+export const DEFAULT_SORT = { name: "episode number", reverse: false };
+
+const sortValueGetters = {
+  "episode number": (ep) => ep.episode_number,
+  "date removed": (ep) => ep.date?.ms,
+  "date shortened": (ep) => ep.changes?.[0]?.date.ms,
+};
+
+export const sortEpisodes = (episodes, { name, reverse }) => {
+  const getValue = sortValueGetters[name] || sortValueGetters[DEFAULT_SORT.name];
+  const withValue = episodes.filter((ep) => getValue(ep));
+  const withoutValue = episodes.filter((ep) => !getValue(ep));
+
+  withValue.sort((a, b) => (reverse ? getValue(a) - getValue(b) : getValue(b) - getValue(a)));
+
+  return [...withValue, ...withoutValue];
+};
+
+export const filterEpisodes = (episodes, searchText) => {
+  if (!searchText) return episodes;
+  return episodes.filter((ep) =>
+    ep.full_name?.toLowerCase().includes(searchText.toLowerCase())
+  );
 };
 
 export const getDateString = (time) => {

@@ -6,7 +6,7 @@ const SkeletonList = () => {
     Array.apply(null, Array(42)).map(() => {
       const random = Math.random();
       const type =
-        random > 90
+        random > 0.9
           ? styles.extraLarge
           : random > 0.85
           ? styles.large

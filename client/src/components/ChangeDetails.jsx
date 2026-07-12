@@ -7,7 +7,8 @@ import { getDateString, getDateTimeHTMLAttribute } from "../utils";
 
 const ChangeDetails = ({ episode }) => {
   const [open, setOpen] = useState(false);
-  const disclosureId = `${episode.full_name}-toggle`;
+  const disclosureId = `change-history-toggle-${episode.id}`;
+  const historyId = `change-history-${episode.id}`;
 
   const [latestChange, ...restOfChanges] = episode.changes;
 
@@ -16,7 +17,7 @@ const ChangeDetails = ({ episode }) => {
     onClick: () => {
       setOpen((open) => !open);
     },
-    ariaControls: `${episode.full_name}-change-history-wrapper`,
+    ariaControls: historyId,
     id: disclosureId,
   };
 
@@ -48,10 +49,7 @@ const ChangeDetails = ({ episode }) => {
               />
             </Disclosure>
           </div>
-          <div
-            aria-expanded={open}
-            aria-labelledby={disclosureId}
-            id={`${episode.full_name}-change-history-wrapper`}>
+          <div aria-labelledby={disclosureId} id={historyId}>
             {open && (
               <div className={styles.restOfChangesItems}>
                 {[latestChange, ...restOfChanges].map((change) => {

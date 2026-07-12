@@ -6,6 +6,7 @@ const Disclosure = ({ isOpen, onClick, className, ariaControls, id, children }) 
     <button
       id={id}
       aria-controls={ariaControls}
+      aria-expanded={isOpen}
       className={classnames(className, styles.Disclosure, {
         [styles.open]: isOpen,
       })}

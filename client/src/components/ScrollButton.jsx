@@ -3,8 +3,8 @@ import classnames from "classnames";
 import ArrowDown from "../icons/ScrollButtonIcon.svg";
 import styles from "./ScrollButton.module.css";
 
-const ScrollButton = ({ dataPending, minLoadingTimeElapsed, scrollTarget, scrollable }) => {
-  const shouldHide = !scrollable || dataPending || !minLoadingTimeElapsed;
+const ScrollButton = ({ showSkeleton, scrollTarget, scrollable }) => {
+  const shouldHide = !scrollable || showSkeleton;
 
   function handleClick() {
     window.scroll({
@@ -21,7 +21,7 @@ const ScrollButton = ({ dataPending, minLoadingTimeElapsed, scrollTarget, scroll
         [styles.hidden]: shouldHide,
       })}
       disabled={shouldHide}
-      aria-label={"scroll to " + scrollTarget}
+      aria-label={`scroll to ${scrollTarget}`}
       onClick={handleClick}>
       <ArrowDown
         className={classnames(styles.arrow, {

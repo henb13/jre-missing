@@ -1,44 +1,41 @@
 import { useState, useEffect } from "react";
-import _ from "lodash";
+import throttle from "lodash/throttle";
 
-const useScroll = ({
-  refreshOnChange: [missingEpisodesShown, shortenedEpisodesShown, listShown, searchText],
-}) => {
+const useScroll = () => {
   const [scrollTarget, setScrollTarget] = useState("bottom");
-  const [scrollable, setScrollable] = useState(null);
+  const [scrollable, setScrollable] = useState(false);
 
   useEffect(() => {
-    setScrollable(document.body.clientHeight > window.innerHeight);
-  }, [missingEpisodesShown, shortenedEpisodesShown, listShown, searchText, setScrollable]);
-
-  useEffect(() => {
-    const handleScroll = _.throttle(() => {
+    const handleScroll = throttle(() => {
       setScrollTarget(
-        window.pageYOffset + window.innerHeight / 2 > document.body.clientHeight / 2
+        window.scrollY + window.innerHeight / 2 > document.body.clientHeight / 2
           ? "top"
           : "bottom"
       );
     }, 200);
 
-    const handleResize = _.throttle(() => {
+    const handleResize = throttle(() => {
       handleScroll();
       setScrollable(document.body.clientHeight > window.innerHeight);
     }, 200);
 
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-    window.addEventListener("resize", handleResize, {
-      passive: true,
-    });
+    // fires on observe and whenever content changes the body height
+    const observer = new ResizeObserver(handleResize);
+    observer.observe(document.body);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
+      handleScroll.cancel();
+      handleResize.cancel();
     };
-  }, [scrollTarget]);
+  }, []);
 
-  return { scrollTarget, scrollable, setScrollable };
+  return { scrollTarget, scrollable };
 };
 
 export default useScroll;

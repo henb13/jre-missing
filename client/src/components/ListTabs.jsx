@@ -1,41 +1,30 @@
 import styles from "./ListTabs.module.css";
 import classnames from "classnames";
 
-const ListTabs = ({
-  listShown,
-  setListShown,
-  resetCurrentEpisodes,
-  listIdRemoved,
-  listIdShortened,
-  tabIdRemoved,
-  tabIdShortened,
-  removedTotal,
-  shortenedTotal,
-}) => {
+export const getListId = (list) => `episode-list-${list}`;
+export const getTabId = (list) => `tab-${list}`;
+
+const TABS = [
+  { list: "removed", title: "Removed" },
+  { list: "shortened", title: "Shortened" },
+];
+
+const ListTabs = ({ listShown, onListChange, removedTotal, shortenedTotal }) => {
+  const counts = { removed: removedTotal, shortened: shortenedTotal };
+
   return (
     <div className={styles.ListTab} role="tablist" aria-orientation="horizontal">
-      <Option
-        title="Removed"
-        count={removedTotal}
-        isSelected={listShown === "removed"}
-        onClick={() => {
-          setListShown("removed");
-          resetCurrentEpisodes();
-        }}
-        id={tabIdRemoved}
-        ariaControls={listIdRemoved}
-      />
-      <Option
-        title="Shortened"
-        count={shortenedTotal}
-        isSelected={listShown === "shortened"}
-        onClick={() => {
-          setListShown("shortened");
-          resetCurrentEpisodes();
-        }}
-        id={tabIdShortened}
-        ariaControls={listIdShortened}
-      />
+      {TABS.map(({ list, title }) => (
+        <Option
+          key={list}
+          title={title}
+          count={counts[list]}
+          isSelected={listShown === list}
+          onClick={() => onListChange(list)}
+          id={getTabId(list)}
+          ariaControls={getListId(list)}
+        />
+      ))}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import styles from "./AmountInfo.module.css";
 import { getClientLocalTime, formatMinutesToTimeAmountString } from "../utils";
 import SkeletonText from "../skeletons/SkeletonText.jsx";
 
-const AmountInfo = ({ data, showSkeleton, setListShown }) => {
+const AmountInfo = ({ data, showSkeleton, onListChange }) => {
   if (showSkeleton) return <SkeletonText />;
   if (!data || !data.missingEpisodes || !data.shortenedEpisodes) return null;
 
@@ -22,7 +22,7 @@ const AmountInfo = ({ data, showSkeleton, setListShown }) => {
   return (
     <div className={styles.AmountInfo}>
       <div className={styles.stats}>
-        <button onClick={() => setListShown("removed")} className={styles.stat}>
+        <button onClick={() => onListChange("removed")} className={styles.stat}>
           <span
             className={classnames(styles.count, {
               [styles.NoAmount]: missingEpisodes.length === 0,
@@ -33,7 +33,7 @@ const AmountInfo = ({ data, showSkeleton, setListShown }) => {
             episode{missingEpisodes.length === 1 ? "" : "s"} removed
           </span>
         </button>
-        <button onClick={() => setListShown("shortened")} className={styles.stat}>
+        <button onClick={() => onListChange("shortened")} className={styles.stat}>
           <span
             className={classnames(styles.count, {
               [styles.NoAmount]: shortenedEpisodes.length === 0,
